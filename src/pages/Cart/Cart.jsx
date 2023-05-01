@@ -4,7 +4,7 @@ import './Cart.scss';
 const Cart = () => {
   return (
     <div className="cart">
-      <div className="container">Nav</div>
+      <div className="container">Cart</div>
     </div>
   );
 };
