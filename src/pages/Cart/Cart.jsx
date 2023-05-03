@@ -24,10 +24,10 @@ const Cart = () => {
                   />
                   <div className="product-information-middle">
                     <div className="product-name">일본의 돈카츠 라멘</div>
-                    <div className="product-country">일본</div>
+                    <div className="product-name-eng">fork of japan</div>
                     <div>
-                      <span>수량 : </span>
-                      <select>
+                      <span className="quantity">수량 : </span>
+                      <select className="count-button">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -46,7 +46,7 @@ const Cart = () => {
                     <button className="delete-button-individual">
                       <img
                         className="delete-img-individual"
-                        src="/images/cart/delete.png"
+                        src="/images/cart/trash-alt-regular.svg"
                         alt="이미지가 없습니다."
                       />
                     </button>
@@ -74,7 +74,21 @@ const Cart = () => {
         </section>
       </div>
       <section className="product-recommendation-list">
-        <h2 className="product-recommendation-list-title">추천상품</h2>
+        <div className="product-recommendation-list-title-box">
+          <h2 className="product-recommendation-list-title">추천상품</h2>
+          <span>
+            <img
+              className="slide-left"
+              src="/images/cart/angle-left-solid.svg"
+              alt="이미지가 없습니다."
+            />
+            <img
+              className="slide-right"
+              src="/images/cart/angle-right-solid.svg"
+              alt="이미지가 없습니다."
+            />
+          </span>
+        </div>
         <ul className="product-recommendation">
           {[1, 2, 3, 4].map(item => (
             <li key={item.index}>
@@ -84,7 +98,9 @@ const Cart = () => {
                 alt="이미지가 없습니다."
               />
               <div className="product-recommendation-name">인도의 인도카레</div>
-              <div className="product-recommendation-country">인도</div>
+              <div className="product-recommendation-name-eng">
+                curry of india
+              </div>
               <div className="product-recommendation-price">12,000원</div>
             </li>
           ))}

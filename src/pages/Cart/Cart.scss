@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .cart {
   padding-top: 100px;
   .cart-container {
@@ -8,7 +10,7 @@
       padding: 0 8px;
       .shopping-basket-title {
         padding-bottom: 10px;
-        font-size: 22px;
+        @include head-3;
       }
       div {
         .check-box:hover {
@@ -16,11 +18,13 @@
         }
         .select-all {
           margin-left: 16px;
+          @include body-2;
         }
         .delete-button-select {
-          height: 20px;
+          height: 19px;
           float: right;
           &:hover {
+            opacity: 0.5;
             cursor: pointer;
           }
         }
@@ -43,13 +47,19 @@
             .product-information-middle {
               .product-name {
                 margin: 15px 0;
+                @include body-2;
               }
-              .product-country {
+              .product-name-eng {
                 margin: 15px 0;
+                @include body-2;
+              }
+              .quantity {
+                @include body-2;
               }
               .count-button {
                 height: 20px;
                 margin: 0 10px;
+                @include body-2;
                 &:hover {
                   cursor: pointer;
                 }
@@ -58,13 +68,15 @@
             }
             .product-information-end {
               .product-price {
-                margin: 20px 0;
+                margin: 15px 0;
+                @include body-2;
               }
               .delete-button-individual {
                 height: 20px;
                 border: 0;
                 background-color: transparent;
                 &:hover {
+                  opacity: 0.5;
                   cursor: pointer;
                 }
                 .delete-img-individual {
@@ -81,39 +93,42 @@
     .order-history {
       padding: 0 8px;
       .order-history-title {
-        padding-bottom: 63px;
-        font-size: 22px;
+        padding-bottom: 60px;
+        @include head-3;
       }
       .order-price {
         display: flex;
         justify-content: space-between;
         width: 330px;
         height: 28px;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
+        @include body-2;
       }
       .delivery-price {
         display: flex;
         justify-content: space-between;
         width: 330px;
         height: 28px;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
+        @include body-2;
       }
       .total-price {
         display: flex;
         justify-content: space-between;
         width: 330px;
         height: 28px;
-        margin-bottom: 40px;
-        padding-top: 20px;
-        padding-bottom: 36px;
+        margin-bottom: 24px;
+        padding: 24px 0 40px 0;
         border-top: 1px solid rgb(229, 229, 229);
         border-bottom: 1px solid rgb(229, 229, 229);
+        @include body-2;
       }
       .order-button {
         width: 330px;
         height: 50px;
         border-radius: 25px;
         &:hover {
+          opacity: 0.5;
           cursor: pointer;
         }
       }
@@ -121,8 +136,38 @@
   }
   .product-recommendation-list {
     padding: 0 40px;
-    .product-recommendation-list-title {
-      font-size: 22px;
+    .product-recommendation-list-title-box {
+      display: flex;
+      justify-content: space-between;
+      .product-recommendation-list-title {
+        @include head-3;
+      }
+      .slide-left {
+        width: 48px;
+        height: 48px;
+        margin-left: 10px;
+        padding: 12px;
+        border: 1px solid rgb(229, 229, 229);
+        border-radius: 24px;
+        background-color: rgb(229, 229, 229);
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+      .slide-right {
+        width: 48px;
+        height: 48px;
+        margin-left: 10px;
+        padding: 12px;
+        border: 1px solid rgb(229, 229, 229);
+        border-radius: 24px;
+        background-color: rgb(229, 229, 229);
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
     }
     .product-recommendation {
       display: flex;
@@ -136,12 +181,18 @@
         }
         .product-recommendation-name {
           padding-bottom: 10px;
+          @include body-2;
         }
-        .product-recommendation-country {
+        .product-recommendation-name-eng {
           padding-bottom: 10px;
+          @include body-2;
         }
         .product-recommendation-price {
           padding-bottom: 10px;
+          @include body-2;
+        }
+        &:hover {
+          cursor: pointer;
         }
       }
     }
