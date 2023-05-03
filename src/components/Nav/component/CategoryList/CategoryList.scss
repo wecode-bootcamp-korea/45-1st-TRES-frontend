@@ -6,11 +6,11 @@
 
   .category-item {
     padding: 12px 20px;
-    font-weight: 500;
+    font-weight: 700;
     @include body-2;
 
     &:hover {
-      color: red;
+      border-bottom: 1px solid black;
       cursor: pointer;
     }
     &::after {
