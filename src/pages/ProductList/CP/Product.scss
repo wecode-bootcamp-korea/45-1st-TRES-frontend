@@ -1,0 +1,15 @@
+@import '../../../styles/variables';
+
+.product {
+  @include body-2;
+  height: 500px;
+  .food-img {
+    width: 375px;
+    height: 375px;
+    object-fit: cover;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
