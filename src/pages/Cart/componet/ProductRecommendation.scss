@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+.product-recommendation {
+  &:hover {
+    cursor: pointer;
+  }
+  .product-recommendation-img {
+    width: 600px;
+    height: 500px;
+    padding: 10px 0;
+  }
+  .product-recommendation-name {
+    padding-bottom: 10px;
+    @include body-2;
+  }
+  .product-recommendation-name-eng {
+    padding-bottom: 10px;
+    @include body-2;
+  }
+  .product-recommendation-price {
+    padding-bottom: 10px;
+    @include body-2;
+  }
+}

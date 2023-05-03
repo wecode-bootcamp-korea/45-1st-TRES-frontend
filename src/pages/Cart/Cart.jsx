@@ -1,5 +1,7 @@
 import React from 'react';
 import './Cart.scss';
+import ProductInCart from './componet/ProductInCart';
+import ProductRecommendation from './componet/ProductRecommendation';
 
 const Cart = () => {
   return (
@@ -14,45 +16,7 @@ const Cart = () => {
           </div>
           <ul>
             {[1, 2, 3, 4].map(item => (
-              <li key={item.index} className="product-box">
-                <div className="product-information">
-                  <input className="check-box" type="checkbox" />
-                  <img
-                    className="product-img"
-                    src="/images/cart/sample.png"
-                    alt="이미지가 없습니다."
-                  />
-                  <div className="product-information-middle">
-                    <div className="product-name">일본의 돈카츠 라멘</div>
-                    <div className="product-name-eng">fork of japan</div>
-                    <div>
-                      <span className="quantity">수량 : </span>
-                      <select className="count-button">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="product-information-end">
-                    <div className="product-price">15,000원</div>
-                    <button className="delete-button-individual">
-                      <img
-                        className="delete-img-individual"
-                        src="/images/cart/trash-alt-regular.svg"
-                        alt="이미지가 없습니다."
-                      />
-                    </button>
-                  </div>
-                </div>
-              </li>
+              <ProductInCart key={item.index} />
             ))}
           </ul>
         </section>
@@ -89,20 +53,9 @@ const Cart = () => {
             />
           </span>
         </div>
-        <ul className="product-recommendation">
+        <ul className="product-in-recommendation">
           {[1, 2, 3, 4].map(item => (
-            <li key={item.index}>
-              <img
-                className="product-recommendation-img"
-                src="/images/cart/sample.png"
-                alt="이미지가 없습니다."
-              />
-              <div className="product-recommendation-name">인도의 인도카레</div>
-              <div className="product-recommendation-name-eng">
-                curry of india
-              </div>
-              <div className="product-recommendation-price">12,000원</div>
-            </li>
+            <ProductRecommendation key={item.index} />
           ))}
         </ul>
       </section>

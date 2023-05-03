@@ -1,0 +1,65 @@
+@import '../../../styles/variables';
+
+.product-in-cart {
+  .product-information {
+    display: flex;
+    margin-bottom: 7px;
+    padding: 10px 0 17px 0;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    .check-box:hover {
+      cursor: pointer;
+    }
+    .product-img {
+      width: 150px;
+      height: 150px;
+      margin: 0 26px 0 16px;
+    }
+    .product-information-middle {
+      .product-name {
+        margin-top: 15px;
+        @include body-2;
+      }
+      .product-name-eng {
+        @include body-2;
+      }
+      .product-country {
+        margin: 10px 0;
+        color: rgb(117, 117, 117);
+      }
+      .quantity {
+        color: rgb(117, 117, 117);
+        @include body-2;
+      }
+      .count-button {
+        height: 20px;
+        margin: 0 10px;
+        color: rgb(117, 117, 117);
+        @include body-2;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      width: 400px;
+    }
+    .product-information-end {
+      .product-price {
+        margin: 15px 0;
+        @include body-2;
+      }
+      .delete-button-individual {
+        height: 20px;
+        border: 0;
+        background-color: transparent;
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+        .delete-img-individual {
+          height: 20px;
+        }
+      }
+      width: 85px;
+      text-align: end;
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 .cart {
   padding-top: 100px;
+  color: rgb(17, 17, 17);
   .cart-container {
     display: flex;
     justify-content: center;
@@ -21,71 +22,16 @@
           @include body-2;
         }
         .delete-button-select {
-          height: 19px;
+          height: 24px;
+          padding-bottom: 2px;
           float: right;
+          border: none;
+          background-color: white;
+          font-size: 16px;
+          text-decoration: underline;
           &:hover {
             opacity: 0.5;
             cursor: pointer;
-          }
-        }
-      }
-      ul {
-        .product-box {
-          .product-information {
-            display: flex;
-            margin-bottom: 7px;
-            padding: 10px 0 17px 0;
-            border-bottom: 1px solid rgb(229, 229, 229);
-            .check-box:hover {
-              cursor: pointer;
-            }
-            .product-img {
-              width: 150px;
-              height: 150px;
-              margin: 0 26px 0 16px;
-            }
-            .product-information-middle {
-              .product-name {
-                margin: 15px 0;
-                @include body-2;
-              }
-              .product-name-eng {
-                margin: 15px 0;
-                @include body-2;
-              }
-              .quantity {
-                @include body-2;
-              }
-              .count-button {
-                height: 20px;
-                margin: 0 10px;
-                @include body-2;
-                &:hover {
-                  cursor: pointer;
-                }
-              }
-              width: 400px;
-            }
-            .product-information-end {
-              .product-price {
-                margin: 15px 0;
-                @include body-2;
-              }
-              .delete-button-individual {
-                height: 20px;
-                border: 0;
-                background-color: transparent;
-                &:hover {
-                  opacity: 0.5;
-                  cursor: pointer;
-                }
-                .delete-img-individual {
-                  height: 20px;
-                }
-              }
-              width: 85px;
-              text-align: end;
-            }
           }
         }
       }
@@ -127,6 +73,8 @@
         width: 330px;
         height: 50px;
         border-radius: 25px;
+        background-color: rgb(17, 17, 17);
+        color: white;
         &:hover {
           opacity: 0.5;
           cursor: pointer;
@@ -169,32 +117,10 @@
         }
       }
     }
-    .product-recommendation {
+    .product-in-recommendation {
       display: flex;
       gap: 14px;
       overflow-x: scroll;
-      li {
-        .product-recommendation-img {
-          width: 600px;
-          height: 500px;
-          padding: 10px 0;
-        }
-        .product-recommendation-name {
-          padding-bottom: 10px;
-          @include body-2;
-        }
-        .product-recommendation-name-eng {
-          padding-bottom: 10px;
-          @include body-2;
-        }
-        .product-recommendation-price {
-          padding-bottom: 10px;
-          @include body-2;
-        }
-        &:hover {
-          cursor: pointer;
-        }
-      }
     }
   }
 }
