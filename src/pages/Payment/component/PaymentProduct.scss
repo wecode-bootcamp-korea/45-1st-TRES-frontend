@@ -1,0 +1,28 @@
+@import '../../../styles/variables';
+
+.payment-product {
+  display: flex;
+  .payment-product-img {
+    width: 60px;
+    height: 60px;
+  }
+  .payment-product-information {
+    padding-left: 20px;
+    @include body-2;
+    .payment-product-name-eng {
+      margin-bottom: 8px;
+    }
+    .payment-product-region {
+      margin-bottom: -4px;
+      color: rgb(117, 117, 117);
+    }
+    .payment-product-quantity-price {
+      margin-bottom: -4px;
+      color: rgb(117, 117, 117);
+    }
+    .payment-product-total-price {
+      margin-bottom: 15px;
+      color: rgb(117, 117, 117);
+    }
+  }
+}
