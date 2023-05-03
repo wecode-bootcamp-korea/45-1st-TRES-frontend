@@ -4,17 +4,17 @@ import './Login.scss';
 
 const Login = () => {
   // 변수
-  const [countries, setCountries] = useState([]); // 국가
+  const [countries, setCountries] = useState([{ id: 0, country: `선택` }]); // 국가
   const [inputValues, setInputValues] = useState({
-    email: ``,
-    firstName: ``,
-    lastName: ``,
-    password: ``,
-    countries: ``,
-    pNumber: ``,
-    gender: ``,
-    birth: ``,
-    address: ``,
+    email: `as@as.com`,
+    firstName: `zz`,
+    lastName: `xx`,
+    password: `1234`,
+    countries: `가나`,
+    pNumber: `01011112222`,
+    gender: `여자`,
+    birth: `2023-05-05`,
+    address: `여기`,
   });
 
   // 함수
@@ -51,12 +51,12 @@ const Login = () => {
     console.log(`전송 변수`, inputValues);
   }, [inputValues]);
 
-  useEffect(() => {
-    // 국가 데이터
-    fetch(`data/data.json`)
-      .then(res => res.json())
-      .then(res => setCountries(res));
-  }, []);
+  // useEffect(() => {
+  //   // 국가 데이터
+  //   fetch(`http://10.58.52.191:3000/join`)
+  //     .then(res => res.json())
+  //     .then(res => setCountries([...countries, ...res]));
+  // }, []);
 
   // 출력
   return (
@@ -97,12 +97,27 @@ const Login = () => {
             name="lastName"
             placeholder="lastName"
           />
-          <input
-            type="text"
-            className="#"
-            name="countries"
-            placeholder="countries"
-          />
+          <select name="countries">
+            {countries.map(item => (
+              <option key={item.id} value={item.country}>
+                {item.country}
+              </option>
+            ))}
+          </select>
+          <select name="countries">
+            {countries.map(item => (
+              <option key={item.id} value={item.country}>
+                {item.country}
+              </option>
+            ))}
+          </select>
+          <select name="countries">
+            {countries.map(item => (
+              <option key={item.id} value={item.country}>
+                {item.country}
+              </option>
+            ))}
+          </select>
           <input
             type="tel"
             className="#"
