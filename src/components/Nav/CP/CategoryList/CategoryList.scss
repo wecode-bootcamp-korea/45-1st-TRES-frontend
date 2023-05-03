@@ -1,0 +1,21 @@
+@import '../../../../styles/variables';
+
+.category-list {
+  display: flex;
+  overflow: hidden;
+
+  .category-item {
+    padding: 12px 20px;
+    font-weight: 500;
+    @include body-2;
+
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
+    &::after {
+      content: '';
+      border-bottom: 1px solid black;
+    }
+  }
+}
