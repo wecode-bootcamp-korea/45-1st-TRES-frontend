@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 $border-check: 1px solid red;
 
 .login {
@@ -9,16 +11,21 @@ $border-check: 1px solid red;
 
     .text1 {
       font-size: 29px;
+      @include head-3;
     }
 
-    .input-email {
+    input {
       width: 100%;
       height: 50px;
-      margin-top: 60px;
+      margin-top: 10px;
       padding: 10px;
       border-width: 1px;
       border-radius: 7px;
       font-size: 18px;
+    }
+
+    .input-email {
+      margin-top: 60px;
     }
 
     .email-required {
@@ -26,15 +33,6 @@ $border-check: 1px solid red;
       color: red;
       font-size: 12px;
       font-weight: bold;
-    }
-    .input-password {
-      width: 100%;
-      height: 50px;
-      margin-top: 20px;
-      padding: 10px;
-      border-width: 1px;
-      border-radius: 7px;
-      font-size: 18px;
     }
 
     .text2 {
