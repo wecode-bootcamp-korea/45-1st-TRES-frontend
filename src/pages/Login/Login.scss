@@ -1,2 +1,69 @@
-// .login {
-// }
+$border-check: 1px solid red;
+
+.login {
+  .container {
+    position: relative;
+    width: 460px;
+    margin: 78px auto;
+    // border: $border-check;
+
+    .text1 {
+      font-size: 29px;
+    }
+
+    .input-email {
+      width: 100%;
+      height: 50px;
+      margin-top: 60px;
+      padding: 10px;
+      border-width: 1px;
+      border-radius: 7px;
+      font-size: 18px;
+    }
+
+    .email-required {
+      padding: 10px;
+      color: red;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .input-password {
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      padding: 10px;
+      border-width: 1px;
+      border-radius: 7px;
+      font-size: 18px;
+    }
+
+    .text2 {
+      margin-top: 40px;
+      color: #757575;
+    }
+
+    .text3 {
+      margin-top: 20px;
+      color: #757575;
+      text-decoration: underline;
+    }
+
+    button {
+      position: absolute;
+      right: 10px;
+      width: 110px;
+      margin-top: 30px;
+      padding: 15px;
+      border: none;
+      border-radius: 20px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+
+      &:hover {
+        opacity: 50%;
+        cursor: pointer;
+      }
+    }
+  }
+}
