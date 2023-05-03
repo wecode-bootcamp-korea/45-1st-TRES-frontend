@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Main from './pages/Main/Main';
-import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import ProductList from './pages/ProductList/ProductList';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
@@ -12,12 +11,13 @@ import Empty from './pages/Empty/Empty';
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
+  const pathname = window.location.pathname;
   return (
     <BrowserRouter>
-      <Nav />
+      {pathname === `/login` || pathname === `/join` || <Nav />}
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/join" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/product-list" element={<ProductList />} />
         <Route path="/product-detail" element={<ProductDetail />} />
@@ -25,7 +25,7 @@ const Router = () => {
         <Route path="/payment" element={<Payment />} />
         <Route path="*" element={<Empty />} />
       </Routes>
-      <Footer />
+      {pathname === `/login` || pathname === `/join` || <Footer />}
     </BrowserRouter>
   );
 };
