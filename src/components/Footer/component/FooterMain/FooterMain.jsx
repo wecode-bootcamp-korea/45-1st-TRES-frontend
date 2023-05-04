@@ -43,18 +43,22 @@ const FooterMain = () => {
       <div className="link-to-box">
         <ul className="to-social-list">
           <li className="to-social-item">
-            <img className="icon" src="/images/icon/user.svg" alt="트위터" />
-          </li>
-          <li className="to-social-item">
-            <img className="icon" src="/images/icon/user.svg" alt="페이스북" />
-          </li>
-          <li className="to-social-item">
-            <img className="icon" src="/images/icon/user.svg" alt="유튜브" />
+            <img className="icon" src="/images/icon/twitter.svg" alt="트위터" />
           </li>
           <li className="to-social-item">
             <img
               className="icon"
-              src="/images/icon/user.svg"
+              src="/images/icon/facebook.svg"
+              alt="페이스북"
+            />
+          </li>
+          <li className="to-social-item">
+            <img className="icon" src="/images/icon/youtube.svg" alt="유튜브" />
+          </li>
+          <li className="to-social-item">
+            <img
+              className="icon"
+              src="/images/icon/instagram.svg"
               alt="인스타그램"
             />
           </li>
