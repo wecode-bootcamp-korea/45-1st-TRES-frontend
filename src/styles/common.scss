@@ -4,8 +4,7 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-a,
-Link {
+a {
   &:visited &:hover &:focus &:active {
     text-decoration: none;
   }
