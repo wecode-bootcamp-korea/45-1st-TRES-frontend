@@ -9,7 +9,7 @@ const Login = () => {
 
   /* 임시 전송용 변수 */
   const [email, setEmail] = useState(`DoorWinBell0004@gmail.com`);
-  const password = `Tmdwhd0711!`;
+  const [password, setPassword] = useState(`Tmdwhd0711!`);
 
   /* 변수 */
   const currentURL = location.pathname; // 현재 페이지
@@ -18,21 +18,30 @@ const Login = () => {
   const [countries, setCountries] = useState([{ id: 0, country: `선택` }]); // 국가
   // 회원가입 전송
   const [inputValues, setInputValues] = useState({
-    email: `as@as.com`,
+    email: `Tmdwhd0711!@asefef.com`,
     firstName: `seke`,
     lastName: `we`,
-    password: `1234`,
-    countries: [],
+    password: `Tmdwhd0711!`,
+    countries: [`가나`, `뉴질랜드`, `세네갈`],
     pNumber: `01011112222`,
     gender: `여자`,
     birth: `2023-05-05`,
     address: `여기`,
   });
 
+  /* 입력 */
+  const inputEmail = e => {
+    setEmail(e.target.value);
+  };
+
+  const inputPassword = e => {
+    setPassword(e.target.value);
+  };
+
   /* 함수 */
   // 이메일 중복 확인
   const checkEmail = () => {
-    fetch('http://10.58.52.191:3000/user-check', {
+    fetch('http://10.58.52.191:3000/users/check', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -45,18 +54,12 @@ const Login = () => {
       .then(res =>
         res.isEmailExist ? setIsEmailExist(!isEmailExist) : navigate(`/join`)
       )
-      .catch(err => console.log(`에러`, err));
-  };
-
-  // 이메일 입력
-  const inputEmail = e => {
-    setEmail(e.target.value);
-    console.log(e.target.value);
+      .catch(err => alert(err));
   };
 
   // 로그인
   const signIn = () => {
-    fetch('http://10.58.52.191:3000/login', {
+    fetch('http://10.58.52.191:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -84,7 +87,7 @@ const Login = () => {
   const send = () => {
     // const { name, value } = e.target;
     // setInputValues({ ...inputValues, [name]: value });
-    fetch(`http://10.58.52.191:3000/join`, {
+    fetch(`http://10.58.52.191:3000/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -102,7 +105,8 @@ const Login = () => {
       }),
     })
       .then(res => res.json())
-      .then(res => console.log(`전송 결과`, res));
+      .then(res => alert(res.message))
+      .catch(err => alert(err));
   };
 
   // 동작
@@ -116,9 +120,9 @@ const Login = () => {
   useEffect(() => {
     // 국가 데이터
     // fetch(`data/data.json`)
-    // fetch(`http://10.58.52.191:3000/join`)
-    //   .then(res => res.json())
-    //   .then(res => setCountries([...countries, ...res]));
+    fetch(`http://10.58.52.191:3000/users`)
+      .then(res => res.json())
+      .then(res => setCountries([...countries, ...res]));
   }, []);
 
   // 출력
@@ -153,7 +157,9 @@ const Login = () => {
           <input
             type="password"
             className="password"
+            value={password}
             placeholder="Password"
+            onChange={inputPassword}
             hidden={!isEmailExist}
           />
 
