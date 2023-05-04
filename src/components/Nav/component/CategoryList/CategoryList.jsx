@@ -21,23 +21,23 @@ export default CategoryList;
 const CATEGORY_DATA = [
   {
     id: 1,
-    name: '아시아',
-    engName: 'Asia',
+    name: '아프리카',
+    engName: 'Africa',
   },
   {
     id: 2,
-    name: '유럽',
-    engName: 'Europe',
-  },
-  {
-    id: 3,
     name: '아메리카',
     engName: 'America',
   },
   {
+    id: 3,
+    name: '아시아',
+    engName: 'Asia',
+  },
+  {
     id: 4,
-    name: '아프리카',
-    engName: 'Africa',
+    name: '유럽',
+    engName: 'Europe',
   },
   {
     id: 5,

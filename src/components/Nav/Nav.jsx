@@ -23,11 +23,15 @@ const Nav = () => {
             </div>
           </div>
         </div>
-        <div className="nav-bottom-section">
-          <div className="bottom-section">
+        <div className="nav-category-section">
+          <div className="category-section-main">
             <Link to="/main" className="logo-link">
               <button className="logo-btn">
-                <img src="/images/icon/logo.png" alt="로고" className="logo" />
+                <img
+                  src="/images/icon/seke120-80.png"
+                  alt="로고"
+                  className="logo"
+                />
               </button>
             </Link>
             <CategoryList />
