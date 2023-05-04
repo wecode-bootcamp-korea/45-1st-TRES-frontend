@@ -11,10 +11,9 @@ import Empty from './pages/Empty/Empty';
 import Footer from './components/Footer/Footer';
 
 const Router = () => {
-  const pathname = window.location.pathname;
   return (
     <BrowserRouter>
-      {pathname === `/login` || pathname === `/join` || <Nav />}
+      <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/join" element={<Login />} />
@@ -25,7 +24,7 @@ const Router = () => {
         <Route path="/payment" element={<Payment />} />
         <Route path="*" element={<Empty />} />
       </Routes>
-      {pathname === `/login` || pathname === `/join` || <Footer />}
+      <Footer />
     </BrowserRouter>
   );
 };
