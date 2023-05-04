@@ -7,11 +7,11 @@ const ProductRecommendation = () => {
       <img
         className="product-recommendation-img"
         src="/images/cart/sample.png"
-        alt="이미지가 없습니다."
+        alt="추천상품을 나타내는 이미지."
       />
-      <div className="product-recommendation-name">인도의 인도카레</div>
-      <div className="product-recommendation-name-eng">curry of india</div>
-      <div className="product-recommendation-price">12,000원</div>
+      <div className="recommendation-info">인도의 인도카레</div>
+      <div className="recommendation-info">curry of india</div>
+      <div className="recommendation-info">12,000원</div>
     </li>
   );
 };

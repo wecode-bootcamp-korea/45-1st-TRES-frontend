@@ -42,27 +42,21 @@
         padding-bottom: 60px;
         @include head-3;
       }
-      .order-price {
+      .price-info {
         display: flex;
         justify-content: space-between;
         width: 330px;
         height: 28px;
+      }
+      .order-price {
         margin-bottom: 12px;
         @include body-2;
       }
       .delivery-price {
-        display: flex;
-        justify-content: space-between;
-        width: 330px;
-        height: 28px;
         margin-bottom: 12px;
         @include body-2;
       }
       .total-price {
-        display: flex;
-        justify-content: space-between;
-        width: 330px;
-        height: 28px;
         margin-bottom: 24px;
         padding: 24px 0 40px 0;
         border-top: 1px solid rgb(229, 229, 229);
@@ -90,20 +84,7 @@
       .product-recommendation-list-title {
         @include head-3;
       }
-      .slide-left {
-        width: 48px;
-        height: 48px;
-        margin-left: 10px;
-        padding: 12px;
-        border: 1px solid rgb(229, 229, 229);
-        border-radius: 24px;
-        background-color: rgb(229, 229, 229);
-        &:hover {
-          opacity: 0.5;
-          cursor: pointer;
-        }
-      }
-      .slide-right {
+      .slide {
         width: 48px;
         height: 48px;
         margin-left: 10px;

@@ -8,15 +8,7 @@
     height: 500px;
     padding: 10px 0;
   }
-  .product-recommendation-name {
-    padding-bottom: 10px;
-    @include body-2;
-  }
-  .product-recommendation-name-eng {
-    padding-bottom: 10px;
-    @include body-2;
-  }
-  .product-recommendation-price {
+  .recommendation-info {
     padding-bottom: 10px;
     @include body-2;
   }
