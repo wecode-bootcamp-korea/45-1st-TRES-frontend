@@ -8,16 +8,16 @@ const Nav = () => {
   return (
     <div className="nav">
       <div className="nav-container">
-        <div className="nav-top-section">
-          <div className="top-section">
+        <div className="nav-user-section">
+          <div className="user-section-main">
             <div className="nav-link-box">
-              <Link to="/#" className="to-find-shop top-link">
+              <Link to="/#" className="to-find-shop link">
                 매장찾기
               </Link>
-              <Link to=".#" className="to-customer-service top-link">
+              <Link to=".#" className="to-customer-service link">
                 고객센터
               </Link>
-              <Link to="/#" className="to-login top-link">
+              <Link to="/#" className="to-login link">
                 로그인 / 회원가입
               </Link>
             </div>
@@ -25,10 +25,14 @@ const Nav = () => {
         </div>
         <div className="nav-bottom-section">
           <div className="bottom-section">
-            <button className="nav-logo">logo</button>
+            <Link to="/main" className="logo-link">
+              <button className="logo-btn">
+                <img src="/images/icon/logo.png" alt="로고" className="logo" />
+              </button>
+            </Link>
             <CategoryList />
             <Search />
-            <div className="bottom-right">
+            <div className="like-cart-box">
               <button className="to-like link-btn">
                 <img
                   src="/images/icon/heart.svg"
