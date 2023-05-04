@@ -2,7 +2,10 @@
   box-sizing: border-box;
   font-family: 'Noto Sans', sans-serif;
   font-family: 'Noto Sans KR', sans-serif;
+}
 
+a,
+Link {
   &:visited &:hover &:focus &:active {
     text-decoration: none;
   }
