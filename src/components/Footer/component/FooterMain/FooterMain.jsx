@@ -1,5 +1,6 @@
 import React from 'react';
 import './FooterMain.scss';
+import { Link } from 'react-router-dom';
 
 const FooterMain = () => {
   return (
@@ -9,7 +10,9 @@ const FooterMain = () => {
           {FOOTER_DATA_MEMBERSHIP.map(({ id, title, url }) => {
             return (
               <li className="info-item" key={id}>
-                <button className="info-item-btn">{title}</button>
+                <Link to={url}>
+                  <button className="info-item-btn">{title}</button>
+                </Link>
               </li>
             );
           })}
@@ -18,7 +21,9 @@ const FooterMain = () => {
           {FOOTER_DATA_HELP.map(({ id, title, url }) => {
             return (
               <li className="qna-item" key={id}>
-                <button className="qna-item-btn">{title}</button>
+                <Link to={url}>
+                  <button className="qna-item-btn">{title}</button>
+                </Link>
               </li>
             );
           })}
@@ -27,7 +32,9 @@ const FooterMain = () => {
           {FOOTER_DATA_ABOUT.map(({ id, title, url }) => {
             return (
               <li className="about-item" key={id}>
-                <button className="about-item-btn">{title}</button>
+                <Link to={url}>
+                  <button className="about-item-btn">{title}</button>
+                </Link>
               </li>
             );
           })}

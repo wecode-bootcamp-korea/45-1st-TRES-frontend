@@ -19,7 +19,7 @@
       background-color: transparent;
       @include body-2;
       color: #fff;
-      line-height: 32px;
+      line-height: 28px;
 
       &:hover {
         cursor: pointer;
@@ -34,9 +34,9 @@
     .qna-item-btn {
       border: 0;
       background-color: transparent;
-      @include body-3;
-      color: #727272;
-      line-height: 24px;
+      @include body-2;
+      color: #fff;
+      line-height: 28px;
 
       &:hover {
         cursor: pointer;
@@ -52,9 +52,9 @@
     .about-item-btn {
       border: 0;
       background-color: transparent;
-      @include body-3;
-      color: #727272;
-      line-height: 24px;
+      @include body-2;
+      color: #fff;
+      line-height: 28px;
 
       &:hover {
         cursor: pointer;
