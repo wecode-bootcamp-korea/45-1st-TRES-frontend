@@ -19,13 +19,7 @@ const Filter = () => {
       <FilterDetail name="채식" check={VEGE_CHECK} />
       <FilterDetail name="고기" check={MEAT_CHECK} />
       <FilterDetail name="알러지" check={ALLERGY_CHECK} />
-      <div className="spicy">
-        <p className="filter-name">맵기</p>
-        <div>
-          <input type="range" id="volume" name="volume" min="0" max="3" />
-          <label for="volume" />
-        </div>
-      </div>
+      <FilterDetail name="맵기" />
     </div>
   );
 };

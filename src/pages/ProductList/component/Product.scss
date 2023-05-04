@@ -1,15 +1,19 @@
 @import '../../../styles/variables';
 
 .product {
-  @include body-2;
   height: 500px;
+  font-size: 16px;
+  line-height: 20px;
   .food-img {
     width: 375px;
     height: 375px;
     object-fit: cover;
-
     &:hover {
       cursor: pointer;
     }
+  }
+  .english-name {
+    margin-bottom: 12px;
+    color: gray;
   }
 }

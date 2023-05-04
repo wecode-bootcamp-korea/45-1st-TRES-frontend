@@ -23,8 +23,9 @@ const FilterDetail = ({ name, check }) => {
           />
         )}
       </div>
-      {isCheck
-        ? check.map(item => (
+      {isCheck ? (
+        check ? (
+          check.map(item => (
             <div className="filter-check" key={item.id}>
               <input
                 className="filter-input"
@@ -38,7 +39,20 @@ const FilterDetail = ({ name, check }) => {
               </label>
             </div>
           ))
-        : null}
+        ) : (
+          <div className="filter-check">
+            <input
+              className="filter-range"
+              type="range"
+              id="volume"
+              name="volume"
+              min="0"
+              max="3"
+            />
+            <label for="volume" />
+          </div>
+        )
+      ) : null}
     </div>
   );
 };
