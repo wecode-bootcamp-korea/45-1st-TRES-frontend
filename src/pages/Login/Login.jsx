@@ -6,7 +6,7 @@ const Login = () => {
   // Hook
   const location = useLocation();
 
-  const email = `Door1@gmail.com`;
+  const email = `DoorWinBell0004@gmail.com`;
   const password = `tmdwhd0711!`;
 
   // 변수
@@ -18,7 +18,7 @@ const Login = () => {
     firstName: `seke`,
     lastName: `we`,
     password: `1234`,
-    countries: [`에티오피아`, `탄자니아`, `나이지리아`],
+    countries: [`빨간나라`, `파란다`, `노랑이다`],
     pNumber: `01011112222`,
     gender: `여자`,
     birth: `2023-05-05`,
@@ -26,11 +26,32 @@ const Login = () => {
   });
 
   // 함수
-  const send = e => {
-    const { name, value } = e.target;
-    // setInputValues({ ...inputValues, [name]: value });
+  const checkEmail = () => {
+    fetch('http://10.58.52.191:3000/user-check', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    })
+      .then(response => response.json())
+      // if (response.ok === true) {
+      // return response.json();
+      // }
+      // throw new Error('통신실패!');
+      // })
+      .catch(err => console.log(`에러`, err))
+      .then(res => {
+        console.log(`이메일 체크 결과`, res);
+      });
+  };
 
-    fetch('      // fetch(`http://10.58.52.191:3000/join`)', {
+  const send = () => {
+    // const { name, value } = e.target;
+    // setInputValues({ ...inputValues, [name]: value });
+    fetch(`http://10.58.52.191:3000/join`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -46,9 +67,9 @@ const Login = () => {
         birth: inputValues.birth,
         address: inputValues.address,
       }),
-    }).then(req => console.log(`전송`, req.json()));
-    // .then(res => res.json());
-    // .then(res => console.log(res));
+    })
+      .then(res => res.json())
+      .then(res => console.log(`전송 결과`, res));
   };
 
   // 동작
@@ -181,7 +202,9 @@ const Login = () => {
             </>
           )}
           {/* <button>Continue</button> */}
-          <button onClick={signIn}>
+          <button onClick={send}>
+            {/* <button onClick={checkEmail}> */}
+            {/* <button onClick={signIn}> */}
             {position.url === LOGIN_TEXT.url
               ? LOGIN_TEXT.title
               : JOIN_TEXT.title}
