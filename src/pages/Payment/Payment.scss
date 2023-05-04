@@ -1,5 +1,7 @@
 @import '../../styles/variables';
 
+$color-grey-1: #757575;
+
 .payment {
   padding-top: 100px;
   color: rgb(17, 17, 17);
@@ -9,6 +11,58 @@
     @include head-3;
   }
   .payment-container {
+    .payment-step {
+      width: 715px;
+      padding: 0 8px;
+      .payment-progress {
+        border-bottom: 1px solid $color-grey-1;
+        @include body-2;
+        .payment-progress-title {
+          padding: 24px 0;
+          @include head-3;
+        }
+        .payment-calculate {
+          display: flex;
+          justify-content: space-between;
+          width: 200px;
+          height: 20px;
+          margin-bottom: 20px;
+        }
+      }
+      .payment-complete {
+        @include body-2;
+        .payment-complete-title {
+          padding: 24px 0;
+          @include head-3;
+        }
+        .consent-to-purchase {
+          border-radius: 20px;
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+          }
+        }
+        .purchase {
+          .purchase-complete-button {
+            display: flex;
+            justify-content: right;
+            padding-top: 50px;
+            .purchase-button {
+              width: 100px;
+              height: 50px;
+              margin-right: 30px;
+              border-radius: 25px;
+              background-color: rgb(17, 17, 17);
+              color: white;
+              &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
     display: flex;
     justify-content: center;
     .payment-list {
@@ -17,84 +71,6 @@
       .payment-list-title {
         padding-bottom: 24px;
         @include head-3;
-      }
-    }
-  }
-}
-
-.payment-step {
-  width: 715px;
-  padding: 0 8px;
-  .payment-progress {
-    border-bottom: 1px solid rgb(117, 117, 117);
-    @include body-2;
-    .payment-progress-title {
-      padding: 24px 0;
-      @include head-3;
-    }
-    .payment-point-current {
-      display: flex;
-      justify-content: space-between;
-      width: 200px;
-      height: 20px;
-      margin-bottom: 20px;
-    }
-    .payment-price {
-      display: flex;
-      justify-content: space-between;
-      width: 200px;
-      height: 20px;
-      margin-bottom: 12px;
-    }
-    .payment-delivery-price {
-      display: flex;
-      justify-content: space-between;
-      width: 200px;
-      height: 20px;
-      margin-bottom: 12px;
-    }
-    .payment-total-price {
-      display: flex;
-      justify-content: space-between;
-      width: 200px;
-      height: 20px;
-      margin-bottom: 20px;
-    }
-    .payment-point-remain {
-      display: flex;
-      justify-content: space-between;
-      width: 200px;
-      height: 20px;
-      margin-bottom: 24px;
-    }
-  }
-  .payment-complete {
-    @include body-2;
-    .payment-complete-title {
-      padding: 24px 0;
-      @include head-3;
-    }
-    .consent-to-purchase:hover {
-      opacity: 0.5;
-      cursor: pointer;
-    }
-    div {
-      div {
-        display: flex;
-        justify-content: right;
-        padding-top: 50px;
-        .payment-complete-button {
-          width: 100px;
-          height: 50px;
-          margin-right: 30px;
-          border-radius: 25px;
-          background-color: rgb(17, 17, 17);
-          color: white;
-          &:hover {
-            opacity: 0.5;
-            cursor: pointer;
-          }
-        }
       }
     }
   }

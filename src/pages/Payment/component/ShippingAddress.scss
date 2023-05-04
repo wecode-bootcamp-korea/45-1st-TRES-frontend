@@ -1,9 +1,16 @@
 @import '../../../styles/variables';
+@import '../Payment';
+
+@mixin border-line {
+  padding: 0 13px;
+  border: 1px solid $color-grey-1;
+  border-radius: 10px;
+}
 
 .shipping-address {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid rgb(117, 117, 117);
+  border-bottom: 1px solid $color-grey-1;
   @include body-2;
   .shipping-address-title {
     padding-bottom: 24px;
@@ -13,77 +20,57 @@
     opacity: 0.5;
     cursor: pointer;
   }
-  div {
-    .input-last-name {
+  .input-name {
+    .input-full-name {
       width: 342px;
       height: 56px;
-      margin-right: 15px;
-      padding: 0 13px;
-      border: 1px solid rgb(117, 117, 117);
-      border-radius: 10px;
+      @include border-line;
     }
-    .input-first-name {
-      width: 342px;
-      height: 56px;
-      padding: 0 13px;
-      border: 1px solid rgb(117, 117, 117);
-      border-radius: 10px;
+    .input-last-name {
+      margin-right: 15px;
     }
   }
   .hint-name {
-    .hint-last-name {
-      margin-right: 255px;
+    margin-bottom: 6.5px;
+    .hint-full-name {
       padding: 0 13px;
       color: red;
       @include body-3;
     }
-    .hint-first-name {
-      padding: 0 13px;
-      color: red;
-      @include body-3;
+    .hint-last-name {
+      margin-right: 252px;
     }
   }
   .input-address {
     width: 699px;
     height: 56px;
-    padding: 0 13px;
-    border: 1px solid rgb(117, 117, 117);
-    border-radius: 10px;
+    @include border-line;
   }
   .hint-address {
+    margin: 3px 0;
     padding: 5px 13px;
     color: red;
     @include body-3;
   }
   .shipper-information {
-    .input-phone-number {
+    .input-info {
       width: 342px;
       height: 56px;
-      margin-right: 15px;
-      padding: 0 13px;
-      border: 1px solid rgb(117, 117, 117);
-      border-radius: 10px;
+      @include border-line;
     }
-    .input-email {
-      width: 342px;
-      height: 56px;
-      padding: 0 13px;
-      border: 1px solid rgb(117, 117, 117);
-      border-radius: 10px;
+    .input-phone-number {
+      margin-right: 15px;
     }
   }
   .hint-information {
     margin-bottom: 24px;
-    .hint-phone-number {
-      margin-right: 230px;
+    .hint-info {
       padding: 0 13px;
       color: red;
       @include body-3;
     }
-    .hint-email {
-      padding: 0 13px;
-      color: red;
-      @include body-3;
+    .hint-phone-number {
+      margin-right: 225px;
     }
   }
 }
