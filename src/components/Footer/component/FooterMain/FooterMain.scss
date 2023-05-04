@@ -8,69 +8,75 @@
   .main-info-box {
     display: flex;
     width: 80%;
-  }
-}
 
-.info-list {
-  width: 175px;
-  .info-item {
-    .info-item-btn {
-      border: 0;
-      background-color: transparent;
-      @include body-2;
-      color: #fff;
-      line-height: 28px;
+    .info-list {
+      width: 175px;
+      .info-item {
+        .info-item-btn {
+          border: 0;
+          background-color: transparent;
+          @include body-3;
+          color: #fff;
+          line-height: 28px;
 
-      &:hover {
-        cursor: pointer;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .qna-list {
+      width: 175px;
+      .qna-item {
+        .qna-item-btn {
+          border: 0;
+          background-color: transparent;
+          @include body-3;
+          color: #fff;
+          line-height: 28px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .about-list {
+      width: 175px;
+
+      .about-item {
+        .about-item-btn {
+          border: 0;
+          background-color: transparent;
+          @include body-3;
+          color: #fff;
+          line-height: 28px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
     }
   }
-}
 
-.qna-list {
-  width: 175px;
-  .qna-item {
-    .qna-item-btn {
-      border: 0;
-      background-color: transparent;
-      @include body-2;
-      color: #fff;
-      line-height: 28px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.about-list {
-  width: 175px;
-
-  .about-item {
-    .about-item-btn {
-      border: 0;
-      background-color: transparent;
-      @include body-2;
-      color: #fff;
-      line-height: 28px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.link-to-box {
-  .to-social-list {
-    .to-socail-item {
-      width: 30px;
-      height: 30px;
+  .link-to-box {
+    width: 20%;
+    .to-social-list {
+      display: flex;
+      justify-content: end;
+      width: 100%;
       .icon {
         width: 30px;
         height: 30px;
+        margin-left: 16px;
+        border-radius: 50%;
+        background-color: #7e7e7e;
+
+        &:hover {
+          background-color: #fff;
+          cursor: pointer;
+        }
       }
     }
   }

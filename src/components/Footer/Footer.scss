@@ -5,9 +5,96 @@
   bottom: 0;
   width: 100%;
   height: max-content;
-  background-color: gray;
+  background-color: #111;
 
   .footer-container {
-    padding: 40px 40px 0 40px;
+    padding: 40px 60px 0 60px;
+
+    .footer-sub-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid #fff;
+
+      .locate-since {
+        display: flex;
+        width: 50%;
+        @include body-3;
+        color: #7e7e7e;
+
+        .locate {
+          margin-right: 16px;
+          color: #fff;
+        }
+      }
+
+      .sub-menu {
+        width: 50%;
+
+        .sub-menu-list {
+          display: flex;
+          justify-content: end;
+
+          .sub-menu-item {
+            width: max-content;
+
+            .sub-menu-btn {
+              border: 0;
+              background-color: transparent;
+              @include body-3;
+              color: #7e7e7e;
+
+              &:hover {
+                color: #fff;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer-legal-section {
+      display: flex;
+      margin: 20px 0;
+
+      .business-customer-box {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding-right: 50px;
+
+        .text {
+          @include body-3;
+          color: #7e7e7e;
+        }
+      }
+
+      .payment-legal-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+
+        .text {
+          @include body-3;
+          color: #7e7e7e;
+        }
+
+        .legal-detail {
+          border: 0;
+          background-color: transparent;
+          color: #fff;
+          @include body-3;
+          text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }
