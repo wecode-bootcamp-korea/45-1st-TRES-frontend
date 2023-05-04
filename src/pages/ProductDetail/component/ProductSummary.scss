@@ -1,0 +1,21 @@
+.product-summary {
+  color: rgb(117, 117, 117);
+  text-align: left;
+  .table-body {
+    .table-row {
+      .table-cell {
+        padding: 15px 0;
+        border-bottom: 1px solid rgb(117, 117, 117);
+      }
+      .table-header-cell {
+        width: 100px;
+      }
+      .table-data-cell {
+        width: 300px;
+      }
+    }
+    .product-allergy {
+      color: rgb(17, 17, 17);
+    }
+  }
+}
