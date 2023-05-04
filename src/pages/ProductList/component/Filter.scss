@@ -2,11 +2,23 @@
 
 .filter {
   width: 260px;
-  height: 100vh;
+  height: 50vh;
+  padding-right: 12px;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 30%;
+    border-radius: 10px;
+    background: #7f7f7f;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
   .country {
     padding-bottom: 50px;
-    border-bottom: 1px solid gray;
+    border-bottom: solid 1px #e5e5e5;
     .country-list {
       width: 170px;
       margin: 0 4px;
@@ -22,12 +34,9 @@
       }
     }
   }
-  .vegetarian,
-  .meat,
-  .allergy,
   .spicy {
     padding: 20px 0;
-    border-bottom: 1px solid gray;
+    border-bottom: solid 1px #e5e5e5;
     line-height: 20px;
     .filter-name {
       margin-bottom: 10px;

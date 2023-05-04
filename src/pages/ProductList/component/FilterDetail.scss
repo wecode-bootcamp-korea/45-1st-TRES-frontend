@@ -1,0 +1,41 @@
+@import '../../../styles/variables';
+
+.filter-detail {
+  padding: 20px 0;
+  padding-right: 5px;
+  border-bottom: solid 1px #e5e5e5;
+  line-height: 20px;
+  .filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .sort-img {
+      width: 16px;
+      cursor: pointer;
+    }
+  }
+  .filter-name {
+    @include body-2;
+  }
+  .filter-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    &:hover {
+      color: gray;
+    }
+    .filter-input {
+      display: none;
+    }
+    .filter-label {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      border: 1px solid #bcbcbc;
+      cursor: pointer;
+    }
+    .label-name {
+      cursor: pointer;
+    }
+  }
+}

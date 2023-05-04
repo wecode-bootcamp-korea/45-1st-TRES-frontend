@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ProductList.scss';
-import Product from './CP/Product';
-import Filter from './CP/Filter';
+import Product from './component/Product';
+import Filter from './component/Filter';
 
 const ProductList = () => {
   // 데이터 오는 곳
@@ -20,22 +20,25 @@ const ProductList = () => {
             <img
               className="sort-img"
               alt="더보기"
-              src="images/icons/angle-up-solid.svg"
+              src="images/icon/angle-up-solid.svg"
             />
           ) : (
             <img
               className="sort-img"
               alt="더보기"
-              src="images/icons/angle-down-solid.svg"
+              src="images/icon/angle-down-solid.svg"
             />
           )}
         </button>
+        {isSort ? (
+          <ul className="sort-list">
+            {SORT_MENU.map(menu => (
+              <li key={menu.id}>{menu.content}</li>
+            ))}
+          </ul>
+        ) : null}
       </header>
-      <ul>
-        {SORT_MENU.map(menu => (
-          <li key={menu.id}>{menu.content}</li>
-        ))}
-      </ul>
+
       <div className="product-container">
         <Filter />
         <div className="products">

@@ -4,6 +4,7 @@
   padding: 100px 40px 0 40px;
   .list-header {
     display: flex;
+    position: relative;
     position: sticky;
     top: 0;
     align-items: center;
@@ -28,6 +29,22 @@
       }
       .sort-img {
         width: 16px;
+      }
+    }
+  }
+  .sort-list {
+    @include body-2;
+    position: absolute;
+    top: 40px;
+    right: 2px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    li {
+      margin-bottom: 5px;
+      &:hover {
+        color: gray;
+        cursor: pointer;
       }
     }
   }
