@@ -1,0 +1,77 @@
+@import '../../../../styles/variables';
+
+.footer-main-section {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .main-info-box {
+    display: flex;
+    width: 80%;
+  }
+}
+
+.info-list {
+  width: 175px;
+  .info-item {
+    .info-item-btn {
+      border: 0;
+      background-color: transparent;
+      @include body-2;
+      color: #fff;
+      line-height: 32px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.qna-list {
+  width: 175px;
+  .qna-item {
+    .qna-item-btn {
+      border: 0;
+      background-color: transparent;
+      @include body-3;
+      color: #727272;
+      line-height: 24px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.about-list {
+  width: 175px;
+
+  .about-item {
+    .about-item-btn {
+      border: 0;
+      background-color: transparent;
+      @include body-3;
+      color: #727272;
+      line-height: 24px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.link-to-box {
+  .to-social-list {
+    .to-socail-item {
+      width: 30px;
+      height: 30px;
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

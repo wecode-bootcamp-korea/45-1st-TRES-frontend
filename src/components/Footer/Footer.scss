@@ -1,2 +1,13 @@
-// .footer {
-// }
+@import '../../styles/variables';
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: max-content;
+  background-color: gray;
+
+  .footer-container {
+    padding: 40px 40px 0 40px;
+  }
+}
