@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProductInCart.scss';
 
 const ProductInCart = () => {
+  const [count, setCount] = useState(1);
+
+  const handleCount = e => {
+    setCount(e.target.value);
+  };
+
   return (
     <li className="product-in-cart">
       <div className="product-information">
@@ -17,7 +23,7 @@ const ProductInCart = () => {
           <div className="product-country">일본 / 아시아</div>
           <span className="quantity">수량 : </span>
           <span className="count-button">
-            <select>
+            <select onChange={e => handleCount(e)}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -32,7 +38,7 @@ const ProductInCart = () => {
           </span>
         </div>
         <div className="product-information-end">
-          <div className="product-price">15,000원</div>
+          <div className="product-price">{15000 * count}원</div>
           <button className="delete-button-individual">
             <img
               className="delete-img-individual"
