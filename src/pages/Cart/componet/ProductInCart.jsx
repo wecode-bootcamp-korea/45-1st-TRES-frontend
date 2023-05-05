@@ -1,26 +1,49 @@
 import React, { useState } from 'react';
 import './ProductInCart.scss';
 
-const ProductInCart = () => {
-  const [count, setCount] = useState(1);
+let selectList = [];
 
+const ProductInCart = ({ id, cartList, setProductPrice }) => {
+  const [count, setCount] = useState(1);
+  const [{ title, titleEng, country, continent, price }] = cartList;
+  const totalPrice = price * count;
   const handleCount = e => {
     setCount(e.target.value);
+  };
+
+  const handleCheckBox = e => {
+    let selectAdd = {};
+    if (e.target.checked === true) {
+      selectAdd = { id: id, sum: totalPrice };
+      selectList = [...selectList, selectAdd];
+    } else {
+      let selectCancle = selectList.filter(item => item.id !== id);
+      selectList = selectCancle;
+    }
+    let priceSum = selectList.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.sum,
+      0
+    );
+    setProductPrice(priceSum);
   };
 
   return (
     <li className="product-in-cart">
       <div className="product-information">
-        <input id="check" className="check-box" type="checkbox" />
+        <input
+          className="check-box"
+          type="checkbox"
+          onChange={e => handleCheckBox(e)}
+        />
         <img
           className="product-img"
           src="/images/cart/sample.png"
           alt="장바구니에 담은 이미지"
         />
         <div className="product-information-middle">
-          <div className="product-name">일본의 돈카츠 라멘</div>
-          <div className="product-name-eng">fork of japan</div>
-          <div className="product-country">일본 / 아시아</div>
+          <div className="product-name">{title}</div>
+          <div className="product-name-eng">{titleEng}</div>
+          <div className="product-country">{`${country}/${continent}`}</div>
           <span className="quantity">수량 : </span>
           <span className="count-button">
             <select onChange={e => handleCount(e)}>
@@ -38,7 +61,7 @@ const ProductInCart = () => {
           </span>
         </div>
         <div className="product-information-end">
-          <div className="product-price">{15000 * count}원</div>
+          <div className="product-price">{totalPrice}원</div>
           <button className="delete-button-individual">
             <img
               className="delete-img-individual"

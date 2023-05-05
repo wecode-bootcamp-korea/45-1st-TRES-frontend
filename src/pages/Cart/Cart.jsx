@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Cart.scss';
 import ProductInCart from './componet/ProductInCart';
 import ProductRecommendation from './componet/ProductRecommendation';
-
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const [recommandList, setRecommandList] = useState([]);
-
+  const [productPrice, setProductPrice] = useState(0);
+  const deliveryFee = 3000;
   useEffect(() => {
     fetch('/data/cartData.json', {
       method: 'GET',
@@ -39,7 +39,12 @@ const Cart = () => {
           </div>
           <ul>
             {cartList.map(item => (
-              <ProductInCart key={item.id} />
+              <ProductInCart
+                key={item.id}
+                id={item.id}
+                cartList={cartList}
+                setProductPrice={setProductPrice}
+              />
             ))}
           </ul>
         </section>
@@ -47,7 +52,7 @@ const Cart = () => {
           <h1 className="order-history-title">주문 내역</h1>
           <div className="price-info order-price">
             <span>상품 금액</span>
-            <span>100,000원</span>
+            <span>{productPrice}원</span>
           </div>
           <div className="price-info delivery-price">
             <span>배송비</span>
@@ -55,7 +60,7 @@ const Cart = () => {
           </div>
           <div className="price-info total-price">
             <span>총 결제 금액</span>
-            <span>103,000,000원</span>
+            <span>{productPrice + deliveryFee}원</span>
           </div>
           <button className="order-button">주문결제</button>
         </section>
