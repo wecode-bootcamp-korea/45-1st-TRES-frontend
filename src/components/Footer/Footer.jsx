@@ -24,9 +24,7 @@ const Footer = () => {
                 <button className="sub-menu-btn">위치기반 서비스</button>
               </li>
               <li className="sub-menu-item">
-                <button className="sub-menu-btn">
-                  영상정보처리기기 운영 방침
-                </button>
+                <button className="sub-menu-btn">음식제조 운영 방침</button>
               </li>
             </ul>
           </div>
