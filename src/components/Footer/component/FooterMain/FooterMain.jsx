@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const FooterMain = () => {
   return (
-    <div className="footer-main-section">
+    <div className="footermain">
       <div className="main-info-box">
         <ul className="info-list">
           {FOOTER_DATA_MEMBERSHIP.map(({ id, title, url }) => {

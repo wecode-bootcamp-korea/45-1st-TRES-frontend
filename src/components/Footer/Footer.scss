@@ -26,17 +26,17 @@
         }
       }
 
-      .sub-menu {
+      .sub-main {
         width: 50%;
 
-        .sub-menu-list {
+        .sub-main-list {
           display: flex;
           justify-content: end;
 
-          .sub-menu-item {
+          .sub-main-item {
             width: max-content;
 
-            .sub-menu-btn {
+            .sub-main-btn {
               border: 0;
               background-color: transparent;
               @include body-3;
