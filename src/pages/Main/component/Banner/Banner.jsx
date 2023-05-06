@@ -4,9 +4,9 @@ import './Banner.scss';
 const Banner = () => {
   return (
     <div className="banner">
-      <div className="swiper-container">
+      <div className="slide-container">
         <img
-          src="/images/mainData/banner/promotion.png"
+          src="/images/mainData/banner/banner3.png"
           alt="배너"
           className="banner-item"
         />
