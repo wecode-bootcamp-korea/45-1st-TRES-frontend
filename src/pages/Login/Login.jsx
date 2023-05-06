@@ -16,6 +16,17 @@ const Login = () => {
   const countries = useGetFetch(`/data/list-of-countries.json`);
   // const [chooseMoreCountries, setChooseMoreCountries] = useState([]);
 
+  const [checkItems, setCheckItems] = useState([]);
+  const checkAll = checked =>
+    checked
+      ? setCheckItems(AGREEMENT_CHECKBOX.map(item => item.id))
+      : setCheckItems([]);
+
+  const checkSingle = (checked, id) =>
+    checked
+      ? setCheckItems(prev => [...prev, id])
+      : setCheckItems(checkItems.filter(item => item !== id));
+
   const [inputValues, setInputValues] = useState({
     email: `Tmdwhd0711!@asefef.com`,
     firstName: `seke`,
@@ -213,9 +224,33 @@ const Login = () => {
                 <div className="text-required">필수</div>
               </div>
 
-              <div className="checkbox-agreement">
-                <input type="checkbox" />
-                <span>By continuing, I agree to Seke’s Privacy Policy.</span>
+              <div className="agreement-box">
+                <div className="checkbox-agreement">
+                  <input
+                    type="checkbox"
+                    onChange={e => checkAll(e.target.checked)}
+                    checked={checkItems.length === AGREEMENT_CHECKBOX.length}
+                  />
+                  <span>전체 동의합니다.</span>
+                  <div>
+                    선택항목에 동의하지 않는 경우도 회원가입 및 일반적인
+                    서비스를 이용할 수 있습니다.
+                  </div>
+                </div>
+
+                <div>
+                  {AGREEMENT_CHECKBOX.map(item => (
+                    <div key={item.id} className="checkbox-agreement">
+                      <input
+                        type="checkbox"
+                        onChange={e => checkSingle(e.target.checked, item.id)}
+                        checked={checkItems.includes(item.id)}
+                      />
+                      <span>{item.text} </span>
+                      <span>{item.required}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </>
           )}
@@ -255,5 +290,11 @@ const JOIN_TEXT = {
   title: `이제 seké의 멤버가 되어볼까요?`,
   button: `계정 만들기`,
 };
+
+const AGREEMENT_CHECKBOX = [
+  { id: 1, text: `이용약관 동의`, required: `(필수)` },
+  { id: 2, text: `개인정보 수집∙이용 동의`, required: `(필수)` },
+  { id: 3, text: `개인정보 수집∙이용 동의`, required: `(선택)` },
+];
 
 export default Login;

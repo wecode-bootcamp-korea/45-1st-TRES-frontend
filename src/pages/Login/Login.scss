@@ -51,10 +51,12 @@ $border-check: 1px solid red;
         width: 30%;
       }
 
-      .checkbox-agreement {
+      .agreement-box {
         margin-top: 40px;
-        // color: #000000;
-        color: #757575;
+        .checkbox-agreement {
+          // color: #000000;
+          color: #757575;
+        }
       }
 
       .submit-button {
