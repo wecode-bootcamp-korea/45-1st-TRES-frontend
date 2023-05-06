@@ -76,23 +76,14 @@
     outline: none;
     background: #ccc;
     -webkit-appearance: none;
-  }
-
-  .filter-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: black;
-    cursor: pointer;
-  }
-
-  .filter-range::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: black;
-    cursor: pointer;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: black;
+      cursor: pointer;
+    }
   }
 }

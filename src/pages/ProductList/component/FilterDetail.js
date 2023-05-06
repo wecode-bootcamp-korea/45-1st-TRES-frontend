@@ -1,31 +1,24 @@
 import React, { useState } from 'react';
 import './FilterDetail.scss';
 
-const FilterDetail = ({ name, check }) => {
-  const [isCheck, setIsCheck] = useState(false);
+const FilterDetail = ({ name, option }) => {
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <div className="filter-detail">
       <div className="filter-header">
         <p className="filter-name">{name}</p>
-        {isCheck ? (
-          <img
-            className="sort-img"
-            alt="더보기"
-            src="images/icon/angle-up-solid.svg"
-            onClick={() => setIsCheck(prev => !prev)}
-          />
-        ) : (
-          <img
-            className="sort-img"
-            alt="더보기"
-            src="images/icon/angle-down-solid.svg"
-            onClick={() => setIsCheck(prev => !prev)}
-          />
-        )}
+        <img
+          className="sort-img"
+          alt="더보기"
+          src={`images/icon/${
+            isChecked ? 'angle-up-solid' : 'angle-down-solid'
+          }.svg`}
+          onClick={() => setIsChecked(prev => !prev)}
+        />
       </div>
-      {isCheck ? (
-        check ? (
-          check.map(item => (
+      {isChecked &&
+        (option ? (
+          option.map(item => (
             <div className="filter-check" key={item.id}>
               <input
                 className="filter-input"
@@ -33,8 +26,8 @@ const FilterDetail = ({ name, check }) => {
                 id={item.type}
                 name={item.type}
               />
-              <label className="filter-label" for={item.type} />
-              <label className="label-name" for={item.type}>
+              <label className="filter-label" htmlFor={item.type} />
+              <label className="label-name" htmlFor={item.type}>
                 {item.content}
               </label>
             </div>
@@ -49,10 +42,9 @@ const FilterDetail = ({ name, check }) => {
               min="0"
               max="3"
             />
-            <label for="volume" />
+            <label htmlFor="volume" />
           </div>
-        )
-      ) : null}
+        ))}
     </div>
   );
 };
