@@ -98,7 +98,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="container">
-        <span className="text1">
+        <span className="page-description">
           {currentPage === EMAIL_VERIFICATION_TEXT
             ? `${EMAIL_VERIFICATION_TEXT.title}`
             : currentPage === LOGIN_TEXT
@@ -106,12 +106,13 @@ const Login = () => {
             : `${JOIN_TEXT.title}`}
         </span>
 
-        <form action="#" onSubmit={e => e.preventDefault()}>
+        <form className="form" action="#" onSubmit={e => e.preventDefault()}>
           <input
             type="text"
-            className="email"
+            className="input email"
             name="email"
             placeholder="이메일"
+            disabled
           />
           <div className="email-required" hidden>
             Required
@@ -120,14 +121,14 @@ const Login = () => {
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <input
               type="password"
-              className="password"
+              className="input password"
               placeholder="비밀번호"
             />
           )}
 
           {currentPage.url === LOGIN_TEXT.url && (
             <Link to="#">
-              <div className="text3">Forgot password?</div>
+              <div className="find-password-text">비밀번호 찾기</div>
             </Link>
           )}
 
@@ -135,23 +136,37 @@ const Login = () => {
             <>
               <input
                 type="password"
-                className="password"
+                className="input password"
                 name="password"
                 placeholder="비밀번호 확인"
               />
               <input
                 type="text"
-                className="first-name"
+                className="input first-name"
                 name="firstName"
                 placeholder="이름"
               />
               <input
                 type="text"
-                className="last-name"
+                className="input last-name"
                 name="lastName"
                 placeholder="성"
               />
-              <select name="countries">
+              <select className="input gender" name=" gender">
+                <option value hidden>
+                  성별
+                </option>
+                <option value="mens">남자</option>
+                <option value="womens">여자</option>
+              </select>
+              <input
+                type="tel"
+                className="input pNumber"
+                name="pNumber"
+                placeholder="핸드폰 번호(-제외)"
+              />
+              <input type="date" className="input date" name="birth" />
+              <select className="input" name="countries">
                 <option value hidden>
                   선호 국가
                 </option>
@@ -162,32 +177,20 @@ const Login = () => {
                 ))}
               </select>
               <input
-                type="tel"
-                className="pNumber"
-                name="pNumber"
-                placeholder="핸드폰 번호(-제외)"
-              />
-              <select name="gender" className="gender">
-                <option value hidden>
-                  성별
-                </option>
-                <option value="mens">남자</option>
-                <option value="womens">여자</option>
-              </select>
-              <input type="date" className="date" name="birth" />
-              <input
                 type="text"
-                className="address"
+                className="input address"
                 name="address"
                 placeholder="기본 배송 주소"
               />
-              <div className="text2" hidden>
-                By continuing, I agree to Seke’s Privacy Policy.
+              <div className="agreement-checkbox">
+                <input type="checkbox" />
+                <span>By continuing, I agree to Seke’s Privacy Policy.</span>
               </div>
             </>
           )}
 
           <button
+            className="submit-button"
             onClick={
               currentPage.url === EMAIL_VERIFICATION_TEXT.url
                 ? emailVerification
