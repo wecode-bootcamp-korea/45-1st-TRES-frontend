@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './Cart.scss';
 import ProductInCart from './componet/ProductInCart';
 import ProductRecommendation from './componet/ProductRecommendation';
+
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const [recommandList, setRecommandList] = useState([]);
   const [productPrice, setProductPrice] = useState(0);
+  const [checkList, setCheckList] = useState([]);
   const deliveryFee = 3000;
+  const isComparedCheck = cartList.length === checkList.length ? true : false;
+  const [isCheckedAll, setIsCheckedAll] = useState(isComparedCheck);
+
+  const handleChangeAll = () => {};
+
   useEffect(() => {
     fetch('/data/cartData.json', {
       method: 'GET',
@@ -23,7 +30,8 @@ const Cart = () => {
       .then(data => {
         setRecommandList(data);
       });
-  }, []);
+    setIsCheckedAll(isComparedCheck);
+  }, [isComparedCheck]);
 
   return (
     <div className="cart">
@@ -31,7 +39,13 @@ const Cart = () => {
         <section className="shopping-basket">
           <h1 className="shopping-basket-title">장바구니</h1>
           <div>
-            <input id="check-all" className="check-box" type="checkbox" />
+            <input
+              id="check-all"
+              className="check-box"
+              type="checkbox"
+              onChange={handleChangeAll}
+              checked={isCheckedAll}
+            />
             <label htmlFor="check-all" className="select-all">
               전체 선택
             </label>
@@ -44,6 +58,8 @@ const Cart = () => {
                 id={item.id}
                 cartList={cartList}
                 setProductPrice={setProductPrice}
+                productPrice={productPrice}
+                setCheckList={setCheckList}
               />
             ))}
           </ul>

@@ -36,8 +36,19 @@
         margin: 0 10px;
         color: rgb(117, 117, 117);
         @include body-2;
-        &:hover {
+        .count-change-button:hover {
           cursor: pointer;
+        }
+        .count-check-button {
+          width: 67px;
+          height: 22px;
+          margin-left: 5px;
+          border: none;
+          background-color: white;
+          text-decoration: underline;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
