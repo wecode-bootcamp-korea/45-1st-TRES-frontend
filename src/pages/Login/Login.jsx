@@ -13,7 +13,12 @@ const Login = () => {
 
   /* 변수 */
   const currentURL = location.pathname; // 현재 페이지
-  const position = currentURL === LOGIN_TEXT.url ? LOGIN_TEXT : JOIN_TEXT; // 현재 위치
+  const position =
+    currentURL === EMAIL_VERIFICATION_TEXT.url
+      ? EMAIL_VERIFICATION_TEXT
+      : currentURL === LOGIN_TEXT.url
+      ? LOGIN_TEXT
+      : JOIN_TEXT; // 현재 위치
   const [isEmailExist, setIsEmailExist] = useState(false); // 이메일 중복 체크 결과
   const [countries, setCountries] = useState([{ id: 0, country: `선택` }]); // 국가
   // 회원가입 전송
@@ -131,11 +136,11 @@ const Login = () => {
       <div className="container">
         {/* 상위 문구 */}
         <span className="text1">
-          Enter your email to{' '}
-          {position === LOGIN_TEXT
-            ? `${LOGIN_TEXT.title} us`
-            : `${JOIN_TEXT.title} in`}
-          .
+          {position === EMAIL_VERIFICATION_TEXT
+            ? `${EMAIL_VERIFICATION_TEXT.title}`
+            : position === LOGIN_TEXT
+            ? `${LOGIN_TEXT.title}`
+            : `${JOIN_TEXT.title}`}
         </span>
 
         {/* 입력 폼 */}
@@ -234,9 +239,7 @@ const Login = () => {
           {/* <button onClick={send}> */}
           <button onClick={checkEmail}>
             {/* <button onClick={signIn}> */}
-            {position.url === LOGIN_TEXT.url
-              ? LOGIN_TEXT.title
-              : JOIN_TEXT.title}
+            {position.button}
           </button>
         </form>
       </div>
@@ -244,16 +247,22 @@ const Login = () => {
   );
 };
 
-// 상수 데이터
+const EMAIL_VERIFICATION_TEXT = {
+  url: `/email-verification`,
+  title: `가입 또는 로그인을 위해 이메일을 입력하세요.`,
+  button: `계속`,
+};
+
 const LOGIN_TEXT = {
-  url: '/login',
-  title: 'Continue',
-  // title: 'Sign In',
+  url: `/login`,
+  title: `비밀번호를 입력하세요.`,
+  button: `로그인`,
 };
 
 const JOIN_TEXT = {
-  url: '/join',
-  title: 'Create Account',
+  url: `/join`,
+  title: `이제 seké의 멤버가 되어볼까요?`,
+  button: `계정 만들기`,
 };
 
 export default Login;
