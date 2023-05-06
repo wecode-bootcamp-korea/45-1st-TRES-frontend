@@ -1,40 +1,64 @@
 @import '../../../../styles/variables';
 
 .world {
-  margin-top: 150px;
+  width: 1200px;
+  margin: 0 auto;
 
   .world-container {
-    display: flex;
+    @include flexCenter;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     .world-title {
-      font-size: 48px;
+      @include head-1;
+      font-weight: 700;
     }
 
     .continent-section {
-      width: 800px;
-      margin-top: 30px;
-      border-top: 3px solid black;
+      position: relative;
+      width: 100%;
+      margin-top: 120px;
+      padding: 0 90px;
 
       .continent-list {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 40px 0;
-        gap: 40px;
+        width: 100%;
+        overflow: hidden;
+
+        .country {
+          width: 340px;
+
+          &:hover {
+            transform: scale(1.05);
+            transition: 0.5s;
+          }
+        }
       }
-      .country {
-        width: 200px;
-        border: 1px solid black;
-        border-radius: 20px;
+
+      .btn {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        width: 40px;
+        height: 50px;
+        transform: translateY(-50%);
+        border: 0;
+        opacity: 0.5;
+        background-color: transparent;
+        background-repeat: no-repeat;
 
         &:hover {
-          transform: scale(1.1);
-          transition: 0.5s;
+          opacity: 1;
+          cursor: pointer;
         }
+      }
+
+      .prev {
+        left: 0;
+        background-image: url(../../../../../public/images/icon/angle-left-solid.svg);
+      }
+      .next {
+        right: 0;
+        background-image: url(../../../../../public/images/icon/angle-right-solid.svg);
       }
     }
   }

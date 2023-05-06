@@ -6,7 +6,7 @@ const Banner = () => {
     <div className="banner">
       <div className="slide-container">
         <img
-          src="/images/mainData/banner/banner3.png"
+          src="/images/mainData/banner/banner2.png"
           alt="배너"
           className="banner-item"
         />
