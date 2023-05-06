@@ -4,7 +4,7 @@ import './Nav.scss';
 const Nav = () => {
   return (
     <div className="nav">
-      <div className="container">Nav</div>
+      <div className="nav-box">Nav</div>
     </div>
   );
 };
