@@ -6,11 +6,10 @@ import useGetFetch from '../../hooks/useGetFetch';
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const currentURL = location.pathname;
   const currentPage =
-    currentURL === EMAIL_VERIFICATION_TEXT.url
+    location.pathname === EMAIL_VERIFICATION_TEXT.url
       ? EMAIL_VERIFICATION_TEXT
-      : currentURL === LOGIN_TEXT.url
+      : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
   const [isEmailExist, setIsEmailExist] = useState(false);
@@ -98,7 +97,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="container">
-        <span className="page-description">
+        <span className="text-page-description">
           {currentPage === EMAIL_VERIFICATION_TEXT
             ? `${EMAIL_VERIFICATION_TEXT.title}`
             : currentPage === LOGIN_TEXT
@@ -107,23 +106,25 @@ const Login = () => {
         </span>
 
         <form className="form" action="#" onSubmit={e => e.preventDefault()}>
-          <input
-            type="text"
-            className="input email"
-            name="email"
-            placeholder="이메일"
-            disabled
-          />
-          <div className="email-required" hidden>
-            Required
+          <div className="input-box">
+            <input
+              type="text"
+              className="input email"
+              name="email"
+              placeholder="이메일"
+              disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
+            />
           </div>
 
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
-            <input
-              type="password"
-              className="input password"
-              placeholder="비밀번호"
-            />
+            <div className="input-box">
+              <input
+                type="password"
+                className="input password"
+                placeholder="비밀번호"
+              />
+              <div className="text-required">필수</div>
+            </div>
           )}
 
           {currentPage.url === LOGIN_TEXT.url && (
@@ -134,55 +135,84 @@ const Login = () => {
 
           {currentPage.url === JOIN_TEXT.url && (
             <>
-              <input
-                type="password"
-                className="input password"
-                name="password"
-                placeholder="비밀번호 확인"
-              />
-              <input
-                type="text"
-                className="input first-name"
-                name="firstName"
-                placeholder="이름"
-              />
-              <input
-                type="text"
-                className="input last-name"
-                name="lastName"
-                placeholder="성"
-              />
-              <select className="input gender" name=" gender">
-                <option value hidden>
-                  성별
-                </option>
-                <option value="mens">남자</option>
-                <option value="womens">여자</option>
-              </select>
-              <input
-                type="tel"
-                className="input pNumber"
-                name="pNumber"
-                placeholder="핸드폰 번호(-제외)"
-              />
-              <input type="date" className="input date" name="birth" />
-              <select className="input" name="countries">
-                <option value hidden>
-                  선호 국가
-                </option>
-                {countries?.map(item => (
-                  <option key={item.id} value={item.country}>
-                    {item.country}
+              <div className="input-box">
+                <input
+                  type="password"
+                  className="input password"
+                  name="password"
+                  placeholder="비밀번호 확인"
+                />
+                <div className="text-required">필수</div>
+              </div>
+
+              <div className="input-box first-name">
+                <input
+                  type="text"
+                  className="input"
+                  name="firstName"
+                  placeholder="이름"
+                />
+                <div className="text-required">필수</div>
+              </div>
+
+              <div className="input-box last-name">
+                <input
+                  type="text"
+                  className="input"
+                  name="lastName"
+                  placeholder="성"
+                />
+                <div className="text-required">필수</div>
+              </div>
+
+              <div className="input-box gender">
+                <select className="input" name=" gender">
+                  <option value hidden>
+                    성별
                   </option>
-                ))}
-              </select>
-              <input
-                type="text"
-                className="input address"
-                name="address"
-                placeholder="기본 배송 주소"
-              />
-              <div className="agreement-checkbox">
+                  <option value="mens">남자</option>
+                  <option value="womens">여자</option>
+                </select>
+                <div className="text-required">필수</div>
+              </div>
+
+              <div className="input-box">
+                <input
+                  type="tel"
+                  className="input pNumber"
+                  name="pNumber"
+                  placeholder="핸드폰 번호(-제외)"
+                />
+                <div className="text-required">필수</div>
+              </div>
+
+              <div className="input-box">
+                <input type="date" className="input date" name="birth" />
+              </div>
+
+              <div className="input-box">
+                <select className="input" name="countries">
+                  <option value hidden>
+                    선호 국가
+                  </option>
+                  {countries?.map(item => (
+                    <option key={item.id} value={item.country}>
+                      {item.country}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="input-box">
+                <input
+                  type="text"
+                  className="input address"
+                  name="address"
+                  placeholder="기본 배송 주소"
+                />
+              </div>
+
+              <div className="checkbox-agreement">
                 <input type="checkbox" />
                 <span>By continuing, I agree to Seke’s Privacy Policy.</span>
               </div>
