@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.scss';
+import useGetFetch from '../../hooks/useGetFetch';
 
 const Login = () => {
   const location = useLocation();
@@ -13,7 +14,18 @@ const Login = () => {
       ? LOGIN_TEXT
       : JOIN_TEXT;
   const [isEmailExist, setIsEmailExist] = useState(false);
-  const [countries, setCountries] = useState([{ id: 0, country: `선호 국가` }]); // 국가
+  // const [countries, setCountries] = useState([{ id: 0, country: `선호 국가` }]); // 국가
+
+  const countries = useGetFetch();
+
+  // useEffect(() => {
+  //   if (currentPage.url === JOIN_TEXT.url) {
+  //     fetch(`/data/list-of-countries.json`)
+  //       // fetch(`http://10.58.52.191:3000/users`)
+  //       .then(res => res.json())
+  //       .then(res => setCountries([...countries, ...res]));
+  //   }
+  // }, []);
 
   const [inputValues, setInputValues] = useState({
     email: `Tmdwhd0711!@asefef.com`,
@@ -92,15 +104,6 @@ const Login = () => {
       .then(res => alert(res.message))
       .catch(err => alert(err));
   };
-
-  useEffect(() => {
-    if (currentPage.url === JOIN_TEXT.url) {
-      fetch(`/data/list-of-countries.json`)
-        // fetch(`http://10.58.52.191:3000/users`)
-        .then(res => res.json())
-        .then(res => setCountries([...countries, ...res]));
-    }
-  }, []);
 
   return (
     <div className="login">
