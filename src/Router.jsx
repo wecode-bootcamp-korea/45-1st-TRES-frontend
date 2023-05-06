@@ -1,14 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Container from './components/Container/Container';
 import Main from './pages/Main/Main';
-import SignUp from './pages/SignUp/SignUp';
-import Login from './pages/Login/Login';
 import ProductList from './pages/ProductList/ProductList';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
+import Login from './pages/Login/Login';
 import Empty from './pages/Empty/Empty';
-import Container from './components/Container/Container';
 
 const Router = () => {
   return (
@@ -21,8 +20,8 @@ const Router = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
         </Route>
-        <Route path="/join" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Login />} />
         <Route path="*" element={<Empty />} />
       </Routes>
     </BrowserRouter>
