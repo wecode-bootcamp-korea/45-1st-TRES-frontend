@@ -61,7 +61,6 @@ const Login = () => {
         }
         throw new Error('통신실패!');
       })
-      // .then(res => console.log(`z`, res))
       .catch(err => console.log(err))
       .then(data => {
         localStorage.setItem('TOKEN', data.accessToken);
@@ -94,27 +93,18 @@ const Login = () => {
       .catch(err => alert(err));
   };
 
-  // 동작
   useEffect(() => {
-    console.log(`국가`, countries);
-  }, [countries]);
-  useEffect(() => {
-    console.log(`전송 변수`, inputValues);
-  }, [inputValues]);
-
-  useEffect(() => {
-    // 국가 데이터
-    // fetch(`data/data.json`)
-    fetch(`http://10.58.52.191:3000/users`)
-      .then(res => res.json())
-      .then(res => setCountries([...countries, ...res]));
+    if (currentPage.url === JOIN_TEXT.url) {
+      fetch(`/data/list-of-countries.json`)
+        // fetch(`http://10.58.52.191:3000/users`)
+        .then(res => res.json())
+        .then(res => setCountries([...countries, ...res]));
+    }
   }, []);
 
-  // 출력
   return (
     <div className="login">
       <div className="container">
-        {/* 상위 문구 */}
         <span className="text1">
           {currentPage === EMAIL_VERIFICATION_TEXT
             ? `${EMAIL_VERIFICATION_TEXT.title}`
@@ -123,9 +113,7 @@ const Login = () => {
             : `${JOIN_TEXT.title}`}
         </span>
 
-        {/* 입력 폼 */}
         <form action="#" onSubmit={e => e.preventDefault()}>
-          {/* 이메일 입력 */}
           <input
             type="text"
             className="email"
@@ -136,17 +124,20 @@ const Login = () => {
             Required
           </div>
 
-          {/* 비밀번호 입력 */}
-          {EMAIL_VERIFICATION_TEXT === LOGIN_TEXT || (
+          {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <input
               type="password"
               className="password"
               placeholder="비밀번호"
-              hidden={!isEmailExist}
             />
           )}
 
-          {/* 회원가입 */}
+          {currentPage.url === LOGIN_TEXT.url && (
+            <Link to="#">
+              <div className="text3">Forgot password?</div>
+            </Link>
+          )}
+
           {currentPage.url === JOIN_TEXT.url && (
             <>
               <input
@@ -178,45 +169,37 @@ const Login = () => {
                 type="tel"
                 className="pNumber"
                 name="pNumber"
-                placeholder="Phone Number"
-              />
-              <input
-                type="text"
-                className="gender"
-                name="gender"
-                placeholder="gender"
+                placeholder="핸드폰 번호(-제외)"
               />
               <select name="gender" className="gender">
                 <option value hidden>
-                  Shopping Preference
+                  성별
                 </option>
                 <option value="mens">남자</option>
                 <option value="womens">여자</option>
               </select>
-              <input
-                type="date"
-                className="date"
-                name="birth"
-                placeholder="Date of Birth"
-              />
+              <input type="date" className="date" name="birth" />
               <input
                 type="text"
                 className="address"
                 name="address"
-                placeholder="address"
+                placeholder="기본 배송 주소"
               />
               <div className="text2" hidden>
                 By continuing, I agree to Seke’s Privacy Policy.
               </div>
-              <Link to="#">
-                <div className="text3">Forgot password?</div>
-              </Link>
             </>
           )}
-          {/* <button>Continue</button> */}
-          {/* <button onClick={join}> */}
-          <button onClick={checkEmail}>
-            {/* <button onClick={login}> */}
+
+          <button
+            onClick={
+              currentPage.url === EMAIL_VERIFICATION_TEXT.url
+                ? emailVerification
+                : currentPage.url === LOGIN_TEXT.url
+                ? login
+                : join
+            }
+          >
             {currentPage.button}
           </button>
         </form>
