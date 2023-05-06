@@ -3,25 +3,18 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 const Login = () => {
-  /* Hook */
   const location = useLocation();
   const navigate = useNavigate();
-
-  /* 임시 전송용 변수 */
-  const [email, setEmail] = useState(`DoorWinBell0004@gmail.com`);
-  const [password, setPassword] = useState(`Tmdwhd0711!`);
-
-  /* 변수 */
-  const currentURL = location.pathname; // 현재 페이지
-  const position =
+  const currentURL = location.pathname;
+  const currentPage =
     currentURL === EMAIL_VERIFICATION_TEXT.url
       ? EMAIL_VERIFICATION_TEXT
       : currentURL === LOGIN_TEXT.url
       ? LOGIN_TEXT
-      : JOIN_TEXT; // 현재 위치
-  const [isEmailExist, setIsEmailExist] = useState(false); // 이메일 중복 체크 결과
-  const [countries, setCountries] = useState([{ id: 0, country: `선택` }]); // 국가
-  // 회원가입 전송
+      : JOIN_TEXT;
+  const [isEmailExist, setIsEmailExist] = useState(false);
+  const [countries, setCountries] = useState([{ id: 0, country: `선호 국가` }]); // 국가
+
   const [inputValues, setInputValues] = useState({
     email: `Tmdwhd0711!@asefef.com`,
     firstName: `seke`,
@@ -34,25 +27,14 @@ const Login = () => {
     address: `여기`,
   });
 
-  /* 입력 */
-  const inputEmail = e => {
-    setEmail(e.target.value);
-  };
-
-  const inputPassword = e => {
-    setPassword(e.target.value);
-  };
-
-  /* 함수 */
-  // 이메일 중복 확인
-  const checkEmail = () => {
+  const emailVerification = () => {
     fetch('http://10.58.52.191:3000/users/check', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: email,
+        email: ``,
       }),
     })
       .then(res => res.json())
@@ -62,16 +44,15 @@ const Login = () => {
       .catch(err => alert(err));
   };
 
-  // 로그인
-  const signIn = () => {
+  const login = () => {
     fetch('http://10.58.52.191:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: ``,
+        password: ``,
       }),
     })
       .then(response => {
@@ -88,8 +69,7 @@ const Login = () => {
       });
   };
 
-  // 회원가입 요청
-  const send = () => {
+  const join = () => {
     // const { name, value } = e.target;
     // setInputValues({ ...inputValues, [name]: value });
     fetch(`http://10.58.52.191:3000/users`, {
@@ -115,12 +95,12 @@ const Login = () => {
   };
 
   // 동작
-  // useEffect(() => {
-  //   console.log(`국가`, countries);
-  // }, [countries]);
-  // useEffect(() => {
-  //   console.log(`전송 변수`, inputValues);
-  // }, [inputValues]);
+  useEffect(() => {
+    console.log(`국가`, countries);
+  }, [countries]);
+  useEffect(() => {
+    console.log(`전송 변수`, inputValues);
+  }, [inputValues]);
 
   useEffect(() => {
     // 국가 데이터
@@ -136,9 +116,9 @@ const Login = () => {
       <div className="container">
         {/* 상위 문구 */}
         <span className="text1">
-          {position === EMAIL_VERIFICATION_TEXT
+          {currentPage === EMAIL_VERIFICATION_TEXT
             ? `${EMAIL_VERIFICATION_TEXT.title}`
-            : position === LOGIN_TEXT
+            : currentPage === LOGIN_TEXT
             ? `${LOGIN_TEXT.title}`
             : `${JOIN_TEXT.title}`}
         </span>
@@ -150,44 +130,42 @@ const Login = () => {
             type="text"
             className="email"
             name="email"
-            value={email}
-            placeholder="Email"
-            onChange={inputEmail}
+            placeholder="이메일"
           />
           <div className="email-required" hidden>
             Required
           </div>
 
           {/* 비밀번호 입력 */}
-          <input
-            type="password"
-            className="password"
-            value={password}
-            placeholder="Password"
-            onChange={inputPassword}
-            hidden={!isEmailExist}
-          />
+          {EMAIL_VERIFICATION_TEXT === LOGIN_TEXT || (
+            <input
+              type="password"
+              className="password"
+              placeholder="비밀번호"
+              hidden={!isEmailExist}
+            />
+          )}
 
           {/* 회원가입 */}
-          {position.url === LOGIN_TEXT.url || (
+          {currentPage.url === JOIN_TEXT.url && (
             <>
               <input
                 type="password"
                 className="password"
                 name="password"
-                placeholder="Password Check"
+                placeholder="비밀번호 확인"
               />
               <input
                 type="text"
                 className="first-name"
                 name="firstName"
-                placeholder="First Name"
+                placeholder="이름"
               />
               <input
                 type="text"
                 className="last-name"
                 name="lastName"
-                placeholder="Last Name"
+                placeholder="성"
               />
               <select name="countries">
                 {countries.map(item => (
@@ -236,10 +214,10 @@ const Login = () => {
             </>
           )}
           {/* <button>Continue</button> */}
-          {/* <button onClick={send}> */}
+          {/* <button onClick={join}> */}
           <button onClick={checkEmail}>
-            {/* <button onClick={signIn}> */}
-            {position.button}
+            {/* <button onClick={login}> */}
+            {currentPage.button}
           </button>
         </form>
       </div>
