@@ -35,7 +35,7 @@ const Login = () => {
       .then(res => res.json())
       .then(res => localStorage.setItem('TOKEN', res.accessToken))
       .then(() => navigate('/'))
-      .catch(err => alert(`로그인 실패ㅜ ${err}`));
+      .catch(err => alert(`로그인 실패! ${err}`));
   };
 
   // 출력
@@ -50,7 +50,7 @@ const Login = () => {
           {/* 이메일 입력 */}
           <input
             type="text"
-            className="email"
+            className="input email"
             name="email"
             value={email}
             placeholder="Email"
@@ -60,14 +60,16 @@ const Login = () => {
           {/* 비밀번호 입력 */}
           <input
             type="password"
-            className="password"
+            className="input password"
             value={password}
             placeholder="Password"
             onChange={inputPassword}
           />
 
           {/* 로그인 */}
-          <button onClick={login}>로그인</button>
+          <button className="submit-button" onClick={login}>
+            로그인
+          </button>
         </form>
       </div>
     </div>
