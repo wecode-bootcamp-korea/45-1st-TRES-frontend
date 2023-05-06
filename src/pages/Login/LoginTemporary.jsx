@@ -3,15 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 const LoginTemporary = () => {
-  /* Hook */
   const navigate = useNavigate();
-
-  /* 로그인 임시 변수 */
   const [email, setEmail] = useState(`DoorWinBell0004@gmail.com`);
   const [password, setPassword] = useState(`Tmdwhd0711!`);
 
-  /* 함수 */
-  // 입력
   const inputEmail = e => {
     setEmail(e.target.value);
   };
@@ -20,7 +15,6 @@ const LoginTemporary = () => {
     setPassword(e.target.value);
   };
 
-  // 로그인
   const login = () => {
     fetch('http://10.58.52.191:3000/users/login', {
       method: 'post',
@@ -38,16 +32,12 @@ const LoginTemporary = () => {
       .catch(err => alert(`로그인 실패! ${err}`));
   };
 
-  // 출력
   return (
     <div className="login">
       <div className="container">
-        {/* 상위 문구 */}
         <span className="login-text">로그인</span>
 
-        {/* 입력 폼 */}
         <form className="form" action="#" onSubmit={e => e.preventDefault()}>
-          {/* 이메일 입력 */}
           <input
             type="text"
             className="input email"
@@ -57,7 +47,6 @@ const LoginTemporary = () => {
             onChange={inputEmail}
           />
 
-          {/* 비밀번호 입력 */}
           <input
             type="password"
             className="input password"
@@ -66,7 +55,6 @@ const LoginTemporary = () => {
             onChange={inputPassword}
           />
 
-          {/* 로그인 */}
           <button className="submit-button" onClick={login}>
             로그인
           </button>
