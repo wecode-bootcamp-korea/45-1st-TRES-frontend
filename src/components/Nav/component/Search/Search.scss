@@ -1,0 +1,49 @@
+@import '../../../../styles/variables';
+
+.search {
+  display: flex;
+  position: absolute;
+  right: 10%;
+  align-items: center;
+  width: 180px;
+  height: 40px;
+  border-radius: 25px;
+
+  .search-icon-container {
+    position: absolute;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #efefef;
+      cursor: pointer;
+    }
+
+    .search-icon {
+      @include body-2;
+    }
+  }
+
+  .nav-search-input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 48px;
+    border: 0;
+    border-radius: 25px;
+    opacity: 0.5;
+    background-color: #efefef;
+    @include body-2;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
