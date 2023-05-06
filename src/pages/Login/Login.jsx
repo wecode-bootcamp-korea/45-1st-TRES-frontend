@@ -210,6 +210,7 @@ const Login = () => {
                   name="address"
                   placeholder="기본 배송 주소"
                 />
+                <div className="text-required">필수</div>
               </div>
 
               <div className="checkbox-agreement">
