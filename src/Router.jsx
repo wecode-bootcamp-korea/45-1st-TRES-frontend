@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
 import Main from './pages/Main/Main';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
@@ -9,23 +8,23 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
 import Empty from './pages/Empty/Empty';
-import Footer from './components/Footer/Footer';
+import Container from './components/Container/Container';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route element={<Container />}>
+          <Route path="/" element={<Main />} />
+          <Route path="/product-list" element={<ProductList />} />
+          <Route path="/product-detail" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<Payment />} />
+        </Route>
+        <Route path="/join" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/product-list" element={<ProductList />} />
-        <Route path="/product-detail" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/payment" element={<Payment />} />
         <Route path="*" element={<Empty />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };
