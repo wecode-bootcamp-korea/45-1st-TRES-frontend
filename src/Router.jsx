@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Container from './components/Container/Container';
 import Main from './pages/Main/Main';
-import Login from './pages/Login/Login';
 import ProductList from './pages/ProductList/ProductList';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
+import Login from './pages/Login/Login';
+import SignUp from './pages/SignUp/SignUp';
 import Empty from './pages/Empty/Empty';
 
 const Router = () => {
@@ -21,6 +22,7 @@ const Router = () => {
           <Route path="/payment" element={<Payment />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="*" element={<Empty />} />
       </Routes>
     </BrowserRouter>

@@ -4,26 +4,27 @@ import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(``);
-  const [password, setPassword] = useState(``);
 
-  const inputEmail = e => {
-    setEmail(e.target.value);
+  const [inputValues, setInputValues] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInput = e => {
+    const { name, value } = e.target;
+    setInputValues({ ...inputValues, [name]: value });
   };
 
-  const inputPassword = e => {
-    setPassword(e.target.value);
-  };
-
-  const login = () => {
+  const login = e => {
+    e.preventDefault();
     fetch('http://10.58.52.191:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: inputValues.email,
+        password: inputValues.password,
       }),
     })
       .then(res => {
@@ -40,24 +41,25 @@ const Login = () => {
   return (
     <div className="login">
       <div className="container">
-        <span className="login-text">로그인</span>
+        <span className="login-text">
+          로그인을 위해 이메일과 비밀번호를 입력하세요.
+        </span>
 
-        <form className="form" action="#" onSubmit={login}>
+        <form className="form" onSubmit={login}>
           <input
             type="text"
             className="input email"
             name="email"
-            value={email}
             placeholder="Email"
-            onChange={inputEmail}
+            onChange={handleInput}
           />
 
           <input
             type="password"
             className="input password"
-            value={password}
+            name="password"
             placeholder="Password"
-            onChange={inputPassword}
+            onChange={handleInput}
           />
 
           <button className="submit-button">로그인</button>
