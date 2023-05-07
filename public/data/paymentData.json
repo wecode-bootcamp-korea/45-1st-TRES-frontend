@@ -15,7 +15,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 1,
-        "price": 11000
+        "price": 11000,
+        "foodImg": ""
       },
       {
         "foodId": 2,
@@ -24,7 +25,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 2,
-        "price": 12000
+        "price": 12000,
+        "foodImg": ""
       },
       {
         "foodId": 3,
@@ -33,7 +35,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 3,
-        "price": 13000
+        "price": 13000,
+        "foodImg": ""
       },
       {
         "foodId": 4,
@@ -42,7 +45,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 4,
-        "price": 14000
+        "price": 14000,
+        "foodImg": ""
       }
     ]
   }
