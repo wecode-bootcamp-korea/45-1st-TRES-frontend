@@ -1,4 +1,5 @@
 @import '/src/styles/variables';
+@import '/src/styles/color';
 
 .monthly {
   width: 1200px;
@@ -10,7 +11,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 120px;
-    border-top: 1px solid #999999;
+    border-top: 1px solid $main-grey;
 
     .monthly-title {
       @include head-1;
@@ -39,7 +40,7 @@
           }
           .food-country {
             @include body-3;
-            color: #999999;
+            color: $main-grey;
           }
           .price {
             @include body-2;
