@@ -1,36 +1,137 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ShippingAddress.scss';
 
 const ShippingAddress = () => {
+  const [addressInfo, setAddressInfo] = useState([]);
+  const [userSame, setUserSame] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [inputValue, setInputValue] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    phoneNumber: '',
+    email: '',
+  });
+
+  const handleUserSame = () => {
+    setInputValue({
+      firstName: '',
+      lastName: '',
+      address: '',
+      phoneNumber: '',
+      email: '',
+    });
+    setUserSame(!userSame);
+    setIsDisabled(!isDisabled);
+  };
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  useEffect(() => {
+    fetch('/data/paymentData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setAddressInfo(data);
+      });
+    if (userSame) {
+      if (addressInfo.length > 0) {
+        const { firstName, lastName, address, phoneNumber, email } =
+          addressInfo[0];
+
+        setInputValue({
+          firstName: firstName || '',
+          lastName: lastName || '',
+          address: address || '',
+          phoneNumber: phoneNumber || '',
+          email: email || '',
+        });
+      }
+    } else {
+      setInputValue({
+        firstName: '',
+        lastName: '',
+        address: '',
+        phoneNumber: '',
+        email: '',
+      });
+    }
+  }, [addressInfo]);
+
   return (
     <section className="shipping-address">
       <h2 className="shipping-address-title">배송 옵션</h2>
-      <div>
-        <input
-          id="check-box-same"
-          className="same-as-orderer"
-          type="checkbox"
-        />
-        <label htmlFor="check-box-same">주문자 정보와 동일</label>
+      <div className="button-box">
+        <div className="button-user-same">
+          <input
+            id="check-box-same"
+            className="same-as-orderer"
+            type="checkbox"
+            onChange={handleUserSame}
+            checked={userSame}
+          />
+          <label htmlFor="check-box-same">주문자 정보와 동일</label>
+        </div>
+        <button className="address-change">변경</button>
       </div>
       <div className="input-name">
         <input
           className="input-full-name input-last-name"
           type="text"
           placeholder="성"
+          name="lastName"
+          defaultValue={inputValue.lastName}
+          onChange={handleChange}
+          disabled={isDisabled}
         />
-        <input className="input-full-name" type="text" placeholder="이름" />
+        <input
+          className="input-full-name"
+          type="text"
+          placeholder="이름"
+          name="firstName"
+          defaultValue={inputValue.firstName}
+          onChange={handleChange}
+          disabled={isDisabled}
+        />
       </div>
       <div className="hint-name">
-        <span className="hint-full-name hint-last-name">성을 입력하세요</span>
-        <span className="hint-full-name">이름을 입력하세요.</span>
+        <span
+          className={
+            inputValue.lastName === ''
+              ? 'hint-full-name hint-last-name'
+              : 'hint-full-name hint-last-name visible'
+          }
+        >
+          성을 입력하세요
+        </span>
+        <span
+          className={
+            inputValue.firstName === ''
+              ? 'hint-full-name'
+              : 'hint-full-name visible'
+          }
+        >
+          이름을 입력하세요.
+        </span>
       </div>
       <input
         className="input-address"
         type="text"
         placeholder="도로명, 건물명 또는 지번으로 검색 예) 테헤란로 152, 혹은 역삼동 737"
+        name="address"
+        defaultValue={inputValue.address}
+        onChange={handleChange}
+        disabled={isDisabled}
       />
-      <div className="hint-address">
+      <div
+        className={
+          inputValue.address === '' ? 'hint-address' : 'hint-address visible'
+        }
+      >
         주소 선택을 완료하거나 수동으로 주소를 입력해 주세요.
       </div>
       <div className="shipper-information">
@@ -38,14 +139,38 @@ const ShippingAddress = () => {
           className="input-info input-phone-number"
           type="text"
           placeholder="전화번호"
+          name="phonNumber"
+          defaultValue={inputValue.phoneNumber}
+          onChange={handleChange}
+          disabled={isDisabled}
         />
-        <input className="input-info" type="text" placeholder="이메일" />
+        <input
+          className="input-info"
+          type="text"
+          placeholder="이메일"
+          name="email"
+          defaultValue={inputValue.email}
+          onChange={handleChange}
+          disabled={isDisabled}
+        />
       </div>
       <div className="hint-information">
-        <span className="hint-info hint-phone-number">
+        <span
+          className={
+            inputValue.phoneNumber === ''
+              ? 'hint-info hint-phone-number'
+              : 'hint-info hint-phone-number visible'
+          }
+        >
           필수 작성 항목입니다.
         </span>
-        <span className="hint-info">유효한 이메일 주소를 입력하세요.</span>
+        <span
+          className={
+            inputValue.email === '' ? 'hint-info' : 'hint-info visible'
+          }
+        >
+          유효한 이메일 주소를 입력하세요.
+        </span>
       </div>
     </section>
   );

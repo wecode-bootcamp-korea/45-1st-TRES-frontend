@@ -16,9 +16,24 @@
     padding-bottom: 24px;
     @include head-3;
   }
-  .same-as-orderer:hover {
-    opacity: 0.5;
-    cursor: pointer;
+  .button-box {
+    display: flex;
+    .button-user-same {
+      .same-as-orderer:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    }
+    .address-change {
+      margin-left: 510px;
+      border: none;
+      background-color: $main-white;
+      font-size: 14px;
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    }
   }
   .input-name {
     .input-full-name {
@@ -40,6 +55,9 @@
     .hint-last-name {
       margin-right: 252px;
     }
+    .visible {
+      visibility: hidden;
+    }
   }
   .input-address {
     width: 699px;
@@ -51,6 +69,9 @@
     padding: 5px 13px;
     color: $main-red;
     @include body-3;
+  }
+  .visible {
+    visibility: hidden;
   }
   .shipper-information {
     .input-info {
@@ -71,6 +92,9 @@
     }
     .hint-phone-number {
       margin-right: 225px;
+    }
+    .visible {
+      visibility: hidden;
     }
   }
 }
