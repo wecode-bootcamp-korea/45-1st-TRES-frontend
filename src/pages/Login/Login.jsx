@@ -17,7 +17,7 @@ const Login = () => {
 
   const login = e => {
     e.preventDefault();
-    fetch('http://10.58.52.191:3000/users/login', {
+    fetch('http://10.58.52.203:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const Login = () => {
       }),
     })
       .then(res => {
-        if (res.ok) res.json();
+        if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
       .catch(err => alert(`로그인 실패 ${err}`))
