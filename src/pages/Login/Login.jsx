@@ -14,7 +14,6 @@ const Login = () => {
       : JOIN_TEXT;
   const [isEmailExist, setIsEmailExist] = useState(false);
   const countries = useGetFetch(`/data/list-of-countries.json`);
-  // const [chooseMoreCountries, setChooseMoreCountries] = useState([]);
 
   const [checkItems, setCheckItems] = useState([]);
   const checkAll = checked =>
@@ -40,7 +39,7 @@ const Login = () => {
   });
 
   const emailVerification = () => {
-    fetch('http://10.58.52.191:3000/users/check', {
+    fetch('http://10.58.52.203:3000/users/check', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +56,7 @@ const Login = () => {
   };
 
   const login = () => {
-    fetch('http://10.58.52.191:3000/users/login', {
+    fetch('http://10.58.52.203:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +82,7 @@ const Login = () => {
   const join = () => {
     // const { name, value } = e.target;
     // setInputValues({ ...inputValues, [name]: value });
-    fetch(`http://10.58.52.191:3000/users`, {
+    fetch(`http://10.58.52.203:3000/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -94,7 +93,7 @@ const Login = () => {
         lastName: inputValues.lastName,
         password: inputValues.password,
         countries: inputValues.countries,
-        pNumber: inputValues.pNumber,
+        phoneNumber: inputValues.phoneNumber,
         gender: inputValues.gender,
         birth: inputValues.birth,
         address: inputValues.address,
