@@ -18,16 +18,11 @@ const ProductInCart = () => {
           <span className="quantity">수량 : </span>
           <span className="count-button">
             <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
+              {QUANTITY_SELECT.map(item => (
+                <option key={item.id} value={item.id}>
+                  {item.value}
+                </option>
+              ))}
             </select>
           </span>
         </div>
@@ -47,3 +42,16 @@ const ProductInCart = () => {
 };
 
 export default ProductInCart;
+
+const QUANTITY_SELECT = [
+  { id: 1, value: 1 },
+  { id: 2, value: 2 },
+  { id: 3, value: 3 },
+  { id: 4, value: 4 },
+  { id: 5, value: 5 },
+  { id: 6, value: 6 },
+  { id: 7, value: 7 },
+  { id: 8, value: 8 },
+  { id: 9, value: 9 },
+  { id: 10, value: 10 },
+];

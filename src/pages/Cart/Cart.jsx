@@ -30,11 +30,14 @@ const Cart = () => {
       <div className="cart-container">
         <section className="shopping-basket">
           <h1 className="shopping-basket-title">장바구니</h1>
-          <div>
-            <input id="check-all" className="check-box" type="checkbox" />
-            <label htmlFor="check-all" className="select-all">
-              전체 선택
-            </label>
+          <div className="select-and-delete">
+            <div>
+              <input id="check-all" className="check-box" type="checkbox" />
+              <label htmlFor="check-all" className="select-all">
+                전체 선택
+              </label>
+            </div>
+
             <button className="delete-button-select">삭제</button>
           </div>
           <ul>
