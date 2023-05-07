@@ -1,5 +1,5 @@
 @import '../../../styles/variables';
-@import '../Payment';
+@import '../../../styles/color';
 
 .payment-product {
   display: flex;
@@ -13,17 +13,17 @@
     .payment-product-name-eng {
       margin-bottom: 8px;
     }
-    .payment-product-region {
-      margin-bottom: -4px;
-      color: $color-grey-1;
+    .payment-product {
+      color: $main-grey;
     }
-    .payment-product-quantity-price {
+    .region {
       margin-bottom: -4px;
-      color: $color-grey-1;
     }
-    .payment-product-total-price {
+    .quantity-price {
+      margin-bottom: -4px;
+    }
+    .total-price {
       margin-bottom: 15px;
-      color: $color-grey-1;
     }
   }
 }

@@ -1,16 +1,16 @@
 @import '../../../styles/variables';
-@import '../Payment';
+@import '../../../styles/color';
 
 @mixin border-line {
   padding: 0 13px;
-  border: 1px solid $color-grey-1;
+  border: 1px solid $main-grey;
   border-radius: 10px;
 }
 
 .shipping-address {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid $color-grey-1;
+  border-bottom: 1px solid $main-grey;
   @include body-2;
   .shipping-address-title {
     padding-bottom: 24px;
@@ -34,7 +34,7 @@
     margin-bottom: 6.5px;
     .hint-full-name {
       padding: 0 13px;
-      color: red;
+      color: $main-red;
       @include body-3;
     }
     .hint-last-name {
@@ -49,7 +49,7 @@
   .hint-address {
     margin: 3px 0;
     padding: 5px 13px;
-    color: red;
+    color: $main-red;
     @include body-3;
   }
   .shipper-information {
@@ -66,7 +66,7 @@
     margin-bottom: 24px;
     .hint-info {
       padding: 0 13px;
-      color: red;
+      color: $main-red;
       @include body-3;
     }
     .hint-phone-number {

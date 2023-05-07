@@ -1,21 +1,21 @@
 @import '../../styles/variables';
-
-$color-grey-1: #757575;
-
+@import '../../styles/color';
 .payment {
   padding-top: 100px;
-  color: rgb(17, 17, 17);
+  color: $main-dark;
   .payment-title {
     padding: 48px 0;
     text-align: center;
     @include head-3;
   }
   .payment-container {
+    display: flex;
+    justify-content: center;
     .payment-step {
       width: 715px;
       padding: 0 8px;
       .payment-progress {
-        border-bottom: 1px solid $color-grey-1;
+        border-bottom: 1px solid $main-grey;
         @include body-2;
         .payment-progress-title {
           padding: 24px 0;
@@ -50,10 +50,10 @@ $color-grey-1: #757575;
             .purchase-button {
               width: 100px;
               height: 50px;
-              margin-right: 30px;
+              margin: 0 30px 100px 0;
               border-radius: 25px;
-              background-color: rgb(17, 17, 17);
-              color: white;
+              background-color: $main-dark;
+              color: $main-white;
               &:hover {
                 opacity: 0.5;
                 cursor: pointer;
@@ -63,8 +63,6 @@ $color-grey-1: #757575;
         }
       }
     }
-    display: flex;
-    justify-content: center;
     .payment-list {
       width: 350px;
       padding: 0 8px;
