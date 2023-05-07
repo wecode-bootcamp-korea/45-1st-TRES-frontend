@@ -44,6 +44,7 @@
     "stylelint": "^15.3.0",
     "stylelint-config-prettier-scss": "^0.0.1",
     "stylelint-config-property-sort-order-smacss": "^9.1.0",
+    "stylelint-config-recommended-scss": "^10.0.0",
     "stylelint-scss": "^5.0.0"
   }
 }
