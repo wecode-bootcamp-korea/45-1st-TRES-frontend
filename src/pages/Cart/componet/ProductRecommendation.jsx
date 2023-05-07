@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductRecommendation.scss';
 
-const ProductRecommendation = () => {
+const ProductRecommendation = ({ index, currentSlide }) => {
   return (
     <li className="product-recommendation">
       <img

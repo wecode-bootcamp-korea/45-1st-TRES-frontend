@@ -7,7 +7,7 @@ const ProductInCart = props => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [quantityChange, setQuantityChange] = useState(1);
   const [isChecked, setIsChecked] = useState(true);
-  const { id, cartList, setProductPrice, setCheckList } = props;
+  const { id, cartList, setProductPrice, setCheckList, setCartList } = props;
   const [{ title, titleEng, country, continent, price }] = cartList;
   const totalPrice = price * count;
   const handleChange = e => {
@@ -22,6 +22,13 @@ const ProductInCart = props => {
 
   const handleCheckBox = e => {
     setIsChecked(!isChecked);
+  };
+  const test = useRef();
+  const [test2, setTest2] = useState(cartList);
+  const selectDelete = e => {
+    // setCartList(cartList.filter(item => item.id !== e));
+    setTest2(cartList.filter(item => item.id !== e));
+    setIsChecked((test.current.checked = false));
   };
 
   useEffect(() => {
@@ -40,9 +47,10 @@ const ProductInCart = props => {
       (accumulator, currentValue) => accumulator + currentValue.sum,
       0
     );
-
     setProductPrice(priceSum);
     setCheckList(selectList);
+
+    setCartList(test2);
   }, [isChecked, count]);
 
   return (
@@ -53,6 +61,7 @@ const ProductInCart = props => {
           type="checkbox"
           onChange={e => handleCheckBox(e)}
           checked={isChecked}
+          ref={test}
         />
         <img
           className="product-img"
@@ -96,6 +105,9 @@ const ProductInCart = props => {
               className="delete-img-individual"
               src="/images/cart/trash-alt-regular.svg"
               alt="삭제기능이 있는 휴지통 이미지."
+              onClick={() => {
+                selectDelete(id);
+              }}
             />
           </button>
         </div>

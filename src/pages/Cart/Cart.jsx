@@ -14,6 +14,14 @@ const Cart = () => {
 
   const handleChangeAll = () => {};
 
+  // const selectDelete = e => {
+  //   const test = [
+  //     cartList.filter(item => <li key={item.id}>item.id !== e</li>),
+  //   ];
+  //   setCartList(test);
+  //   console.log(e);
+  // };
+
   useEffect(() => {
     fetch('/data/cartData.json', {
       method: 'GET',
@@ -30,8 +38,9 @@ const Cart = () => {
       .then(data => {
         setRecommandList(data);
       });
-    setIsCheckedAll(isComparedCheck);
-  }, [isComparedCheck]);
+    // setIsCheckedAll(isComparedCheck);
+  }, []);
+  // }, [isComparedCheck]);
 
   return (
     <div className="cart">
@@ -60,6 +69,7 @@ const Cart = () => {
                 setProductPrice={setProductPrice}
                 productPrice={productPrice}
                 setCheckList={setCheckList}
+                setCartList={setCartList}
               />
             ))}
           </ul>
