@@ -1,4 +1,5 @@
-@import '../../../../styles/variables';
+@import '/src/styles/variables';
+@import '/src/styles/color';
 
 .footermain {
   display: flex;
@@ -16,7 +17,7 @@
           border: 0;
           background-color: transparent;
           @include body-3;
-          color: #fff;
+          color: $main-white;
           line-height: 28px;
 
           &:hover {
@@ -25,6 +26,7 @@
         }
       }
     }
+
     .qna-list {
       width: 175px;
       .qna-item {
@@ -32,7 +34,7 @@
           border: 0;
           background-color: transparent;
           @include body-3;
-          color: #fff;
+          color: $main-white;
           line-height: 28px;
 
           &:hover {
@@ -41,15 +43,15 @@
         }
       }
     }
+
     .about-list {
       width: 175px;
-
       .about-item {
         .about-item-btn {
           border: 0;
           background-color: transparent;
           @include body-3;
-          color: #fff;
+          color: $main-white;
           line-height: 28px;
 
           &:hover {
@@ -73,7 +75,7 @@
         border-radius: 50%;
 
         &:hover {
-          background-color: #fff;
+          background-color: $main-white;
           cursor: pointer;
         }
       }
