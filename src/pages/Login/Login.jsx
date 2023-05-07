@@ -26,7 +26,12 @@ const Login = () => {
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
 
-  const [inputValues, setInputValues] = useState({
+  const [loginValues, setLoginValues] = useState({
+    email: ``,
+    password: ``,
+  });
+
+  const [joinValues, setJoinValues] = useState({
     email: `Tmdwhd0711!@asefef.com`,
     firstName: `seke`,
     lastName: `we`,
@@ -55,7 +60,9 @@ const Login = () => {
       .catch(err => alert(err));
   };
 
-  const login = () => {
+  const login = e => {
+    const { name, value } = e.target;
+    setLoginValues({ ...loginValues, [name]: value });
     fetch('http://10.58.52.203:3000/users/login', {
       method: 'post',
       headers: {
@@ -88,15 +95,15 @@ const Login = () => {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        email: inputValues.email,
-        firstName: inputValues.firstName,
-        lastName: inputValues.lastName,
-        password: inputValues.password,
-        countries: inputValues.countries,
-        phoneNumber: inputValues.phoneNumber,
-        gender: inputValues.gender,
-        birth: inputValues.birth,
-        address: inputValues.address,
+        email: joinValues.email,
+        firstName: joinValues.firstName,
+        lastName: joinValues.lastName,
+        password: joinValues.password,
+        countries: joinValues.countries,
+        phoneNumber: joinValues.phoneNumber,
+        gender: joinValues.gender,
+        birth: joinValues.birth,
+        address: joinValues.address,
       }),
     })
       .then(res => res.json())
