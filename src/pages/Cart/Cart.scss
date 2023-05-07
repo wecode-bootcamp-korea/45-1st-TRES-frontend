@@ -1,2 +1,109 @@
-// .cart {
-// }
+@import '../../styles/variables';
+@import '../../styles/color';
+.cart {
+  padding-top: 100px;
+  color: $main-dark;
+  .cart-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    .shopping-basket {
+      padding: 0 8px;
+      .shopping-basket-title {
+        padding-bottom: 10px;
+        @include head-3;
+      }
+      .select-and-delete {
+        display: flex;
+        justify-content: space-between;
+        div {
+          .check-box:hover {
+            cursor: pointer;
+          }
+          .select-all {
+            margin-left: 16px;
+            @include body-2;
+          }
+        }
+
+        .delete-button-select {
+          border: none;
+          background-color: $main-white;
+          font-size: 16px;
+          text-decoration: underline;
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .order-history {
+      padding: 0 8px;
+      .order-history-title {
+        padding-bottom: 60px;
+        @include head-3;
+      }
+      .price-info {
+        display: flex;
+        justify-content: space-between;
+        width: 330px;
+        height: 28px;
+      }
+      .order-price {
+        margin-bottom: 12px;
+        @include body-2;
+      }
+      .delivery-price {
+        margin-bottom: 12px;
+        @include body-2;
+      }
+      .total-price {
+        margin-bottom: 24px;
+        padding: 24px 0 40px 0;
+        border-top: 1px solid $main-grey;
+        border-bottom: 1px solid $main-grey;
+        @include body-2;
+      }
+      .order-button {
+        width: 330px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: $main-dark;
+        color: $main-white;
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .product-recommendation-list {
+    padding: 0 40px;
+    .product-recommendation-list-title-box {
+      display: flex;
+      justify-content: space-between;
+      .product-recommendation-list-title {
+        @include head-3;
+      }
+      .slide {
+        width: 48px;
+        height: 48px;
+        margin-left: 10px;
+        padding: 12px;
+        border: 1px solid rgb(229, 229, 229);
+        border-radius: 24px;
+        background-color: rgb(229, 229, 229);
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+    }
+    .product-in-recommendation {
+      display: flex;
+      gap: 14px;
+      overflow-x: scroll;
+    }
+  }
+}

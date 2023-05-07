@@ -1,0 +1,45 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.new-product {
+  .new-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    margin: 120px auto 0 auto;
+    padding-top: 120px;
+    border-top: 1px solid $main-grey;
+
+    .new-title {
+      @include head-1;
+      font-weight: 700;
+    }
+
+    .new-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .new-item {
+        width: 280px;
+        margin-top: 60px;
+
+        .food-img {
+          width: 100%;
+        }
+
+        .food-name {
+          @include body-1;
+        }
+        .food-country {
+          @include body-3;
+          color: $main-grey;
+        }
+        .price {
+          @include body-2;
+        }
+      }
+    }
+  }
+}

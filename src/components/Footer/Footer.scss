@@ -1,0 +1,98 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.footer {
+  width: 100%;
+  background-color: $main-dark;
+
+  .footer-container {
+    padding: 40px 60px 0 60px;
+
+    .footer-sub-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid $main-white;
+
+      .locate-since {
+        display: flex;
+        width: 50%;
+        @include body-3;
+        color: $main-grey;
+
+        .locate {
+          margin-right: 16px;
+          color: $main-white;
+        }
+      }
+
+      .sub-main {
+        width: 50%;
+
+        .sub-main-list {
+          display: flex;
+          justify-content: end;
+
+          .sub-main-item {
+            width: max-content;
+
+            .sub-main-btn {
+              border: 0;
+              background-color: transparent;
+              @include body-3;
+              color: $main-grey;
+
+              &:hover {
+                color: $main-white;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer-legal-section {
+      display: flex;
+      padding: 20px 0;
+
+      .business-customer-box {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding-right: 20px;
+
+        .text {
+          @include body-3;
+          color: $main-grey;
+        }
+      }
+
+      .payment-legal-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+
+        .text {
+          @include body-3;
+          color: $main-grey;
+        }
+
+        .legal-detail {
+          border: 0;
+          background-color: transparent;
+          color: $main-white;
+          @include body-3;
+          text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
