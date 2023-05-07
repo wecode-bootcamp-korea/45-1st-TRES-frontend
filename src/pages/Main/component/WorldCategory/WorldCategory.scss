@@ -1,6 +1,6 @@
-@import '../../../../styles/variables';
+@import '/src/styles/variables';
 
-.world {
+.world-category {
   width: 1200px;
   margin: 0 auto;
 
@@ -54,11 +54,11 @@
 
       .prev {
         left: 0;
-        background-image: url(../../../../../public/images/icon/angle-left-solid.svg);
+        background-image: url(/asset/angle-left-solid.svg);
       }
       .next {
         right: 0;
-        background-image: url(../../../../../public/images/icon/angle-right-solid.svg);
+        background-image: url(/asset/angle-right-solid.svg);
       }
     }
   }

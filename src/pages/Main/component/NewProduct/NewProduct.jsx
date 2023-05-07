@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './New.scss';
+import './NewProduct.scss';
 
-const New = () => {
-  const [newList, setNewList] = useState([]);
+const NewProduct = () => {
+  const [newProductList, setNewProductList] = useState([]);
 
   useEffect(() => {
     fetch('/data/main-new-list.json', {})
       .then(res => res.json())
       .then(data => {
-        setNewList(data);
+        setNewProductList(data);
       });
   }, []);
 
   return (
-    <div className="new">
+    <div className="new-product">
       <div className="new-container">
         <h2 className="new-title">새로 나왔어요</h2>
         <ul className="new-list">
-          {newList.map(({ id, country, food, price, food_images }) => {
+          {newProductList.map(({ id, country, food, price, food_images }) => {
             return (
               <li key={id} className="new-item">
                 <Link className="new-link" to="/#">
@@ -36,4 +36,4 @@ const New = () => {
   );
 };
 
-export default New;
+export default NewProduct;

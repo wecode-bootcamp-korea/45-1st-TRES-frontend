@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from './component/Banner/Banner';
-import World from './component/World/World';
-import New from './component/New/New';
+import WorldCategory from './component/WorldCategory/WorldCategory';
+import NewProduct from './component/NewProduct/NewProduct';
 import Monthly from './component/Monthly/Monthly';
 import './Main.scss';
 
@@ -10,8 +10,8 @@ const Main = () => {
     <div className="main">
       <Banner />
       <div className="main-wrap">
-        <World />
-        <New />
+        <WorldCategory />
+        <NewProduct />
         <Monthly />
       </div>
     </div>

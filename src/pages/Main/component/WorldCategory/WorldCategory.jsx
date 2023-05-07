@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './World.scss';
+import './WorldCategory.scss';
 
-const World = () => {
+const WorldCategory = () => {
   return (
-    <div className="world">
+    <div className="world-category">
       <div className="world-container">
         <h2 className="world-title">대륙별로 맛봐요</h2>
         <div className="continent-section">
@@ -27,7 +27,7 @@ const World = () => {
   );
 };
 
-export default World;
+export default WorldCategory;
 
 const WORLD_DATA = [
   { id: 1, alt: '아프리카', src: './images/MainData/world/africa.png' },
