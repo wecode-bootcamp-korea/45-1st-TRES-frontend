@@ -1,11 +1,13 @@
+@import '../../../styles/color';
+
 .product-summary {
-  color: rgb(117, 117, 117);
+  color: $main-grey;
   text-align: left;
   .table-body {
     .table-row {
       .table-cell {
         padding: 15px 0;
-        border-bottom: 1px solid rgb(117, 117, 117);
+        border-bottom: 1px solid $main-grey;
       }
       .table-header-cell {
         width: 100px;
@@ -15,7 +17,7 @@
       }
     }
     .product-allergy {
-      color: rgb(17, 17, 17);
+      color: $main-dark;
     }
   }
 }

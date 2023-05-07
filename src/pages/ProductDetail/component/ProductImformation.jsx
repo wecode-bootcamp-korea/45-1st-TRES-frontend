@@ -5,9 +5,9 @@ const ProductImformation = () => {
   return (
     <div className="product-information">
       <div className="description-button-box">
-        <button className="description-button">상품설명</button>
-        <button className="description-button">상세정보</button>
-        <button className="description-button">후기(2,312)</button>
+        <button className="description-button description">상품설명</button>
+        <button className="description-button detail">상세정보</button>
+        <button className="description-button review">후기(2,312)</button>
       </div>
       <img
         className="description-img"

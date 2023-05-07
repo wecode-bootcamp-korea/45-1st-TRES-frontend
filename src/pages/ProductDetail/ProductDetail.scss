@@ -1,5 +1,5 @@
 @import '../../styles/variables';
-
+@import '../../styles/color';
 .product-detail {
   padding-top: 100px;
   .product-detail-container {
@@ -7,7 +7,7 @@
     justify-content: center;
     gap: 80px;
     .product-region {
-      color: rgb(117, 117, 117);
+      color: $main-grey;
     }
     .product-detail-img {
       width: 535px;
@@ -21,12 +21,12 @@
       .product-price {
         margin-bottom: 5px;
         padding: 30px 0;
-        border-bottom: 1px solid rgb(117, 117, 117);
+        border-bottom: 1px solid $main-grey;
       }
       .product-choice {
         display: flex;
         padding: 15px 0;
-        border-bottom: 1px solid rgb(117, 117, 117);
+        border-bottom: 1px solid $main-grey;
         color: rgb(17, 17, 17);
         gap: 45px;
         span .product-choice-title {
@@ -34,7 +34,7 @@
         }
         .product-calculation-box {
           padding: 10px;
-          border: 1px solid rgb(117, 117, 117);
+          border: 1px solid $main-grey;
         }
       }
       .product-total-price {
@@ -60,8 +60,8 @@
           width: 333px;
           height: 66px;
           border-radius: 30px;
-          background-color: rgb(17, 17, 17);
-          color: white;
+          background-color: $main-dark;
+          color: $main-white;
           &:hover {
             opacity: 0.5;
             cursor: pointer;

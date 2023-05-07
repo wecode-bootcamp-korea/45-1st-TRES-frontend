@@ -1,13 +1,14 @@
+@import '../../../styles/color';
 .product-calculation {
   display: flex;
   justify-content: space-between;
   width: 270px;
   .product-count {
     padding: 5px;
-    border: 1px solid rgb(117, 117, 117);
+    border: 1px solid $main-grey;
     .count {
       border: none;
-      background-color: white;
+      background-color: $main-white;
       &:hover {
         cursor: pointer;
       }

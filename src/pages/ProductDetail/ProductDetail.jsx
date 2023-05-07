@@ -15,8 +15,10 @@ const ProductDetail = () => {
         />
         <section className="product-detail-summary">
           <div className="product-region">한국 / 아시아</div>
-          <h1 className="font-layout">땅콩소스로 숙성된 돼지갈비</h1>
-          <h1 className="font-layout">Pork ribs marinated in peanut sauce</h1>
+          <h1 className="font-layout kor-name">땅콩소스로 숙성된 돼지갈비</h1>
+          <h1 className="font-layout eng-name">
+            Pork ribs marinated in peanut sauce
+          </h1>
           <div className="font-layout product-price">32,000원</div>
           <ProductSummary />
           <div className="product-choice">

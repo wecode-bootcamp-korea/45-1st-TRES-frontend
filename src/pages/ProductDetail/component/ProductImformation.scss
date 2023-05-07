@@ -1,3 +1,4 @@
+@import '../../../styles/color';
 .product-information {
   padding-top: 60px;
   text-align: center;
@@ -5,7 +6,7 @@
     .description-button {
       width: 330px;
       height: 50px;
-      border: 1px solid rgb(117, 117, 117);
+      border: 1px solid$main-grey;
       border-radius: 0;
       &:hover {
         opacity: 0.5;
