@@ -1,2 +1,10 @@
-// .main {
-// }
+@import '../../styles/variables';
+
+.main {
+  padding-top: 100px;
+
+  .main-wrap {
+    margin: 0 auto;
+    padding: 120px 0;
+  }
+}

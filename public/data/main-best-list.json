@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "country": "미국",
+    "food": "핫도그",
+    "price": 10000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 2,
+    "country": "멕시코",
+    "food": "과카몰리",
+    "price": 8000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 3,
+    "country": "콜롬비아",
+    "food": "아레파",
+    "price": 15000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 4,
+    "country": "브라질",
+    "food": "브리간데",
+    "price": 19000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 5,
+    "country": "칠레",
+    "food": "아히아코",
+    "price": 12000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 6,
+    "country": "일본",
+    "food": "털게샌드위치",
+    "price": 14000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 7,
+    "country": "영국",
+    "food": "피쉬앤칩스",
+    "price": 16000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 8,
+    "country": "베트남",
+    "food": "분짜",
+    "price": 25000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 9,
+    "country": "두바이",
+    "food": "낙타오믈렛",
+    "price": 22000,
+    "food_images": "/images/mainData/world/asia.png"
+  },
+  {
+    "id": 10,
+    "country": "몽골",
+    "food": "움바둠바",
+    "price": 9000,
+    "food_images": "/images/mainData/world/asia.png"
+  }
+]
