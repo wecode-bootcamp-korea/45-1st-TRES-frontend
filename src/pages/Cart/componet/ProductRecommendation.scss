@@ -1,0 +1,15 @@
+@import '../../../styles/variables';
+.product-recommendation {
+  &:hover {
+    cursor: pointer;
+  }
+  .product-recommendation-img {
+    width: 600px;
+    height: 500px;
+    padding: 10px 0;
+  }
+  .recommendation-info {
+    padding-bottom: 10px;
+    @include body-2;
+  }
+}
