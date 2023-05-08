@@ -6,9 +6,14 @@ import Filter from './component/Filter';
 const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
   const [products, setProducts] = useState([]);
+  const [sortType, setSortType] = useState('');
 
   useEffect(() => {
-    fetch('data/product-list.json')
+    fetch(`/product?countryId=1${sortType.length && 'sort=' + sortType}`);
+  }, [sortType]);
+
+  useEffect(() => {
+    fetch(`/product?countryId=1`)
       .then(response => response.json())
       .then(response => setProducts(response.data));
   }, []);
@@ -32,8 +37,10 @@ const ProductList = () => {
         </button>
         {isSorted ? (
           <ul className="sort-list">
-            {SORT_MENU.map(({ id, content }) => (
-              <li key={id}>{content}</li>
+            {SORT_MENU.map(({ id, content, sort }) => (
+              <li key={id} onClick={() => setSortType(sort)}>
+                {content}
+              </li>
             ))}
           </ul>
         ) : null}
@@ -53,11 +60,8 @@ const ProductList = () => {
 
 export default ProductList;
 
-const imgs = new Array(30);
-
 const SORT_MENU = [
-  { id: 0, content: '높은 인기순' },
-  { id: 1, content: '낮은 인기순' },
-  { id: 2, content: '높은 가격순' },
-  { id: 3, content: '낮은 가격순' },
+  { id: 0, content: '인기순', sort: 'Best' },
+  { id: 1, content: '높은 가격순', sort: 'PriceAsc' },
+  { id: 2, content: '낮은 가격순', sort: 'PriceDesc' },
 ];

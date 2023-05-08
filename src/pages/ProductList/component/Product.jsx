@@ -1,7 +1,7 @@
 import React from 'react';
 import './Product.scss';
 
-const Product = ({ product: { food, eng_food, price, likes_count } }) => {
+const Product = ({ product: { food, eng_food, price } }) => {
   return (
     <div className="product">
       <img
