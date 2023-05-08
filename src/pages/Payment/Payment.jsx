@@ -2,19 +2,24 @@ import React, { useState, useEffect } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import './Payment.scss';
-
+const deliveryFee = 3000;
 const Payment = () => {
   const [PaymentProductList, setPaymentProductList] = useState([]);
   const [foodList, setFoodList] = useState([]);
   const possessionPoint = PaymentProductList[0] && PaymentProductList[0].point;
-  const foodPriceList = foodList.map(item => item.price * item.quantity);
-  const foodPriceSum = foodPriceList.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
+  const foodPriceSum = foodList.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
     0
   );
-  const deliveryFee = 3000;
-  const paymentPrice = possessionPoint - foodPriceSum - deliveryFee;
-  const remainPoint = possessionPoint - paymentPrice;
+  const paymentPrice =
+    possessionPoint >= foodPriceSum + deliveryFee
+      ? 0
+      : possessionPoint - (foodPriceSum + deliveryFee);
+  const remainPoint =
+    possessionPoint >= foodPriceSum + deliveryFee
+      ? possessionPoint - (foodPriceSum + deliveryFee)
+      : 0;
   useEffect(() => {
     fetch('/data/paymentData.json', {
       method: 'GET',
