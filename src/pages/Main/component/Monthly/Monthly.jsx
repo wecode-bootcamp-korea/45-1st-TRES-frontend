@@ -2,9 +2,26 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Monthly.scss';
 
+const VIEW_COUNT = 4;
+
 const Monthly = () => {
   const [monthly, setMonthly] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const imgRef = useRef(null);
+
+  const totalSilde = monthly.length;
+
+  const prevBtn = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(prev => prev - 1);
+    }
+  };
+
+  const nextBtn = () => {
+    if (activeIndex < totalSilde - VIEW_COUNT) {
+      setActiveIndex(prev => prev + 1);
+    }
+  };
 
   useEffect(() => {
     fetch('/data/main-best-list.json', {})
@@ -14,28 +31,10 @@ const Monthly = () => {
       });
   }, []);
 
-  const TOTAL_SLIDE = monthly.length;
-  const imgRef = useRef(null);
-  const VIEW_COUNT = 4;
-
-  const prevBtn = () => {
-    if (activeIndex > 0) {
-      setActiveIndex(prev => prev - 1);
-    }
-  };
-
-  const nextBtn = () => {
-    if (activeIndex < TOTAL_SLIDE - VIEW_COUNT) {
-      setActiveIndex(prev => prev + 1);
-    }
-  };
-
   useEffect(() => {
     imgRef.current.style.transform = `translateX(-${290 * activeIndex}px)`;
     imgRef.current.style.transition = 'all 0.3s ease-in';
   }, [activeIndex]);
-
-  if (!monthly) return;
 
   return (
     <div className="monthly">
@@ -68,7 +67,7 @@ const Monthly = () => {
             type="botton"
             className="next btn"
             onClick={nextBtn}
-            disabled={activeIndex === TOTAL_SLIDE - VIEW_COUNT}
+            disabled={activeIndex === totalSilde - VIEW_COUNT}
           />
         </div>
       </div>

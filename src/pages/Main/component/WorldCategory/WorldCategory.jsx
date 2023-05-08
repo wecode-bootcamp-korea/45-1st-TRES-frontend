@@ -2,15 +2,17 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './WorldCategory.scss';
 
+const VIEW_COUNT = 3;
+
 const WorldCategory = () => {
-  const TOTAL_SLIDE = WORLD_DATA.length;
-  const VIEW_COUNT = 3;
   const [activeIndex, setActiveIndex] = useState(3);
   const imgRef = useRef(null);
 
+  const totalSlide = WORLD_DATA.length;
+
   const prevBtn = () => {
     setActiveIndex(
-      activeIndex === 3 ? TOTAL_SLIDE - VIEW_COUNT : activeIndex - VIEW_COUNT
+      activeIndex === 3 ? totalSlide - VIEW_COUNT : activeIndex - VIEW_COUNT
     );
     imgRef.current.style.transform = `translateX(+${0}px)`;
     imgRef.current.style.transition = 'all 0.5s ease-out';
@@ -18,7 +20,7 @@ const WorldCategory = () => {
 
   const nextBtn = () => {
     setActiveIndex(
-      activeIndex === TOTAL_SLIDE ? TOTAL_SLIDE : activeIndex + VIEW_COUNT
+      activeIndex === totalSlide ? totalSlide : activeIndex + VIEW_COUNT
     );
     imgRef.current.style.transform = `translateX(-${1080}px)`;
     imgRef.current.style.transition = 'all 0.5s ease-out';
@@ -50,7 +52,7 @@ const WorldCategory = () => {
             type="botton"
             className="next btn"
             onClick={nextBtn}
-            disabled={activeIndex === TOTAL_SLIDE}
+            disabled={activeIndex === totalSlide}
           />
         </div>
       </div>
