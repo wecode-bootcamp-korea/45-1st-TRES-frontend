@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_API } from '../../config';
 import './Login.scss';
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
 
   const login = e => {
     e.preventDefault();
-    fetch('http://10.58.52.203:3000/users/login', {
+    fetch(`${LOGIN_API}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
