@@ -17,7 +17,7 @@ const FilterDetail = ({ name, option }) => {
         />
       </div>
       {isChecked &&
-        (option ? (
+        (option.length ? (
           option.map(item => (
             <div className="filter-check" key={item.id}>
               <input

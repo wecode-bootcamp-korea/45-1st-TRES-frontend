@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductList.scss';
 import Product from './component/Product';
 import Filter from './component/Filter';
 
 const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('data/product-list.json')
+      .then(response => response.json())
+      .then(response => setProducts(response.data));
+  }, []);
 
   return (
     <div className="product-list">
@@ -35,8 +42,8 @@ const ProductList = () => {
       <div className="product-container">
         <Filter />
         <div className="products">
-          {imgs.map((img, index) => (
-            <Product key={index} />
+          {products.map(product => (
+            <Product product={product} key={product.id} />
           ))}
         </div>
       </div>
@@ -46,7 +53,7 @@ const ProductList = () => {
 
 export default ProductList;
 
-const imgs = new Array(30).fill(0);
+const imgs = new Array(30);
 
 const SORT_MENU = [
   { id: 0, content: '높은 인기순' },

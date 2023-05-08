@@ -6,15 +6,11 @@ const Filter = () => {
   return (
     <div className="filter">
       <ul className="country">
-        <li className="country-list">
-          <span>한국</span>
-        </li>
-        <li className="country-list">
-          <span>중국</span>
-        </li>
-        <li className="country-list">
-          <span>일본</span>
-        </li>
+        {COUNTRY.map(({ id, name }) => (
+          <li className="country-list" key={id}>
+            <span>{name}</span>
+          </li>
+        ))}
       </ul>
       <FilterDetail name="채식" option={VEGE_OPTION} />
       <FilterDetail name="고기" option={MEAT_OPTION} />
@@ -37,4 +33,9 @@ const ALLERGY_OPTION = [
   { id: 0, type: 'milk', content: '우유' },
   { id: 1, type: 'peanut', content: '땅통' },
   { id: 2, type: 'egg', content: '계란' },
+];
+const COUNTRY = [
+  { id: 0, name: '한국' },
+  { id: 1, name: '중국' },
+  { id: 2, name: '일본' },
 ];
