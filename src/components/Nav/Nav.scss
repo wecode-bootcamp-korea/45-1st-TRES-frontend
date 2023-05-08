@@ -22,8 +22,10 @@
         padding: 0 40px;
 
         .nav-link-box {
+          display: flex;
           position: absolute;
           right: 0;
+          align-items: center;
           margin-right: 50px;
 
           .link {
@@ -53,6 +55,36 @@
 
           .to-login {
             margin-right: 15px;
+          }
+
+          .loggedin {
+            display: flex;
+            align-items: center;
+            color: $main-dark;
+            text-decoration: none;
+
+            .welcom-ment {
+              @include body-3;
+
+              &::before {
+                content: '';
+                margin-right: 10px;
+                border-left: 1px solid $main-dark;
+              }
+            }
+
+            .user-btn {
+              border: 0;
+              background-color: transparent;
+
+              &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+              }
+              .user-icon {
+                width: 25px;
+              }
+            }
           }
         }
       }

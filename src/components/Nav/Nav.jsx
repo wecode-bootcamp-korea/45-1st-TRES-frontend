@@ -24,7 +24,16 @@ const Nav = () => {
                   로그인 / 회원가입
                 </Link>
               ) : (
-                ''
+                <div className="loggedin">
+                  <span className="welcom-ment">님 반갑습니다.</span>
+                  <button className="user-btn">
+                    <img
+                      className="user-icon"
+                      src="/images/icon/user.svg"
+                      alt="유저정보"
+                    />
+                  </button>
+                </div>
               )}
             </div>
           </div>
