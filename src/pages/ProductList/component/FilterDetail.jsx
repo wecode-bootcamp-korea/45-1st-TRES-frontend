@@ -10,7 +10,7 @@ const FilterDetail = ({ name, option }) => {
         <img
           className="sort-img"
           alt="더보기"
-          src={`images/icon/${
+          src={`/images/icon/${
             isChecked ? 'angle-up-solid' : 'angle-down-solid'
           }.svg`}
           onClick={() => setIsChecked(prev => !prev)}
