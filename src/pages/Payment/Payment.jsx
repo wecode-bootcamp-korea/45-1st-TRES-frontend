@@ -4,7 +4,6 @@ import ShippingAddress from './component/ShippingAddress';
 import './Payment.scss';
 
 const Payment = () => {
-  const [PaymentProductList, setPaymentProductList] = useState([]);
   const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
@@ -13,7 +12,6 @@ const Payment = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setPaymentProductList(data);
         setFoodList(data[0].food);
       });
   }, []);
