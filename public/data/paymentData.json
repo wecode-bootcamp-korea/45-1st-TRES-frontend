@@ -6,8 +6,8 @@
     "address": "서울시 노원구 중계동",
     "phoneNumber": "01072987237",
     "email": "7237sbj@naver.com",
-    "point": 100000,
-    "foodId": [
+    "point": 900000,
+    "food": [
       {
         "foodId": 1,
         "foodName": "중국의 짜장밥",
