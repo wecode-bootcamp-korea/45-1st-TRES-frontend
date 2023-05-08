@@ -4,6 +4,7 @@ import './Login.scss';
 import useGetFetch from '../../hooks/useGetFetch';
 
 const Login = () => {
+  /** 변수 */
   const navigate = useNavigate();
   const location = useLocation();
   const currentPage =
@@ -15,6 +16,7 @@ const Login = () => {
   const [isEmailExist, setIsEmailExist] = useState(false);
   const countries = useGetFetch(`/data/list-of-countries.json`);
 
+  // Checkbox
   const [checkItems, setCheckItems] = useState([]);
   const checkAll = checked =>
     checked
@@ -26,11 +28,18 @@ const Login = () => {
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
 
+  // 로그인
   const [loginValues, setLoginValues] = useState({
     email: ``,
     password: ``,
   });
 
+  const loginHandleInput = e => {
+    const { name, value } = e.target;
+    setLoginValues({ ...loginValues, [name]: value });
+  };
+
+  // 회원가입
   const [joinValues, setJoinValues] = useState({
     email: `Tmdwhd0711!@asefef.com`,
     firstName: `seke`,
@@ -43,7 +52,9 @@ const Login = () => {
     address: `여기`,
   });
 
-  const emailVerification = () => {
+  /* 함수 */
+  const emailVerification = e => {
+    e.preventDefault();
     fetch('http://10.58.52.203:3000/users/check', {
       method: 'post',
       headers: {
@@ -61,6 +72,7 @@ const Login = () => {
   };
 
   const login = e => {
+    e.preventDefault();
     const { name, value } = e.target;
     setLoginValues({ ...loginValues, [name]: value });
     fetch('http://10.58.52.203:3000/users/login', {
@@ -86,7 +98,8 @@ const Login = () => {
       });
   };
 
-  const join = () => {
+  const join = e => {
+    e.preventDefault();
     // const { name, value } = e.target;
     // setInputValues({ ...inputValues, [name]: value });
     fetch(`http://10.58.52.203:3000/users`, {
@@ -111,6 +124,7 @@ const Login = () => {
       .catch(err => alert(err));
   };
 
+  /* 출력 */
   return (
     <div className="login">
       <div className="container">
@@ -122,7 +136,17 @@ const Login = () => {
             : `${JOIN_TEXT.title}`}
         </span>
 
-        <form className="form" action="#" onSubmit={e => e.preventDefault()}>
+        <form
+          className="form"
+          action="#"
+          onSubmit={
+            currentPage.url === EMAIL_VERIFICATION_TEXT.url
+              ? emailVerification
+              : currentPage.url === LOGIN_TEXT.url
+              ? login
+              : join
+          }
+        >
           <div className="input-box">
             <input
               type="text"
@@ -132,7 +156,6 @@ const Login = () => {
               disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
           </div>
-
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <div className="input-box">
               <input
@@ -143,13 +166,11 @@ const Login = () => {
               <div className="text-required">필수</div>
             </div>
           )}
-
           {currentPage.url === LOGIN_TEXT.url && (
             <Link to="#">
               <div className="find-password-text">비밀번호 찾기</div>
             </Link>
           )}
-
           {currentPage.url === JOIN_TEXT.url && (
             <>
               <div className="input-box">
@@ -260,19 +281,7 @@ const Login = () => {
               </div>
             </>
           )}
-
-          <button
-            className="submit-button"
-            onClick={
-              currentPage.url === EMAIL_VERIFICATION_TEXT.url
-                ? emailVerification
-                : currentPage.url === LOGIN_TEXT.url
-                ? login
-                : join
-            }
-          >
-            {currentPage.button}
-          </button>
+          <button className="submit-button">{currentPage.button}</button>
         </form>
       </div>
     </div>
