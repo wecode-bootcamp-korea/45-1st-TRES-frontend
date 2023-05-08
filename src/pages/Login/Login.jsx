@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.scss';
 import useGetFetch from '../../hooks/useGetFetch';
 
 const Login = () => {
-  /** 변수 */
+  /* 변수 */
   const navigate = useNavigate();
   const location = useLocation();
   const currentPage =
@@ -28,61 +28,73 @@ const Login = () => {
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
 
-  // 로그인
-  const [loginValues, setLoginValues] = useState({
-    email: ``,
-    password: ``,
-  });
+  // input 항목
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-  const loginHandleInput = e => {
-    const { name, value } = e.target;
-    setLoginValues({ ...loginValues, [name]: value });
-  };
+  // /* post */
+  // // 이메일 확인
+  // const [emailValues, setEmailValues] = useState({
+  //   email: ``,
+  // });
 
-  // 회원가입
-  const [joinValues, setJoinValues] = useState({
-    email: `Tmdwhd0711!@asefef.com`,
-    firstName: `seke`,
-    lastName: `we`,
-    password: `Tmdwhd0711!`,
-    countries: [`가나`, `뉴질랜드`, `세네갈`],
-    pNumber: `01011112222`,
-    gender: `여자`,
-    birth: `2023-05-05`,
-    address: `여기`,
-  });
+  // // 로그인
+  // const [loginValues, setLoginValues] = useState({
+  //   email: ``,
+  //   password: ``,
+  // });
+
+  // // 회원가입
+  // const [joinValues, setJoinValues] = useState({
+  //   email: ``,
+  //   firstName: ``,
+  //   lastName: ``,
+  //   password: ``,
+  //   countries: [],
+  //   pNumber: ``,
+  //   gender: ``,
+  //   birth: ``,
+  //   address: ``,
+  // });
 
   /* 함수 */
+  // 이메일 확인
   const emailVerification = e => {
     e.preventDefault();
-    fetch('http://10.58.52.203:3000/users/check', {
+    console.log(emailRef.current.value);
+    fetch('http://10.58.52.203:3000/users/email-check', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: ``,
+        email: emailRef.current.value,
       }),
     })
       .then(res => res.json())
       .then(res =>
-        res.isEmailExist ? setIsEmailExist(!isEmailExist) : navigate(`/join`)
+        // res.isEmailExist ? setIsEmailExist(!isEmailExist) : navigate(`/join`)
+        res.isEmailExist ? navigate(`/login`) : navigate(`/join`)
       )
       .catch(err => alert(err));
   };
 
+  // 로그인
   const login = e => {
     e.preventDefault();
-    const { name, value } = e.target;
-    setLoginValues({ ...loginValues, [name]: value });
+    console.log(emailRef.current.value);
+    console.log(passwordRef.current.value);
+    // console.log(loginValues);
+    // const { name, value } = e.target;
+    // setLoginValues({ ...loginValues, [name]: value });
     fetch('http://10.58.52.203:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: ``,
-        password: ``,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
       }),
     })
       .then(response => {
@@ -98,36 +110,38 @@ const Login = () => {
       });
   };
 
+  // 회원가입
   const join = e => {
-    e.preventDefault();
-    // const { name, value } = e.target;
-    // setInputValues({ ...inputValues, [name]: value });
-    fetch(`http://10.58.52.203:3000/users`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        email: joinValues.email,
-        firstName: joinValues.firstName,
-        lastName: joinValues.lastName,
-        password: joinValues.password,
-        countries: joinValues.countries,
-        phoneNumber: joinValues.phoneNumber,
-        gender: joinValues.gender,
-        birth: joinValues.birth,
-        address: joinValues.address,
-      }),
-    })
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error('통신실패!');
-      })
-      .catch(err => alert(`로그인 실패 ${err}`))
-      .then(res => {
-        localStorage.setItem('TOKEN', res.accessToken);
-        navigate('/');
-      });
+    //   console.log(joinValues);
+    //   e.preventDefault();
+    //   // const { name, value } = e.target;
+    //   // setInputValues({ ...inputValues, [name]: value });
+    //   fetch(`http://10.58.52.203:3000/users`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //     },
+    //     body: JSON.stringify({
+    //       email: joinValues.email,
+    //       firstName: joinValues.firstName,
+    //       lastName: joinValues.lastName,
+    //       password: joinValues.password,
+    //       countries: joinValues.countries,
+    //       phoneNumber: joinValues.phoneNumber,
+    //       gender: joinValues.gender,
+    //       birth: joinValues.birth,
+    //       address: joinValues.address,
+    //     }),
+    //   })
+    //     .then(res => {
+    //       if (res.ok) return res.json();
+    //       throw new Error('통신실패!');
+    //     })
+    //     .catch(err => alert(`로그인 실패 ${err}`))
+    //     .then(res => {
+    //       localStorage.setItem('TOKEN', res.accessToken);
+    //       navigate('/');
+    //     });
   };
 
   /* 출력 */
@@ -158,6 +172,7 @@ const Login = () => {
               type="text"
               className="input email"
               name="email"
+              ref={emailRef}
               placeholder="이메일"
               disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
@@ -167,6 +182,7 @@ const Login = () => {
               <input
                 type="password"
                 className="input password"
+                ref={passwordRef}
                 placeholder="비밀번호"
               />
               <div className="text-required">필수</div>
