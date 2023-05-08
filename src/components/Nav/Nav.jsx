@@ -5,6 +5,8 @@ import Search from './component/Search/Search';
 import './Nav.scss';
 
 const Nav = () => {
+  const handle = false;
+
   return (
     <div className="nav">
       <div className="nav-container">
@@ -17,9 +19,13 @@ const Nav = () => {
               <Link to=".#" className="to-customer-service link">
                 고객센터
               </Link>
-              <Link to="/#" className="to-login link">
-                로그인 / 회원가입
-              </Link>
+              {handle ? (
+                <Link to="/#" className="to-login link">
+                  로그인 / 회원가입
+                </Link>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </div>
@@ -37,20 +43,24 @@ const Nav = () => {
             <CategoryList />
             <Search />
             <div className="like-cart-box">
-              <button className="to-like link-btn">
-                <img
-                  src="/images/icon/heart.svg"
-                  alt="좋아요"
-                  className="like-icon icon"
-                />
-              </button>
-              <button className="to-cart link-btn">
-                <img
-                  src="/images/icon/cartbag.svg"
-                  alt="장바구니로"
-                  className="cart-icon icon"
-                />
-              </button>
+              <Link className="link-like" to="/product-list">
+                <button className="to-like link-btn">
+                  <img
+                    src="/images/icon/heart.svg"
+                    alt="좋아요"
+                    className="like-icon icon"
+                  />
+                </button>
+              </Link>
+              <Link className="link-cart" to="/cart">
+                <button className="to-cart link-btn">
+                  <img
+                    src="/images/icon/cartbag.svg"
+                    alt="장바구니로"
+                    className="cart-icon icon"
+                  />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
