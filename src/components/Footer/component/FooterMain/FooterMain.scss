@@ -1,0 +1,84 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.footermain {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .main-info-box {
+    display: flex;
+    width: 80%;
+
+    .info-list {
+      width: 175px;
+      .info-item {
+        .info-item-btn {
+          border: 0;
+          background-color: transparent;
+          @include body-3;
+          color: $main-white;
+          line-height: 28px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .qna-list {
+      width: 175px;
+      .qna-item {
+        .qna-item-btn {
+          border: 0;
+          background-color: transparent;
+          @include body-3;
+          color: $main-white;
+          line-height: 28px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .about-list {
+      width: 175px;
+      .about-item {
+        .about-item-btn {
+          border: 0;
+          background-color: transparent;
+          @include body-3;
+          color: $main-white;
+          line-height: 28px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .link-to-box {
+    width: 20%;
+    .to-social-list {
+      display: flex;
+      justify-content: end;
+      width: 100%;
+      .icon {
+        width: 30px;
+        height: 30px;
+        margin-left: 16px;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: $main-white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

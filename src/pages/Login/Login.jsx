@@ -119,9 +119,15 @@ const Login = () => {
         address: joinValues.address,
       }),
     })
-      .then(res => res.json())
-      .then(res => alert(res.message))
-      .catch(err => alert(err));
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('통신실패!');
+      })
+      .catch(err => alert(`로그인 실패 ${err}`))
+      .then(res => {
+        localStorage.setItem('TOKEN', res.accessToken);
+        navigate('/');
+      });
   };
 
   /* 출력 */
