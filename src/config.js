@@ -1,2 +1,3 @@
-const BASE_URL = 'http://10.58.5.151:8000';
-export const GET_PRODUCT_API = `${BASE_URL}/products`;
+const BASE_URL = 'http://10.58.52.203:3000';
+
+export const LOGIN_API = `${BASE_URL}/users/login`;

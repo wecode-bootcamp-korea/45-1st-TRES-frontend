@@ -5,8 +5,6 @@ import Search from './component/Search/Search';
 import './Nav.scss';
 
 const Nav = () => {
-  const handle = false;
-
   return (
     <div className="nav">
       <div className="nav-container">
@@ -19,11 +17,7 @@ const Nav = () => {
               <Link to=".#" className="to-customer-service link">
                 고객센터
               </Link>
-              {handle ? (
-                <Link to="/#" className="to-login link">
-                  로그인 / 회원가입
-                </Link>
-              ) : (
+              {localStorage.getItem('TOKEN') ? (
                 <div className="loggedin">
                   <span className="welcom-ment">님 반갑습니다.</span>
                   <button className="user-btn">
@@ -34,6 +28,10 @@ const Nav = () => {
                     />
                   </button>
                 </div>
+              ) : (
+                <Link to="/#" className="to-login link">
+                  로그인 / 회원가입
+                </Link>
               )}
             </div>
           </div>
