@@ -4,15 +4,15 @@ import ShippingAddress from './component/ShippingAddress';
 import './Payment.scss';
 
 const Payment = () => {
-  const [paymentPaymentProductList, setPaymentProductList] = useState([]);
+  const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
-    fetch('/data/paymentProductData.json', {
+    fetch('/data/paymentData.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setPaymentProductList(data);
+        setFoodList(data[0].food);
       });
   }, []);
 
@@ -63,8 +63,8 @@ const Payment = () => {
         <section className="payment-list">
           <div className="payment-list-title">구매 목록</div>
           <ul>
-            {paymentPaymentProductList.map(item => (
-              <PaymentProduct key={item.id} />
+            {foodList.map(item => (
+              <PaymentProduct key={item.foodId} item={item} />
             ))}
           </ul>
         </section>
