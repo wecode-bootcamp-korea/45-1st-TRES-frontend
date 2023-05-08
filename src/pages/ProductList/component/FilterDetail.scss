@@ -1,0 +1,89 @@
+@import '../../../styles/variables';
+
+.filter-detail {
+  padding: 20px 0;
+  padding-right: 5px;
+  border-bottom: solid 1px #e5e5e5;
+  line-height: 20px;
+  .filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .sort-img {
+      width: 16px;
+      cursor: pointer;
+    }
+  }
+  .filter-name {
+    @include body-2;
+  }
+  .filter-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    &:hover {
+      color: gray;
+    }
+
+    .filter-input[type='checkbox'] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .filter-input[type='checkbox'] + label {
+      display: inline-block;
+      position: relative;
+      padding-left: 26px;
+      cursor: pointer;
+    }
+
+    .filter-input[type='checkbox'] + label:before {
+      content: '';
+      position: absolute;
+      top: -9px;
+      left: 0;
+      box-sizing: border-box;
+      width: 19px;
+      height: 19px;
+      border: 1px solid #ccc;
+      background: #fff;
+      text-align: center;
+    }
+
+    .filter-input[type='checkbox']:checked + label:after {
+      content: '✔';
+      position: absolute;
+      top: -9px;
+      left: 0;
+      width: 19px;
+      height: 19px;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+  }
+  .filter-range {
+    width: 100%;
+    height: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    outline: none;
+    background: #ccc;
+    -webkit-appearance: none;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: black;
+      cursor: pointer;
+    }
+  }
+}

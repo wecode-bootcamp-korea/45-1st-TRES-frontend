@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "food": "사모사",
+      "eng_food": "samosa",
+      "price": "3000.00",
+      "likes_count": "7"
+    },
+    {
+      "id": "2",
+      "food": "베이에나",
+      "eng_food": "Beyenatu",
+      "price": "14900.00",
+      "likes_count": "3"
+    },
+    {
+      "id": "3",
+      "food": "키토포",
+      "eng_food": "Kitfo",
+      "price": "16900.00",
+      "likes_count": "3"
+    },
+    {
+      "id": "4",
+      "food": "도로 와트",
+      "eng_food": "Doro Wat",
+      "price": "16900.00",
+      "likes_count": "2"
+    },
+    {
+      "id": "5",
+      "food": "차파티",
+      "eng_food": "Chapatti",
+      "price": "5900.00",
+      "likes_count": "1"
+    },
+    {
+      "id": "6",
+      "food": "코코넛 소스에 문어 구이",
+      "eng_food": "Pweza nwa nazi",
+      "price": "9900.00",
+      "likes_count": "1"
+    },
+    {
+      "id": "7",
+      "food": "만다지",
+      "eng_food": "mandazi",
+      "price": "5000.00",
+      "likes_count": "1"
+    },
+    {
+      "id": "8",
+      "food": "티에부디엔",
+      "eng_food": "Thieboudienne",
+      "price": "25000.00",
+      "likes_count": "1"
+    },
+    {
+      "id": "9",
+      "food": "칼데이루 데 카브리토",
+      "eng_food": "Caldeiro de Cabrito",
+      "price": "35000.00",
+      "likes_count": "1"
+    },
+    {
+      "id": "10",
+      "food": "와아케",
+      "eng_food": "Waakye",
+      "price": "8000.00",
+      "likes_count": "1"
+    },
+    {
+      "id": "11",
+      "food": "피라우",
+      "eng_food": "pilau",
+      "price": "10000.00",
+      "likes_count": "0"
+    },
+    {
+      "id": "12",
+      "food": "Lumpia",
+      "eng_food": "Lumpia",
+      "price": "10000.00",
+      "likes_count": "0"
+    }
+  ]
+}
