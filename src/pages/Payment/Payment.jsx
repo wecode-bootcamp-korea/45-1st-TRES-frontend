@@ -4,9 +4,9 @@ import ShippingAddress from './component/ShippingAddress';
 import './Payment.scss';
 const deliveryFee = 3000;
 const Payment = () => {
-  const [PaymentProductList, setPaymentProductList] = useState([]);
+  const [paymentProductList, setPaymentProductList] = useState([]);
   const [foodList, setFoodList] = useState([]);
-  const possessionPoint = PaymentProductList[0] && PaymentProductList[0].point;
+  const possessionPoint = paymentProductList[0] && paymentProductList[0].point;
   const foodPriceSum = foodList.reduce(
     (accumulator, currentValue) =>
       accumulator + currentValue.price * currentValue.quantity,
