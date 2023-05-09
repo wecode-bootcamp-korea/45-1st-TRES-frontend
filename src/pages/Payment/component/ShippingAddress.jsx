@@ -70,7 +70,6 @@ const ShippingAddress = ({
           />
           <label htmlFor="check-box-same">주문자 정보와 동일</label>
         </div>
-        <button className="address-change">변경</button>
       </div>
       <div className="input-name">
         <input
