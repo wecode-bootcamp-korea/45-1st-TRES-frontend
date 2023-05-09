@@ -15,6 +15,12 @@ const ProductList = () => {
   const { id } = useParams();
 
   const sortType = searchParams.get('orderBy');
+  const vegeType = searchParams.get('vegetarian');
+  const cow = searchParams.get('meatId0');
+  const pig = searchParams.get('meatId1');
+  const sheep = searchParams.get('meatId2');
+  const chicken = searchParams.get('meatId3');
+  const spiceLevel = searchParams.get('spiceLevel');
 
   const handleSort = sort => {
     searchParams.set('orderBy', sort);
@@ -36,6 +42,12 @@ const ProductList = () => {
     fetch(
       `http://10.58.52.78:3000/products?countryId=${id}${
         sortType?.length ? '&orderBy=' + sortType : ''
+      }${vegeType?.length ? '&vegetarian=' + vegeType : ''}${
+        cow?.length ? '&meatId=' + cow : ''
+      }${pig?.length ? '&meatId=' + pig : ''}${
+        sheep?.length ? '&meatId=' + sheep : ''
+      }${chicken?.length ? '&meatId=' + chicken : ''}${
+        spiceLevel?.length ? '&spiceLevel=' + spiceLevel : ''
       }`
     )
       .then(response => response.json())
