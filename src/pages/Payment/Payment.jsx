@@ -39,9 +39,21 @@ const Payment = () => {
       }
     }
   };
+  const token = localStorage.getItem('TOKEN');
 
   const showModal = () => {
-    setModalOpen(true);
+    console.log(`z`);
+    fetch('http://10.58.52.249:3000/payments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        point: 1,
+      }),
+    });
+    // setModalOpen(true);
   };
 
   useEffect(() => {
