@@ -2,20 +2,35 @@ import React, { useState, useEffect } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import './Payment.scss';
-
+const DELIVERY_FEE = 3000;
 const Payment = () => {
+  const [paymentProductList, setPaymentProductList] = useState([]);
   const [foodList, setFoodList] = useState([]);
-
+  const possessionPoint = paymentProductList[0] && paymentProductList[0].point;
+  const foodPriceSum = foodList.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
+    0
+  );
+  const paymentPrice =
+    possessionPoint >= foodPriceSum + DELIVERY_FEE
+      ? 0
+      : possessionPoint - (foodPriceSum + DELIVERY_FEE);
+  const remainPoint =
+    possessionPoint >= foodPriceSum + DELIVERY_FEE
+      ? possessionPoint - (foodPriceSum + DELIVERY_FEE)
+      : 0;
   useEffect(() => {
     fetch('/data/paymentData.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
+        setPaymentProductList(data);
         setFoodList(data[0].food);
       });
   }, []);
-
+  if (!possessionPoint) return '';
   return (
     <div className="payment">
       <h1 className="payment-title">결제하기</h1>
@@ -26,23 +41,23 @@ const Payment = () => {
             <h2 className="payment-progress-title">결제</h2>
             <div className="payment-calculate">
               <span>보유 포인트</span>
-              <span>100,000원</span>
+              <span>{possessionPoint.toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>상품 금액</span>
-              <span>78,000원</span>
+              <span>{foodPriceSum.toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>배송비</span>
-              <span>3,000원</span>
+              <span>{DELIVERY_FEE.toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>총 결제 금액</span>
-              <span>81,000원</span>
+              <span>{paymentPrice.toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>남은 포인트</span>
-              <span>19,000원</span>
+              <span>{remainPoint.toLocaleString()}원</span>
             </div>
           </section>
           <section className="payment-complete">

@@ -12,6 +12,7 @@ const PaymentProduct = ({ item }) => {
     foodImg,
   } = item;
   const priceSum = price * quantity;
+
   return (
     <li className="payment-product">
       <img className="payment-product-img" src={foodImg} alt="음식사진" />
@@ -20,9 +21,11 @@ const PaymentProduct = ({ item }) => {
         <div className="payment-product name-eng">{foodNameEng}</div>
         <div className="payment-product region">{`${country} / ${continent}`}</div>
         <div className="payment-product quantity-price">
-          {`${quantity} / ${price}`}
+          {`${quantity.toLocaleString()} / ${price.toLocaleString()}`}
         </div>
-        <div className="payment-product total-price">{priceSum}원</div>
+        <div className="payment-product total-price">
+          {priceSum.toLocaleString()}원
+        </div>
       </div>
     </li>
   );
