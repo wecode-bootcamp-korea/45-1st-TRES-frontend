@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
+import PaymentModal from './component/PaymentModal';
 import './Payment.scss';
 const DELIVERY_FEE = 3000;
 const Payment = () => {
-  const [paymentProductList, setPaymentProductList] = useState([]);
+  const [paymentProduct, setPaymentProduct] = useState([]);
   const [foodList, setFoodList] = useState([]);
-  const possessionPoint = paymentProductList[0] && paymentProductList[0].point;
+  const [isDisabledPayment, setIsDisabledPayment] = useState(true);
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const possessionPoint = paymentProduct[0] && paymentProduct[0].point;
   const foodPriceSum = foodList.reduce(
     (accumulator, currentValue) =>
       accumulator + currentValue.price * currentValue.quantity,
@@ -15,21 +20,38 @@ const Payment = () => {
   const paymentPrice =
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? 0
-      : possessionPoint - (foodPriceSum + DELIVERY_FEE);
+      : foodPriceSum + DELIVERY_FEE - possessionPoint;
   const remainPoint =
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? possessionPoint - (foodPriceSum + DELIVERY_FEE)
       : 0;
+
+  const handleTermsOfPurchase = () => {
+    if (isCheckedTerms) {
+      setIsCheckedTerms(false);
+      setIsDisabledPayment(true);
+    } else {
+      if (paymentPrice === 0) {
+        setIsCheckedTerms(true);
+        setIsDisabledPayment(false);
+      }
+    }
+  };
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   useEffect(() => {
     fetch('/data/paymentData.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setPaymentProductList(data);
+        setPaymentProduct(data);
         setFoodList(data[0].food);
       });
   }, []);
+
   if (!possessionPoint) return '';
   return (
     <div className="payment">
@@ -67,10 +89,24 @@ const Payment = () => {
                 id="check-box-consent"
                 className="consent-to-purchase"
                 type="checkbox"
+                onChange={handleTermsOfPurchase}
+                checked={isCheckedTerms}
               />
               <label htmlFor="check-box-consent">구매 약관에 동의합니다.</label>
               <div className="purchase-complete-button">
-                <button className="purchase-button">주문하기</button>
+                <button
+                  className="purchase-button"
+                  disabled={isDisabledPayment}
+                  onClick={showModal}
+                >
+                  주문하기
+                </button>
+                {modalOpen && (
+                  <PaymentModal
+                    setModalOpen={setModalOpen}
+                    foodList={foodList}
+                  />
+                )}
               </div>
             </div>
           </section>
