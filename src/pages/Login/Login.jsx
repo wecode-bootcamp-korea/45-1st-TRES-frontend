@@ -1,7 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Login.scss';
+import {
+  COUNTRIES_API,
+  EMAIL_VERIFICATION_API,
+  JOIN_API,
+  LOGIN_API,
+} from '../../config';
 import useGetFetch from '../../hooks/useGetFetch';
+import './Login.scss';
 
 const Login = () => {
   /* 변수 */
@@ -13,8 +19,7 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  // const countries = useGetFetch(`/data/list-of-countries.json`);
-  const countries = useGetFetch(`http://10.58.52.249:3000/users`);
+  const countries = useGetFetch(`${COUNTRIES_API}`);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -30,24 +35,24 @@ const Login = () => {
 
   // input 항목
   const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
-  const passwordRef = useRef(null);
   const genderRef = useRef(null);
   const phoneNumberRef = useRef(null);
-  const addressRef = useRef(null);
   const birthRef = useRef(null);
   const [checkCountries, setCheckCountries] = useState([]);
   const checkCountry = (checked, country) =>
     checked
       ? setCheckCountries(prev => [...prev, country])
       : setCheckCountries(checkCountries.filter(item => item !== country));
+  const addressRef = useRef(null);
 
   /* 함수 */
   // 이메일 확인
   const emailVerification = e => {
     e.preventDefault();
-    fetch('http://10.58.52.249:3000/users/email-check', {
+    fetch(`${EMAIL_VERIFICATION_API}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +62,6 @@ const Login = () => {
       }),
     })
       .then(res => {
-        console.log(`res`, res);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
@@ -68,7 +72,7 @@ const Login = () => {
   // 로그인
   const login = e => {
     e.preventDefault();
-    fetch('http://10.58.52.249:3000/users/login', {
+    fetch(`${LOGIN_API}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -92,27 +96,16 @@ const Login = () => {
   // 회원가입
   const join = e => {
     e.preventDefault();
-
-    console.log(`email: `, emailRef.current.value);
-    console.log(`password: `, passwordRef.current.value);
-    console.log(`firstName: `, firstNameRef.current.value);
-    console.log(`lastName: `, lastNameRef.current.value);
-    console.log(`gender: `, genderRef.current.value);
-    console.log(`phoneNumber: `, phoneNumberRef.current.value);
-    console.log(`birth: `, birthRef.current.value);
-    console.log(`countries: `, checkCountries);
-    console.log(`address: `, addressRef.current.value);
-
-    fetch(`http://10.58.52.249:3000/users`, {
+    fetch(`${JOIN_API}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
         email: emailRef.current.value,
+        password: passwordRef.current.value,
         firstName: firstNameRef.current.value,
         lastName: lastNameRef.current.value,
-        password: passwordRef.current.value,
         gender: genderRef.current.value,
         phoneNumber: phoneNumberRef.current.value,
         birth: birthRef.current.value,
