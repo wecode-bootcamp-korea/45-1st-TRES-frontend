@@ -124,9 +124,14 @@ const Login = () => {
       });
   };
 
+  const [emailRegex, setEmailRegex] = useState(``);
+
+  // 유효성 검사
   const emailCheck = e => {
     let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
-    console.log(emailCheckText.test(e.target.value) ? `ok` : `떙`);
+    setEmailRegex(
+      emailCheckText.test(e.target.value) ? `` : `이메일 형식을 확인해주세요.`
+    );
   };
 
   /* 출력 */
@@ -163,6 +168,7 @@ const Login = () => {
               placeholder="이메일"
               disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
+            {emailRegex}
           </div>
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <div className="input-box">
