@@ -16,16 +16,20 @@
       .select-and-delete {
         display: flex;
         justify-content: space-between;
-        div {
+        .check-all-select {
           .check-box:hover {
+            opacity: 0.5;
             cursor: pointer;
           }
           .select-all {
             margin-left: 16px;
             @include body-2;
+            &:hover {
+              opacity: 0.5;
+              cursor: pointer;
+            }
           }
         }
-
         .delete-button-select {
           border: none;
           background-color: $main-white;

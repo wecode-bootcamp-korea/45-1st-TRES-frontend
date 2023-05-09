@@ -11,14 +11,32 @@ const Cart = () => {
   const [productPrice, setProductPrice] = useState(0);
   const [checkItems, setCheckItems] = useState([]);
 
+  const [selectDeleteList, setSelectDeleteList] = useState([]);
+
   const checkAll = checked => {
     checked ? setCheckItems(cartList.map(item => item.id)) : setCheckItems([]);
+    setSelectDeleteList(checkItems.map(item => ({ foodId: item })));
   };
 
   const checkSingle = (checked, id) => {
     checked
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
+    setSelectDeleteList(checkItems.map(item => ({ foodId: item })));
+  };
+
+  const deleteSelectItem = () => {
+    //   fetch('http://10.58.52.203:3000/payment', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //     },
+    //     body: JSON.stringify({
+    //       food: selectDeleteList,
+    //       content: '삭제하는 아이템리스트',
+    //     }),
+    //   });
+    console.log(selectDeleteList);
   };
 
   useEffect(() => {
@@ -30,6 +48,20 @@ const Cart = () => {
         setCartList(data);
       });
 
+    // const token = localStorage.getItem('TOKEN');
+
+    // useEffect(() => {
+    //   fetch('http://아이피:3000/엔드포인트', {
+    //     method: 'GET',
+    //     headers: {
+    //       authorization: token,
+    //     },
+    //   })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       setCartList(data);
+    //     });
+
     fetch('/data/recommandData.json', {
       method: 'GET',
     })
@@ -37,6 +69,7 @@ const Cart = () => {
       .then(data => {
         setRecommandList(data);
       });
+    console.log(selectDeleteList);
   }, [checkItems]);
 
   return (
@@ -44,18 +77,22 @@ const Cart = () => {
       <div className="cart-container">
         <section className="shopping-basket">
           <h1 className="shopping-basket-title">장바구니</h1>
-          <div>
-            <input
-              id="check-all"
-              className="check-box"
-              type="checkbox"
-              onChange={e => checkAll(e.target.checked)}
-              checked={checkItems.length === cartList.length}
-            />
-            <label htmlFor="check-all" className="select-all">
-              전체 선택
-            </label>
-            <button className="delete-button-select">삭제</button>
+          <div className="select-and-delete">
+            <div className="check-all-select">
+              <input
+                id="check-all"
+                className="check-box"
+                type="checkbox"
+                onChange={e => checkAll(e.target.checked)}
+                checked={checkItems.length === cartList.length}
+              />
+              <label htmlFor="check-all" className="select-all">
+                전체 선택
+              </label>
+            </div>
+            <button className="delete-button-select" onClick={deleteSelectItem}>
+              삭제
+            </button>
           </div>
           <ul>
             {cartList.map(item => (
