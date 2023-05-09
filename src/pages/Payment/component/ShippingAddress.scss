@@ -1,0 +1,76 @@
+@import '../../../styles/variables';
+@import '../../../styles/color';
+
+@mixin border-line {
+  padding: 0 13px;
+  border: 1px solid $main-grey;
+  border-radius: 10px;
+}
+
+.shipping-address {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $main-grey;
+  @include body-2;
+  .shipping-address-title {
+    padding-bottom: 24px;
+    @include head-3;
+  }
+  .same-as-orderer:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  .input-name {
+    .input-full-name {
+      width: 342px;
+      height: 56px;
+      @include border-line;
+    }
+    .input-last-name {
+      margin-right: 15px;
+    }
+  }
+  .hint-name {
+    margin-bottom: 6.5px;
+    .hint-full-name {
+      padding: 0 13px;
+      color: $main-red;
+      @include body-3;
+    }
+    .hint-last-name {
+      margin-right: 252px;
+    }
+  }
+  .input-address {
+    width: 699px;
+    height: 56px;
+    @include border-line;
+  }
+  .hint-address {
+    margin: 3px 0;
+    padding: 5px 13px;
+    color: $main-red;
+    @include body-3;
+  }
+  .shipper-information {
+    .input-info {
+      width: 342px;
+      height: 56px;
+      @include border-line;
+    }
+    .input-phone-number {
+      margin-right: 15px;
+    }
+  }
+  .hint-information {
+    margin-bottom: 24px;
+    .hint-info {
+      padding: 0 13px;
+      color: $main-red;
+      @include body-3;
+    }
+    .hint-phone-number {
+      margin-right: 225px;
+    }
+  }
+}

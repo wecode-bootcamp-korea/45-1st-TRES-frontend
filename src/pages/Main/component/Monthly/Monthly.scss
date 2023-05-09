@@ -1,0 +1,88 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.monthly {
+  width: 1200px;
+  margin: 150px auto 0 auto;
+
+  .monthly-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+    border-top: 1px solid $main-grey;
+
+    .monthly-title {
+      @include head-1;
+      font-weight: 700;
+    }
+    .monthly-section {
+      display: flex;
+      position: relative;
+      width: 100%;
+      padding: 0 40px;
+      overflow: hidden;
+
+      .monthly-list {
+        display: flex;
+        height: 410px;
+        gap: 40px;
+
+        .monthly-item {
+          width: 250px;
+          margin-top: 60px;
+
+          .food-img {
+            width: 100%;
+          }
+
+          .food-info {
+            height: 70px;
+            .food-name {
+              @include body-1;
+            }
+            .food-country {
+              @include body-3;
+              color: $main-grey;
+            }
+            .price {
+              @include body-2;
+            }
+          }
+        }
+      }
+      .btn {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        width: 40px;
+        height: 50px;
+        transform: translateY(50%);
+        border: 0;
+        opacity: 0.5;
+        background-color: transparent;
+        background-repeat: no-repeat;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+
+        &:disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
+      }
+
+      .prev {
+        left: 0;
+        background-image: url(/asset/angle-left-solid.svg);
+      }
+      .next {
+        right: 0;
+        background-image: url(/asset/angle-right-solid.svg);
+      }
+    }
+  }
+}

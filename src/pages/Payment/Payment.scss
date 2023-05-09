@@ -1,2 +1,80 @@
-// .payment {
-// }
+@import '../../styles/variables';
+@import '../../styles/color';
+.payment {
+  padding-top: 100px;
+  color: $main-dark;
+  .payment-title {
+    padding: 48px 0;
+    text-align: center;
+    @include head-3;
+  }
+  .payment-container {
+    display: flex;
+    justify-content: center;
+    .payment-step {
+      width: 715px;
+      padding: 0 8px;
+      .payment-progress {
+        border-bottom: 1px solid $main-grey;
+        @include body-2;
+        .payment-progress-title {
+          padding: 24px 0;
+          @include head-3;
+        }
+        .payment-calculate {
+          display: flex;
+          justify-content: space-between;
+          width: 200px;
+          height: 20px;
+          margin-bottom: 20px;
+        }
+      }
+      .payment-complete {
+        @include body-2;
+        .payment-complete-title {
+          padding: 24px 0;
+          @include head-3;
+        }
+        .consent-to-purchase {
+          border-radius: 20px;
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+          }
+        }
+        .purchase {
+          .purchase-complete-button {
+            display: flex;
+            justify-content: right;
+            padding-top: 50px;
+            .purchase-button {
+              width: 100px;
+              height: 50px;
+              margin: 0 30px 100px 0;
+              border-radius: 25px;
+              background-color: $main-dark;
+              color: $main-white;
+              &:hover {
+                opacity: 0.5;
+                cursor: pointer;
+              }
+              &:disabled {
+                opacity: 1;
+                background-color: $main-grey;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+    .payment-list {
+      width: 350px;
+      padding: 0 8px;
+      .payment-list-title {
+        padding-bottom: 24px;
+        @include head-3;
+      }
+    }
+  }
+}

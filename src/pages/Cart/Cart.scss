@@ -1,8 +1,8 @@
 @import '../../styles/variables';
-
+@import '../../styles/color';
 .cart {
   padding-top: 100px;
-  color: rgb(17, 17, 17);
+  color: $main-dark;
   .cart-container {
     display: flex;
     justify-content: center;
@@ -13,20 +13,22 @@
         padding-bottom: 10px;
         @include head-3;
       }
-      div {
-        .check-box:hover {
-          cursor: pointer;
+      .select-and-delete {
+        display: flex;
+        justify-content: space-between;
+        div {
+          .check-box:hover {
+            cursor: pointer;
+          }
+          .select-all {
+            margin-left: 16px;
+            @include body-2;
+          }
         }
-        .select-all {
-          margin-left: 16px;
-          @include body-2;
-        }
+
         .delete-button-select {
-          height: 24px;
-          padding-bottom: 2px;
-          float: right;
           border: none;
-          background-color: white;
+          background-color: $main-white;
           font-size: 16px;
           text-decoration: underline;
           &:hover {
@@ -59,16 +61,16 @@
       .total-price {
         margin-bottom: 24px;
         padding: 24px 0 40px 0;
-        border-top: 1px solid rgb(229, 229, 229);
-        border-bottom: 1px solid rgb(229, 229, 229);
+        border-top: 1px solid $main-grey;
+        border-bottom: 1px solid $main-grey;
         @include body-2;
       }
       .order-button {
         width: 330px;
         height: 50px;
         border-radius: 25px;
-        background-color: rgb(17, 17, 17);
-        color: white;
+        background-color: $main-dark;
+        color: $main-white;
         &:hover {
           opacity: 0.5;
           cursor: pointer;

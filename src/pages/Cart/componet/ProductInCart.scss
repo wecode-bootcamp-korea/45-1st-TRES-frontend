@@ -1,11 +1,11 @@
 @import '../../../styles/variables';
-
+@import '../../../styles/color';
 .product-in-cart {
   .product-information {
     display: flex;
     margin-bottom: 7px;
     padding: 10px 0 17px 0;
-    border-bottom: 1px solid rgb(229, 229, 229);
+    border-bottom: 1px solid $main-grey;
     .check-box:hover {
       cursor: pointer;
     }
@@ -25,16 +25,16 @@
       }
       .product-country {
         margin: 10px 0;
-        color: rgb(117, 117, 117);
+        color: $main-grey;
       }
       .quantity {
-        color: rgb(117, 117, 117);
+        color: $main-grey;
         @include body-2;
       }
       .count-button {
         height: 20px;
         margin: 0 10px;
-        color: rgb(117, 117, 117);
+        color: $main-grey;
         @include body-2;
         .count-change-button:hover {
           cursor: pointer;

@@ -1,0 +1,70 @@
+@import '/src/styles/variables';
+
+.world-category {
+  width: 1200px;
+  margin: 0 auto;
+
+  .world-container {
+    @include flexCenter;
+    flex-direction: column;
+
+    .world-title {
+      @include head-1;
+      font-weight: 700;
+    }
+
+    .continent-section {
+      position: relative;
+      width: 100%;
+      margin-top: 120px;
+      padding: 0 90px;
+      overflow: hidden;
+
+      .continent-list {
+        display: flex;
+        width: 100%;
+        gap: 60px;
+
+        .country {
+          width: 300px;
+
+          &:hover {
+            transform: scale(1.05);
+            transition: 0.5s;
+          }
+        }
+      }
+
+      .btn {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        width: 40px;
+        height: 50px;
+        transform: translateY(-50%);
+        border: 0;
+        opacity: 0.5;
+        background-color: transparent;
+        background-repeat: no-repeat;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+
+        &:disabled {
+          display: none;
+        }
+      }
+
+      .prev {
+        left: 0;
+        background-image: url(/asset/angle-left-solid.svg);
+      }
+      .next {
+        right: 0;
+        background-image: url(/asset/angle-right-solid.svg);
+      }
+    }
+  }
+}
