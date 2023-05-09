@@ -10,7 +10,7 @@ const Payment = () => {
   const [isDisabledPayment, setIsDisabledPayment] = useState(true);
   const [isCheckedTerms, setIsCheckedTerms] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [checkAddressValue, setCheckAddressValue] = useState({});
   const possessionPoint = paymentProduct[0] && paymentProduct[0].point;
   const foodPriceSum = foodList.reduce(
     (accumulator, currentValue) =>
@@ -25,18 +25,21 @@ const Payment = () => {
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? possessionPoint - (foodPriceSum + DELIVERY_FEE)
       : 0;
+  const deliveryValue = Object.values(checkAddressValue);
+  const deliveryValueCheck = !deliveryValue.includes('');
 
   const handleTermsOfPurchase = () => {
     if (isCheckedTerms) {
       setIsCheckedTerms(false);
       setIsDisabledPayment(true);
     } else {
-      if (paymentPrice === 0) {
+      if (paymentPrice === 0 && deliveryValueCheck) {
         setIsCheckedTerms(true);
         setIsDisabledPayment(false);
       }
     }
   };
+
   const showModal = () => {
     setModalOpen(true);
   };
@@ -58,7 +61,11 @@ const Payment = () => {
       <h1 className="payment-title">결제하기</h1>
       <div className="payment-container">
         <div className="payment-step">
-          <ShippingAddress paymentProductList={paymentProductList} />
+          <ShippingAddress
+            paymentProduct={paymentProduct}
+            setCheckAddressValue={setCheckAddressValue}
+            isCheckedTerms={isCheckedTerms}
+          />
           <section className="payment-progress">
             <h2 className="payment-progress-title">결제</h2>
             <div className="payment-calculate">

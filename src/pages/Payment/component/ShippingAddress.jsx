@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ShippingAddress.scss';
 
-const ShippingAddress = ({ paymentProductList }) => {
-  const [addressInfo, setAddressInfo] = useState([]);
-  // const [userSame, setUserSame] = useState(false);
+const ShippingAddress = ({
+  paymentProduct,
+  setCheckAddressValue,
+  isCheckedTerms,
+}) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [addressValue, setAddressValue] = useState({
     firstName: '',
@@ -12,27 +14,29 @@ const ShippingAddress = ({ paymentProductList }) => {
     phoneNumber: '',
     email: '',
   });
+  const nameInput = useRef();
 
   const handleUserSame = event => {
-    if (event.target.checked) {
-      setAddressValue({
-        firstName: paymentProductList[0].firstName,
-        lastName: paymentProductList[0].lastName,
-        address: paymentProductList[0].address,
-        phoneNumber: paymentProductList[0].phoneNumber,
-        email: paymentProductList[0].email,
-      });
-    } else {
-      setAddressValue({
-        firstName: '',
-        lastName: '',
-        address: '',
-        phoneNumber: '',
-        email: '',
-      });
+    if (isCheckedTerms === false) {
+      if (event.target.checked) {
+        setAddressValue({
+          firstName: paymentProduct[0].firstName,
+          lastName: paymentProduct[0].lastName,
+          address: paymentProduct[0].address,
+          phoneNumber: paymentProduct[0].phoneNumber,
+          email: paymentProduct[0].email,
+        });
+      } else {
+        setAddressValue({
+          firstName: '',
+          lastName: '',
+          address: '',
+          phoneNumber: '',
+          email: '',
+        });
+      }
+      setIsDisabled(!isDisabled);
     }
-    // // setUserSame(!userSame);
-    setIsDisabled(!isDisabled);
   };
 
   const handleAddressInput = event => {
@@ -41,36 +45,16 @@ const ShippingAddress = ({ paymentProductList }) => {
   };
 
   useEffect(() => {
-    // fetch('/data/paymentData.json', {
-    //   method: 'GET',
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setAddressInfo(data);
-    //   });
-    // if (userSame) {
-    //   if (addressInfo.length > 0) {
-    //     const { firstName, lastName, address, phoneNumber, email } =
-    //       addressInfo[0];
-    //     setInputValue({
-    //       firstName: firstName || '',
-    //       lastName: lastName || '',
-    //       address: address || '',
-    //       phoneNumber: phoneNumber || '',
-    //       email: email || '',
-    //     });
-    //   }
-    // } else {
-    //   setInputValue({
-    //     firstName: '',
-    //     lastName: '',
-    //     address: '',
-    //     phoneNumber: '',
-    //     email: '',
-    //   });
-    // }
-  }, []);
-  // }, [addressInfo]);
+    setCheckAddressValue(addressValue);
+    if (isCheckedTerms) {
+      setIsDisabled(true);
+    } else if (
+      isCheckedTerms === false &&
+      nameInput.current.checked === false
+    ) {
+      setIsDisabled(false);
+    }
+  }, [addressValue, isCheckedTerms]);
 
   return (
     <section className="shipping-address">
@@ -82,7 +66,7 @@ const ShippingAddress = ({ paymentProductList }) => {
             className="same-as-orderer"
             type="checkbox"
             onChange={handleUserSame}
-            // checked={userSame}
+            ref={nameInput}
           />
           <label htmlFor="check-box-same">주문자 정보와 동일</label>
         </div>
