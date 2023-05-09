@@ -3,7 +3,7 @@ import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
 import './Payment.scss';
-const deliveryFee = 3000;
+const DELIVERY_FEE = 3000;
 const Payment = () => {
   const [paymentProduct, setPaymentProduct] = useState([]);
   const [foodList, setFoodList] = useState([]);
@@ -18,12 +18,12 @@ const Payment = () => {
     0
   );
   const paymentPrice =
-    possessionPoint >= foodPriceSum + deliveryFee
+    possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? 0
-      : possessionPoint - (foodPriceSum + deliveryFee);
+      : foodPriceSum + DELIVERY_FEE - possessionPoint;
   const remainPoint =
-    possessionPoint >= foodPriceSum + deliveryFee
-      ? possessionPoint - (foodPriceSum + deliveryFee)
+    possessionPoint >= foodPriceSum + DELIVERY_FEE
+      ? possessionPoint - (foodPriceSum + DELIVERY_FEE)
       : 0;
 
   const handleTermsOfPurchase = () => {
@@ -31,7 +31,7 @@ const Payment = () => {
       setIsCheckedTerms(false);
       setIsDisabledPayment(true);
     } else {
-      if (possessionPoint >= foodPriceSum + deliveryFee) {
+      if (paymentPrice === 0) {
         setIsCheckedTerms(true);
         setIsDisabledPayment(false);
       }
@@ -71,7 +71,7 @@ const Payment = () => {
             </div>
             <div className="payment-calculate">
               <span>배송비</span>
-              <span>{deliveryFee.toLocaleString()}원</span>
+              <span>{DELIVERY_FEE.toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>총 결제 금액</span>
