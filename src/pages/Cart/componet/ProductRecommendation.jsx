@@ -1,7 +1,8 @@
 import React from 'react';
 import './ProductRecommendation.scss';
 
-const ProductRecommendation = ({ index, currentSlide }) => {
+const ProductRecommendation = ({ recommandList }) => {
+  const [{ title, titleEng, price }] = recommandList;
   return (
     <li className="product-recommendation">
       <img
@@ -9,9 +10,9 @@ const ProductRecommendation = ({ index, currentSlide }) => {
         src="/images/cart/sample.png"
         alt="추천상품을 나타내는 이미지."
       />
-      <div className="recommendation-info">인도의 인도카레</div>
-      <div className="recommendation-info">curry of india</div>
-      <div className="recommendation-info">12,000원</div>
+      <div className="recommendation-info">{title}</div>
+      <div className="recommendation-info">{titleEng}</div>
+      <div className="recommendation-info">{price}원</div>
     </li>
   );
 };

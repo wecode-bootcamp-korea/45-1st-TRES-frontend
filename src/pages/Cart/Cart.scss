@@ -86,19 +86,6 @@
       .product-recommendation-list-title {
         @include head-3;
       }
-      .slide {
-        width: 48px;
-        height: 48px;
-        margin-left: 10px;
-        padding: 12px;
-        border: 1px solid rgb(229, 229, 229);
-        border-radius: 24px;
-        background-color: rgb(229, 229, 229);
-        &:hover {
-          opacity: 0.5;
-          cursor: pointer;
-        }
-      }
     }
     .product-in-recommendation {
       display: flex;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductInCart.scss';
 
 let selectList = [];
@@ -6,16 +6,7 @@ const ProductInCart = props => {
   const [count, setCount] = useState(1);
   const [isDisabled, setIsDisabled] = useState(true);
   const [quantityChange, setQuantityChange] = useState(1);
-  const [isChecked, setIsChecked] = useState(true);
-  const {
-    id,
-    checkItems,
-    cartList,
-    checkSingle,
-    setProductPrice,
-    setCheckList,
-    setCartList,
-  } = props;
+  const { id, checkItems, cartList, checkSingle, setProductPrice } = props;
   const [{ title, titleEng, country, continent, price }] = cartList;
   const totalPrice = price * count;
   const handleChange = e => {
@@ -28,23 +19,18 @@ const ProductInCart = props => {
     setIsDisabled(true);
   };
 
-  const handleCheckBox = e => {
-    setIsChecked(!isChecked);
-  };
-  const test = useRef();
-  const [test2, setTest2] = useState(cartList);
-  const selectDelete = e => {
-    // setCartList(cartList.filter(item => item.id !== e));
-    setTest2(cartList.filter(item => item.id !== e));
-    setIsChecked((test.current.checked = false));
-  };
+  const selectDelete = e => {};
 
   useEffect(() => {
-    if (isChecked) {
+    if (checkItems.includes(id)) {
       const selectCancle = selectList.filter(item => item.id !== id);
       selectList = selectCancle;
       let selectAdd = {};
-      selectAdd = { id: id, sum: totalPrice, selectCondition: isChecked };
+      selectAdd = {
+        id: id,
+        sum: totalPrice,
+        selectCondition: checkItems.includes(id),
+      };
       selectList = [...selectList, selectAdd];
     } else {
       const selectCancle = selectList.filter(item => item.id !== id);
@@ -56,10 +42,7 @@ const ProductInCart = props => {
       0
     );
     setProductPrice(priceSum);
-    setCheckList(selectList);
-
-    setCartList(test2);
-  }, [isChecked, count]);
+  }, [count, checkItems]);
 
   return (
     <li className="product-in-cart">
@@ -69,9 +52,6 @@ const ProductInCart = props => {
           type="checkbox"
           onChange={e => checkSingle(e.target.checked, id)}
           checked={checkItems.includes(id)}
-          // onChange={e => handleCheckBox(e)}
-          // checked={isChecked}
-          ref={test}
         />
         <img
           className="product-img"
@@ -88,16 +68,11 @@ const ProductInCart = props => {
               className="count-change-button"
               onChange={e => handleChange(e)}
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
+              {QUANTITY_SELECT.map(item => (
+                <option key={item.id} value={item.value}>
+                  {item.value}
+                </option>
+              ))}
             </select>
             <button
               className="count-check-button"
@@ -127,3 +102,16 @@ const ProductInCart = props => {
 };
 
 export default ProductInCart;
+
+const QUANTITY_SELECT = [
+  { id: 1, value: 1 },
+  { id: 2, value: 2 },
+  { id: 3, value: 3 },
+  { id: 4, value: 4 },
+  { id: 5, value: 5 },
+  { id: 6, value: 6 },
+  { id: 7, value: 7 },
+  { id: 8, value: 8 },
+  { id: 9, value: 9 },
+  { id: 10, value: 10 },
+];
