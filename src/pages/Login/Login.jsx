@@ -124,20 +124,20 @@ const Login = () => {
       });
   };
 
+  /* 유효성 검사 */
+  // 이메일
   const [emailRegex, setEmailRegex] = useState(``);
-
-  // 유효성 검사
   const emailCheck = e => {
     let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
     setEmailRegex(
-      emailCheckText.test(e.target.value) ? `` : `이메일 형식을 확인해주세요.`
+      emailCheckText.test(e.target.value) ||
+        `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
     );
   };
 
   /* 출력 */
   return (
     <div className="login">
-      {}
       <div className="container">
         <span className="text-page-description">
           {currentPage === EMAIL_VERIFICATION_TEXT
