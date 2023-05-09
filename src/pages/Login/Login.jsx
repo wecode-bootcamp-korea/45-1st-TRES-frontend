@@ -13,8 +13,8 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  const countries = useGetFetch(`/data/list-of-countries.json`);
-  // const countries = useGetFetch(`http://10.58.52.203:3000/users`);
+  // const countries = useGetFetch(`/data/list-of-countries.json`);
+  const countries = useGetFetch(`http://10.58.52.249:3000/users`);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -35,16 +35,19 @@ const Login = () => {
   const passwordRef = useRef(null);
   const genderRef = useRef(null);
   const phoneNumberRef = useRef(null);
-  const birthRef = useRef(null);
-  const countriesRef = useRef(null);
   const addressRef = useRef(null);
+  const birthRef = useRef(null);
+  const [checkCountries, setCheckCountries] = useState([]);
+  const checkCountry = (checked, country) =>
+    checked
+      ? setCheckCountries(prev => [...prev, country])
+      : setCheckCountries(checkCountries.filter(item => item !== country));
 
   /* 함수 */
   // 이메일 확인
   const emailVerification = e => {
     e.preventDefault();
-    console.log(emailRef.current.value);
-    fetch('http://10.58.52.203:3000/users/email-check', {
+    fetch('http://10.58.52.249:3000/users/email-check', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -53,7 +56,11 @@ const Login = () => {
         email: emailRef.current.value,
       }),
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(`res`, res);
+        if (res.ok) return res.json();
+        throw new Error('통신실패!');
+      })
       .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)))
       .catch(err => alert(err));
   };
@@ -61,7 +68,7 @@ const Login = () => {
   // 로그인
   const login = e => {
     e.preventDefault();
-    fetch('http://10.58.52.203:3000/users/login', {
+    fetch('http://10.58.52.249:3000/users/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -71,16 +78,14 @@ const Login = () => {
         password: passwordRef.current.value,
       }),
     })
-      .then(response => {
-        if (response.ok === true) {
-          return response.json();
-        }
+      .then(res => {
+        if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
-      .catch(err => console.log(err))
-      .then(data => {
-        localStorage.setItem('TOKEN', data.accessToken);
-        alert('로그인 성공');
+      .catch(err => alert(`로그인 실패 ${err}`))
+      .then(res => {
+        localStorage.setItem('TOKEN', res.accessToken);
+        navigate('/');
       });
   };
 
@@ -95,35 +100,35 @@ const Login = () => {
     console.log(`gender: `, genderRef.current.value);
     console.log(`phoneNumber: `, phoneNumberRef.current.value);
     console.log(`birth: `, birthRef.current.value);
-    console.log(`countries: `, countriesRef.current.value);
+    console.log(`countries: `, checkCountries);
     console.log(`address: `, addressRef.current.value);
 
-    // fetch(`http://10.58.52.203:3000/users`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     email: emailRef.current.value,
-    //     firstName: firstNameRef.current.value,
-    //     lastName: lastNameRef.current.value,
-    //     password: passwordRef.current.value,
-    //     gender: genderRef.current.value,
-    //     phoneNumber: phoneNumberRef.current.value,
-    //     birth: birthRef.current.value,
-    //     countries: countriesRef.current.value,
-    //     address: addressRef.current.value,
-    //   }),
-    // })
-    //   .then(res => {
-    //     if (res.ok) return res.json();
-    //     throw new Error('통신실패!');
-    //   })
-    //   .catch(err => alert(`로그인 실패 ${err}`))
-    //   .then(res => {
-    //     localStorage.setItem('TOKEN', res.accessToken);
-    //     navigate('/');
-    //   });
+    fetch(`http://10.58.52.249:3000/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        email: emailRef.current.value,
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
+        password: passwordRef.current.value,
+        gender: genderRef.current.value,
+        phoneNumber: phoneNumberRef.current.value,
+        birth: birthRef.current.value,
+        countries: checkCountries,
+        address: addressRef.current.value,
+      }),
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('통신실패!');
+      })
+      .catch(err => alert(`회원가입 실패 ${err}`))
+      .then(res => {
+        localStorage.setItem('TOKEN', res.accessToken);
+        navigate('/');
+      });
   };
 
   /* 출력 */
@@ -211,8 +216,8 @@ const Login = () => {
                   <option value hidden>
                     성별
                   </option>
-                  <option value="mens">남자</option>
-                  <option value="womens">여자</option>
+                  <option value="남자">남자</option>
+                  <option value="여자">여자</option>
                 </select>
                 <div className="text-required">필수</div>
               </div>
@@ -232,7 +237,20 @@ const Login = () => {
               </div>
 
               <div className="input-box">
-                <select className="input" ref={countriesRef}>
+                {countries?.map(item => (
+                  <div key={item.id}>
+                    <input
+                      type="checkbox"
+                      // value={item.country}
+                      onChange={e =>
+                        checkCountry(e.target.checked, item.country)
+                      }
+                      checked={checkCountries.includes(item.country)}
+                    />
+                    <span>{item.country}</span>
+                  </div>
+                ))}
+                {/* <select className="input" ref={countriesRef}>
                   <option value hidden>
                     선호 국가
                   </option>
@@ -241,7 +259,7 @@ const Login = () => {
                       {item.country}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </div>
 
               <div className="input-box">
