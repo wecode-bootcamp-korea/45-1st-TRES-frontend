@@ -65,8 +65,8 @@ const Login = () => {
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
-      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)))
-      .catch(err => alert(err));
+      .catch(err => alert(err))
+      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
   };
 
   // 로그인
@@ -124,9 +124,15 @@ const Login = () => {
       });
   };
 
+  const emailCheck = e => {
+    let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
+    console.log(emailCheckText.test(e.target.value) ? `ok` : `떙`);
+  };
+
   /* 출력 */
   return (
     <div className="login">
+      {}
       <div className="container">
         <span className="text-page-description">
           {currentPage === EMAIL_VERIFICATION_TEXT
@@ -153,6 +159,7 @@ const Login = () => {
               className="input email"
               name="email"
               ref={emailRef}
+              onChange={emailCheck}
               placeholder="이메일"
               disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
@@ -243,16 +250,6 @@ const Login = () => {
                     <span>{item.country}</span>
                   </div>
                 ))}
-                {/* <select className="input" ref={countriesRef}>
-                  <option value hidden>
-                    선호 국가
-                  </option>
-                  {countries?.map(item => (
-                    <option key={item.id} value={item.country}>
-                      {item.country}
-                    </option>
-                  ))}
-                </select> */}
               </div>
 
               <div className="input-box">
