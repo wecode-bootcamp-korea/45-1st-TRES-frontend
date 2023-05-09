@@ -8,13 +8,14 @@ const AddCart = ({ id, cost, count }) => {
 
   const toCart = () => {
     token
-      ? fetch(``, {
+      ? fetch(`http://10.58.52.249:3000/orders`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: token,
           },
           body: JSON.stringify({
-            price: cost,
+            price: totalPrice,
             foodId: id,
             count: count,
           }),
@@ -32,7 +33,9 @@ const AddCart = ({ id, cost, count }) => {
     <div className="addcart">
       <div className="product-total-price">
         <span className="total-price-text">총 상품금액 : </span>
-        <span className="total-price-number">{totalPrice}원</span>
+        <span className="total-price-number">
+          {totalPrice.toLocaleString()}원
+        </span>
       </div>
       <div className="button-box">
         <img

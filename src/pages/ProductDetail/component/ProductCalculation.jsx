@@ -30,7 +30,7 @@ const ProductCalculation = ({ id, price, food }) => {
                 </button>
               </div>
             </div>
-            <span className="count-price">{cost} 원</span>
+            <span className="count-price">{cost.toLocaleString()} 원</span>
           </div>
         </div>
       </div>

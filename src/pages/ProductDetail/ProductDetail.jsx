@@ -50,7 +50,9 @@ const ProductDetail = () => {
           </div>
           <h1 className="font-layout kor-name">{food}</h1>
           <h1 className="font-layout eng-name">{eng_food}</h1>
-          <p className="font-layout product-price">{Math.floor(price)}원</p>
+          <p className="font-layout product-price">
+            {Math.floor(price).toLocaleString()}원
+          </p>
           <p className="description">{description}</p>
           <ProductSummary
             allergy={allergy}
