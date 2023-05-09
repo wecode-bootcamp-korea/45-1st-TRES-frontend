@@ -17,63 +17,72 @@
       @include head-1;
       font-weight: 700;
     }
-
-    .monthly-list {
+    .monthly-section {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      height: 410px;
+      position: relative;
+      width: 100%;
+      padding: 0 40px;
       overflow: hidden;
 
-      .monthly-item {
-        width: 280px;
-        margin-top: 60px;
+      .monthly-list {
+        display: flex;
+        height: 410px;
+        gap: 40px;
 
-        .food-img {
-          width: 100%;
-        }
+        .monthly-item {
+          width: 250px;
+          margin-top: 60px;
 
-        .food-info {
-          height: 70px;
-          .food-name {
-            @include body-1;
+          .food-img {
+            width: 100%;
           }
-          .food-country {
-            @include body-3;
-            color: $main-grey;
-          }
-          .price {
-            @include body-2;
+
+          .food-info {
+            height: 70px;
+            .food-name {
+              @include body-1;
+            }
+            .food-country {
+              @include body-3;
+              color: $main-grey;
+            }
+            .price {
+              @include body-2;
+            }
           }
         }
       }
-    }
+      .btn {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        width: 40px;
+        height: 50px;
+        transform: translateY(50%);
+        border: 0;
+        opacity: 0.5;
+        background-color: transparent;
+        background-repeat: no-repeat;
 
-    .btn {
-      position: absolute;
-      z-index: 1;
-      top: 50%;
-      width: 40px;
-      height: 50px;
-      transform: translateY(100%);
-      border: 0;
-      opacity: 0.5;
-      background-color: transparent;
-      background-repeat: no-repeat;
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
 
-      &:hover {
-        opacity: 1;
-        cursor: pointer;
+        &:disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
       }
-    }
 
-    .prev {
-      left: 0;
-      background-image: url(/asset/angle-left-solid.svg);
-    }
-    .next {
-      right: 0;
-      background-image: url(/asset/angle-right-solid.svg);
+      .prev {
+        left: 0;
+        background-image: url(/asset/angle-left-solid.svg);
+      }
+      .next {
+        right: 0;
+        background-image: url(/asset/angle-right-solid.svg);
+      }
     }
   }
 }
