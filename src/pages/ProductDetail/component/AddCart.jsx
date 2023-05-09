@@ -1,9 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AddCart.scss';
 
 const AddCart = ({ id, cost, count }) => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('TOKEN');
+
   const toCart = () => {
-    fetch();
+    token
+      ? fetch(``, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            price: cost,
+            foodId: id,
+            count: count,
+          }),
+        })
+          .then(res => {
+            if (res.ok) return res.json();
+            throw new Error('통신실패!');
+          })
+          .catch(err => alert(`로그인 실패 ${err}`))
+      : navigate('/login');
   };
 
   let totalPrice = cost * count;
@@ -20,7 +41,7 @@ const AddCart = ({ id, cost, count }) => {
           alt="좋아요"
         />
         <button className="cart-add-button" onClick={toCart}>
-          장바구니 담기
+          {`${token ? '장바구니 담기' : '로그인 하기'}`}
         </button>
       </div>
     </div>
