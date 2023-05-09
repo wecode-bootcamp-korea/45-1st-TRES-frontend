@@ -1,20 +1,55 @@
-@import '../../../styles/color';
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
 .product-calculation {
   display: flex;
-  justify-content: space-between;
-  width: 270px;
-  .product-count {
-    padding: 5px;
-    border: 1px solid $main-grey;
-    .count {
-      border: none;
-      background-color: $main-white;
-      &:hover {
-        cursor: pointer;
+  flex-direction: column;
+  width: 400px;
+  padding-top: 15px;
+
+  .product-choice {
+    display: flex;
+
+    .product-choice-text {
+      width: 60px;
+      margin-right: 40px;
+      @include body-2;
+    }
+
+    .calculation-box {
+      width: 70%;
+      .product-choice-food {
+        @include body-2;
+      }
+
+      .count-box {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+
+        .product-count {
+          .count-btn-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 80px;
+            border: 1px solid $main-grey;
+
+            .count-btn {
+              border: none;
+              background-color: transparent;
+              @include body-1;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .count-price {
+          @include body-2;
+        }
       }
     }
-  }
-  .product-calculation-tatal-price {
-    padding-top: 7px;
   }
 }

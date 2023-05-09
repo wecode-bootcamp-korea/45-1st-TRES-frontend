@@ -1,7 +1,8 @@
-@import '../../../styles/color';
+@import '/src/styles/variables';
+@import '/src/styles/color';
 
 .product-summary {
-  color: $main-grey;
+  border-top: 1px solid $main-grey;
   text-align: left;
   .table-body {
     .table-row {
