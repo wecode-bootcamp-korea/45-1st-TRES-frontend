@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import './Payment.scss';
-const deliveryFee = 3000;
+const DELIVERY_FEE = 3000;
 const Payment = () => {
   const [paymentProductList, setPaymentProductList] = useState([]);
   const [foodList, setFoodList] = useState([]);
@@ -13,12 +13,12 @@ const Payment = () => {
     0
   );
   const paymentPrice =
-    possessionPoint >= foodPriceSum + deliveryFee
+    possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? 0
-      : possessionPoint - (foodPriceSum + deliveryFee);
+      : possessionPoint - (foodPriceSum + DELIVERY_FEE);
   const remainPoint =
-    possessionPoint >= foodPriceSum + deliveryFee
-      ? possessionPoint - (foodPriceSum + deliveryFee)
+    possessionPoint >= foodPriceSum + DELIVERY_FEE
+      ? possessionPoint - (foodPriceSum + DELIVERY_FEE)
       : 0;
   useEffect(() => {
     fetch('/data/paymentData.json', {
@@ -49,7 +49,7 @@ const Payment = () => {
             </div>
             <div className="payment-calculate">
               <span>배송비</span>
-              <span>{deliveryFee.toLocaleString()}원</span>
+              <span>{DELIVERY_FEE.toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>총 결제 금액</span>
