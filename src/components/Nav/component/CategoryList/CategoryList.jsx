@@ -4,7 +4,7 @@ import './CategoryList.scss';
 
 const CategoryList = () => {
   const [display, setDisplay] = useState(false);
-  const [subCategory, setSubCategory] = useState();
+  const [subCategory, setSubCategory] = useState([]);
 
   useEffect(() => {
     fetch('/data/main-continent-data.json')
@@ -21,7 +21,6 @@ const CategoryList = () => {
     setDisplay(false);
   };
 
-  if (!subCategory) return;
   return (
     <div className="category-box">
       <ul className="category-list" onMouseEnter={enterMouse}>

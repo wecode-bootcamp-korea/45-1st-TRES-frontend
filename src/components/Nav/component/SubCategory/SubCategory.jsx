@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './SubCategory.scss';
 
 const SubCategory = () => {
-  const [subCategory, setSubCategory] = useState();
+  const [subCategory, setSubCategory] = useState([]);
 
   useEffect(() => {
     fetch('/data/main-continent-data.json')
@@ -12,7 +12,6 @@ const SubCategory = () => {
       });
   }, []);
 
-  if (!subCategory) return;
   return (
     <div className="subcategory">
       <div className="subcategory-list">
