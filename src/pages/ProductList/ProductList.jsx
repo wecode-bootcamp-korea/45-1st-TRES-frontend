@@ -7,14 +7,29 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
   const [products, setProducts] = useState([]);
+  const [url, setUrl] = useState('');
+  const [sortedType, setSortedType] = useState('');
+  const [api, setApi] = useState('http://10.58.52.78:3000/products?countryId=');
   const navigate = useNavigate();
-  const [queryString, setQueryString] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
 
-  const sortType = queryString.get('orderBy');
+  const sortType = searchParams.get('orderBy');
 
   const handleSort = sort => {
-    navigate(`/product-list/3?orderBy=${sort}`);
+    searchParams.set('orderBy', sort);
+    setSearchParams(searchParams);
+    // if (url.includes(`?orderBy=${sortedType}`)) {
+    //   setUrl(prev =>
+    //     prev.replace(`?orderBy=${sortedType}`, `?orderBy=${sort}`)
+    //   );
+    //   navigate(url.replace(`?orderBy=${sortedType}`, `?orderBy=${sort}`));
+    //   setSortedType(sort);
+    //   return;
+    // }
+    // setUrl(prev => prev + `?orderBy=${sort}`);
+    // navigate(url + `?orderBy=${sort}`);
+    // setSortedType(sort);
   };
 
   useEffect(() => {
@@ -26,8 +41,6 @@ const ProductList = () => {
       .then(response => response.json())
       .then(response => setProducts(response.data));
   }, [sortType]);
-
-  console.log(products);
 
   return (
     <div className="product-list">
@@ -58,7 +71,7 @@ const ProductList = () => {
       </header>
 
       <div className="product-container">
-        <Filter />
+        <Filter url={url} setUrl={setUrl} />
         <div className="products">
           {products?.map(product => (
             <Product product={product} key={product.id} />

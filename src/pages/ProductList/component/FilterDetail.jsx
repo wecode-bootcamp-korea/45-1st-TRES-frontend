@@ -1,8 +1,27 @@
 import React, { useState } from 'react';
 import './FilterDetail.scss';
+import OptionChecks from './OptionChecks';
+import { useNavigate } from 'react-router-dom';
 
-const FilterDetail = ({ name, option }) => {
+const FilterDetail = ({ name, option, url, setUrl }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const [level, setLevel] = useState('');
+  const navigate = useNavigate();
+  const handleSpiceLevel = e => {
+    if (url.includes(`&spiceLevel=${level}`)) {
+      setUrl(prev =>
+        prev.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
+      );
+      navigate(
+        url.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
+      );
+      setLevel(e.target.value);
+      return;
+    }
+    setUrl(prev => prev + `&spiceLevel=${e.target.value}`);
+    navigate(url + `&spiceLevel=${e.target.value}`);
+    setLevel(e.target.value);
+  };
   return (
     <div className="filter-detail">
       <div className="filter-header">
@@ -19,18 +38,7 @@ const FilterDetail = ({ name, option }) => {
       {isChecked &&
         (option ? (
           option.map(item => (
-            <div className="filter-check" key={item.id}>
-              <input
-                className="filter-input"
-                type="checkbox"
-                id={item.type}
-                name={item.type}
-              />
-              <label className="filter-label" htmlFor={item.type} />
-              <label className="label-name" htmlFor={item.type}>
-                {item.content}
-              </label>
-            </div>
+            <OptionChecks url={url} setUrl={setUrl} key={item.id} item={item} />
           ))
         ) : (
           <div className="filter-check">
@@ -41,6 +49,7 @@ const FilterDetail = ({ name, option }) => {
               name="volume"
               min="0"
               max="3"
+              onClick={handleSpiceLevel}
             />
             <label htmlFor="volume" />
           </div>
