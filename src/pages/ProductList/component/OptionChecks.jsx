@@ -1,22 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './OptionChecks.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const OptionChecks = ({
   url,
   setUrl,
   item: { id, category, type, content },
 }) => {
-  const navigate = useNavigate();
-  const handleFilter = e => {
-    if (category === 'vege') {
-      setUrl(prev => prev + `&${category}=true`);
-      navigate(url + `&${category}=true`);
-      return;
+  const [checked, setChecked] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const navigate = useNavigate();
+  // const handleFilter = e => {
+  //   if (checked === true) {
+  //     searchParams.delete('vegetarian');
+  //     setSearchParams(setSearchParams);
+  //   } else {
+  //     searchParams.set('vegetarian', 'yes');
+  //     setSearchParams(searchParams);
+  //   }
+  //   setChecked(prev => !prev);
+  //   // if (category === 'vege') {
+  //   //   setUrl(prev => prev + `&${category}=true`);
+  //   //   navigate(url + `&${category}=true`);
+  //   //   return;
+  //   // }
+  //   // setUrl(prev => prev + `&${category}=${type}`);
+  //   // navigate(url + `&${category}=${type}`);
+  // };
+
+  useEffect(() => {
+    if (category === 'vegetarian') {
+      if (checked === true) {
+        searchParams.set('vegetarian', 'yes');
+        setSearchParams(searchParams);
+      } else {
+        searchParams.delete('vegetarian');
+        setSearchParams(searchParams);
+      }
+    } else {
+      if (checked === true) {
+        searchParams.set(category, id);
+        setSearchParams(searchParams);
+      } else {
+        searchParams.delete(category);
+        setSearchParams(searchParams);
+      }
     }
-    setUrl(prev => prev + `&${category}=${type}`);
-    navigate(url + `&${category}=${type}`);
-  };
+  }, [checked]);
+
   return (
     <div className="filter-check" key={id}>
       <input
@@ -24,7 +55,8 @@ const OptionChecks = ({
         type="checkbox"
         id={type}
         name={type}
-        onClick={handleFilter}
+        checked={checked}
+        onChange={() => setChecked(prev => !prev)}
       />
       <label className="filter-label" htmlFor={type} />
       <label className="label-name" htmlFor={type}>

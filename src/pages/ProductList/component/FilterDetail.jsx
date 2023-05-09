@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import './FilterDetail.scss';
 import OptionChecks from './OptionChecks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const FilterDetail = ({ name, option, url, setUrl }) => {
   const [isChecked, setIsChecked] = useState(false);
-  const [level, setLevel] = useState('');
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const [level, setLevel] = useState('');
+  // const navigate = useNavigate();
   const handleSpiceLevel = e => {
-    if (url.includes(`&spiceLevel=${level}`)) {
-      setUrl(prev =>
-        prev.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
-      );
-      navigate(
-        url.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
-      );
-      setLevel(e.target.value);
-      return;
-    }
-    setUrl(prev => prev + `&spiceLevel=${e.target.value}`);
-    navigate(url + `&spiceLevel=${e.target.value}`);
-    setLevel(e.target.value);
+    searchParams.set('spiceLevel', e.target.value);
+    setSearchParams(searchParams);
+    // if (url.includes(`&spiceLevel=${level}`)) {
+    //   setUrl(prev =>
+    //     prev.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
+    //   );
+    //   navigate(
+    //     url.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
+    //   );
+    //   setLevel(e.target.value);
+    //   return;
+    // }
+    // setUrl(prev => prev + `&spiceLevel=${e.target.value}`);
+    // navigate(url + `&spiceLevel=${e.target.value}`);
+    // setLevel(e.target.value);
   };
   return (
     <div className="filter-detail">

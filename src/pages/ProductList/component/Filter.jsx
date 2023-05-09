@@ -47,18 +47,18 @@ const Filter = ({ url, setUrl }) => {
 export default Filter;
 
 const VEGE_OPTION = [
-  { id: 0, category: 'vege', type: 'vegetarian', content: '채식주의자' },
+  { id: 0, category: 'vegetarian', type: 'vegetarian', content: '채식주의자' },
 ];
 const MEAT_OPTION = [
-  { id: 0, category: 'meat', type: 'cow', content: '소' },
-  { id: 1, category: 'meat', type: 'pig', content: '돼지' },
-  { id: 2, category: 'meat', type: 'sheep', content: '양' },
-  { id: 3, category: 'meat', type: 'chicken', content: '닭' },
+  { id: 0, category: `meatId0`, type: 'cow', content: '소' },
+  { id: 1, category: `meatId1`, type: 'pig', content: '돼지' },
+  { id: 2, category: `meatId2`, type: 'sheep', content: '양' },
+  { id: 3, category: `meatId3`, type: 'chicken', content: '닭' },
 ];
 const ALLERGY_OPTION = [
-  { id: 0, category: 'allergy', type: 'milk', content: '우유' },
-  { id: 1, category: 'allergy', type: 'peanut', content: '땅통' },
-  { id: 2, category: 'allergy', type: 'egg', content: '계란' },
+  { id: 0, category: 'allergyId0', type: 'milk', content: '우유' },
+  { id: 1, category: 'allergyId1', type: 'peanut', content: '땅통' },
+  { id: 2, category: 'allergyId2', type: 'egg', content: '계란' },
 ];
 const COUNTRY = [
   { id: 0, name: '한국' },
