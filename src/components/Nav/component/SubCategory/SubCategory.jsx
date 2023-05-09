@@ -14,11 +14,11 @@ const SubCategory = () => {
 
   if (!subCategory) return;
   return (
-    <div className="sub-category">
-      <div className="sub-category-box">
+    <div className="subcategory">
+      <div className="subcategory-list">
         {subCategory.map(({ id, name, engName }) => {
           return (
-            <p className="sub-category-item" key={id}>
+            <p className="subcategory-item" key={id}>
               {name}
             </p>
           );

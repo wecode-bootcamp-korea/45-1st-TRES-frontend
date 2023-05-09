@@ -38,7 +38,7 @@ const CategoryList = () => {
           <div className="sub-category-box">
             {subCategory.map(({ id, name, engName }) => {
               return (
-                <Link className="sub-category-item" key={id} to={`/${id}`}>
+                <Link className="sub-category-link" key={id} to={`/${id}`}>
                   {name}
                 </Link>
               );

@@ -16,7 +16,7 @@
       padding: 0 20px;
       font-weight: 700;
       line-height: 100%;
-      @include body-2;
+      @include body-1;
 
       &:hover,
       &::after {
@@ -39,17 +39,21 @@
       flex-wrap: wrap;
       align-content: center;
       align-items: center;
-      justify-content: flex-start;
-      height: 280px;
+      justify-content: space-between;
+      height: 220px;
       padding: 40px 0;
 
-      .sub-category-item {
+      .sub-category-link {
         display: flex;
         justify-content: center;
-        width: max-content;
-        @include body-2;
         width: 100px;
+        color: $main-dark;
         line-height: 40px;
+        @include body-2;
+
+        &:hover {
+          color: $main-blue;
+        }
       }
     }
   }

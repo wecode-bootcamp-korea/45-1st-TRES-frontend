@@ -1,13 +1,13 @@
 @import '/src/styles/color';
 @import '/src/styles/variables';
 
-.sub-category {
+.subcategory {
   position: absolute;
   top: 65px;
   width: 100vw;
   background-color: $main-white;
 
-  .sub-category-box {
+  .subcategory-list {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -16,9 +16,9 @@
     height: 140px;
     padding-top: 20px;
 
-    .sub-category-item {
-      width: max-content;
+    .subcategory-item {
       @include body-2;
+      color: $main-dark;
     }
   }
 }
