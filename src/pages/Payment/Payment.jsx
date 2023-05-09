@@ -10,7 +10,6 @@ const Payment = () => {
   const possessionPoint = 30000;
   const paymentPrice = 20000;
   const remainPoint = possessionPoint - paymentPrice;
-
   const handleTermsOfPurchase = () => {
     if (isCheckedTrems) {
       setIsCheckedTrems(false);
@@ -22,9 +21,8 @@ const Payment = () => {
       }
     }
   };
-
   useEffect(() => {
-    fetch('/data/paymentProductData.json', {
+    fetch('http://localhost:3000/data/paymentProductData.json', {
       method: 'GET',
     })
       .then(res => res.json())
