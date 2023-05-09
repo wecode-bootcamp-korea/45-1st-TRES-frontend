@@ -7,7 +7,15 @@ const ProductInCart = props => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [quantityChange, setQuantityChange] = useState(1);
   const [isChecked, setIsChecked] = useState(true);
-  const { id, cartList, setProductPrice, setCheckList, setCartList } = props;
+  const {
+    id,
+    checkItems,
+    cartList,
+    checkSingle,
+    setProductPrice,
+    setCheckList,
+    setCartList,
+  } = props;
   const [{ title, titleEng, country, continent, price }] = cartList;
   const totalPrice = price * count;
   const handleChange = e => {
@@ -59,8 +67,10 @@ const ProductInCart = props => {
         <input
           className="check-box"
           type="checkbox"
-          onChange={e => handleCheckBox(e)}
-          checked={isChecked}
+          onChange={e => checkSingle(e.target.checked, id)}
+          checked={checkItems.includes(id)}
+          // onChange={e => handleCheckBox(e)}
+          // checked={isChecked}
           ref={test}
         />
         <img

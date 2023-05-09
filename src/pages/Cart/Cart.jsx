@@ -42,6 +42,14 @@ const Cart = () => {
   }, []);
   // }, [isComparedCheck]);
 
+  const [checkItems, setCheckItems] = useState([]);
+  const checkAll = checked =>
+    checked ? setCheckItems(cartList.map(item => item.id)) : setCheckItems([]);
+  const checkSingle = (checked, id) =>
+    checked
+      ? setCheckItems(prev => [...prev, id])
+      : setCheckItems(checkItems.filter(item => item !== id));
+
   return (
     <div className="cart">
       <div className="cart-container">
@@ -52,8 +60,10 @@ const Cart = () => {
               id="check-all"
               className="check-box"
               type="checkbox"
-              onChange={handleChangeAll}
-              checked={isCheckedAll}
+              onChange={e => checkAll(e.target.checked)}
+              checked={checkItems.length === cartList.length}
+              // onChange={handleChangeAll}
+              // checked={isCheckedAll}
             />
             <label htmlFor="check-all" className="select-all">
               전체 선택
@@ -65,6 +75,8 @@ const Cart = () => {
               <ProductInCart
                 key={item.id}
                 id={item.id}
+                checkItems={checkItems}
+                checkSingle={checkSingle}
                 cartList={cartList}
                 setProductPrice={setProductPrice}
                 productPrice={productPrice}
