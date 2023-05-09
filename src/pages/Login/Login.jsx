@@ -135,6 +135,18 @@ const Login = () => {
     );
   };
 
+  // 비밀번호
+  const [passwordRegex, setPasswordRegex] = useState(``);
+  const passwordCheck = e => {
+    let passwordCheckText =
+      /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
+    setPasswordRegex(
+      passwordCheckText.test(e.target.value) ||
+        `비밀번호 형식을 확인해주세요
+        (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
+    );
+  };
+
   /* 출력 */
   return (
     <div className="login">
@@ -170,22 +182,27 @@ const Login = () => {
             />
             {emailRegex}
           </div>
+
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <div className="input-box">
               <input
                 type="password"
                 className="input password"
                 ref={passwordRef}
+                onChange={passwordCheck}
                 placeholder="비밀번호"
               />
               <div className="text-required">필수</div>
+              {passwordRegex}
             </div>
           )}
+
           {currentPage.url === LOGIN_TEXT.url && (
             <Link to="#">
               <div className="find-password-text">비밀번호 찾기</div>
             </Link>
           )}
+
           {currentPage.url === JOIN_TEXT.url && (
             <>
               <div className="input-box">
