@@ -75,6 +75,15 @@
           cursor: pointer;
         }
       }
+
+      .open-button-color {
+        background-color: black;
+      }
+
+      .close-button-color {
+        opacity: 50%;
+        background-color: black;
+      }
     }
   }
 }

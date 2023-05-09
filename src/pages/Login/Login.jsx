@@ -13,8 +13,8 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  const [isEmailExist, setIsEmailExist] = useState(false);
   const countries = useGetFetch(`/data/list-of-countries.json`);
+  // const countries = useGetFetch(`http://10.58.52.203:3000/users`);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -30,32 +30,14 @@ const Login = () => {
 
   // input 항목
   const emailRef = useRef(null);
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
   const passwordRef = useRef(null);
-
-  // /* post */
-  // // 이메일 확인
-  // const [emailValues, setEmailValues] = useState({
-  //   email: ``,
-  // });
-
-  // // 로그인
-  // const [loginValues, setLoginValues] = useState({
-  //   email: ``,
-  //   password: ``,
-  // });
-
-  // // 회원가입
-  // const [joinValues, setJoinValues] = useState({
-  //   email: ``,
-  //   firstName: ``,
-  //   lastName: ``,
-  //   password: ``,
-  //   countries: [],
-  //   pNumber: ``,
-  //   gender: ``,
-  //   birth: ``,
-  //   address: ``,
-  // });
+  const genderRef = useRef(null);
+  const phoneNumberRef = useRef(null);
+  const birthRef = useRef(null);
+  const countriesRef = useRef(null);
+  const addressRef = useRef(null);
 
   /* 함수 */
   // 이메일 확인
@@ -72,21 +54,13 @@ const Login = () => {
       }),
     })
       .then(res => res.json())
-      .then(res =>
-        // res.isEmailExist ? setIsEmailExist(!isEmailExist) : navigate(`/join`)
-        res.isEmailExist ? navigate(`/login`) : navigate(`/join`)
-      )
+      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)))
       .catch(err => alert(err));
   };
 
   // 로그인
   const login = e => {
     e.preventDefault();
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
-    // console.log(loginValues);
-    // const { name, value } = e.target;
-    // setLoginValues({ ...loginValues, [name]: value });
     fetch('http://10.58.52.203:3000/users/login', {
       method: 'post',
       headers: {
@@ -112,36 +86,44 @@ const Login = () => {
 
   // 회원가입
   const join = e => {
-    //   console.log(joinValues);
-    //   e.preventDefault();
-    //   // const { name, value } = e.target;
-    //   // setInputValues({ ...inputValues, [name]: value });
-    //   fetch(`http://10.58.52.203:3000/users`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json;charset=utf-8',
-    //     },
-    //     body: JSON.stringify({
-    //       email: joinValues.email,
-    //       firstName: joinValues.firstName,
-    //       lastName: joinValues.lastName,
-    //       password: joinValues.password,
-    //       countries: joinValues.countries,
-    //       phoneNumber: joinValues.phoneNumber,
-    //       gender: joinValues.gender,
-    //       birth: joinValues.birth,
-    //       address: joinValues.address,
-    //     }),
+    e.preventDefault();
+
+    console.log(`email: `, emailRef.current.value);
+    console.log(`password: `, passwordRef.current.value);
+    console.log(`firstName: `, firstNameRef.current.value);
+    console.log(`lastName: `, lastNameRef.current.value);
+    console.log(`gender: `, genderRef.current.value);
+    console.log(`phoneNumber: `, phoneNumberRef.current.value);
+    console.log(`birth: `, birthRef.current.value);
+    console.log(`countries: `, countriesRef.current.value);
+    console.log(`address: `, addressRef.current.value);
+
+    // fetch(`http://10.58.52.203:3000/users`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     email: emailRef.current.value,
+    //     firstName: firstNameRef.current.value,
+    //     lastName: lastNameRef.current.value,
+    //     password: passwordRef.current.value,
+    //     gender: genderRef.current.value,
+    //     phoneNumber: phoneNumberRef.current.value,
+    //     birth: birthRef.current.value,
+    //     countries: countriesRef.current.value,
+    //     address: addressRef.current.value,
+    //   }),
+    // })
+    //   .then(res => {
+    //     if (res.ok) return res.json();
+    //     throw new Error('통신실패!');
     //   })
-    //     .then(res => {
-    //       if (res.ok) return res.json();
-    //       throw new Error('통신실패!');
-    //     })
-    //     .catch(err => alert(`로그인 실패 ${err}`))
-    //     .then(res => {
-    //       localStorage.setItem('TOKEN', res.accessToken);
-    //       navigate('/');
-    //     });
+    //   .catch(err => alert(`로그인 실패 ${err}`))
+    //   .then(res => {
+    //     localStorage.setItem('TOKEN', res.accessToken);
+    //     navigate('/');
+    //   });
   };
 
   /* 출력 */
@@ -199,7 +181,6 @@ const Login = () => {
                 <input
                   type="password"
                   className="input password"
-                  name="password"
                   placeholder="비밀번호 확인"
                 />
                 <div className="text-required">필수</div>
@@ -209,7 +190,7 @@ const Login = () => {
                 <input
                   type="text"
                   className="input"
-                  name="firstName"
+                  ref={firstNameRef}
                   placeholder="이름"
                 />
                 <div className="text-required">필수</div>
@@ -219,14 +200,14 @@ const Login = () => {
                 <input
                   type="text"
                   className="input"
-                  name="lastName"
+                  ref={lastNameRef}
                   placeholder="성"
                 />
                 <div className="text-required">필수</div>
               </div>
 
               <div className="input-box gender">
-                <select className="input" name=" gender">
+                <select className="input" ref={genderRef}>
                   <option value hidden>
                     성별
                   </option>
@@ -240,18 +221,18 @@ const Login = () => {
                 <input
                   type="tel"
                   className="input pNumber"
-                  name="pNumber"
+                  ref={phoneNumberRef}
                   placeholder="핸드폰 번호(-제외)"
                 />
                 <div className="text-required">필수</div>
               </div>
 
               <div className="input-box">
-                <input type="date" className="input date" name="birth" />
+                <input type="date" className="input date" ref={birthRef} />
               </div>
 
               <div className="input-box">
-                <select className="input" name="countries">
+                <select className="input" ref={countriesRef}>
                   <option value hidden>
                     선호 국가
                   </option>
@@ -267,7 +248,7 @@ const Login = () => {
                 <input
                   type="text"
                   className="input address"
-                  name="address"
+                  ref={addressRef}
                   placeholder="기본 배송 주소"
                 />
                 <div className="text-required">필수</div>
@@ -303,7 +284,13 @@ const Login = () => {
               </div>
             </>
           )}
-          <button className="submit-button">{currentPage.button}</button>
+          <button
+            className={`${
+              1 + 2 === 3 ? `open-button-color` : `close-button-color`
+            } submit-button`}
+          >
+            {currentPage.button}
+          </button>
         </form>
       </div>
     </div>
