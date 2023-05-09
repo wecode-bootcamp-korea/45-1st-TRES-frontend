@@ -19,7 +19,8 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  const countries = useGetFetch(`${COUNTRIES_API}`);
+  const countries = useGetFetch(`/data/list-of-countries.json`);
+  // const countries = useGetFetch(`${COUNTRIES_API}`);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -36,6 +37,7 @@ const Login = () => {
   // input 항목
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const passwordEqualRef = useRef(null);
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const genderRef = useRef(null);
@@ -127,25 +129,48 @@ const Login = () => {
   /* 유효성 검사 */
   // 이메일
   const [emailRegex, setEmailRegex] = useState(``);
-  const emailCheck = e => {
+
+  const emailCheck = () => {
     let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
+
     setEmailRegex(
-      emailCheckText.test(e.target.value) ||
+      emailCheckText.test(emailRef.current.value) ||
         `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
     );
   };
 
   // 비밀번호
   const [passwordRegex, setPasswordRegex] = useState(``);
-  const passwordCheck = e => {
+
+  const passwordCheck = () => {
     let passwordCheckText =
       /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
+
     setPasswordRegex(
-      passwordCheckText.test(e.target.value) ||
+      passwordCheckText.test(passwordRef.current.value) ||
         `비밀번호 형식을 확인해주세요
         (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
     );
   };
+
+  // 비밀번호 확인
+  const [passwordEqual, setPasswordEqual] = useState(``);
+  const passwordEqualCheck = () => {
+    if (passwordRef.current.value !== passwordEqualRef.current.value)
+      setPasswordEqual(`비밀번호가 일치하지 않습니다`);
+  };
+
+  // 버튼 열림
+  const isOpenButton = firstNameRef.current.value.length === 0;
+  console.log(firstNameRef.current.value);
+  // const isOpenButton =
+  //   currentPage.url === EMAIL_VERIFICATION_TEXT.url
+  //     ? emailRegex === true
+  //     : currentPage.url === LOGIN_TEXT.url
+  //     ? emailRegex === true && passwordRegex === true
+  //     : currentPage.url === JOIN_TEXT.url
+  //     ? firstNameRef.current.value.length === 0
+  //     : ``;
 
   /* 출력 */
   return (
@@ -182,7 +207,6 @@ const Login = () => {
             />
             {emailRegex}
           </div>
-
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <div className="input-box">
               <input
@@ -196,22 +220,23 @@ const Login = () => {
               {passwordRegex}
             </div>
           )}
-
           {currentPage.url === LOGIN_TEXT.url && (
             <Link to="#">
               <div className="find-password-text">비밀번호 찾기</div>
             </Link>
           )}
-
           {currentPage.url === JOIN_TEXT.url && (
             <>
               <div className="input-box">
                 <input
                   type="password"
                   className="input password"
+                  ref={passwordEqualRef}
+                  onChange={passwordEqualCheck}
                   placeholder="비밀번호 확인"
                 />
                 <div className="text-required">필수</div>
+                <div>{passwordEqual}</div>
               </div>
 
               <div className="input-box first-name">
@@ -317,8 +342,9 @@ const Login = () => {
           )}
           <button
             className={`${
-              1 + 2 === 3 ? `open-button-color` : `close-button-color`
+              isOpenButton ? `open-button-color` : `close-button-color`
             } submit-button`}
+            disabled={!isOpenButton}
           >
             {currentPage.button}
           </button>

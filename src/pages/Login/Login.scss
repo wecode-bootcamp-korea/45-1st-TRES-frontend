@@ -83,6 +83,9 @@
       .close-button-color {
         opacity: 50%;
         background-color: black;
+        &:hover {
+          cursor: auto;
+        }
       }
     }
   }
