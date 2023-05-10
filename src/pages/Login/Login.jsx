@@ -149,11 +149,16 @@ const Login = () => {
 
   // input 항목
   const [checkCountries, setCheckCountries] = useState([]);
-  const checkCountry = (checked, country) =>
-    checked
-      ? setCheckCountries(prev => [...prev, country])
-      : setCheckCountries(checkCountries.filter(item => item !== country));
-
+  const checkCountry = (checked, country) => {
+    if (checkCountries.length < 3) {
+      checked
+        ? setCheckCountries(prev => [...prev, country])
+        : setCheckCountries(checkCountries.filter(item => item !== country));
+    } else if (checkCountries.length === 3) {
+      checked ||
+        setCheckCountries(checkCountries.filter(item => item !== country));
+    }
+  };
   /* 함수 */
   // 국가 선택
   const showCountriesList = () => {
@@ -370,7 +375,7 @@ const Login = () => {
 
               <div>
                 <button onClick={showCountriesList}>선호 국가 선택</button>
-                {checkCountries.map((item, i) => (
+                {checkCountries.sort().map((item, i) => (
                   <span key={i}>
                     {item}
                     {checkCountries.length - 1 !== i && `, `}
