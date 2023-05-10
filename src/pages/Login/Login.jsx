@@ -127,7 +127,7 @@ const Login = () => {
       let phoneNumberCheckText = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
       setPhoneNumberRegex(
         phoneNumberCheckText.test(value) ||
-          `전화번호 형식을 확인해주세요 (-제외)`
+          `전화번호 형식을 확인해주세요 (-제외, 10~11숫자)`
       );
 
       setPhoneNumberRequired(!value.length ? `필수` : ``);
@@ -152,7 +152,9 @@ const Login = () => {
         inputValues.lastName.length &&
         (gender === '남자' || gender === '여자') &&
         phoneNumberRegex === true &&
-        inputValues.address.length
+        inputValues.address.length &&
+        agreementCheckbox.includes(1) &&
+        agreementCheckbox.includes(2)
       : ``;
 
   // input 항목
