@@ -208,16 +208,6 @@ const Login = () => {
   // 회원가입
   const join = e => {
     e.preventDefault();
-    // console.log(`email: `, inputValues.email);
-    // console.log(`password: `, inputValues.password);
-    // console.log(`firstName: `, inputValues.firstName);
-    // console.log(`lastName: `, inputValues.lastName);
-    // console.log(`gender: `, gender);
-    // console.log(`phoneNumber: `, inputValues.phoneNumber);
-    // console.log(`birth: `, inputValues.birth);
-    // console.log(`countries: `, checkCountries);
-    // console.log(`address: `, inputValues.address);
-
     // fetch(`${JOIN_API}`, {
     //   method: 'POST',
     //   headers: {
@@ -249,9 +239,9 @@ const Login = () => {
   /* 출력 */
   return (
     <div className="login">
-      <div className={isShowCountriesList && `modal-background-color`} />
+      <div className={isShowCountriesList ? `modal-background-color` : ``} />
       <div className="container">
-        <span className="text-page-description">
+        <span className="page-description-text">
           {currentPage === EMAIL_VERIFICATION_TEXT
             ? `${EMAIL_VERIFICATION_TEXT.title}`
             : currentPage === LOGIN_TEXT
@@ -291,7 +281,7 @@ const Login = () => {
                 onChange={handleInput}
                 placeholder="비밀번호"
               />
-              <div className="text-required">{passwordRequired}</div>
+              <div className="required-text">{passwordRequired}</div>
               {passwordRegex}
             </div>
           )}
@@ -312,7 +302,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="비밀번호 확인"
                 />
-                <div className="text-required">{passwordEqualRequired}</div>
+                <div className="required-text">{passwordEqualRequired}</div>
                 <div>{PasswordEqualText}</div>
               </div>
 
@@ -324,7 +314,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="이름"
                 />
-                <div className="text-required">{firstNameRequired}</div>
+                <div className="required-text">{firstNameRequired}</div>
               </div>
 
               <div className="input-box last-name">
@@ -335,7 +325,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="성"
                 />
-                <div className="text-required">{lastNameRequired}</div>
+                <div className="required-text">{lastNameRequired}</div>
               </div>
 
               <div className="input-box gender">
@@ -346,7 +336,7 @@ const Login = () => {
                   <option value="남자">남자</option>
                   <option value="여자">여자</option>
                 </select>
-                <div className="text-required">{genderRequired}</div>
+                <div className="required-text">{genderRequired}</div>
               </div>
 
               <div className="input-box">
@@ -357,7 +347,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="핸드폰 번호(-제외)"
                 />
-                <div className="text-required">{phoneNumberRequired}</div>
+                <div className="required-text">{phoneNumberRequired}</div>
                 <div>{phoneNumberRegex}</div>
               </div>
 
@@ -370,8 +360,13 @@ const Login = () => {
                 />
               </div>
 
-              <div>
-                <button onClick={showCountriesList}>선호 국가 선택</button>
+              <div className="select-countries-box">
+                <button
+                  className="select-countries-button"
+                  onClick={showCountriesList}
+                >
+                  선호 국가 선택
+                </button>
                 {checkCountries.sort().map((item, i) => (
                   <span key={i}>
                     {item}
@@ -379,15 +374,16 @@ const Login = () => {
                   </span>
                 ))}
               </div>
-              <div>
-                <div
-                  className={`input-box choose-countries ${
-                    isShowCountriesList || `display-none`
-                  }`}
-                >
+
+              <div
+                className={`select-countries-modal ${
+                  isShowCountriesList || 'display-none'
+                }`}
+              >
+                <div className="countries-list">
                   <div>
                     {countries?.map(item => (
-                      <div key={item.id} className="country-box">
+                      <div key={item.id} className="country">
                         <input
                           type="checkbox"
                           onChange={e =>
@@ -400,7 +396,7 @@ const Login = () => {
                     ))}
                   </div>
                   <div className="close-modal-button">
-                    <span>최대 3개</span>
+                    <span>최대 {checkCountries.length}/3개</span>
                     <button onClick={showCountriesList}>확인</button>
                   </div>
                 </div>
@@ -414,36 +410,41 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="기본 배송 주소"
                 />
-                <div className="text-required">{addressRequired}</div>
+                <div className="required-text">{addressRequired}</div>
               </div>
 
               <div className="agreement-box">
-                <div className="checkbox-agreement">
-                  <input
-                    type="checkbox"
-                    onChange={e => checkAll(e.target.checked)}
-                    checked={checkItems.length === AGREEMENT_CHECKBOX.length}
-                  />
-                  <span>전체 동의합니다.</span>
-                  <div>
-                    선택항목에 동의하지 않는 경우도 회원가입 및 일반적인
-                    서비스를 이용할 수 있습니다.
-                  </div>
-                </div>
-
-                <div>
-                  {AGREEMENT_CHECKBOX.map(item => (
-                    <div key={item.id} className="checkbox-agreement">
-                      <input
-                        type="checkbox"
-                        onChange={e => checkSingle(e.target.checked, item.id)}
-                        checked={checkItems.includes(item.id)}
-                      />
-                      <span>{item.text} </span>
-                      <span>{item.required}</span>
+                <ul className="agreement-checkbox">
+                  <li>
+                    <input
+                      type="checkbox"
+                      onChange={e => checkAll(e.target.checked)}
+                      checked={checkItems.length === AGREEMENT_CHECKBOX.length}
+                    />
+                    <span>전체 동의합니다.</span>
+                    <div className="tab">
+                      선택항목에 동의하지 않는 경우도 회원가입 및 일반적인
+                      서비스를 이용할 수 있습니다.
                     </div>
-                  ))}
-                </div>
+                  </li>
+                  <li>
+                    <ul>
+                      {AGREEMENT_CHECKBOX.map(item => (
+                        <li key={item.id} className="checkbox-agreement">
+                          <input
+                            type="checkbox"
+                            onChange={e =>
+                              checkSingle(e.target.checked, item.id)
+                            }
+                            checked={checkItems.includes(item.id)}
+                          />
+                          <span>{item.text} </span>
+                          <span>{item.required}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ul>
               </div>
             </>
           )}

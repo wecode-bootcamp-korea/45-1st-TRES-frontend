@@ -1,5 +1,13 @@
 @import '../../styles/variables';
 
+.display-none {
+  display: none;
+}
+
+.tab {
+  margin-left: 20px;
+}
+
 .login {
   .modal-background-color {
     position: absolute;
@@ -7,7 +15,7 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    opacity: 70%;
+    opacity: 75%;
     background-color: black;
   }
 
@@ -16,7 +24,7 @@
     width: 460px;
     margin: 78px auto;
 
-    .text-page-description {
+    .page-description-text {
       @include head-1;
     }
 
@@ -39,7 +47,7 @@
           font-size: 18px;
         }
 
-        .text-required {
+        .required-text {
           position: absolute;
           bottom: -23px;
           padding: 10px;
@@ -48,31 +56,44 @@
           font-weight: bold;
         }
       }
-      div {
-        display: inline-block;
+
+      .select-countries-box {
+        margin-top: 20px;
+
+        .select-countries-button {
+          margin-right: 10px;
+          padding: 10px;
+          border: 1px solid black;
+          border-radius: 10px;
+          background-color: #f7f7f7;
+        }
+      }
+
+      .select-countries-modal {
         position: relative;
-        .choose-countries {
+
+        .countries-list {
           position: absolute;
           z-index: 999;
+          top: -500%;
           right: 50%;
-          bottom: 50%;
           width: 460px;
           padding: 20px 30px;
           border-radius: 20px;
           background-color: white;
-          .country-box {
+
+          .country {
+            display: inline-block;
             width: 120px;
             padding: 5px;
           }
+
           .close-modal-button {
             display: flex;
+            align-items: center;
             justify-content: right;
           }
         }
-      }
-
-      .display-none {
-        display: none;
       }
 
       .find-password-text {
@@ -86,9 +107,9 @@
       }
 
       .agreement-box {
-        margin-top: 40px;
-        .checkbox-agreement {
-          // color: #000000;
+        margin-top: 20px;
+
+        .agreement-checkbox {
           color: #757575;
         }
       }
