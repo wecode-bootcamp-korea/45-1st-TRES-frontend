@@ -149,16 +149,12 @@ const Login = () => {
 
   // input 항목
   const [checkCountries, setCheckCountries] = useState([]);
-  const checkCountry = (checked, country) => {
-    if (checkCountries.length < 3) {
-      checked
-        ? setCheckCountries(prev => [...prev, country])
-        : setCheckCountries(checkCountries.filter(item => item !== country));
-    } else if (checkCountries.length === 3) {
-      checked ||
-        setCheckCountries(checkCountries.filter(item => item !== country));
-    }
-  };
+  const checkCountry = (checked, country) =>
+    checked
+      ? checkCountries.length < 3 &&
+        setCheckCountries(prev => [...prev, country])
+      : setCheckCountries(checkCountries.filter(item => item !== country));
+
   /* 함수 */
   // 국가 선택
   const showCountriesList = () => {
