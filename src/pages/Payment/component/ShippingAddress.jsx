@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ShippingAddress.scss';
 
 const ShippingAddress = ({
@@ -7,13 +7,13 @@ const ShippingAddress = ({
   addressValue,
   setAddressValue,
 }) => {
+  const [isCheckedCheckboxSame, setIsCheckedCheckboxSame] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-
-  const nameInput = useRef();
 
   const handleUserSame = event => {
     if (isCheckedTerms === false) {
       if (event.target.checked) {
+        setIsCheckedCheckboxSame(true);
         setAddressValue({
           firstName: paymentProduct[0].firstName,
           lastName: paymentProduct[0].lastName,
@@ -22,6 +22,7 @@ const ShippingAddress = ({
           email: paymentProduct[0].email,
         });
       } else {
+        setIsCheckedCheckboxSame(false);
         setAddressValue({
           firstName: '',
           lastName: '',
@@ -32,6 +33,11 @@ const ShippingAddress = ({
       }
       setIsDisabled(!isDisabled);
     } else if (isCheckedTerms) {
+      if (isCheckedCheckboxSame) {
+        setIsCheckedCheckboxSame(true);
+      } else if (isCheckedCheckboxSame === false) {
+        setIsCheckedCheckboxSame(false);
+      }
     }
   };
 
@@ -43,13 +49,10 @@ const ShippingAddress = ({
   useEffect(() => {
     if (isCheckedTerms) {
       setIsDisabled(true);
-    } else if (
-      isCheckedTerms === false &&
-      nameInput.current.checked === false
-    ) {
+    } else if (isCheckedTerms === false && isCheckedCheckboxSame === false) {
       setIsDisabled(false);
     }
-  }, [isCheckedTerms]);
+  }, [isCheckedTerms, isCheckedCheckboxSame]);
 
   return (
     <section className="shipping-address">
@@ -61,7 +64,7 @@ const ShippingAddress = ({
             className="same-as-orderer"
             type="checkbox"
             onChange={handleUserSame}
-            ref={nameInput}
+            checked={isCheckedCheckboxSame}
           />
           <label htmlFor="check-box-same">주문자 정보와 동일</label>
         </div>
