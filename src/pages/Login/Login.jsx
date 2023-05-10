@@ -52,10 +52,68 @@ const Login = () => {
     setGender(e.target.value);
   };
 
+  // 유효성 검사
+  const [emailRegex, setEmailRegex] = useState(``);
+  const [passwordRegex, setPasswordRegex] = useState(``);
+  const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
+
+  // onChange
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
+
+    if (name === `email`) {
+      let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
+      setEmailRegex(
+        emailCheckText.test(value) ||
+          `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
+      );
+    }
+
+    if (name === `password`) {
+      let passwordCheckText =
+        /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
+
+      setPasswordRegex(
+        passwordCheckText.test(value) ||
+          `비밀번호 형식을 확인해주세요
+        (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
+      );
+
+      setIsPasswordEqualtext(
+        e.target.value === inputValues.passwordEqual
+          ? ``
+          : `비밀번호가 일치하지 않습니다`
+      );
+    }
+
+    if (name === `passwordEqual`)
+      setIsPasswordEqualtext(
+        e.target.value === inputValues.password
+          ? ``
+          : `비밀번호가 일치하지 않습니다`
+      );
   };
+  console.log(`현재 비번: `, inputValues.password);
+  // 비밀번호 확인
+  const passwordEqual = e => {
+    console.log(`지금 입력: `, e.target.value);
+    setIsPasswordEqualtext(
+      inputValues.password === e.target.value
+        ? ``
+        : `비밀번호가 일치하지 않습니다`
+    );
+  };
+
+  // 버튼 열림
+  const isOpenButton =
+    currentPage.url === EMAIL_VERIFICATION_TEXT.url
+      ? emailRegex === true
+      : currentPage.url === LOGIN_TEXT.url
+      ? emailRegex === true && passwordRegex === true
+      : currentPage.url === JOIN_TEXT.url
+      ? inputValues.firstName.length === 0
+      : ``;
 
   // input 항목
   const [checkCountries, setCheckCountries] = useState([]);
@@ -150,50 +208,6 @@ const Login = () => {
     //   });
   };
 
-  /* 유효성 검사 */
-  // 이메일
-  const [emailRegex, setEmailRegex] = useState(``);
-
-  const emailCheck = () => {
-    let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
-
-    setEmailRegex(
-      emailCheckText.test(inputValues.email) ||
-        `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
-    );
-  };
-
-  // // 비밀번호
-  const [passwordRegex, setPasswordRegex] = useState(``);
-
-  const passwordCheck = () => {
-    let passwordCheckText =
-      /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
-
-    setPasswordRegex(
-      passwordCheckText.test(inputValues.password) ||
-        `비밀번호 형식을 확인해주세요
-        (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
-    );
-  };
-
-  // 비밀번호 확인
-  const [passwordEqual, setPasswordEqual] = useState(``);
-  const passwordEqualCheck = () => {
-    if (inputValues.password !== inputValues.passwordEqual)
-      setPasswordEqual(`비밀번호가 일치하지 않습니다`);
-  };
-
-  // 버튼 열림
-  const isOpenButton =
-    currentPage.url === EMAIL_VERIFICATION_TEXT.url
-      ? emailRegex === true
-      : currentPage.url === LOGIN_TEXT.url
-      ? emailRegex === true && passwordRegex === true
-      : currentPage.url === JOIN_TEXT.url
-      ? inputValues.firstName.length === 0
-      : ``;
-
   /* 출력 */
   return (
     <div className="login">
@@ -224,7 +238,7 @@ const Login = () => {
               name="email"
               onChange={handleInput}
               placeholder="이메일"
-              disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
+              // disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
             {emailRegex}
           </div>
@@ -257,7 +271,7 @@ const Login = () => {
                   placeholder="비밀번호 확인"
                 />
                 <div className="text-required">필수</div>
-                {/* <div>{passwordEqual}</div> */}
+                <div>{PasswordEqualText}</div>
               </div>
 
               <div className="input-box first-name">
