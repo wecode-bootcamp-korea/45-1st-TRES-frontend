@@ -1,0 +1,24 @@
+@import '/src/styles/color';
+@import '/src/styles/variables';
+
+.subcategory {
+  position: absolute;
+  top: 65px;
+  width: 100vw;
+  background-color: $main-white;
+
+  .subcategory-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    padding-top: 20px;
+
+    .subcategory-item {
+      @include body-2;
+      color: $main-dark;
+    }
+  }
+}
