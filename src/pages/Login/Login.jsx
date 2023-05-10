@@ -33,16 +33,17 @@ const Login = () => {
   const [isShowCountriesList, setIsShowCountriesList] = useState(false);
 
   // Checkbox
-  const [checkItems, setCheckItems] = useState([]);
+  const [agreementCheckbox, setAgreementCheckbox] = useState([]);
+  console.log(agreementCheckbox);
   const checkAll = checked =>
     checked
-      ? setCheckItems(AGREEMENT_CHECKBOX.map(item => item.id))
-      : setCheckItems([]);
+      ? setAgreementCheckbox(AGREEMENT_CHECKBOX.map(item => item.id))
+      : setAgreementCheckbox([]);
 
   const checkSingle = (checked, id) =>
     checked
-      ? setCheckItems(prev => [...prev, id])
-      : setCheckItems(checkItems.filter(item => item !== id));
+      ? setAgreementCheckbox(prev => [...prev, id])
+      : setAgreementCheckbox(agreementCheckbox.filter(item => item !== id));
 
   // 계산된 속성명
   const [inputValues, setInputValues] = useState({
@@ -415,11 +416,21 @@ const Login = () => {
 
               <div className="agreement-box">
                 <ul className="agreement-checkbox">
-                  <li>
+                  <li
+                    className={`${
+                      agreementCheckbox.includes(1) &&
+                      agreementCheckbox.includes(2) &&
+                      agreementCheckbox.includes(3)
+                        ? 'font-color-black'
+                        : ''
+                    }`}
+                  >
                     <input
                       type="checkbox"
                       onChange={e => checkAll(e.target.checked)}
-                      checked={checkItems.length === AGREEMENT_CHECKBOX.length}
+                      checked={
+                        agreementCheckbox.length === AGREEMENT_CHECKBOX.length
+                      }
                     />
                     <span>전체 동의합니다.</span>
                     <div className="tab">
@@ -429,14 +440,22 @@ const Login = () => {
                   </li>
                   <li>
                     <ul>
-                      {AGREEMENT_CHECKBOX.map(item => (
-                        <li key={item.id} className="checkbox-agreement">
+                      {AGREEMENT_CHECKBOX.map((item, i) => (
+                        <li
+                          key={item.id}
+                          className={`${
+                            agreementCheckbox.includes(i + 1)
+                              ? 'font-color-black'
+                              : 'z'
+                          }`}
+                        >
+                          {console.log(`index`, i)}
                           <input
                             type="checkbox"
                             onChange={e =>
                               checkSingle(e.target.checked, item.id)
                             }
-                            checked={checkItems.includes(item.id)}
+                            checked={agreementCheckbox.includes(item.id)}
                           />
                           <span>{item.text} </span>
                           <span>{item.required}</span>
