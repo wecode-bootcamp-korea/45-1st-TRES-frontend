@@ -34,6 +34,24 @@ const Login = () => {
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
 
+  // 계산된 속성명
+  const [inputValues, setInputValues] = useState({
+    email: ``,
+    password: ``,
+    passwordEqual: ``,
+    firstName: ``,
+    lastName: ``,
+    gender: ``,
+    phoneNumber: ``,
+    birth: ``,
+    address: ``,
+  });
+
+  const handleInput = e => {
+    const { name, value } = e.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
+
   // input 항목
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -212,6 +230,7 @@ const Login = () => {
               <input
                 type="password"
                 className="input password"
+                name="password"
                 ref={passwordRef}
                 onChange={passwordCheck}
                 placeholder="비밀번호"
@@ -231,6 +250,7 @@ const Login = () => {
                 <input
                   type="password"
                   className="input password"
+                  name="passwordEqual"
                   ref={passwordEqualRef}
                   onChange={passwordEqualCheck}
                   placeholder="비밀번호 확인"
@@ -243,6 +263,7 @@ const Login = () => {
                 <input
                   type="text"
                   className="input"
+                  name="firstName"
                   ref={firstNameRef}
                   placeholder="이름"
                 />
@@ -253,6 +274,7 @@ const Login = () => {
                 <input
                   type="text"
                   className="input"
+                  name="lastName"
                   ref={lastNameRef}
                   placeholder="성"
                 />
@@ -274,6 +296,7 @@ const Login = () => {
                 <input
                   type="tel"
                   className="input pNumber"
+                  name="phoneNumber"
                   ref={phoneNumberRef}
                   placeholder="핸드폰 번호(-제외)"
                 />
@@ -281,7 +304,12 @@ const Login = () => {
               </div>
 
               <div className="input-box">
-                <input type="date" className="input date" ref={birthRef} />
+                <input
+                  type="date"
+                  className="input date"
+                  name="birth"
+                  ref={birthRef}
+                />
               </div>
 
               <div className="input-box">
@@ -289,7 +317,6 @@ const Login = () => {
                   <div key={item.id}>
                     <input
                       type="checkbox"
-                      // value={item.country}
                       onChange={e =>
                         checkCountry(e.target.checked, item.country)
                       }
@@ -304,6 +331,7 @@ const Login = () => {
                 <input
                   type="text"
                   className="input address"
+                  name="address"
                   ref={addressRef}
                   placeholder="기본 배송 주소"
                 />
