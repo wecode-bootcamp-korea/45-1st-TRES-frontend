@@ -6,7 +6,8 @@
     "address": "서울시 노원구 중계동",
     "phoneNumber": "01072987237",
     "email": "7237sbj@naver.com",
-    "point": 150000,
+    "point": 160000.0,
+    "orderNumber": "asgqwe12",
     "food": [
       {
         "foodId": 1,
@@ -15,7 +16,7 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 1,
-        "price": 11000,
+        "price": 11000.0,
         "foodImg": ""
       },
       {
@@ -25,7 +26,7 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 2,
-        "price": 12000,
+        "price": 12000.0,
         "foodImg": ""
       },
       {
@@ -35,7 +36,7 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 3,
-        "price": 13000,
+        "price": 13000.0,
         "foodImg": ""
       },
       {
@@ -45,7 +46,7 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 4,
-        "price": 14000,
+        "price": 14000.0,
         "foodImg": ""
       }
     ]

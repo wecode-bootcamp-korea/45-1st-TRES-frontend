@@ -3,20 +3,31 @@ import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
 import './Payment.scss';
+
 const DELIVERY_FEE = 3000;
+
 const Payment = () => {
   const [paymentProduct, setPaymentProduct] = useState([]);
-  const [foodList, setFoodList] = useState([]);
-  const [isDisabledPayment, setIsDisabledPayment] = useState(true);
+  const [addressValue, setAddressValue] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    phoneNumber: '',
+    email: '',
+  });
   const [isCheckedTerms, setIsCheckedTerms] = useState(false);
+  const [isDisabledPayment, setIsDisabledPayment] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [checkAddressValue, setCheckAddressValue] = useState({});
+  const deliveryValue = Object.values(addressValue);
+  const deliveryValueCheck = !deliveryValue.includes('');
   const possessionPoint = paymentProduct[0] && paymentProduct[0].point;
-  const foodPriceSum = foodList.reduce(
-    (accumulator, currentValue) =>
-      accumulator + currentValue.price * currentValue.quantity,
-    0
-  );
+  const foodPriceSum =
+    paymentProduct[0] &&
+    paymentProduct[0].food.reduce(
+      (accumulator, currentValue) =>
+        accumulator + currentValue.price * currentValue.quantity,
+      0
+    );
   const paymentPrice =
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? 0
@@ -25,8 +36,6 @@ const Payment = () => {
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? possessionPoint - (foodPriceSum + DELIVERY_FEE)
       : 0;
-  const deliveryValue = Object.values(checkAddressValue);
-  const deliveryValueCheck = !deliveryValue.includes('');
 
   const handleTermsOfPurchase = () => {
     if (isCheckedTerms) {
@@ -51,7 +60,6 @@ const Payment = () => {
       .then(res => res.json())
       .then(data => {
         setPaymentProduct(data);
-        setFoodList(data[0].food);
       });
   }, []);
 
@@ -63,8 +71,9 @@ const Payment = () => {
         <div className="payment-step">
           <ShippingAddress
             paymentProduct={paymentProduct}
-            setCheckAddressValue={setCheckAddressValue}
             isCheckedTerms={isCheckedTerms}
+            addressValue={addressValue}
+            setAddressValue={setAddressValue}
           />
           <section className="payment-progress">
             <h2 className="payment-progress-title">결제</h2>
@@ -111,7 +120,8 @@ const Payment = () => {
                 {modalOpen && (
                   <PaymentModal
                     setModalOpen={setModalOpen}
-                    foodList={foodList}
+                    foodList={paymentProduct[0].food}
+                    orderNumber={paymentProduct[0].orderNumber}
                   />
                 )}
               </div>
@@ -121,7 +131,7 @@ const Payment = () => {
         <section className="payment-list">
           <div className="payment-list-title">구매 목록</div>
           <ul>
-            {foodList.map(item => (
+            {paymentProduct[0].food.map(item => (
               <PaymentProduct key={item.foodId} item={item} />
             ))}
           </ul>

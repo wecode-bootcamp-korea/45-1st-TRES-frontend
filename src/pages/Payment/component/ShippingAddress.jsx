@@ -3,17 +3,13 @@ import './ShippingAddress.scss';
 
 const ShippingAddress = ({
   paymentProduct,
-  setCheckAddressValue,
   isCheckedTerms,
+  addressValue,
+  setAddressValue,
+  ref,
 }) => {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [addressValue, setAddressValue] = useState({
-    firstName: '',
-    lastName: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-  });
+
   const nameInput = useRef();
 
   const handleUserSame = event => {
@@ -45,7 +41,6 @@ const ShippingAddress = ({
   };
 
   useEffect(() => {
-    setCheckAddressValue(addressValue);
     if (isCheckedTerms) {
       setIsDisabled(true);
     } else if (
@@ -54,7 +49,7 @@ const ShippingAddress = ({
     ) {
       setIsDisabled(false);
     }
-  }, [addressValue, isCheckedTerms]);
+  }, [isCheckedTerms]);
 
   return (
     <section className="shipping-address">
