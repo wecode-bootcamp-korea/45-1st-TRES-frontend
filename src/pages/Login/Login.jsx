@@ -22,6 +22,9 @@ const Login = () => {
   const countries = useGetFetch(`/data/list-of-countries.json`);
   // const countries = useGetFetch(`${COUNTRIES_API}`);
 
+  /* 필수 */
+  const [passwordRequired, setPasswordRequired] = useState(``);
+
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
   const checkAll = checked =>
@@ -52,7 +55,7 @@ const Login = () => {
     setGender(e.target.value);
   };
 
-  // 유효성 검사
+  /* 유효성 검사 */
   const [emailRegex, setEmailRegex] = useState(``);
   const [passwordRegex, setPasswordRegex] = useState(``);
   const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
@@ -85,6 +88,8 @@ const Login = () => {
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
+
+      setPasswordRequired(!value.length ? `필수` : ``);
     }
 
     if (name === `passwordEqual`)
@@ -93,16 +98,6 @@ const Login = () => {
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
-  };
-  console.log(`현재 비번: `, inputValues.password);
-  // 비밀번호 확인
-  const passwordEqual = e => {
-    console.log(`지금 입력: `, e.target.value);
-    setIsPasswordEqualtext(
-      inputValues.password === e.target.value
-        ? ``
-        : `비밀번호가 일치하지 않습니다`
-    );
   };
 
   // 버튼 열림
@@ -251,7 +246,7 @@ const Login = () => {
                 onChange={handleInput}
                 placeholder="비밀번호"
               />
-              <div className="text-required">필수</div>
+              <div className="text-required">{passwordRequired}</div>
               {passwordRegex}
             </div>
           )}
