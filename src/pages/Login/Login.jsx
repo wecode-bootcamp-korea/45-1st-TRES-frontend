@@ -19,8 +19,7 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  const countries = useGetFetch(`/data/list-of-countries.json`);
-  // const countries = useGetFetch(`${COUNTRIES_API}`);
+  const countries = useGetFetch(`${COUNTRIES_API}`);
 
   // 필수
   const [passwordRequired, setPasswordRequired] = useState(``);
@@ -34,7 +33,6 @@ const Login = () => {
 
   // Checkbox
   const [agreementCheckbox, setAgreementCheckbox] = useState([]);
-  console.log(agreementCheckbox);
   const checkAll = checked =>
     checked
       ? setAgreementCheckbox(AGREEMENT_CHECKBOX.map(item => item.id))
@@ -180,7 +178,7 @@ const Login = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: inputValues.emaile,
+        email: inputValues.email,
       }),
     })
       .then(res => {
@@ -218,32 +216,32 @@ const Login = () => {
   // 회원가입
   const join = e => {
     e.preventDefault();
-    // fetch(`${JOIN_API}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    // email: inputValues.email,
-    // password: inputValues.password,
-    // firstName: inputValues.firstName,
-    // lastName: inputValues.lastName,
-    // gender: gender,
-    // phoneNumber: inputValues.phoneNumber,
-    // birth: inputValues.birth,
-    // countries: checkCountries,
-    // address: ainputValues.address,
-    //   }),
-    // })
-    //   .then(res => {
-    //     if (res.ok) return res.json();
-    //     throw new Error('통신실패!');
-    //   })
-    //   .catch(err => alert(`회원가입 실패 ${err}`))
-    //   .then(res => {
-    //     localStorage.setItem('TOKEN', res.accessToken);
-    //     navigate('/');
-    //   });
+    fetch(`${JOIN_API}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        email: inputValues.email,
+        password: inputValues.password,
+        firstName: inputValues.firstName,
+        lastName: inputValues.lastName,
+        gender: gender,
+        phoneNumber: inputValues.phoneNumber,
+        birth: inputValues.birth,
+        countries: checkCountries,
+        address: inputValues.address,
+      }),
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('통신실패!');
+      })
+      .catch(err => alert(`회원가입 실패 ${err}`))
+      .then(res => {
+        localStorage.setItem('TOKEN', res.accessToken);
+        navigate('/');
+      });
   };
 
   /* 출력 */
@@ -277,7 +275,7 @@ const Login = () => {
               name="email"
               onChange={handleInput}
               placeholder="이메일"
-              // disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
+              disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
             {emailRegex}
           </div>
@@ -371,12 +369,12 @@ const Login = () => {
               </div>
 
               <div className="select-countries-box">
-                <button
+                <input
+                  type="button"
                   className="select-countries-button"
+                  value="선호 국가 선택"
                   onClick={showCountriesList}
-                >
-                  선호 국가 선택
-                </button>
+                />
                 {checkCountries.sort().map((item, i) => (
                   <span key={i}>
                     {item}
@@ -407,7 +405,11 @@ const Login = () => {
                   </div>
                   <div className="close-modal-button">
                     <span>최대 {checkCountries.length}/3개</span>
-                    <button onClick={showCountriesList}>확인</button>
+                    <input
+                      type="button"
+                      value="확인"
+                      onClick={showCountriesList}
+                    />
                   </div>
                 </div>
               </div>
@@ -458,7 +460,6 @@ const Login = () => {
                               : 'z'
                           }`}
                         >
-                          {console.log(`index`, i)}
                           <input
                             type="checkbox"
                             onChange={e =>
