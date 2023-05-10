@@ -47,6 +47,11 @@ const Login = () => {
     address: ``,
   });
 
+  const [gender, setGender] = useState(``);
+  const inputGender = e => {
+    setGender(e.target.value);
+  };
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
@@ -116,71 +121,81 @@ const Login = () => {
   // 회원가입
   const join = e => {
     e.preventDefault();
-    fetch(`${JOIN_API}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-        firstName: firstNameRef.current.value,
-        lastName: lastNameRef.current.value,
-        gender: genderRef.current.value,
-        phoneNumber: phoneNumberRef.current.value,
-        birth: birthRef.current.value,
-        countries: checkCountries,
-        address: addressRef.current.value,
-      }),
-    })
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error('통신실패!');
-      })
-      .catch(err => alert(`회원가입 실패 ${err}`))
-      .then(res => {
-        localStorage.setItem('TOKEN', res.accessToken);
-        navigate('/');
-      });
+    console.log(`email: `, inputValues.email);
+    console.log(`password: `, inputValues.password);
+    console.log(`firstName: `, inputValues.firstName);
+    console.log(`lastName: `, inputValues.lastName);
+    console.log(`gender: `, gender);
+    console.log(`phoneNumber: `, inputValues.phoneNumber);
+    console.log(`birth: `, inputValues.birth);
+    console.log(` countries: `, checkCountries);
+    console.log(`address: `, inputValues.address);
+
+    // fetch(`${JOIN_API}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     email: inputValues.email,
+    //     password: inputValues.password,
+    //     firstName: inputValues.firstName,
+    //     lastName: inputValues.lastName,
+    //     gender: gender,
+    //     phoneNumber: inputValues.phoneNumber,
+    //     birth: inputValues.birth,
+    //     countries: checkCountries,
+    //     address: ainputValues.address,
+    //   }),
+    // })
+    //   .then(res => {
+    //     if (res.ok) return res.json();
+    //     throw new Error('통신실패!');
+    //   })
+    //   .catch(err => alert(`회원가입 실패 ${err}`))
+    //   .then(res => {
+    //     localStorage.setItem('TOKEN', res.accessToken);
+    //     navigate('/');
+    //   });
   };
 
   /* 유효성 검사 */
   // 이메일
-  const [emailRegex, setEmailRegex] = useState(``);
+  // const [emailRegex, setEmailRegex] = useState(``);
 
-  const emailCheck = () => {
-    let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
+  // const emailCheck = () => {
+  //   let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
 
-    setEmailRegex(
-      emailCheckText.test(emailRef.current.value) ||
-        `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
-    );
-  };
+  //   setEmailRegex(
+  //     emailCheckText.test(emailRef.current.value) ||
+  //       `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
+  //   );
+  // };
 
-  // 비밀번호
-  const [passwordRegex, setPasswordRegex] = useState(``);
+  // // 비밀번호
+  // const [passwordRegex, setPasswordRegex] = useState(``);
 
-  const passwordCheck = () => {
-    let passwordCheckText =
-      /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
+  // const passwordCheck = () => {
+  //   let passwordCheckText =
+  //     /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
 
-    setPasswordRegex(
-      passwordCheckText.test(passwordRef.current.value) ||
-        `비밀번호 형식을 확인해주세요
-        (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
-    );
-  };
+  //   setPasswordRegex(
+  //     passwordCheckText.test(passwordRef.current.value) ||
+  //       `비밀번호 형식을 확인해주세요
+  //       (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
+  //   );
+  // };
 
-  // 비밀번호 확인
-  const [passwordEqual, setPasswordEqual] = useState(``);
-  const passwordEqualCheck = () => {
-    if (passwordRef.current.value !== passwordEqualRef.current.value)
-      setPasswordEqual(`비밀번호가 일치하지 않습니다`);
-  };
+  // // 비밀번호 확인
+  // const [passwordEqual, setPasswordEqual] = useState(``);
+  // const passwordEqualCheck = () => {
+  //   if (passwordRef.current.value !== passwordEqualRef.current.value)
+  //     setPasswordEqual(`비밀번호가 일치하지 않습니다`);
+  // };
 
-  // 버튼 열림
-  const isOpenButton = firstNameRef.current.value.length === 0;
-  console.log(firstNameRef.current.value);
+  // // 버튼 열림
+  // const isOpenButton = firstNameRef.current.value.length === 0;
+  // console.log(firstNameRef.current.value);
   // const isOpenButton =
   //   currentPage.url === EMAIL_VERIFICATION_TEXT.url
   //     ? emailRegex === true
@@ -219,11 +234,12 @@ const Login = () => {
               className="input email"
               name="email"
               ref={emailRef}
-              onChange={emailCheck}
+              onChange={handleInput}
+              // onChange={emailCheck}
               placeholder="이메일"
               disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
-            {emailRegex}
+            {/* {emailRegex} */}
           </div>
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <div className="input-box">
@@ -232,11 +248,12 @@ const Login = () => {
                 className="input password"
                 name="password"
                 ref={passwordRef}
-                onChange={passwordCheck}
+                onChange={handleInput}
+                // onChange={passwordCheck}
                 placeholder="비밀번호"
               />
               <div className="text-required">필수</div>
-              {passwordRegex}
+              {/* {passwordRegex} */}
             </div>
           )}
           {currentPage.url === LOGIN_TEXT.url && (
@@ -252,11 +269,12 @@ const Login = () => {
                   className="input password"
                   name="passwordEqual"
                   ref={passwordEqualRef}
-                  onChange={passwordEqualCheck}
+                  onChange={handleInput}
+                  // onChange={passwordEqualCheck}
                   placeholder="비밀번호 확인"
                 />
                 <div className="text-required">필수</div>
-                <div>{passwordEqual}</div>
+                {/* <div>{passwordEqual}</div> */}
               </div>
 
               <div className="input-box first-name">
@@ -264,6 +282,7 @@ const Login = () => {
                   type="text"
                   className="input"
                   name="firstName"
+                  onChange={handleInput}
                   ref={firstNameRef}
                   placeholder="이름"
                 />
@@ -276,13 +295,19 @@ const Login = () => {
                   className="input"
                   name="lastName"
                   ref={lastNameRef}
+                  onChange={handleInput}
                   placeholder="성"
                 />
                 <div className="text-required">필수</div>
               </div>
 
               <div className="input-box gender">
-                <select className="input" ref={genderRef}>
+                <select
+                  className="input"
+                  name="gender"
+                  ref={genderRef}
+                  onChange={inputGender}
+                >
                   <option value hidden>
                     성별
                   </option>
@@ -298,6 +323,7 @@ const Login = () => {
                   className="input pNumber"
                   name="phoneNumber"
                   ref={phoneNumberRef}
+                  onChange={handleInput}
                   placeholder="핸드폰 번호(-제외)"
                 />
                 <div className="text-required">필수</div>
@@ -309,6 +335,7 @@ const Login = () => {
                   className="input date"
                   name="birth"
                   ref={birthRef}
+                  onChange={handleInput}
                 />
               </div>
 
@@ -333,6 +360,7 @@ const Login = () => {
                   className="input address"
                   name="address"
                   ref={addressRef}
+                  onChange={handleInput}
                   placeholder="기본 배송 주소"
                 />
                 <div className="text-required">필수</div>
@@ -369,10 +397,11 @@ const Login = () => {
             </>
           )}
           <button
-            className={`${
-              isOpenButton ? `open-button-color` : `close-button-color`
-            } submit-button`}
-            disabled={!isOpenButton}
+            className="submit-button"
+            // className={`${
+            //   isOpenButton ? `open-button-color` : `close-button-color`
+            // } submit-button`}
+            // disabled={!isOpenButton}
           >
             {currentPage.button}
           </button>
