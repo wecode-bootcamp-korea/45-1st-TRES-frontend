@@ -30,6 +30,7 @@ const Login = () => {
   const [genderRequired, setGenderRequired] = useState(``);
   const [phoneNumberRequired, setPhoneNumberRequired] = useState(``);
   const [addressRequired, setAddressRequired] = useState(``);
+  const [isShowCountriesList, setIsShowCountriesList] = useState(false);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -69,7 +70,6 @@ const Login = () => {
 
   // onChange
   const handleInput = e => {
-    console.log(`target`, e);
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
 
@@ -155,6 +155,11 @@ const Login = () => {
       : setCheckCountries(checkCountries.filter(item => item !== country));
 
   /* 함수 */
+  // 국가 선택
+  const showCountriesList = () => {
+    setIsShowCountriesList(prev => !prev);
+  };
+
   // 이메일 확인
   const emailVerification = e => {
     e.preventDefault();
@@ -202,15 +207,15 @@ const Login = () => {
   // 회원가입
   const join = e => {
     e.preventDefault();
-    console.log(`email: `, inputValues.email);
-    console.log(`password: `, inputValues.password);
-    console.log(`firstName: `, inputValues.firstName);
-    console.log(`lastName: `, inputValues.lastName);
-    console.log(`gender: `, gender);
-    console.log(`phoneNumber: `, inputValues.phoneNumber);
-    console.log(`birth: `, inputValues.birth);
-    console.log(` countries: `, checkCountries);
-    console.log(`address: `, inputValues.address);
+    // console.log(`email: `, inputValues.email);
+    // console.log(`password: `, inputValues.password);
+    // console.log(`firstName: `, inputValues.firstName);
+    // console.log(`lastName: `, inputValues.lastName);
+    // console.log(`gender: `, gender);
+    // console.log(`phoneNumber: `, inputValues.phoneNumber);
+    // console.log(`birth: `, inputValues.birth);
+    // console.log(` countries: `, checkCountries);
+    // console.log(`address: `, inputValues.address);
 
     // fetch(`${JOIN_API}`, {
     //   method: 'POST',
@@ -363,7 +368,21 @@ const Login = () => {
                 />
               </div>
 
-              <div className="input-box">
+              <div>
+                <button onClick={showCountriesList}>선호 국가 선택</button>
+                {checkCountries.map((item, i) => (
+                  <span key={i}>
+                    {item}
+                    {checkCountries.length - 1 !== i && `, `}
+                  </span>
+                ))}
+              </div>
+
+              <div
+                className={`input-box choose-countries ${
+                  isShowCountriesList || `display-none`
+                }`}
+              >
                 {countries?.map(item => (
                   <div key={item.id}>
                     <input
