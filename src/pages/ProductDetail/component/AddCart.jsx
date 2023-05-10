@@ -40,7 +40,7 @@ const AddCart = ({ id, cost, count }) => {
       <div className="button-box">
         <img
           className="recommand-button"
-          src="./images/icon/heart.svg"
+          src="/images/icon/heart.svg"
           alt="좋아요"
         />
         <button className="cart-add-button" onClick={toCart}>

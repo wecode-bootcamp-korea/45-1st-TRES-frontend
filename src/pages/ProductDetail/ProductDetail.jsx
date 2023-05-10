@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ProductCalculation from './component/ProductCalculation';
 import ProductImformation from './component/ProductImformation';
 import ProductSummary from './component/ProductSummary';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
-  const [productInfo, setProductInfo] = useState({});
+  const [productInfo, setProductInfo] = useState([]);
+  const params = useParams();
+
+  const foodid = params.foodid;
+
   const {
     id,
     food,
@@ -28,22 +33,17 @@ const ProductDetail = () => {
   } = productInfo;
 
   useEffect(() => {
-    fetch('/data/product-detail.json')
+    fetch(`http://10.58.52.78:3000/products/${foodid}`)
       .then(res => res.json())
       .then(data => {
         setProductInfo(data);
       });
-  }, []);
+  }, [foodid]);
 
   return (
     <div className="product-detail">
       <div className="product-detail-container">
-        <img
-          className="product-detail-img"
-          // 데이터 받으면 food_image 넣을 곳
-          src="./images/productDetail/sample.png"
-          alt={food}
-        />
+        <img className="product-detail-img" src={food_image} alt={food} />
         <section className="product-detail-summary">
           <div className="product-region">
             {country} / {continent}
@@ -62,7 +62,6 @@ const ProductDetail = () => {
             eng_meat={eng_meat}
             vegetarian={vegetarian}
             description={description}
-            food_image={food_image}
           />
           <ProductCalculation price={price} id={id} food={food} />
         </section>

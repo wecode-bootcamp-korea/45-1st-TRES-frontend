@@ -25,20 +25,22 @@
       .count-box {
         display: flex;
         justify-content: space-between;
-        padding-top: 10px;
+        padding-top: 20px;
 
         .product-count {
           .count-btn-box {
             display: flex;
             align-items: center;
             justify-content: space-around;
-            width: 80px;
+            width: 100px;
+            height: 40px;
             border: 1px solid $main-grey;
+            @include body-1;
 
             .count-btn {
               border: none;
               background-color: transparent;
-              @include body-1;
+              @include head-3;
 
               &:hover {
                 cursor: pointer;
