@@ -22,8 +22,15 @@ const Login = () => {
   const countries = useGetFetch(`/data/list-of-countries.json`);
   // const countries = useGetFetch(`${COUNTRIES_API}`);
 
-  /* 필수 */
+  // 필수
   const [passwordRequired, setPasswordRequired] = useState(``);
+  const [passwordEqualRequired, setPasswordEqualRequired] = useState(``);
+  const [firstNameRequired, setFirstNameRequired] = useState(``);
+  const [lastNameRequired, setLastNameRequired] = useState(``);
+  const [genderRequired, setGenderRequired] = useState(``);
+  const [phoneNumberRequired, setPhoneNumberRequired] = useState(``);
+  const [addressRequired, setAddressRequired] = useState(``);
+  console.log(passwordRequired.length);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -237,6 +244,7 @@ const Login = () => {
             />
             {emailRegex}
           </div>
+
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
             <div className="input-box">
               <input
@@ -250,11 +258,13 @@ const Login = () => {
               {passwordRegex}
             </div>
           )}
+
           {currentPage.url === LOGIN_TEXT.url && (
             <Link to="#">
               <div className="find-password-text">비밀번호 찾기</div>
             </Link>
           )}
+
           {currentPage.url === JOIN_TEXT.url && (
             <>
               <div className="input-box">
@@ -265,7 +275,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="비밀번호 확인"
                 />
-                <div className="text-required">필수</div>
+                <div className="text-required">{passwordEqualRequired}</div>
                 <div>{PasswordEqualText}</div>
               </div>
 
@@ -277,7 +287,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="이름"
                 />
-                <div className="text-required">필수</div>
+                <div className="text-required">{firstNameRequired}</div>
               </div>
 
               <div className="input-box last-name">
@@ -288,7 +298,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="성"
                 />
-                <div className="text-required">필수</div>
+                <div className="text-required">{lastNameRequired}</div>
               </div>
 
               <div className="input-box gender">
@@ -299,7 +309,7 @@ const Login = () => {
                   <option value="남자">남자</option>
                   <option value="여자">여자</option>
                 </select>
-                <div className="text-required">필수</div>
+                <div className="text-required">{genderRequired}</div>
               </div>
 
               <div className="input-box">
@@ -310,7 +320,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="핸드폰 번호(-제외)"
                 />
-                <div className="text-required">필수</div>
+                <div className="text-required">{phoneNumberRequired}</div>
               </div>
 
               <div className="input-box">
@@ -345,7 +355,7 @@ const Login = () => {
                   onChange={handleInput}
                   placeholder="기본 배송 주소"
                 />
-                <div className="text-required">필수</div>
+                <div className="text-required">{addressRequired}</div>
               </div>
 
               <div className="agreement-box">
