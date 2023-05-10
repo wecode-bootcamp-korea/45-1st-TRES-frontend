@@ -3,23 +3,49 @@ import './ProductInCart.scss';
 
 let selectList = [];
 const ProductInCart = props => {
-  const [count, setCount] = useState(1);
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [quantityChange, setQuantityChange] = useState(1);
-  const { id, checkItems, cartList, checkSingle, setProductPrice } = props;
+  const { id, checkItems, cartList, checkSingle, setProductPrice, quantity } =
+    props;
   const [{ title, titleEng, country, continent, price }] = cartList;
+  const [count, setCount] = useState(quantity);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [quantityChange, setQuantityChange] = useState(quantity);
   const totalPrice = price * count;
+
   const handleChange = e => {
     setQuantityChange(e.target.value);
     setIsDisabled(false);
   };
 
-  const handleCount = e => {
+  const handleCount = id => {
+    //   fetch('변경된 수량 데이터 전달 ', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //     },
+    //     body: JSON.stringify({
+    //       foodId: , id
+    //       quantity: quantityChange,
+    //       content: '음식id, 수량',
+    //     }),
+    //   });
+    //제거----
     setCount(quantityChange);
+    //제거----
     setIsDisabled(true);
   };
 
-  const selectDelete = e => {};
+  const selectDelete = id => {
+    // fetch('선택한 삭제하려는 데이터 ', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     foodId: id,
+    //     content: '음식id',
+    //   }),
+    // });
+  };
 
   useEffect(() => {
     if (checkItems.includes(id)) {
@@ -29,7 +55,6 @@ const ProductInCart = props => {
       selectAdd = {
         id: id,
         sum: totalPrice,
-        selectCondition: checkItems.includes(id),
       };
       selectList = [...selectList, selectAdd];
     } else {
@@ -67,6 +92,7 @@ const ProductInCart = props => {
             <select
               className="count-change-button"
               onChange={e => handleChange(e)}
+              defaultValue={quantity}
             >
               {QUANTITY_SELECT.map(item => (
                 <option key={item.id} value={item.value}>
@@ -77,7 +103,7 @@ const ProductInCart = props => {
             <button
               className="count-check-button"
               disabled={isDisabled}
-              onClick={e => handleCount(e)}
+              onClick={() => handleCount(id)}
             >
               변경 완료
             </button>

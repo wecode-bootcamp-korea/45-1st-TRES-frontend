@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Cart.scss';
 import ProductInCart from './componet/ProductInCart';
 import ProductRecommendation from './componet/ProductRecommendation';
@@ -10,35 +11,58 @@ const Cart = () => {
   const [recommandList, setRecommandList] = useState([]);
   const [productPrice, setProductPrice] = useState(0);
   const [checkItems, setCheckItems] = useState([]);
-
-  const [selectDeleteList, setSelectDeleteList] = useState([]);
+  const navigate = useNavigate();
 
   const checkAll = checked => {
     checked ? setCheckItems(cartList.map(item => item.id)) : setCheckItems([]);
-    setSelectDeleteList(checkItems.map(item => ({ foodId: item })));
   };
 
   const checkSingle = (checked, id) => {
     checked
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
-    setSelectDeleteList(checkItems.map(item => ({ foodId: item })));
   };
 
   const deleteSelectItem = () => {
-    //   fetch('http://10.58.52.203:3000/payment', {
+    //   fetch('선택한 삭제하려는 데이터 ', {
     //     method: 'POST',
     //     headers: {
     //       'Content-Type': 'application/json;charset=utf-8',
     //     },
     //     body: JSON.stringify({
-    //       food: selectDeleteList,
-    //       content: '삭제하는 아이템리스트',
+    //       foodId: checkItems,
+    //       content: '음식id',
     //     }),
     //   });
-    console.log(selectDeleteList);
   };
 
+  const goToPaymentPage = () => {
+    //   fetch('선택한 결제페이지로 보내는 데이터', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //     },
+    //     body: JSON.stringify({
+    //       foodId: checkItems,
+    //       content: '음식id',
+    //     }),
+    //   });
+    navigate('/payment');
+  };
+  // const token = localStorage.getItem('TOKEN');
+
+  // useEffect(() => {
+  //   fetch('장바구니페이지 데이터 받기', {
+  //     method: 'GET',
+  //     headers: {
+  //       authorization: token,
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setCartList(data);
+  //     });
+  //---제거----
   useEffect(() => {
     fetch('/data/cartData.json', {
       method: 'GET',
@@ -47,21 +71,7 @@ const Cart = () => {
       .then(data => {
         setCartList(data);
       });
-
-    // const token = localStorage.getItem('TOKEN');
-
-    // useEffect(() => {
-    //   fetch('http://아이피:3000/엔드포인트', {
-    //     method: 'GET',
-    //     headers: {
-    //       authorization: token,
-    //     },
-    //   })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       setCartList(data);
-    //     });
-
+    //--제거---
     fetch('/data/recommandData.json', {
       method: 'GET',
     })
@@ -69,9 +79,8 @@ const Cart = () => {
       .then(data => {
         setRecommandList(data);
       });
-    console.log(selectDeleteList);
-  }, [checkItems]);
-
+  }, []);
+  //삭제 수량 변경 등 데이터 업데이트 되면 의존성 배열 필요?
   return (
     <div className="cart">
       <div className="cart-container">
@@ -104,6 +113,7 @@ const Cart = () => {
                 cartList={cartList}
                 setProductPrice={setProductPrice}
                 productPrice={productPrice}
+                quantity={item.quantity}
               />
             ))}
           </ul>
@@ -122,7 +132,9 @@ const Cart = () => {
             <span>총 결제 금액</span>
             <span>{productPrice + DELIVERY_FEE}원</span>
           </div>
-          <button className="order-button">주문결제</button>
+          <button className="order-button" onClick={goToPaymentPage}>
+            주문결제
+          </button>
         </section>
       </div>
       <section className="product-recommendation-list">
