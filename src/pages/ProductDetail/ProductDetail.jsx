@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductCalculation from './component/ProductCalculation';
-import ProductImformation from './component/ProductImformation';
-import ProductSummary from './component/ProductSummary';
+import ProductCalculation from './component/ProductCalculation/ProductCalculation';
+import ProductImformation from './component/ProductInformation/ProductImformation';
+import ProductSummary from './component/ProductSummary/ProductSummary';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -66,7 +66,7 @@ const ProductDetail = () => {
           <ProductCalculation price={price} id={id} food={food} />
         </section>
       </div>
-      <ProductImformation review={review} />
+      <ProductImformation food={food} eng_food={eng_food} review={review} />
     </div>
   );
 };
