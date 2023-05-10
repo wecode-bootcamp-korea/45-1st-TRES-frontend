@@ -215,7 +215,7 @@ const Login = () => {
     // console.log(`gender: `, gender);
     // console.log(`phoneNumber: `, inputValues.phoneNumber);
     // console.log(`birth: `, inputValues.birth);
-    // console.log(` countries: `, checkCountries);
+    // console.log(`countries: `, checkCountries);
     // console.log(`address: `, inputValues.address);
 
     // fetch(`${JOIN_API}`, {
@@ -224,15 +224,15 @@ const Login = () => {
     //     'Content-Type': 'application/json;charset=utf-8',
     //   },
     //   body: JSON.stringify({
-    //     email: inputValues.email,
-    //     password: inputValues.password,
-    //     firstName: inputValues.firstName,
-    //     lastName: inputValues.lastName,
-    //     gender: gender,
-    //     phoneNumber: inputValues.phoneNumber,
-    //     birth: inputValues.birth,
-    //     countries: checkCountries,
-    //     address: ainputValues.address,
+    // email: inputValues.email,
+    // password: inputValues.password,
+    // firstName: inputValues.firstName,
+    // lastName: inputValues.lastName,
+    // gender: gender,
+    // phoneNumber: inputValues.phoneNumber,
+    // birth: inputValues.birth,
+    // countries: checkCountries,
+    // address: ainputValues.address,
     //   }),
     // })
     //   .then(res => {
@@ -249,6 +249,7 @@ const Login = () => {
   /* 출력 */
   return (
     <div className="login">
+      <div className={isShowCountriesList && `modal-background-color`} />
       <div className="container">
         <span className="text-page-description">
           {currentPage === EMAIL_VERIFICATION_TEXT
@@ -378,24 +379,31 @@ const Login = () => {
                   </span>
                 ))}
               </div>
-
-              <div
-                className={`input-box choose-countries ${
-                  isShowCountriesList || `display-none`
-                }`}
-              >
-                {countries?.map(item => (
-                  <div key={item.id}>
-                    <input
-                      type="checkbox"
-                      onChange={e =>
-                        checkCountry(e.target.checked, item.country)
-                      }
-                      checked={checkCountries.includes(item.country)}
-                    />
-                    <span>{item.country}</span>
+              <div>
+                <div
+                  className={`input-box choose-countries ${
+                    isShowCountriesList || `display-none`
+                  }`}
+                >
+                  <div>
+                    {countries?.map(item => (
+                      <div key={item.id} className="country-box">
+                        <input
+                          type="checkbox"
+                          onChange={e =>
+                            checkCountry(e.target.checked, item.country)
+                          }
+                          checked={checkCountries.includes(item.country)}
+                        />
+                        <span>{item.country}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                  <div className="close-modal-button">
+                    <span>최대 3개</span>
+                    <button onClick={showCountriesList}>확인</button>
+                  </div>
+                </div>
               </div>
 
               <div className="input-box">
