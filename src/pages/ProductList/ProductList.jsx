@@ -8,41 +8,17 @@ const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
   const [products, setProducts] = useState([]);
   const [continent, setContinent] = useState([]);
-  const [url, setUrl] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
-
-  const sortType = searchParams.get('orderBy');
-  const vegeType = searchParams.get('vegetarian');
-  const cow = searchParams.get('meatId1');
-  const pig = searchParams.get('meatId2');
-  const sheep = searchParams.get('meatId3');
-  const chicken = searchParams.get('meatId4');
-  const spiceLevel = searchParams.get('spiceLevel');
-  const allergyId1 = searchParams.get('allergyId1');
-  const allergyId2 = searchParams.get('allergyId2');
-  const allergyId3 = searchParams.get('allergyId3');
 
   const handleSort = sort => {
     searchParams.set('orderBy', sort);
     setSearchParams(searchParams);
   };
 
-  console.log(searchParams.toString());
-
   useEffect(() => {
     fetch(
       `http://10.58.52.78:3000/products?countryId=${id}&${searchParams.toString()}`
-      //   sortType?.length ? '&orderBy=' + sortType : ''
-      // }${vegeType?.length ? '&vegetarian=' + vegeType : ''}${
-      //   cow?.length ? '&meatId=' + cow : ''
-      // }${pig?.length ? '&meatId=' + pig : ''}${
-      //   sheep?.length ? '&meatId=' + sheep : ''
-      // }${chicken?.length ? '&meatId=' + chicken : ''}${
-      //   spiceLevel?.length ? '&spiceLevel=' + spiceLevel : ''
-      // }${allergyId1?.length ? '' : '&allergyId=1'}${
-      //   allergyId2?.length ? '' : '&allergyId=2'
-      // }${allergyId3?.length ? '' : '&allergyId=3'}`
     )
       .then(response => response.json())
       .then(response => {
