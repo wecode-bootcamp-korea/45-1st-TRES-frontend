@@ -30,7 +30,6 @@ const Login = () => {
   const [genderRequired, setGenderRequired] = useState(``);
   const [phoneNumberRequired, setPhoneNumberRequired] = useState(``);
   const [addressRequired, setAddressRequired] = useState(``);
-  console.log(passwordRequired.length);
 
   // Checkbox
   const [checkItems, setCheckItems] = useState([]);
@@ -66,9 +65,11 @@ const Login = () => {
   const [emailRegex, setEmailRegex] = useState(``);
   const [passwordRegex, setPasswordRegex] = useState(``);
   const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
+  const [phoneNumberRegex, setPhoneNumberRegex] = useState(``);
 
   // onChange
   const handleInput = e => {
+    console.log(`target`, e);
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
 
@@ -99,12 +100,41 @@ const Login = () => {
       setPasswordRequired(!value.length ? `필수` : ``);
     }
 
-    if (name === `passwordEqual`)
+    if (name === `passwordEqual`) {
       setIsPasswordEqualtext(
         e.target.value === inputValues.password
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
+
+      setPasswordEqualRequired(!value.length ? `필수` : ``);
+    }
+
+    if (name === `firstName`) {
+      setFirstNameRequired(!value.length ? `필수` : ``);
+    }
+
+    if (name === `lastName`) {
+      setLastNameRequired(!value.length ? `필수` : ``);
+    }
+
+    if (name === `gender`) {
+      setGenderRequired(!value.length ? `필수` : ``);
+    }
+
+    if (name === `phoneNumber`) {
+      let phoneNumberCheckText = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
+      setPhoneNumberRegex(
+        phoneNumberCheckText.test(value) ||
+          `전화번호 형식을 확인해주세요 (-제외)`
+      );
+
+      setPhoneNumberRequired(!value.length ? `필수` : ``);
+    }
+
+    if (name === `address`) {
+      setAddressRequired(!value.length ? `필수` : ``);
+    }
   };
 
   // 버튼 열림
@@ -314,13 +344,14 @@ const Login = () => {
 
               <div className="input-box">
                 <input
-                  type="tel"
+                  type="text"
                   className="input pNumber"
                   name="phoneNumber"
                   onChange={handleInput}
                   placeholder="핸드폰 번호(-제외)"
                 />
                 <div className="text-required">{phoneNumberRequired}</div>
+                <div>{phoneNumberRegex}</div>
               </div>
 
               <div className="input-box">
