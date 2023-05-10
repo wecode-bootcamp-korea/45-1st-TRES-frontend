@@ -6,7 +6,6 @@ const ShippingAddress = ({
   isCheckedTerms,
   addressValue,
   setAddressValue,
-  ref,
 }) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
