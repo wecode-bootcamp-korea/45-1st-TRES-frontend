@@ -50,19 +50,7 @@ const Payment = () => {
   };
 
   const showModal = () => {
-    // fetch('http://10.58.52.249:3000/payments', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: token,
-    //   },
-    //   body: JSON.stringify({
-    //     point: remainPoint,
-    //   }),
-    // });
-    //if(status===200){
     setModalOpen(true);
-    // }
   };
 
   useEffect(() => {
@@ -73,18 +61,6 @@ const Payment = () => {
       .then(data => {
         setPaymentProduct(data);
       });
-
-    // fetch('데이터 받기', {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: token,
-    //   },
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setPaymentProduct(data);
-    //   });
   }, []);
 
   if (!possessionPoint) return '';

@@ -31,6 +31,7 @@ const ShippingAddress = ({
         });
       }
       setIsDisabled(!isDisabled);
+    } else if (isCheckedTerms) {
     }
   };
 
