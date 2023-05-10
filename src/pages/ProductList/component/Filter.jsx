@@ -1,45 +1,26 @@
 import React from 'react';
-import './Filter.scss';
 import FilterDetail from './FilterDetail';
+import './Filter.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Filter = ({ url, setUrl }) => {
+const Filter = ({ continent }) => {
+  const navigate = useNavigate();
   return (
     <div className="filter">
       <ul className="country">
-        {COUNTRY.map(({ id, name }) => (
-          <li className="country-list" key={id}>
-            <span>{name}</span>
+        {continent.map(({ id, country }) => (
+          <li
+            className="country-list"
+            key={id}
+            onClick={() => navigate(`/product-list/${id}`)}
+          >
+            <span>{country}</span>
           </li>
         ))}
       </ul>
       {FILTER_TITLE.map(title => (
-        <FilterDetail
-          key={title.id}
-          url={url}
-          setUrl={setUrl}
-          name={title.name}
-          option={title.option}
-        />
+        <FilterDetail key={title.id} name={title.name} option={title.option} />
       ))}
-      {/* <FilterDetail
-        url={url}
-        setUrl={setUrl}
-        name="채식"
-        option={VEGE_OPTION}
-      />
-      <FilterDetail
-        url={url}
-        setUrl={setUrl}
-        name="고기"
-        option={MEAT_OPTION}
-      />
-      <FilterDetail
-        url={url}
-        setUrl={setUrl}
-        name="알러지"
-        option={ALLERGY_OPTION}
-      />
-      <FilterDetail url={url} setUrl={setUrl} name="맵기" /> */}
     </div>
   );
 };
@@ -50,15 +31,15 @@ const VEGE_OPTION = [
   { id: 0, category: 'vegetarian', type: 'vegetarian', content: '채식주의자' },
 ];
 const MEAT_OPTION = [
-  { id: 1, category: `meatId1`, type: 'cow', content: '소' },
-  { id: 2, category: `meatId2`, type: 'pig', content: '돼지' },
-  { id: 3, category: `meatId3`, type: 'sheep', content: '양' },
-  { id: 4, category: `meatId4`, type: 'chicken', content: '닭' },
+  { id: 1, category: `meatId`, type: 'cow', content: '소' },
+  { id: 2, category: `meatId`, type: 'pig', content: '돼지' },
+  { id: 3, category: `meatId`, type: 'sheep', content: '양' },
+  { id: 4, category: `meatId`, type: 'chicken', content: '닭' },
 ];
 const ALLERGY_OPTION = [
-  { id: 1, category: 'allergyId1', type: 'milk', content: '우유' },
-  { id: 2, category: 'allergyId2', type: 'peanut', content: '땅통' },
-  { id: 3, category: 'allergyId3', type: 'egg', content: '계란' },
+  { id: 1, category: 'allergyId', type: 'milk', content: '우유' },
+  { id: 2, category: 'allergyId', type: 'peanut', content: '땅콩' },
+  { id: 3, category: 'allergyId', type: 'egg', content: '계란' },
 ];
 const COUNTRY = [
   { id: 1, name: '한국' },

@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
-import './FilterDetail.scss';
+import { useSearchParams } from 'react-router-dom';
 import OptionChecks from './OptionChecks';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import './FilterDetail.scss';
 
 const FilterDetail = ({ name, option, url, setUrl }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const [level, setLevel] = useState('');
-  // const navigate = useNavigate();
   const handleSpiceLevel = e => {
     searchParams.set('spiceLevel', e.target.value);
     setSearchParams(searchParams);
-    // if (url.includes(`&spiceLevel=${level}`)) {
-    //   setUrl(prev =>
-    //     prev.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
-    //   );
-    //   navigate(
-    //     url.replace(`&spiceLevel=${level}`, `&spiceLevel=${e.target.value}`)
-    //   );
-    //   setLevel(e.target.value);
-    //   return;
-    // }
-    // setUrl(prev => prev + `&spiceLevel=${e.target.value}`);
-    // navigate(url + `&spiceLevel=${e.target.value}`);
-    // setLevel(e.target.value);
   };
   return (
     <div className="filter-detail">

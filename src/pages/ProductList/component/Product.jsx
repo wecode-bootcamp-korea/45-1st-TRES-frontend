@@ -1,18 +1,16 @@
 import React from 'react';
 import './Product.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Product = ({ product: { food, eng_food, price } }) => {
+const Product = ({ product: { id, food, eng_food, price, food_image } }) => {
+  const navigate = useNavigate();
   return (
-    <div className="product">
-      <img
-        className="food-img"
-        alt="음식 사진"
-        src="https://images.unsplash.com/photo-1633436375795-12b3b339712f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-      />
+    <div className="product" onClick={() => navigate(`/product-detail/${id}`)}>
+      <img className="food-img" alt="음식 사진" src={food_image} />
       <p className="korean-name">{food}</p>
       <p className="english-name">{eng_food}</p>
       <p>
-        <span>{price}</span>원
+        <span>{Math.floor(price).toLocaleString()}</span>원
       </p>
     </div>
   );
