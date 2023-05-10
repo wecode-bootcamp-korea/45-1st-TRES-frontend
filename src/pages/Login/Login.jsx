@@ -145,7 +145,14 @@ const Login = () => {
       : currentPage.url === LOGIN_TEXT.url
       ? emailRegex === true && passwordRegex === true
       : currentPage.url === JOIN_TEXT.url
-      ? inputValues.firstName.length === 0
+      ? emailRegex === true &&
+        passwordRegex === true &&
+        inputValues.password === inputValues.passwordEqual &&
+        inputValues.firstName.length &&
+        inputValues.lastName.length &&
+        (gender === '남자' || gender === '여자') &&
+        phoneNumberRegex === true &&
+        inputValues.address.length
       : ``;
 
   // input 항목
