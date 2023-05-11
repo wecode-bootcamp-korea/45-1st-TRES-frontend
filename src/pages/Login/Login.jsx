@@ -480,7 +480,7 @@ const Login = () => {
             } submit-button`}
             disabled={!isOpenButton || isLoading}
           >
-            {isLoading ? `전송중..` : currentPage.button}
+            {isLoading ? `${currentPage.sendingText} 중..` : currentPage.button}
           </button>
         </form>
       </div>
@@ -492,18 +492,21 @@ const EMAIL_VERIFICATION_TEXT = {
   url: `/email-verification`,
   title: `가입 또는 로그인을 위해 이메일을 입력하세요.`,
   button: `계 속`,
+  sendingText: `확인`,
 };
 
 const LOGIN_TEXT = {
   url: `/login`,
   title: `비밀번호를 입력하세요.`,
   button: `로그인`,
+  sendingText: `로그인`,
 };
 
 const JOIN_TEXT = {
   url: `/join`,
   title: `이제 seké의 멤버가 되어볼까요?`,
   button: `계정 만들기`,
+  sendingText: `회원가입`,
 };
 
 const AGREEMENT_CHECKBOX = [
