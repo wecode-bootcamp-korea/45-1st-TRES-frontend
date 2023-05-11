@@ -46,7 +46,7 @@ const ProductList = () => {
             }.svg`}
           />
         </button>
-        {isSorted ? (
+        {isSorted && (
           <ul className="sort-list">
             {SORT_MENU.map(({ id, content, sort }) => (
               <li key={id} onClick={() => handleSort(sort)}>
@@ -54,7 +54,7 @@ const ProductList = () => {
               </li>
             ))}
           </ul>
-        ) : null}
+        )}
       </header>
 
       <div className="product-container">
