@@ -2,9 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddCart.scss';
 
-const AddCart = ({ id, cost, count }) => {
+const AddCart = ({ id, cost, count, languageType }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem('TOKEN');
+
+  let totalPay = languageType ? '총 상품금액' : 'Total price';
+  let buttonToCart = languageType ? '장바구니 담기' : 'ADD CART';
+  let buttonToLogin = languageType ? '로그인 하기' : 'LOGIN';
 
   const toCart = () => {
     token
@@ -32,7 +36,7 @@ const AddCart = ({ id, cost, count }) => {
   return (
     <div className="addcart">
       <div className="product-total-price">
-        <span className="total-price-text">총 상품금액 : </span>
+        <span className="total-price-text">{totalPay}</span>
         <span className="total-price-number">
           {totalPrice.toLocaleString()}원
         </span>
@@ -44,7 +48,8 @@ const AddCart = ({ id, cost, count }) => {
           alt="좋아요"
         />
         <button className="cart-add-button" onClick={toCart}>
-          {`${token ? '장바구니 담기' : '로그인 하기'}`}
+          {token ? `${buttonToCart}` : `${buttonToLogin}`}
+          {/* {`${token ? { buttonToCart } : { buttonToLogin }}`} */}
         </button>
       </div>
     </div>

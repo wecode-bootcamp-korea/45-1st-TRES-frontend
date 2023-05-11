@@ -3,25 +3,25 @@ import './PaymentProduct.scss';
 
 const PaymentProduct = ({ item }) => {
   const {
-    foodName,
-    foodNameEng,
+    foodKrName,
+    foodEngName,
     country,
     continent,
-    price,
+    orderPrice,
     quantity,
-    foodImg,
+    foodImage,
   } = item;
-  const priceSum = price * quantity;
+  const priceSum = orderPrice * quantity;
 
   return (
     <li className="payment-product">
-      <img className="payment-product-img" src={foodImg} alt="음식사진" />
+      <img className="payment-product-img" src={foodImage} alt="음식사진" />
       <div className="payment-product-information">
-        <div>{foodName}</div>
-        <div className="payment-product name-eng">{foodNameEng}</div>
+        <div>{foodKrName}</div>
+        <div className="payment-product name-eng">{foodEngName}</div>
         <div className="payment-product region">{`${country} / ${continent}`}</div>
         <div className="payment-product quantity-price">
-          {`${quantity.toLocaleString()} / ${price.toLocaleString()}`}
+          {`${quantity} / ${Math.floor(orderPrice).toLocaleString()}원`}
         </div>
         <div className="payment-product total-price">
           {priceSum.toLocaleString()}원

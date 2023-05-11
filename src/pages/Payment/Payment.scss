@@ -58,6 +58,11 @@
                 opacity: 0.5;
                 cursor: pointer;
               }
+              &:disabled {
+                opacity: 1;
+                background-color: $main-grey;
+                cursor: pointer;
+              }
             }
           }
         }

@@ -1,12 +1,13 @@
 [
   {
-    "id": 1,
+    "userId": 1,
     "lastName": "전",
     "firstName": "승범",
     "address": "서울시 노원구 중계동",
     "phoneNumber": "01072987237",
     "email": "7237sbj@naver.com",
-    "point": 150000,
+    "point": 160000.0,
+    "orderNumber": "asgqwe12",
     "food": [
       {
         "foodId": 1,
@@ -15,8 +16,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 1,
-        "price": 11000,
-        "foodImg": ""
+        "price": 11000.0,
+        "foodImg": "/images/payment/sampling.png"
       },
       {
         "foodId": 2,
@@ -25,8 +26,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 2,
-        "price": 12000,
-        "foodImg": ""
+        "price": 12000.0,
+        "foodImg": "/images/payment/sampling.png"
       },
       {
         "foodId": 3,
@@ -35,8 +36,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 3,
-        "price": 13000,
-        "foodImg": ""
+        "price": 13000.0,
+        "foodImg": "/images/payment/sampling.png"
       },
       {
         "foodId": 4,
@@ -45,8 +46,8 @@
         "country": "중국",
         "continent": "아시아",
         "quantity": 4,
-        "price": 14000,
-        "foodImg": ""
+        "price": 14000.0,
+        "foodImg": "/images/payment/sampling.png"
       }
     ]
   }

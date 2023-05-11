@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddCart from '../AddCart/AddCart';
 import './ProductCalculation.scss';
 
-const ProductCalculation = ({ id, price, food }) => {
+const ProductCalculation = ({ id, price, food, languageType }) => {
   const [count, setCount] = useState(1);
 
   const cost = Math.floor(price);
@@ -15,7 +15,9 @@ const ProductCalculation = ({ id, price, food }) => {
   return (
     <div className="product-calculation">
       <div className="product-choice">
-        <p className="product-choice-text">상품선택</p>
+        <p className="product-choice-text">
+          {languageType ? '상품선택' : 'select'}
+        </p>
         <div className="calculation-box">
           <p className="product-choice-food">{food}</p>
           <div className="count-box">
@@ -34,7 +36,7 @@ const ProductCalculation = ({ id, price, food }) => {
           </div>
         </div>
       </div>
-      <AddCart id={id} cost={cost} count={count} />
+      <AddCart id={id} cost={cost} count={count} languageType={languageType} />
     </div>
   );
 };
