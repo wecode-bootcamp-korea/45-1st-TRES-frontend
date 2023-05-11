@@ -41,11 +41,6 @@ const ALLERGY_OPTION = [
   { id: 2, category: 'allergyId', type: 'peanut', content: '땅콩' },
   { id: 3, category: 'allergyId', type: 'egg', content: '계란' },
 ];
-const COUNTRY = [
-  { id: 1, name: '한국' },
-  { id: 2, name: '중국' },
-  { id: 3, name: '일본' },
-];
 
 const FILTER_TITLE = [
   { id: 0, name: '채식', option: VEGE_OPTION },
