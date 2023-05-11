@@ -131,7 +131,8 @@ const Login = () => {
       setPhoneNumberRegex(
         phoneNumberCheckText.test(value) ||
           `전화번호 형식을 확인해주세요
-          (-제외, 10~11숫자, 010, 011, 016, 017, 018, 019)`
+          ('-'제외, 10~11숫자)
+          (010, 011, 016, 017, 018, 019만 가능)`
       );
       setPhoneNumberRequired(!value.length ? `필수` : ``);
     }
@@ -237,7 +238,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className={isShowCountriesList ? `modal-background-color` : ``} />
       <div className="container">
         <img className="logo" src="/images/icon/seke120-80.png" alt="로고" />
         <div className="page-description-text">
@@ -481,6 +481,8 @@ const Login = () => {
           </button>
         </form>
       </div>
+
+      <div className={isShowCountriesList ? `modal-background-color` : ``} />
     </div>
   );
 };
