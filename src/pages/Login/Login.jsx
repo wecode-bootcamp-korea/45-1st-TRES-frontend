@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  COUNTRIES_API,
-  EMAIL_VERIFICATION_API,
-  JOIN_API,
-  LOGIN_API,
-} from '../../config';
+import { API } from '../../config';
 import useGetFetch from '../../hooks/useGetFetch';
 import './Login.scss';
 
@@ -39,7 +34,7 @@ const Login = () => {
   const [phoneNumberRequired, setPhoneNumberRequired] = useState(``);
   const [addressRequired, setAddressRequired] = useState(``);
   const [isShowCountriesList, setIsShowCountriesList] = useState(false);
-  const countries = useGetFetch(COUNTRIES_API);
+  const countries = useGetFetch(API.COUNTRIES_API);
 
   const [countriesCheckbox, setCountriesCheckbox] = useState([]);
   const checkCountry = (checked, country) =>
@@ -158,10 +153,11 @@ const Login = () => {
         agreementCheckbox.includes(2)
       : ``;
 
+  console.log(API.COUNTRIES_API);
   const emailVerification = e => {
     e.preventDefault();
     setIsSending(true);
-    fetch(EMAIL_VERIFICATION_API, {
+    fetch(API.EMAIL_VERIFICATION_API, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -181,7 +177,7 @@ const Login = () => {
 
   const login = () => {
     setIsSending(true);
-    fetch(LOGIN_API, {
+    fetch(API.LOGIN_API, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -206,7 +202,7 @@ const Login = () => {
   const join = e => {
     e.preventDefault();
     setIsSending(true);
-    fetch(JOIN_API, {
+    fetch(API.JOIN_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
