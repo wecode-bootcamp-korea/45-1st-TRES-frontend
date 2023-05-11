@@ -18,6 +18,8 @@
 
     .calculation-box {
       width: 70%;
+      padding: 15px;
+      border: 1px solid #5f5f5f;
       .product-choice-food {
         @include body-2;
       }
