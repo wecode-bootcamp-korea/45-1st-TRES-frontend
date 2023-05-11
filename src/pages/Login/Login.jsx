@@ -343,6 +343,7 @@ const Login = () => {
                   name="birth"
                   onChange={handleInput}
                 />
+                <div>생년월일</div>
               </div>
 
               <div className="select-countries-box">
