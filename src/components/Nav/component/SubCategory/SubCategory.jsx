@@ -5,12 +5,14 @@ const SubCategory = () => {
   const [subCategory, setSubCategory] = useState([]);
 
   useEffect(() => {
-    fetch('/data/main-continent-data.json')
+    fetch('http://10.58.52.78:3000/products/random?from=20&count=40')
       .then(res => res.json())
       .then(data => {
         setSubCategory(data);
       });
   }, []);
+
+  const { mainPage } = subCategory;
 
   return (
     <div className="subcategory">

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CATEGORY_DATA from './CATEGORY_DATA';
 import './CategoryList.scss';
 
 const CategoryList = () => {
-  const [display, setDisplay] = useState(false);
+  const [currentMenuId, setCurrentMenuId] = useState(CATEGORY_DATA.length);
   const [subCategory, setSubCategory] = useState([]);
 
   useEffect(() => {
@@ -14,30 +15,38 @@ const CategoryList = () => {
       });
   }, []);
 
-  const enterMouse = () => {
-    setDisplay(true);
+  const enterMouse = id => {
+    setCurrentMenuId(id - 1);
   };
   const leaveMouse = () => {
-    setDisplay(false);
+    setCurrentMenuId(CATEGORY_DATA.length);
   };
 
   return (
-    <div className="category-box">
-      <ul className="category-list" onMouseEnter={enterMouse}>
+    <div className="category-box" onMouseLeave={leaveMouse}>
+      <ul className="category-list">
         {CATEGORY_DATA.map(({ id, name, engName }) => {
           return (
-            <li key={id} className="category-item">
-              {engName}
+            <li
+              key={id}
+              className="category-item"
+              onMouseEnter={() => enterMouse(id)}
+            >
+              {name}
             </li>
           );
         })}
       </ul>
-      {display && (
+      {currentMenuId !== 5 && (
         <div className="sub-category" onMouseLeave={leaveMouse}>
           <div className="sub-category-box">
-            {subCategory.map(({ id, name, engName }) => {
+            {subCategory[currentMenuId].map(({ id, name, engName }) => {
               return (
-                <Link className="sub-category-link" key={id} to={`/${id}`}>
+                <Link
+                  className="sub-category-link"
+                  key={id}
+                  to={`/product-list/${id}`}
+                >
                   {name}
                 </Link>
               );
@@ -50,36 +59,3 @@ const CategoryList = () => {
 };
 
 export default CategoryList;
-
-const CATEGORY_DATA = [
-  {
-    id: 1,
-    name: '아프리카',
-    engName: 'Africa',
-  },
-  {
-    id: 2,
-    name: '아메리카',
-    engName: 'America',
-  },
-  {
-    id: 3,
-    name: '아시아',
-    engName: 'Asia',
-  },
-  {
-    id: 4,
-    name: '유럽',
-    engName: 'Europe',
-  },
-  {
-    id: 5,
-    name: '오세아니아',
-    engName: 'Oceania',
-  },
-  {
-    id: 6,
-    name: '이벤트',
-    engName: 'Event',
-  },
-];
