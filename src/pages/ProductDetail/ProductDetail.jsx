@@ -1,50 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ProductCalculation from './component/ProductCalculation';
 import ProductImformation from './component/ProductImformation';
 import ProductSummary from './component/ProductSummary';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
+  const [productInfo, setProductInfo] = useState([]);
+  const params = useParams();
+
+  const foodid = params.foodid;
+
+  const {
+    id,
+    food,
+    eng_food,
+    price,
+    vegetarian,
+    continent,
+    eng_continent,
+    country,
+    eng_country,
+    spice_level,
+    description,
+    eng_description,
+    allergy,
+    eng_allergy,
+    meat,
+    eng_meat,
+    food_image,
+    review,
+  } = productInfo;
+
+  useEffect(() => {
+    fetch(`http://10.58.52.78:3000/products/${foodid}`)
+      .then(res => res.json())
+      .then(data => {
+        setProductInfo(data);
+      });
+  }, [foodid]);
+
   return (
     <div className="product-detail">
       <div className="product-detail-container">
-        <img
-          className="product-detail-img"
-          src="./images/productDetail/sample.png"
-          alt="음식사진입니다."
-        />
+        <img className="product-detail-img" src={food_image} alt={food} />
         <section className="product-detail-summary">
-          <div className="product-region">한국 / 아시아</div>
-          <h1 className="font-layout kor-name">땅콩소스로 숙성된 돼지갈비</h1>
-          <h1 className="font-layout eng-name">
-            Pork ribs marinated in peanut sauce
-          </h1>
-          <div className="font-layout product-price">32,000원</div>
-          <ProductSummary />
-          <div className="product-choice">
-            <span>상품선택</span>
-            <span className="product-calculation-box">
-              <div className="product-choice-title">
-                땅콩소스로 숙성된 돼지갈비
-              </div>
-              <ProductCalculation />
-            </span>
+          <div className="product-region">
+            {country} / {continent}
           </div>
-          <div className="product-total-price">
-            <span>총 상품금액: </span>
-            <span className="total-price-number">12,000원</span>
-          </div>
-          <div className="button-box">
-            <img
-              className="recommand-button"
-              src="./images/icon/heart.svg"
-              alt="비어있는 하트 사진입니다.."
-            />
-            <button className="cart-add-button">장바구니 담기</button>
-          </div>
+          <h1 className="font-layout kor-name">{food}</h1>
+          <h1 className="font-layout eng-name">{eng_food}</h1>
+          <p className="font-layout product-price">
+            {Math.floor(price).toLocaleString()}원
+          </p>
+          <p className="description">{description}</p>
+          <ProductSummary
+            allergy={allergy}
+            eng_allergy={eng_allergy}
+            spice_level={spice_level}
+            meat={meat}
+            eng_meat={eng_meat}
+            vegetarian={vegetarian}
+            description={description}
+          />
+          <ProductCalculation price={price} id={id} food={food} />
         </section>
       </div>
-      <ProductImformation />
+      <ProductImformation review={review} />
     </div>
   );
 };
