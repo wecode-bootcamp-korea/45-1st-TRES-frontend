@@ -153,7 +153,6 @@ const Login = () => {
         agreementCheckbox.includes(2)
       : ``;
 
-  console.log(API.COUNTRIES_API);
   const emailVerification = e => {
     e.preventDefault();
     setIsSending(true);
