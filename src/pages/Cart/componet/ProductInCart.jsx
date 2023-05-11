@@ -5,11 +5,13 @@ let selectList = [];
 const ProductInCart = props => {
   const { id, checkItems, cartList, checkSingle, setProductPrice, quantity } =
     props;
-  const [{ title, titleEng, country, continent, price }] = cartList;
+  const [{ food, engFood, country, continent, orderPrice, food_image }] =
+    cartList;
   const [count, setCount] = useState(quantity);
   const [isDisabled, setIsDisabled] = useState(true);
   const [quantityChange, setQuantityChange] = useState(quantity);
-  const totalPrice = price * count;
+  const totalPrice = orderPrice * count;
+  const token = localStorage.getItem('TOKEN');
 
   const handleChange = e => {
     setQuantityChange(e.target.value);
@@ -17,34 +19,38 @@ const ProductInCart = props => {
   };
 
   const handleCount = id => {
-    //   fetch('변경된 수량 데이터 전달 ', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json;charset=utf-8',
-    //     },
-    //     body: JSON.stringify({
-    //       foodId: , id
-    //       quantity: quantityChange,
-    //       content: '음식id, 수량',
-    //     }),
-    //   });
+    fetch('http://10.58.52.249:3000/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        foodId: id,
+        quantity: quantityChange,
+      }),
+    });
     //제거----
-    setCount(quantityChange);
+    // setCount(quantityChange);
     //제거----
     setIsDisabled(true);
+    console.log(quantityChange);
   };
 
   const selectDelete = id => {
-    // fetch('선택한 삭제하려는 데이터 ', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     foodId: id,
-    //     content: '음식id',
-    //   }),
-    // });
+    if (checkItems.includes(id)) {
+      fetch('http://10.58.52.249:3000/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+        body: JSON.stringify({
+          foodId: id,
+        }),
+      });
+    }
+    console.log(id);
   };
 
   useEffect(() => {
@@ -80,12 +86,12 @@ const ProductInCart = props => {
         />
         <img
           className="product-img"
-          src="/images/cart/sample.png"
+          src={food_image}
           alt="장바구니에 담은 이미지"
         />
         <div className="product-information-middle">
-          <div className="product-name">{title}</div>
-          <div className="product-name-eng">{titleEng}</div>
+          <div className="product-name">{food}</div>
+          <div className="product-name-eng">{engFood}</div>
           <div className="product-country">{`${country}/${continent}`}</div>
           <span className="quantity">수량 : </span>
           <span className="count-button">

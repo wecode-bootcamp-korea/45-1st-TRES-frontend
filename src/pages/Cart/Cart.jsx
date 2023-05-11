@@ -14,7 +14,9 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const checkAll = checked => {
-    checked ? setCheckItems(cartList.map(item => item.id)) : setCheckItems([]);
+    checked
+      ? setCheckItems(cartList?.map(item => item.orderItemsId))
+      : setCheckItems([]);
   };
 
   const checkSingle = (checked, id) => {
@@ -24,16 +26,18 @@ const Cart = () => {
   };
 
   const deleteSelectItem = () => {
-    //   fetch('선택한 삭제하려는 데이터 ', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json;charset=utf-8',
-    //     },
-    //     body: JSON.stringify({
-    //       foodId: checkItems,
-    //       content: '음식id',
-    //     }),
-    //   });
+    console.log(checkItems);
+
+    fetch('http://10.58.52.249:3000/orders', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        foodId: checkItems,
+      }),
+    });
   };
 
   const goToPaymentPage = () => {
@@ -41,37 +45,40 @@ const Cart = () => {
     //     method: 'POST',
     //     headers: {
     //       'Content-Type': 'application/json;charset=utf-8',
+    //       authorization: token,
     //     },
     //     body: JSON.stringify({
     //       foodId: checkItems,
-    //       content: '음식id',
     //     }),
     //   });
     navigate('/payment');
   };
-  // const token = localStorage.getItem('TOKEN');
 
-  // useEffect(() => {
-  //   fetch('장바구니페이지 데이터 받기', {
-  //     method: 'GET',
-  //     headers: {
-  //       authorization: token,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setCartList(data);
-  //     });
-  //---제거----
+  const token = localStorage.getItem('TOKEN');
+
   useEffect(() => {
-    fetch('/data/cartData.json', {
+    fetch('http://10.58.52.249:3000/orders/cart', {
       method: 'GET',
+      headers: {
+        authorization: token,
+      },
     })
       .then(res => res.json())
       .then(data => {
         setCartList(data);
       });
-    //--제거---
+    //---제거----
+    // fetch('/data/cartData.json', {
+    //   method: 'GET',
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     setCartList(data);
+    //   });
+    //---제거----
+  }, [token]);
+
+  useEffect(() => {
     fetch('/data/recommandData.json', {
       method: 'GET',
     })
@@ -80,7 +87,7 @@ const Cart = () => {
         setRecommandList(data);
       });
   }, []);
-  //삭제 수량 변경 등 데이터 업데이트 되면 의존성 배열 필요?
+
   return (
     <div className="cart">
       <div className="cart-container">
@@ -104,16 +111,16 @@ const Cart = () => {
             </button>
           </div>
           <ul>
-            {cartList.map(item => (
+            {cartList?.map(item => (
               <ProductInCart
-                key={item.id}
-                id={item.id}
+                key={item.orderItemsId}
+                id={item.orderItemsId}
                 checkItems={checkItems}
                 checkSingle={checkSingle}
                 cartList={cartList}
                 setProductPrice={setProductPrice}
                 productPrice={productPrice}
-                quantity={item.quantity}
+                quantity={item.orderCount}
               />
             ))}
           </ul>
@@ -145,6 +152,10 @@ const Cart = () => {
           {recommandList.map(item => (
             <ProductRecommendation
               key={item.id}
+              title={item.title}
+              titleEng={item.titleEng}
+              price={item.price}
+              foodImg={item.foodImg}
               recommandList={recommandList}
             />
           ))}

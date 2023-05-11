@@ -1,13 +1,12 @@
 import React from 'react';
 import './ProductRecommendation.scss';
 
-const ProductRecommendation = ({ recommandList }) => {
-  const [{ title, titleEng, price }] = recommandList;
+const ProductRecommendation = ({ title, titleEng, price, foodImg }) => {
   return (
     <li className="product-recommendation">
       <img
         className="product-recommendation-img"
-        src="/images/cart/sample.png"
+        src={foodImg}
         alt="추천상품을 나타내는 이미지."
       />
       <div className="recommendation-info">{title}</div>
