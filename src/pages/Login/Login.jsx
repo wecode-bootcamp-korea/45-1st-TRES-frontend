@@ -10,7 +10,6 @@ import useGetFetch from '../../hooks/useGetFetch';
 import './Login.scss';
 
 const Login = () => {
-  // 경로
   const navigate = useNavigate();
   const location = useLocation();
   const currentPage =
@@ -20,7 +19,11 @@ const Login = () => {
       ? LOGIN_TEXT
       : JOIN_TEXT;
 
-  // 필수 입력
+  const [emailRegex, setEmailRegex] = useState(``);
+  const [passwordRegex, setPasswordRegex] = useState(``);
+  const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
+  const [phoneNumberRegex, setPhoneNumberRegex] = useState(``);
+
   const [passwordRequired, setPasswordRequired] = useState(``);
   const [passwordEqualRequired, setPasswordEqualRequired] = useState(``);
   const [firstNameRequired, setFirstNameRequired] = useState(``);
@@ -31,27 +34,16 @@ const Login = () => {
   const [isShowCountriesList, setIsShowCountriesList] = useState(false);
   const countries = useGetFetch(`${COUNTRIES_API}`);
 
-  // 이메일 유무 확인
-  const emailVerification = e => {
-    e.preventDefault();
-    fetch(`${EMAIL_VERIFICATION_API}`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: inputValues.email,
-      }),
-    })
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error('통신실패!');
-      })
-      .catch(err => alert(err))
-      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
+  const [checkCountries, setCheckCountries] = useState([]);
+  const checkCountry = (checked, country) =>
+    checked
+      ? checkCountries.length < 3 &&
+        setCheckCountries(prev => [...prev, country])
+      : setCheckCountries(checkCountries.filter(item => item !== country));
+  const showCountriesList = () => {
+    setIsShowCountriesList(prev => !prev);
   };
 
-  // 동의 체크
   const [agreementCheckbox, setAgreementCheckbox] = useState([]);
   const checkAll = checked =>
     checked
@@ -62,7 +54,6 @@ const Login = () => {
       ? setAgreementCheckbox(prev => [...prev, id])
       : setAgreementCheckbox(agreementCheckbox.filter(item => item !== id));
 
-  // 변수
   const [inputValues, setInputValues] = useState({
     email: ``,
     password: ``,
@@ -77,11 +68,6 @@ const Login = () => {
   const [gender, setGender] = useState(``);
   const inputGender = e => setGender(e.target.value);
 
-  // 유효성 검사
-  const [emailRegex, setEmailRegex] = useState(``);
-  const [passwordRegex, setPasswordRegex] = useState(``);
-  const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
-  const [phoneNumberRegex, setPhoneNumberRegex] = useState(``);
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
@@ -145,7 +131,6 @@ const Login = () => {
     }
   };
 
-  // 버튼 활성화
   const isOpenButton =
     currentPage.url === EMAIL_VERIFICATION_TEXT.url
       ? emailRegex === true
@@ -164,18 +149,25 @@ const Login = () => {
         agreementCheckbox.includes(2)
       : ``;
 
-  // 국가 선택
-  const [checkCountries, setCheckCountries] = useState([]);
-  const checkCountry = (checked, country) =>
-    checked
-      ? checkCountries.length < 3 &&
-        setCheckCountries(prev => [...prev, country])
-      : setCheckCountries(checkCountries.filter(item => item !== country));
-  const showCountriesList = () => {
-    setIsShowCountriesList(prev => !prev);
+  const emailVerification = e => {
+    e.preventDefault();
+    fetch(`${EMAIL_VERIFICATION_API}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: inputValues.email,
+      }),
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('통신실패!');
+      })
+      .catch(err => alert(err))
+      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
   };
 
-  // 로그인
   const login = e => {
     e.preventDefault();
     fetch(`${LOGIN_API}`, {
@@ -199,7 +191,6 @@ const Login = () => {
       });
   };
 
-  // 회원가입
   const join = e => {
     e.preventDefault();
     fetch(`${JOIN_API}`, {
@@ -464,6 +455,7 @@ const Login = () => {
               </div>
             </>
           )}
+
           <button
             className={`${
               isOpenButton ? `open-button-color` : `close-button-color`
@@ -481,7 +473,7 @@ const Login = () => {
 const EMAIL_VERIFICATION_TEXT = {
   url: `/email-verification`,
   title: `가입 또는 로그인을 위해 이메일을 입력하세요.`,
-  button: `계속`,
+  button: `계 속`,
 };
 
 const LOGIN_TEXT = {
