@@ -1,21 +1,60 @@
-@import '../../../../styles/variables';
+@import '/src/styles/variables';
+@import '/src/styles/color';
 
-.category-list {
+.category-box {
   display: flex;
-  overflow: hidden;
+  position: relative;
+  align-items: center;
+  justify-content: center;
 
-  .category-item {
-    padding: 12px 20px;
-    font-weight: 700;
-    @include body-2;
+  .category-list {
+    display: flex;
+    height: 65px;
 
-    &:hover {
-      border-bottom: 1px solid black;
-      cursor: pointer;
+    .category-item {
+      @include flexCenter;
+      padding: 0 20px;
+      font-weight: 700;
+      line-height: 100%;
+      @include body-1;
+
+      &:hover,
+      &::after {
+        content: '';
+        border-bottom: 2px solid $main-dark;
+        cursor: pointer;
+      }
     }
-    &::after {
-      content: '';
-      border-bottom: 1px solid black;
+  }
+
+  .sub-category {
+    position: absolute;
+    top: 65px;
+    width: 100vw;
+    background-color: $main-white;
+
+    .sub-category-box {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+      justify-content: space-between;
+      height: 220px;
+      padding: 40px 0;
+
+      .sub-category-link {
+        display: flex;
+        justify-content: center;
+        width: 100px;
+        color: $main-dark;
+        line-height: 40px;
+        @include body-2;
+
+        &:hover {
+          color: $main-blue;
+        }
+      }
     }
   }
 }

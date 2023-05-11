@@ -5,9 +5,8 @@
 }
 
 a {
-  &:visited &:hover &:focus &:active {
-    text-decoration: none;
-  }
+  text-decoration-line: none;
+  color: initial;
 }
 
 body {
