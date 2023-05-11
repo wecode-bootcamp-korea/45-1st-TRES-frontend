@@ -11,6 +11,7 @@ const Cart = () => {
   const [recommandList, setRecommandList] = useState([]);
   const [productPrice, setProductPrice] = useState(0);
   const [checkItems, setCheckItems] = useState([]);
+  const [test, setTest] = useState(true);
   const navigate = useNavigate();
 
   const checkAll = checked => {
@@ -86,6 +87,14 @@ const Cart = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (productPrice > 0) {
+      setTest(false);
+    } else {
+      setTest(true);
+    }
+  }, [productPrice]);
+
   return (
     <div className="cart">
       <div className="cart-container">
@@ -137,7 +146,11 @@ const Cart = () => {
             <span>총 결제 금액</span>
             <span>{productPrice + DELIVERY_FEE}원</span>
           </div>
-          <button className="order-button" onClick={goToPaymentPage}>
+          <button
+            className="order-button"
+            onClick={goToPaymentPage}
+            disabled={test}
+          >
             주문결제
           </button>
         </section>
