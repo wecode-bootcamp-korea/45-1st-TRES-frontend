@@ -6,6 +6,7 @@ import './FilterDetail.scss';
 const FilterDetail = ({ name, option, url, setUrl }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+
   const handleSpiceLevel = e => {
     searchParams.set('spiceLevel', e.target.value);
     setSearchParams(searchParams);
@@ -41,6 +42,7 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
               name="volume"
               min="0"
               max="3"
+              defaultValue={0}
               onClick={handleSpiceLevel}
             />
             <label htmlFor="volume" />
