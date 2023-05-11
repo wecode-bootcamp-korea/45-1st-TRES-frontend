@@ -22,14 +22,12 @@ const Payment = () => {
   };
   const deliveryValue = Object.values(deliveryValueObj);
   const deliveryValueCheck = !deliveryValue.includes('');
-  const possessionPoint = paymentProduct[0] && paymentProduct[0].point;
-  const foodPriceSum =
-    paymentProduct[0] &&
-    paymentProduct[0].food.reduce(
-      (accumulator, currentValue) =>
-        accumulator + currentValue.price * currentValue.quantity,
-      0
-    );
+  const possessionPoint = paymentProduct[0]?.points;
+  const foodPriceSum = paymentProduct[0]?.food.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue.orderPrice * currentValue.quantity,
+    0
+  );
   const paymentPrice =
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? 0
@@ -52,7 +50,7 @@ const Payment = () => {
   };
 
   const showOrderComplete = () => {
-    fetch(`${PAYMENT_API}`, {
+    fetch(PAYMENT_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -75,17 +73,23 @@ const Payment = () => {
 
   const token = localStorage.getItem('TOKEN');
   useEffect(() => {
-    fetch('/data/paymentData.json', {
-      method: 'GET',
+    fetch(`${PAYMENT_API}/checkout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        foodId: [24, 25],
+      }),
     })
       .then(res => res.json())
       .then(data => {
         setPaymentProduct(data);
         deliveryDataIni.current = data;
       });
-  }, []);
+  }, [token]);
 
-  if (!possessionPoint) return '';
   return (
     <div className="payment">
       <h1 className="payment-title">결제하기</h1>
@@ -101,23 +105,23 @@ const Payment = () => {
             <h2 className="payment-progress-title">결제</h2>
             <div className="payment-calculate">
               <span>보유 포인트</span>
-              <span>{possessionPoint.toLocaleString()}원</span>
+              <span>{Math.floor(possessionPoint).toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>상품 금액</span>
-              <span>{foodPriceSum.toLocaleString()}원</span>
+              <span>{Math.floor(foodPriceSum).toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>배송비</span>
-              <span>{DELIVERY_FEE.toLocaleString()}원</span>
+              <span>{Math.floor(DELIVERY_FEE).toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>총 결제 금액</span>
-              <span>{paymentPrice.toLocaleString()}원</span>
+              <span>{Math.floor(paymentPrice).toLocaleString()}원</span>
             </div>
             <div className="payment-calculate">
               <span>남은 포인트</span>
-              <span>{remainPoint.toLocaleString()}원</span>
+              <span>{Math.floor(remainPoint).toLocaleString()}원</span>
             </div>
           </section>
           <section className="payment-complete">
@@ -144,6 +148,7 @@ const Payment = () => {
                     setModalOpen={setModalOpen}
                     foodList={paymentProduct[0].food}
                     orderNumber={paymentProduct[0].orderNumber}
+                    firstFood={paymentProduct[0].food[0].foodKrName}
                   />
                 )}
               </div>
@@ -153,8 +158,8 @@ const Payment = () => {
         <section className="payment-list">
           <div className="payment-list-title">구매 목록</div>
           <ul>
-            {paymentProduct[0].food.map(item => (
-              <PaymentProduct key={item.foodId} item={item} />
+            {paymentProduct[0]?.food.map(item => (
+              <PaymentProduct key={item.id} item={item} />
             ))}
           </ul>
         </section>

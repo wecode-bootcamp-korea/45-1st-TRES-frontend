@@ -80,7 +80,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="성"
           name="lastName"
-          value={paymentProduct[0].lastName}
+          value={paymentProduct[0] ? paymentProduct[0].lastName : ''}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -89,7 +89,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="이름"
           name="firstName"
-          value={paymentProduct[0].firstName}
+          value={paymentProduct[0] ? paymentProduct[0].firstName : ''}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -97,7 +97,7 @@ const ShippingAddress = ({
       <div className="hint-name">
         <span
           className={
-            paymentProduct[0].lastName === ''
+            paymentProduct[0]?.lastName === ''
               ? 'hint-full-name hint-last-name'
               : 'hint-full-name hint-last-name visible'
           }
@@ -106,7 +106,7 @@ const ShippingAddress = ({
         </span>
         <span
           className={
-            paymentProduct[0].firstName === ''
+            paymentProduct[0]?.firstName === ''
               ? 'hint-full-name'
               : 'hint-full-name visible'
           }
@@ -119,13 +119,13 @@ const ShippingAddress = ({
         type="text"
         placeholder="도로명, 건물명 또는 지번으로 검색 예) 테헤란로 152, 혹은 역삼동 737"
         name="address"
-        value={paymentProduct[0].address}
+        value={paymentProduct[0] ? paymentProduct[0].address : ''}
         onChange={handleAddressInput}
         disabled={isDisabled}
       />
       <div
         className={
-          paymentProduct[0].address === ''
+          paymentProduct[0]?.address === ''
             ? 'hint-address'
             : 'hint-address visible'
         }
@@ -138,7 +138,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="전화번호"
           name="phoneNumber"
-          value={paymentProduct[0].phoneNumber}
+          value={paymentProduct[0] ? paymentProduct[0].phoneNumber : ''}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -147,7 +147,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="이메일"
           name="email"
-          value={paymentProduct[0].email}
+          value={paymentProduct[0] ? paymentProduct[0].email : ''}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -155,7 +155,7 @@ const ShippingAddress = ({
       <div className="hint-information">
         <span
           className={
-            paymentProduct[0].phoneNumber === ''
+            paymentProduct[0]?.phoneNumber === ''
               ? 'hint-info hint-phone-number'
               : 'hint-info hint-phone-number visible'
           }
@@ -164,7 +164,7 @@ const ShippingAddress = ({
         </span>
         <span
           className={
-            paymentProduct[0].email === '' ? 'hint-info' : 'hint-info visible'
+            paymentProduct[0]?.email === '' ? 'hint-info' : 'hint-info visible'
           }
         >
           유효한 이메일 주소를 입력하세요.
