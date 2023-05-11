@@ -35,5 +35,9 @@
     border-radius: 30px;
     background-color: $main-dark;
     color: $main-white;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
   }
 }
