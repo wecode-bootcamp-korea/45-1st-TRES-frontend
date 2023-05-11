@@ -171,8 +171,8 @@ const Login = () => {
         email: inputValues.email,
       }),
     })
+      .then(() => setIsLoading(false))
       .then(res => {
-        setIsLoading(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
@@ -194,8 +194,8 @@ const Login = () => {
         password: inputValues.password,
       }),
     })
+      .then(() => setIsLoading(false))
       .then(res => {
-        setIsLoading(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
@@ -226,8 +226,8 @@ const Login = () => {
         address: inputValues.address,
       }),
     })
+      .then(() => setIsLoading(false))
       .then(res => {
-        setIsLoading(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
