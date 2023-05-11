@@ -10,6 +10,10 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
     searchParams.set('spiceLevel', e.target.value);
     setSearchParams(searchParams);
   };
+  const handleReset = () => {
+    searchParams.delete('spiceLevel');
+    setSearchParams(searchParams);
+  };
   return (
     <div className="filter-detail">
       <div className="filter-header">
@@ -40,6 +44,11 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
               onClick={handleSpiceLevel}
             />
             <label htmlFor="volume" />
+            <p className="filter-reset">
+              <span className="reset-button" onClick={handleReset}>
+                reset
+              </span>
+            </p>
           </div>
         ))}
     </div>
