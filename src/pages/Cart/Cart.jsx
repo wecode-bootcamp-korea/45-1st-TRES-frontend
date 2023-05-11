@@ -26,8 +26,6 @@ const Cart = () => {
   };
 
   const deleteSelectItem = () => {
-    console.log(checkItems);
-
     fetch('http://10.58.52.249:3000/orders', {
       method: 'DELETE',
       headers: {

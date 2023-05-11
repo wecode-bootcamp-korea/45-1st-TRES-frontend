@@ -7,10 +7,10 @@ const ProductInCart = props => {
     props;
   const [{ food, engFood, country, continent, orderPrice, food_image }] =
     cartList;
-  const [count, setCount] = useState(quantity);
+  // const [count, setCount] = useState(quantity);
   const [isDisabled, setIsDisabled] = useState(true);
   const [quantityChange, setQuantityChange] = useState(quantity);
-  const totalPrice = orderPrice * count;
+  const totalPrice = orderPrice * quantityChange;
   const token = localStorage.getItem('TOKEN');
 
   const handleChange = e => {
@@ -34,7 +34,6 @@ const ProductInCart = props => {
     // setCount(quantityChange);
     //제거----
     setIsDisabled(true);
-    console.log(quantityChange);
   };
 
   const selectDelete = id => {
@@ -50,7 +49,6 @@ const ProductInCart = props => {
         }),
       });
     }
-    console.log(id);
   };
 
   useEffect(() => {
@@ -73,7 +71,7 @@ const ProductInCart = props => {
       0
     );
     setProductPrice(priceSum);
-  }, [count, checkItems]);
+  }, [quantityChange, checkItems]);
 
   return (
     <li className="product-in-cart">
