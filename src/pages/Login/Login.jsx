@@ -24,7 +24,7 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const [emailRegex, setEmailRegex] = useState(``);
   const [passwordRegex, setPasswordRegex] = useState(``);
@@ -161,7 +161,7 @@ const Login = () => {
 
   const emailVerification = e => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSending(true);
     fetch(`${EMAIL_VERIFICATION_API}`, {
       method: 'post',
       headers: {
@@ -171,7 +171,7 @@ const Login = () => {
         email: inputValues.email,
       }),
     })
-      .then(() => setIsLoading(false))
+      .then(() => setIsSending(false))
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('통신실패!');
@@ -183,7 +183,7 @@ const Login = () => {
   };
 
   const login = () => {
-    setIsLoading(true);
+    setIsSending(true);
     fetch(`${LOGIN_API}`, {
       method: 'post',
       headers: {
@@ -194,7 +194,7 @@ const Login = () => {
         password: inputValues.password,
       }),
     })
-      .then(() => setIsLoading(false))
+      .then(() => setIsSending(false))
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('통신실패!');
@@ -208,7 +208,7 @@ const Login = () => {
 
   const join = e => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSending(true);
     fetch(`${JOIN_API}`, {
       method: 'POST',
       headers: {
@@ -226,7 +226,7 @@ const Login = () => {
         address: inputValues.address,
       }),
     })
-      .then(() => setIsLoading(false))
+      .then(() => setIsSending(false))
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('통신실패!');
@@ -475,9 +475,9 @@ const Login = () => {
             className={`${
               isOpenButton ? `open-button-color` : `close-button-color`
             } submit-button`}
-            disabled={!isOpenButton || isLoading}
+            disabled={!isOpenButton || isSending}
           >
-            {isLoading ? `${currentPage.sendingText} 중..` : currentPage.button}
+            {isSending ? `${currentPage.sendingText} 중..` : currentPage.button}
           </button>
         </form>
       </div>
