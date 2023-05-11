@@ -11,7 +11,7 @@ const Cart = () => {
   const [recommandList, setRecommandList] = useState([]);
   const [productPrice, setProductPrice] = useState(0);
   const [checkItems, setCheckItems] = useState([]);
-  const [test, setTest] = useState(true);
+  const [linkToPayment, setLinkToPayment] = useState(true);
   const navigate = useNavigate();
 
   const checkAll = checked => {
@@ -27,15 +27,12 @@ const Cart = () => {
   };
 
   const deleteSelectItem = () => {
-    fetch('http://10.58.52.249:3000/orders', {
+    fetch(`http://10.58.52.249:3000/orders?${checkItems.join()}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: JSON.stringify({
-        foodId: checkItems,
-      }),
     });
   };
 
@@ -89,9 +86,9 @@ const Cart = () => {
 
   useEffect(() => {
     if (productPrice > 0) {
-      setTest(false);
+      setLinkToPayment(false);
     } else {
-      setTest(true);
+      setLinkToPayment(true);
     }
   }, [productPrice]);
 
@@ -136,20 +133,20 @@ const Cart = () => {
           <h1 className="order-history-title">주문 내역</h1>
           <div className="price-info order-price">
             <span>상품 금액</span>
-            <span>{productPrice}원</span>
+            <span>{productPrice.toLocaleString()}원</span>
           </div>
           <div className="price-info delivery-price">
             <span>배송비</span>
-            <span>{DELIVERY_FEE}원</span>
+            <span>{DELIVERY_FEE.toLocaleString()}원</span>
           </div>
           <div className="price-info total-price">
             <span>총 결제 금액</span>
-            <span>{productPrice + DELIVERY_FEE}원</span>
+            <span>{(productPrice + DELIVERY_FEE).toLocaleString()}원</span>
           </div>
           <button
             className="order-button"
             onClick={goToPaymentPage}
-            disabled={test}
+            disabled={linkToPayment}
           >
             주문결제
           </button>

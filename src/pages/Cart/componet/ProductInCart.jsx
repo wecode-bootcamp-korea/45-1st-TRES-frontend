@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ProductInCart.scss';
 
 let selectList = [];
@@ -12,14 +12,16 @@ const ProductInCart = props => {
   const [quantityChange, setQuantityChange] = useState(quantity);
   const totalPrice = orderPrice * quantityChange;
   const token = localStorage.getItem('TOKEN');
-
+  const test = useRef();
   const handleChange = e => {
-    setQuantityChange(e.target.value);
+    // setQuantityChange(e.target.value);
+    test.current.value = e.target.value;
     setIsDisabled(false);
+    console.log(test.current.value);
   };
 
   const handleCount = id => {
-    fetch('http://10.58.52.249:3000/orders', {
+    fetch('http://10.58.52.249:3000/orders?', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -30,6 +32,7 @@ const ProductInCart = props => {
         quantity: quantityChange,
       }),
     });
+    setQuantityChange(test.current.value);
     //제거----
     // setCount(quantityChange);
     //제거----
@@ -38,15 +41,12 @@ const ProductInCart = props => {
 
   const selectDelete = id => {
     if (checkItems.includes(id)) {
-      fetch('http://10.58.52.249:3000/orders', {
-        method: 'POST',
+      fetch(`http://10.58.52.249:3000/orders?${id}`, {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: token,
         },
-        body: JSON.stringify({
-          foodId: id,
-        }),
       });
     }
   };
@@ -97,6 +97,7 @@ const ProductInCart = props => {
               className="count-change-button"
               onChange={e => handleChange(e)}
               defaultValue={quantity}
+              ref={test}
             >
               {QUANTITY_SELECT.map(item => (
                 <option key={item.id} value={item.value}>
@@ -114,7 +115,7 @@ const ProductInCart = props => {
           </span>
         </div>
         <div className="product-information-end">
-          <div className="product-price">{totalPrice}원</div>
+          <div className="product-price">{totalPrice.toLocaleString()}원</div>
           <button className="delete-button-individual">
             <img
               className="delete-img-individual"
