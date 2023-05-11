@@ -40,12 +40,14 @@ const Login = () => {
   const [isShowCountriesList, setIsShowCountriesList] = useState(false);
   const countries = useGetFetch(`${COUNTRIES_API}`);
 
-  const [checkCountries, setCheckCountries] = useState([]);
+  const [countriesCheckbox, setCountriesCheckbox] = useState([]);
   const checkCountry = (checked, country) =>
     checked
-      ? checkCountries.length < 3 &&
-        setCheckCountries(prev => [...prev, country])
-      : setCheckCountries(checkCountries.filter(item => item !== country));
+      ? countriesCheckbox.length < 3 &&
+        setCountriesCheckbox(prev => [...prev, country])
+      : setCountriesCheckbox(
+          countriesCheckbox.filter(item => item !== country)
+        );
   const showCountriesList = () => {
     setIsShowCountriesList(prev => !prev);
   };
@@ -212,7 +214,7 @@ const Login = () => {
         gender: gender,
         phoneNumber: inputValues.phoneNumber,
         birth: inputValues.birth,
-        countries: checkCountries,
+        countries: countriesCheckbox,
         address: inputValues.address,
       }),
     })
@@ -359,10 +361,10 @@ const Login = () => {
                   value="선호 국가 선택"
                   onClick={showCountriesList}
                 />
-                {checkCountries.sort().map((item, i) => (
+                {countriesCheckbox.sort().map((item, i) => (
                   <span key={i}>
                     {item}
-                    {checkCountries.length - 1 !== i && `, `}
+                    {countriesCheckbox.length - 1 !== i && `, `}
                   </span>
                 ))}
               </div>
@@ -381,14 +383,14 @@ const Login = () => {
                           onChange={e =>
                             checkCountry(e.target.checked, item.country)
                           }
-                          checked={checkCountries.includes(item.country)}
+                          checked={countriesCheckbox.includes(item.country)}
                         />
                         <span>{item.country}</span>
                       </div>
                     ))}
                   </div>
                   <div className="close-modal-button-box">
-                    <span>최대 {checkCountries.length}/3개</span>
+                    <span>최대 {countriesCheckbox.length}/3개</span>
                     <input
                       type="button"
                       value="확인"
