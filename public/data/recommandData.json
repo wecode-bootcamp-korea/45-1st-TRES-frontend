@@ -1,34 +1,74 @@
 [
   {
     "id": 1,
-    "title": "일본의 돈카츠 라멘",
-    "titleEng": "Japanese tonkatsu ramen",
-    "country": "일본",
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
     "continent": "아시아",
-    "price": 15000
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 11111
   },
   {
     "id": 2,
-    "title": "일본의 돈카츠 라멘",
-    "titleEng": "Japanese tonkatsu ramen",
-    "country": "일본",
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
     "continent": "아시아",
-    "price": 15000
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 22222
   },
   {
     "id": 3,
-    "title": "일본의 돈카츠 라멘",
-    "titleEng": "Japanese tonkatsu ramen",
-    "country": "일본",
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
     "continent": "아시아",
-    "price": 15000
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 33333
   },
   {
     "id": 4,
-    "title": "일본의 돈카츠 라멘",
-    "titleEng": "Japanese tonkatsu ramen",
-    "country": "일본",
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
     "continent": "아시아",
-    "price": 15000
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 44444
+  },
+  {
+    "id": 5,
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
+    "continent": "아시아",
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 55555
+  },
+  {
+    "id": 6,
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
+    "continent": "아시아",
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 66666
+  },
+  {
+    "id": 7,
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
+    "continent": "아시아",
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 77777
+  },
+  {
+    "id": 8,
+    "title": "워워크의 8층 커피",
+    "titleEng": "Warwork's 8th Floor Coffee",
+    "country": "한국",
+    "continent": "아시아",
+    "foodImg": "/images/productDetail/sample.png",
+    "price": 88888
   }
 ]

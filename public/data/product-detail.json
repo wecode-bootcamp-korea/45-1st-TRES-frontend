@@ -1,0 +1,20 @@
+{
+  "id": 3,
+  "food": "베이에나",
+  "eng_food": "Beyenatu",
+  "price": "22000.00",
+  "vegetarian": "yes",
+  "continent": "Africa",
+  "eng_continent": "아프리카",
+  "country": "에티오피아",
+  "eng_country": "Ethiopia",
+  "spice_level": 2,
+  "description": "베이에나투는 여러 가지 다른 요리로 구성된 채식주의자용 접시입니다. 보통 인제라 (신토불이 평면 빵), 렌틸콩, 분할된 완두콩, 병아리콩, 녹색 채소 및 양배추가 포함됩니다. 맛은 미디엄하고 고소합니다.",
+  "eng_description": "Beyenatu is a vegetarian platter consisting of several different dishes. It typically includes injera (a sourdough flatbread), lentils, split peas, chickpeas, greens, and cabbage. The flavors are mild and savory.",
+  "allergy": "계란",
+  "eng_allergy": "Egg",
+  "meat": "양고기",
+  "eng_meat": "a",
+  "food_image": "afdas",
+  "review": "JMT입니다. 완전 강추에요. 이렇게 맛있는 베이에나는 태어나서 처음 먹어봐요!! 사실 베이에나를 처음 먹어봐요 :)"
+}

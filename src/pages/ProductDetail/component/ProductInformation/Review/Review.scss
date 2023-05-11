@@ -1,0 +1,40 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.review-container {
+  padding-top: 20px;
+  .review-title-section {
+    @include head-2;
+    width: 1020px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid $main-dark;
+  }
+
+  .review-main-section {
+    display: flex;
+    padding-top: 24px;
+
+    .review-user-box {
+      .review-user-name {
+        width: 150px;
+        @include body-2;
+      }
+    }
+
+    .review-text-box {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      width: 850px;
+
+      .review-product {
+        @include body-2;
+        color: $main-grey;
+      }
+
+      .review-text {
+        @include body-2;
+      }
+    }
+  }
+}

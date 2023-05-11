@@ -1,0 +1,59 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.product-calculation {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding-top: 15px;
+
+  .product-choice {
+    display: flex;
+
+    .product-choice-text {
+      width: 60px;
+      margin-right: 40px;
+      @include body-2;
+    }
+
+    .calculation-box {
+      width: 70%;
+      padding: 15px;
+      border: 1px solid #5f5f5f;
+      .product-choice-food {
+        @include body-2;
+      }
+
+      .count-box {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+
+        .product-count {
+          .count-btn-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100px;
+            height: 40px;
+            border: 1px solid $main-grey;
+            @include body-1;
+
+            .count-btn {
+              border: none;
+              background-color: transparent;
+              @include head-3;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .count-price {
+          @include body-2;
+        }
+      }
+    }
+  }
+}

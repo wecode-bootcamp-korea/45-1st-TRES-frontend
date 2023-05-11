@@ -5,7 +5,9 @@
   .product-detail-container {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
     gap: 80px;
+
     .product-region {
       color: $main-grey;
     }
@@ -14,59 +16,45 @@
       height: 665px;
     }
     .product-detail-summary {
+      position: relative;
       @include body-2;
-      .font-layout {
-        @include head-3;
+
+      .language-switch-section {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .switch-button {
+          border: 0;
+          background-color: transparent;
+          .switch-img {
+            width: 25px;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          &:active {
+            scale: 0.9;
+          }
+        }
       }
+
+      .font-layout {
+        @include head-2;
+        width: 400px;
+      }
+
       .product-price {
         margin-bottom: 5px;
         padding: 30px 0;
-        border-bottom: 1px solid $main-grey;
       }
-      .product-choice {
-        display: flex;
-        padding: 15px 0;
-        border-bottom: 1px solid $main-grey;
-        color: rgb(17, 17, 17);
-        gap: 45px;
-        span .product-choice-title {
-          padding-bottom: 10px;
-        }
-        .product-calculation-box {
-          padding: 10px;
-          border: 1px solid $main-grey;
-        }
-      }
-      .product-total-price {
-        display: flex;
-        justify-content: end;
-        padding-top: 50px;
-        .total-price-number {
-          font-size: 30px;
-        }
-      }
-      .button-box {
-        display: flex;
-        padding-top: 20px;
-        .recommand-button {
-          width: 66px;
-          height: 66px;
-          &:hover {
-            opacity: 0.5;
-            cursor: pointer;
-          }
-        }
-        .cart-add-button {
-          width: 333px;
-          height: 66px;
-          border-radius: 30px;
-          background-color: $main-dark;
-          color: $main-white;
-          &:hover {
-            opacity: 0.5;
-            cursor: pointer;
-          }
-        }
+
+      .description {
+        @include body-2;
+        width: 400px;
+        padding-bottom: 10px;
       }
     }
   }
