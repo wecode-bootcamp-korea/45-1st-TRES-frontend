@@ -55,15 +55,15 @@ const Payment = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token,
+        authorization: token,
       },
       body: JSON.stringify({
-        point: remainPoint,
-        firstName: paymentProduct[0].firstName,
-        lastName: paymentProduct[0].lastName,
-        address: paymentProduct[0].address,
-        phoneNumber: paymentProduct[0].phoneNumber,
-        email: paymentProduct[0].email,
+        point: foodPriceSum + DELIVERY_FEE,
+        // firstName: paymentProduct[0].firstName,
+        // lastName: paymentProduct[0].lastName,
+        // address: paymentProduct[0].address,
+        // phoneNumber: paymentProduct[0].phoneNumber,
+        // email: paymentProduct[0].email,
       }),
     }).then(response => {
       if (response.status === 200) {
@@ -71,6 +71,7 @@ const Payment = () => {
       }
     });
   };
+
   const token = localStorage.getItem('TOKEN');
   useEffect(() => {
     fetch('/data/paymentData.json', {

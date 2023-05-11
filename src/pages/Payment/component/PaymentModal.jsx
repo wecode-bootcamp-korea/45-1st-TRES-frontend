@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PaymentModal.scss';
 
 const PaymentModal = ({ setModalOpen, foodList, orderNumber }) => {
+  const navigate = useNavigate();
   const closeModal = () => {
     setModalOpen(false);
+    navigate('/');
   };
 
   return (
