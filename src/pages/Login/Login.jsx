@@ -172,15 +172,13 @@ const Login = () => {
         email: inputValues.email,
       }),
     })
-      .then(() => setIsSending(false))
       .then(res => {
+        setIsSending(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
       .catch(err => alert(err))
-      .then(res => {
-        res.isEmailExist ? navigate(`/login`) : navigate(`/join`);
-      });
+      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
   };
 
   const login = () => {
@@ -195,8 +193,8 @@ const Login = () => {
         password: inputValues.password,
       }),
     })
-      .then(() => setIsSending(false))
       .then(res => {
+        setIsSending(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
@@ -227,8 +225,8 @@ const Login = () => {
         address: inputValues.address,
       }),
     })
-      .then(() => setIsSending(false))
       .then(res => {
+        setIsSending(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
