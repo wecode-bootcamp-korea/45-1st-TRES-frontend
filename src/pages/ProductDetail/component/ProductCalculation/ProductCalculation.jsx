@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddCart from './AddCart';
+import AddCart from '../AddCart/AddCart';
 import './ProductCalculation.scss';
 
 const ProductCalculation = ({ id, price, food }) => {
