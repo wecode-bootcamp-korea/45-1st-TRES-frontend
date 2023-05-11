@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
@@ -8,17 +8,18 @@ const DELIVERY_FEE = 3000;
 
 const Payment = () => {
   const [paymentProduct, setPaymentProduct] = useState([]);
-  const [addressValue, setAddressValue] = useState({
-    firstName: '',
-    lastName: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-  });
   const [isCheckedTerms, setIsCheckedTerms] = useState(false);
   const [isDisabledPayment, setIsDisabledPayment] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const deliveryValue = Object.values(addressValue);
+  const deliveryDataIni = useRef([]);
+  const deliveryValueObj = {
+    firstName: paymentProduct[0]?.firstName,
+    lastName: paymentProduct[0]?.lastName,
+    address: paymentProduct[0]?.address,
+    phoneNumber: paymentProduct[0]?.phoneNumber,
+    email: paymentProduct[0]?.email,
+  };
+  const deliveryValue = Object.values(deliveryValueObj);
   const deliveryValueCheck = !deliveryValue.includes('');
   const possessionPoint = paymentProduct[0] && paymentProduct[0].point;
   const foodPriceSum =
@@ -49,10 +50,28 @@ const Payment = () => {
     }
   };
 
-  const showModal = () => {
-    setModalOpen(true);
+  const showOrderComplete = () => {
+    fetch('http://10.58.52.249:3000/payments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        point: remainPoint,
+        firstName: paymentProduct[0].firstName,
+        lastName: paymentProduct[0].lastName,
+        address: paymentProduct[0].address,
+        phoneNumber: paymentProduct[0].phoneNumber,
+        email: paymentProduct[0].email,
+      }),
+    }).then(response => {
+      if (response.status === 200) {
+        setModalOpen(true);
+      }
+    });
   };
-
+  const token = localStorage.getItem('TOKEN');
   useEffect(() => {
     fetch('/data/paymentData.json', {
       method: 'GET',
@@ -60,6 +79,7 @@ const Payment = () => {
       .then(res => res.json())
       .then(data => {
         setPaymentProduct(data);
+        deliveryDataIni.current = data;
       });
   }, []);
 
@@ -72,8 +92,8 @@ const Payment = () => {
           <ShippingAddress
             paymentProduct={paymentProduct}
             isCheckedTerms={isCheckedTerms}
-            addressValue={addressValue}
-            setAddressValue={setAddressValue}
+            setPaymentProduct={setPaymentProduct}
+            deliveryDataIni={deliveryDataIni}
           />
           <section className="payment-progress">
             <h2 className="payment-progress-title">결제</h2>
@@ -113,7 +133,7 @@ const Payment = () => {
                 <button
                   className="purchase-button"
                   disabled={isDisabledPayment}
-                  onClick={showModal}
+                  onClick={showOrderComplete}
                 >
                   주문하기
                 </button>

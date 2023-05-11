@@ -4,32 +4,37 @@ import './ShippingAddress.scss';
 const ShippingAddress = ({
   paymentProduct,
   isCheckedTerms,
-  addressValue,
-  setAddressValue,
+  setPaymentProduct,
+  deliveryDataIni,
 }) => {
-  const [isCheckedCheckboxSame, setIsCheckedCheckboxSame] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
-
+  const [isCheckedCheckboxSame, setIsCheckedCheckboxSame] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
   const handleUserSame = event => {
     if (isCheckedTerms === false) {
       if (event.target.checked) {
         setIsCheckedCheckboxSame(true);
-        setAddressValue({
-          firstName: paymentProduct[0].firstName,
-          lastName: paymentProduct[0].lastName,
-          address: paymentProduct[0].address,
-          phoneNumber: paymentProduct[0].phoneNumber,
-          email: paymentProduct[0].email,
-        });
+        setPaymentProduct([
+          {
+            ...paymentProduct[0],
+            firstName: deliveryDataIni.current[0].firstName,
+            lastName: deliveryDataIni.current[0].lastName,
+            address: deliveryDataIni.current[0].address,
+            phoneNumber: deliveryDataIni.current[0].phoneNumber,
+            email: deliveryDataIni.current[0].email,
+          },
+        ]);
       } else {
         setIsCheckedCheckboxSame(false);
-        setAddressValue({
-          firstName: '',
-          lastName: '',
-          address: '',
-          phoneNumber: '',
-          email: '',
-        });
+        setPaymentProduct([
+          {
+            ...paymentProduct[0],
+            firstName: '',
+            lastName: '',
+            address: '',
+            phoneNumber: '',
+            email: '',
+          },
+        ]);
       }
       setIsDisabled(!isDisabled);
     } else if (isCheckedTerms) {
@@ -43,7 +48,7 @@ const ShippingAddress = ({
 
   const handleAddressInput = event => {
     const { name, value } = event.target;
-    setAddressValue({ ...addressValue, [name]: value });
+    setPaymentProduct([{ ...paymentProduct[0], [name]: value }]);
   };
 
   useEffect(() => {
@@ -75,7 +80,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="성"
           name="lastName"
-          value={addressValue.lastName}
+          value={paymentProduct[0].lastName}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -84,7 +89,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="이름"
           name="firstName"
-          value={addressValue.firstName}
+          value={paymentProduct[0].firstName}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -92,7 +97,7 @@ const ShippingAddress = ({
       <div className="hint-name">
         <span
           className={
-            addressValue.lastName === ''
+            paymentProduct[0].lastName === ''
               ? 'hint-full-name hint-last-name'
               : 'hint-full-name hint-last-name visible'
           }
@@ -101,7 +106,7 @@ const ShippingAddress = ({
         </span>
         <span
           className={
-            addressValue.firstName === ''
+            paymentProduct[0].firstName === ''
               ? 'hint-full-name'
               : 'hint-full-name visible'
           }
@@ -114,13 +119,15 @@ const ShippingAddress = ({
         type="text"
         placeholder="도로명, 건물명 또는 지번으로 검색 예) 테헤란로 152, 혹은 역삼동 737"
         name="address"
-        value={addressValue.address}
+        value={paymentProduct[0].address}
         onChange={handleAddressInput}
         disabled={isDisabled}
       />
       <div
         className={
-          addressValue.address === '' ? 'hint-address' : 'hint-address visible'
+          paymentProduct[0].address === ''
+            ? 'hint-address'
+            : 'hint-address visible'
         }
       >
         주소 선택을 완료하거나 수동으로 주소를 입력해 주세요.
@@ -131,7 +138,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="전화번호"
           name="phoneNumber"
-          value={addressValue.phoneNumber}
+          value={paymentProduct[0].phoneNumber}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -140,7 +147,7 @@ const ShippingAddress = ({
           type="text"
           placeholder="이메일"
           name="email"
-          value={addressValue.email}
+          value={paymentProduct[0].email}
           onChange={handleAddressInput}
           disabled={isDisabled}
         />
@@ -148,7 +155,7 @@ const ShippingAddress = ({
       <div className="hint-information">
         <span
           className={
-            addressValue.phoneNumber === ''
+            paymentProduct[0].phoneNumber === ''
               ? 'hint-info hint-phone-number'
               : 'hint-info hint-phone-number visible'
           }
@@ -157,7 +164,7 @@ const ShippingAddress = ({
         </span>
         <span
           className={
-            addressValue.email === '' ? 'hint-info' : 'hint-info visible'
+            paymentProduct[0].email === '' ? 'hint-info' : 'hint-info visible'
           }
         >
           유효한 이메일 주소를 입력하세요.
