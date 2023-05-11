@@ -130,7 +130,8 @@ const Login = () => {
       let phoneNumberCheckText = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
       setPhoneNumberRegex(
         phoneNumberCheckText.test(value) ||
-          `전화번호 형식을 확인해주세요 (-제외, 10~11숫자)`
+          `전화번호 형식을 확인해주세요
+          (-제외, 10~11숫자, 010, 011, 016, 017, 018, 019)`
       );
       setPhoneNumberRequired(!value.length ? `필수` : ``);
     }
@@ -181,8 +182,7 @@ const Login = () => {
       });
   };
 
-  const login = e => {
-    e.preventDefault();
+  const login = () => {
     setIsLoading(true);
     fetch(`${LOGIN_API}`, {
       method: 'post',
@@ -232,10 +232,7 @@ const Login = () => {
         throw new Error('통신실패!');
       })
       .catch(err => alert(`회원가입 실패 ${err}`))
-      .then(res => {
-        localStorage.setItem('TOKEN', res.accessToken);
-        navigate('/');
-      });
+      .then(() => login());
   };
 
   return (
