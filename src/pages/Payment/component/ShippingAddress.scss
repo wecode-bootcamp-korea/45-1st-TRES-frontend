@@ -19,9 +19,11 @@
   .button-box {
     display: flex;
     .button-user-same {
-      .same-as-orderer:hover {
-        opacity: 0.5;
-        cursor: pointer;
+      .same-as-orderer {
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
       }
     }
   }

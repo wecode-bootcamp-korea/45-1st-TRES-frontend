@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
+import { PAYMENT_API } from '../../config';
 import './Payment.scss';
 
 const DELIVERY_FEE = 3000;
@@ -51,7 +52,7 @@ const Payment = () => {
   };
 
   const showOrderComplete = () => {
-    fetch('http://10.58.52.249:3000/payments', {
+    fetch(`${PAYMENT_API}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -59,11 +60,11 @@ const Payment = () => {
       },
       body: JSON.stringify({
         point: foodPriceSum + DELIVERY_FEE,
-        // firstName: paymentProduct[0].firstName,
-        // lastName: paymentProduct[0].lastName,
-        // address: paymentProduct[0].address,
-        // phoneNumber: paymentProduct[0].phoneNumber,
-        // email: paymentProduct[0].email,
+        firstName: paymentProduct[0].firstName,
+        lastName: paymentProduct[0].lastName,
+        address: paymentProduct[0].address,
+        phoneNumber: paymentProduct[0].phoneNumber,
+        email: paymentProduct[0].email,
       }),
     }).then(response => {
       if (response.status === 200) {
