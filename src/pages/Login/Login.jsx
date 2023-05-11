@@ -11,6 +11,12 @@ import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem('TOKEN');
+  if (token) {
+    alert(`이미 로그인 되어 있습니다`);
+    navigate(`/`);
+  }
+
   const location = useLocation();
   const currentPage =
     location.pathname === EMAIL_VERIFICATION_TEXT.url
