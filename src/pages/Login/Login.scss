@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/color';
 
 .display-none {
   display: none;
@@ -13,20 +14,14 @@
 }
 
 .login {
-  .modal-background-color {
-    position: absolute;
-    z-index: 100;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    opacity: 75%;
-    background-color: black;
-  }
-
   .container {
     position: relative;
     width: 460px;
-    margin: 78px auto;
+    margin: 20px auto;
+
+    .logo {
+      width: 80px;
+    }
 
     .page-description-text {
       @include head-1;
@@ -59,6 +54,11 @@
           font-size: 12px;
           font-weight: bold;
         }
+
+        .rex-text {
+          color: red;
+          white-space: pre-line;
+        }
       }
 
       .select-countries-box {
@@ -67,9 +67,15 @@
         .select-countries-button {
           margin-right: 10px;
           padding: 10px;
-          border: 1px solid black;
+          border: 0px solid $main-dark;
           border-radius: 10px;
-          background-color: #f7f7f7;
+          background-color: $main-grey;
+          color: $main-white;
+
+          &:hover {
+            background-color: $main-dark;
+            cursor: pointer;
+          }
         }
       }
 
@@ -83,7 +89,7 @@
           right: 50%;
           width: 460px;
           padding: 20px 30px;
-          border-radius: 20px;
+          border-radius: 10px;
           background-color: white;
 
           .country {
@@ -92,13 +98,26 @@
             padding: 5px;
           }
 
-          .close-modal-button {
+          .close-modal-button-box {
             display: flex;
             align-items: center;
             justify-content: right;
 
             & * {
               margin: 5px;
+            }
+
+            .close-modal-button {
+              width: 50px;
+              padding: 5px;
+              border: 0px;
+              border-radius: 5px;
+              background-color: $main-dark;
+              color: white;
+
+              &:hover {
+                opacity: 80%;
+              }
             }
           }
         }
@@ -131,8 +150,8 @@
         padding: 15px;
         border: none;
         border-radius: 20px;
-        background-color: black;
-        color: white;
+        background-color: $main-dark;
+        color: $main-white;
         font-weight: bold;
 
         &:hover {
@@ -142,16 +161,26 @@
       }
 
       .open-button-color {
-        background-color: black;
+        background-color: $main-dark;
       }
 
       .close-button-color {
         opacity: 50%;
-        background-color: black;
+        background-color: $main-dark;
         &:hover {
           cursor: auto;
         }
       }
     }
+  }
+
+  .modal-background-color {
+    position: absolute;
+    z-index: 100;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 75%;
+    background-color: $main-dark;
   }
 }

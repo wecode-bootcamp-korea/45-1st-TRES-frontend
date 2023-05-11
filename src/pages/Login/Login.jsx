@@ -10,7 +10,7 @@ import useGetFetch from '../../hooks/useGetFetch';
 import './Login.scss';
 
 const Login = () => {
-  /* 변수 */
+  // 경로
   const navigate = useNavigate();
   const location = useLocation();
   const currentPage =
@@ -19,9 +19,8 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
-  const countries = useGetFetch(`${COUNTRIES_API}`);
 
-  // 필수
+  // 필수 입력
   const [passwordRequired, setPasswordRequired] = useState(``);
   const [passwordEqualRequired, setPasswordEqualRequired] = useState(``);
   const [firstNameRequired, setFirstNameRequired] = useState(``);
@@ -30,20 +29,40 @@ const Login = () => {
   const [phoneNumberRequired, setPhoneNumberRequired] = useState(``);
   const [addressRequired, setAddressRequired] = useState(``);
   const [isShowCountriesList, setIsShowCountriesList] = useState(false);
+  const countries = useGetFetch(`${COUNTRIES_API}`);
 
-  // Checkbox
+  // 이메일 유무 확인
+  const emailVerification = e => {
+    e.preventDefault();
+    fetch(`${EMAIL_VERIFICATION_API}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: inputValues.email,
+      }),
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('통신실패!');
+      })
+      .catch(err => alert(err))
+      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
+  };
+
+  // 동의 체크
   const [agreementCheckbox, setAgreementCheckbox] = useState([]);
   const checkAll = checked =>
     checked
       ? setAgreementCheckbox(AGREEMENT_CHECKBOX.map(item => item.id))
       : setAgreementCheckbox([]);
-
   const checkSingle = (checked, id) =>
     checked
       ? setAgreementCheckbox(prev => [...prev, id])
       : setAgreementCheckbox(agreementCheckbox.filter(item => item !== id));
 
-  // 계산된 속성명
+  // 변수
   const [inputValues, setInputValues] = useState({
     email: ``,
     password: ``,
@@ -55,19 +74,14 @@ const Login = () => {
     birth: ``,
     address: ``,
   });
-
   const [gender, setGender] = useState(``);
-  const inputGender = e => {
-    setGender(e.target.value);
-  };
+  const inputGender = e => setGender(e.target.value);
 
-  /* 유효성 검사 */
+  // 유효성 검사
   const [emailRegex, setEmailRegex] = useState(``);
   const [passwordRegex, setPasswordRegex] = useState(``);
   const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
   const [phoneNumberRegex, setPhoneNumberRegex] = useState(``);
-
-  // onChange
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
@@ -83,19 +97,16 @@ const Login = () => {
     if (name === `password`) {
       let passwordCheckText =
         /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
-
       setPasswordRegex(
         passwordCheckText.test(value) ||
           `비밀번호 형식을 확인해주세요
         (8자이상, 대소문자, 숫자, 특수문자 1개이상)`
       );
-
       setIsPasswordEqualtext(
         e.target.value === inputValues.passwordEqual
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
-
       setPasswordRequired(!value.length ? `필수` : ``);
     }
 
@@ -105,7 +116,6 @@ const Login = () => {
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
-
       setPasswordEqualRequired(!value.length ? `필수` : ``);
     }
 
@@ -127,7 +137,6 @@ const Login = () => {
         phoneNumberCheckText.test(value) ||
           `전화번호 형식을 확인해주세요 (-제외, 10~11숫자)`
       );
-
       setPhoneNumberRequired(!value.length ? `필수` : ``);
     }
 
@@ -136,7 +145,7 @@ const Login = () => {
     }
   };
 
-  // 버튼 열림
+  // 버튼 활성화
   const isOpenButton =
     currentPage.url === EMAIL_VERIFICATION_TEXT.url
       ? emailRegex === true
@@ -155,38 +164,15 @@ const Login = () => {
         agreementCheckbox.includes(2)
       : ``;
 
-  // input 항목
+  // 국가 선택
   const [checkCountries, setCheckCountries] = useState([]);
   const checkCountry = (checked, country) =>
     checked
       ? checkCountries.length < 3 &&
         setCheckCountries(prev => [...prev, country])
       : setCheckCountries(checkCountries.filter(item => item !== country));
-
-  /* 함수 */
-  // 국가 선택
   const showCountriesList = () => {
     setIsShowCountriesList(prev => !prev);
-  };
-
-  // 이메일 확인
-  const emailVerification = e => {
-    e.preventDefault();
-    fetch(`${EMAIL_VERIFICATION_API}`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: inputValues.email,
-      }),
-    })
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error('통신실패!');
-      })
-      .catch(err => alert(err))
-      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
   };
 
   // 로그인
@@ -244,18 +230,18 @@ const Login = () => {
       });
   };
 
-  /* 출력 */
   return (
     <div className="login">
       <div className={isShowCountriesList ? `modal-background-color` : ``} />
       <div className="container">
-        <span className="page-description-text">
+        <img className="logo" src="/images/icon/seke120-80.png" alt="로고" />
+        <div className="page-description-text">
           {currentPage === EMAIL_VERIFICATION_TEXT
             ? `${EMAIL_VERIFICATION_TEXT.title}`
             : currentPage === LOGIN_TEXT
             ? `${LOGIN_TEXT.title}`
             : `${JOIN_TEXT.title}`}
-        </span>
+        </div>
 
         <form
           className="form"
@@ -277,7 +263,7 @@ const Login = () => {
               placeholder="이메일"
               disabled={currentPage.url !== EMAIL_VERIFICATION_TEXT.url}
             />
-            {emailRegex}
+            <div className="rex-text">{emailRegex}</div>
           </div>
 
           {currentPage.url === EMAIL_VERIFICATION_TEXT.url || (
@@ -290,7 +276,7 @@ const Login = () => {
                 placeholder="비밀번호"
               />
               <div className="required-text">{passwordRequired}</div>
-              {passwordRegex}
+              <div className="rex-text">{passwordRegex}</div>
             </div>
           )}
 
@@ -311,7 +297,7 @@ const Login = () => {
                   placeholder="비밀번호 확인"
                 />
                 <div className="required-text">{passwordEqualRequired}</div>
-                <div>{PasswordEqualText}</div>
+                <div className="rex-text">{PasswordEqualText}</div>
               </div>
 
               <div className="input-box first-name">
@@ -356,7 +342,7 @@ const Login = () => {
                   placeholder="핸드폰 번호(-제외)"
                 />
                 <div className="required-text">{phoneNumberRequired}</div>
-                <div>{phoneNumberRegex}</div>
+                <div className="rex-text">{phoneNumberRegex}</div>
               </div>
 
               <div className="input-box">
@@ -403,11 +389,12 @@ const Login = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="close-modal-button">
+                  <div className="close-modal-button-box">
                     <span>최대 {checkCountries.length}/3개</span>
                     <input
                       type="button"
                       value="확인"
+                      className="close-modal-button"
                       onClick={showCountriesList}
                     />
                   </div>
@@ -457,7 +444,7 @@ const Login = () => {
                           className={`${
                             agreementCheckbox.includes(i + 1)
                               ? 'font-color-black'
-                              : 'z'
+                              : ''
                           }`}
                         >
                           <input
