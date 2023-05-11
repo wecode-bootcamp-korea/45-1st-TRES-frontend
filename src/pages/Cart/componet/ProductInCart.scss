@@ -6,8 +6,10 @@
     margin-bottom: 7px;
     padding: 10px 0 17px 0;
     border-bottom: 1px solid $main-grey;
-    .check-box:hover {
-      cursor: pointer;
+    .check-box {
+      &:hover {
+        cursor: pointer;
+      }
     }
     .product-img {
       width: 150px;
@@ -36,8 +38,10 @@
         margin: 0 10px;
         color: $main-grey;
         @include body-2;
-        .count-change-button:hover {
-          cursor: pointer;
+        .count-change-button {
+          &:hover {
+            cursor: pointer;
+          }
         }
         .count-check-button {
           width: 67px;

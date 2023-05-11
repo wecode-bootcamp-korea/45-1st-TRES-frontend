@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { CART_API } from '../../../config';
 import './ProductInCart.scss';
 
 let selectList = [];
@@ -7,22 +8,19 @@ const ProductInCart = props => {
     props;
   const [{ food, engFood, country, continent, orderPrice, food_image }] =
     cartList;
-  // const [count, setCount] = useState(quantity);
   const [isDisabled, setIsDisabled] = useState(true);
   const [quantityChange, setQuantityChange] = useState(quantity);
   const totalPrice = orderPrice * quantityChange;
   const token = localStorage.getItem('TOKEN');
   const test = useRef();
   const handleChange = e => {
-    // setQuantityChange(e.target.value);
     test.current.value = e.target.value;
     setIsDisabled(false);
-    console.log(test.current.value);
   };
 
   const handleCount = id => {
-    fetch('http://10.58.52.249:3000/orders?', {
-      method: 'POST',
+    fetch(CART_API, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
@@ -33,15 +31,12 @@ const ProductInCart = props => {
       }),
     });
     setQuantityChange(test.current.value);
-    //제거----
-    // setCount(quantityChange);
-    //제거----
     setIsDisabled(true);
   };
 
   const selectDelete = id => {
     if (checkItems.includes(id)) {
-      fetch(`http://10.58.52.249:3000/orders?${id}`, {
+      fetch(`${CART_API}?${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -65,7 +60,6 @@ const ProductInCart = props => {
       const selectCancle = selectList.filter(item => item.id !== id);
       selectList = selectCancle;
     }
-
     const priceSum = selectList.reduce(
       (accumulator, currentValue) => accumulator + currentValue.sum,
       0

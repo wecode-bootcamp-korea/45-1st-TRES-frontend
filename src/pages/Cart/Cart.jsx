@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Cart.scss';
 import ProductInCart from './componet/ProductInCart';
 import ProductRecommendation from './componet/ProductRecommendation';
+import { CART_API } from '../../config';
+import { PAYMENT_API } from '../../config';
+import './Cart.scss';
 
 const DELIVERY_FEE = 3000;
 
@@ -27,7 +29,7 @@ const Cart = () => {
   };
 
   const deleteSelectItem = () => {
-    fetch(`http://10.58.52.249:3000/orders?${checkItems.join()}`, {
+    fetch(`${CART_API}?${checkItems.join()}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -37,23 +39,23 @@ const Cart = () => {
   };
 
   const goToPaymentPage = () => {
-    //   fetch('선택한 결제페이지로 보내는 데이터', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json;charset=utf-8',
-    //       authorization: token,
-    //     },
-    //     body: JSON.stringify({
-    //       foodId: checkItems,
-    //     }),
-    //   });
+    fetch(`${PAYMENT_API}/checkout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        foodId: checkItems,
+      }),
+    });
     navigate('/payment');
   };
 
   const token = localStorage.getItem('TOKEN');
 
   useEffect(() => {
-    fetch('http://10.58.52.249:3000/orders/cart', {
+    fetch(`${CART_API}/cart`, {
       method: 'GET',
       headers: {
         authorization: token,
@@ -63,15 +65,6 @@ const Cart = () => {
       .then(data => {
         setCartList(data);
       });
-    //---제거----
-    // fetch('/data/cartData.json', {
-    //   method: 'GET',
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setCartList(data);
-    //   });
-    //---제거----
   }, [token]);
 
   useEffect(() => {
