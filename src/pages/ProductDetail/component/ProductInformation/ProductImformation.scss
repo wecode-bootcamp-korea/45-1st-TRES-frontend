@@ -14,10 +14,10 @@
       width: 340px;
       height: 60px;
       border: 1px solid lightgray;
-      background-color: #f7f7f7;
+      background-color: #eee;
       @include body-2;
       &:hover {
-        opacity: 0.5;
+        background-color: #f7f7f7;
         cursor: pointer;
       }
     }
