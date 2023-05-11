@@ -24,6 +24,7 @@ const Login = () => {
       : location.pathname === LOGIN_TEXT.url
       ? LOGIN_TEXT
       : JOIN_TEXT;
+  const [isLoading, setIsLoading] = useState(false);
 
   const [emailRegex, setEmailRegex] = useState(``);
   const [passwordRegex, setPasswordRegex] = useState(``);
@@ -159,6 +160,7 @@ const Login = () => {
 
   const emailVerification = e => {
     e.preventDefault();
+    setIsLoading(true);
     fetch(`${EMAIL_VERIFICATION_API}`, {
       method: 'post',
       headers: {
@@ -169,15 +171,19 @@ const Login = () => {
       }),
     })
       .then(res => {
+        setIsLoading(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
       .catch(err => alert(err))
-      .then(res => (res.isEmailExist ? navigate(`/login`) : navigate(`/join`)));
+      .then(res => {
+        res.isEmailExist ? navigate(`/login`) : navigate(`/join`);
+      });
   };
 
   const login = e => {
     e.preventDefault();
+    setIsLoading(true);
     fetch(`${LOGIN_API}`, {
       method: 'post',
       headers: {
@@ -189,6 +195,7 @@ const Login = () => {
       }),
     })
       .then(res => {
+        setIsLoading(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
@@ -201,6 +208,7 @@ const Login = () => {
 
   const join = e => {
     e.preventDefault();
+    setIsLoading(true);
     fetch(`${JOIN_API}`, {
       method: 'POST',
       headers: {
@@ -219,6 +227,7 @@ const Login = () => {
       }),
     })
       .then(res => {
+        setIsLoading(false);
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
@@ -469,9 +478,9 @@ const Login = () => {
             className={`${
               isOpenButton ? `open-button-color` : `close-button-color`
             } submit-button`}
-            disabled={!isOpenButton}
+            disabled={!isOpenButton || isLoading}
           >
-            {currentPage.button}
+            {isLoading ? `전송중..` : currentPage.button}
           </button>
         </form>
       </div>
