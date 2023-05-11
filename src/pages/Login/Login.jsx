@@ -130,9 +130,7 @@ const Login = () => {
       let phoneNumberCheckText = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
       setPhoneNumberRegex(
         phoneNumberCheckText.test(value) ||
-          `전화번호 형식을 확인해주세요
-          ('-'제외, 10~11숫자)
-          (010, 011, 016, 017, 018, 019만 가능)`
+          `핸드폰 번호 형식을 확인해주세요('-'제외)`
       );
       setPhoneNumberRequired(!value.length ? `필수` : ``);
     }
@@ -342,7 +340,7 @@ const Login = () => {
                   className="input pNumber"
                   name="phoneNumber"
                   onChange={handleInput}
-                  placeholder="핸드폰 번호(-제외)"
+                  placeholder="핸드폰 번호('-'제외)"
                 />
                 <div className="required-text">{phoneNumberRequired}</div>
                 <div className="rex-text">{phoneNumberRegex}</div>
