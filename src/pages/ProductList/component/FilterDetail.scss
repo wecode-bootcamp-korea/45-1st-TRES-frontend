@@ -25,6 +25,13 @@
       color: gray;
     }
 
+    .filter-reset {
+      margin-left: 5px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     .filter-input[type='checkbox'] {
       position: absolute;
       width: 1px;

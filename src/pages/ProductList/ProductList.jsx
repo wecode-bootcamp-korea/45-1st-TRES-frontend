@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import './ProductList.scss';
+import { useParams, useSearchParams } from 'react-router-dom';
 import Product from './component/Product';
 import Filter from './component/Filter';
+import './ProductList.scss';
+import { PRODUCTLIST_API } from '../../config';
 
 const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
   const [products, setProducts] = useState([]);
+  const [continent, setContinent] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { id } = useParams();
+
+  const handleSort = sort => {
+    searchParams.set('orderBy', sort);
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
-    fetch('data/product-list.json')
+    fetch(`${PRODUCTLIST_API}${id}&${searchParams.toString()}`)
       .then(response => response.json())
-      .then(response => setProducts(response.data));
-  }, []);
+      .then(response => {
+        setProducts(response.foods);
+        setContinent(response.countries);
+      });
+  }, [id, searchParams]);
 
   return (
     <div className="product-list">
       <header className="list-header">
-        <h1 className="continent">아시아</h1>
+        <h1 className="continent">
+          {products[0]?.continent} / {products[0]?.country}
+        </h1>
         <button
           className="sort-button"
           onClick={() => setIsSorted(prev => !prev)}
@@ -25,24 +40,26 @@ const ProductList = () => {
           <img
             className="sort-img"
             alt="더보기"
-            src={`images/icon/${
+            src={`/images/icon/${
               isSorted ? 'angle-up-solid' : 'angle-down-solid'
             }.svg`}
           />
         </button>
-        {isSorted ? (
+        {isSorted && (
           <ul className="sort-list">
-            {SORT_MENU.map(({ id, content }) => (
-              <li key={id}>{content}</li>
+            {SORT_MENU.map(({ id, content, sort }) => (
+              <li key={id} onClick={() => handleSort(sort)}>
+                {content}
+              </li>
             ))}
           </ul>
-        ) : null}
+        )}
       </header>
 
       <div className="product-container">
-        <Filter />
+        <Filter continent={continent} />
         <div className="products">
-          {products.map(product => (
+          {products?.map(product => (
             <Product product={product} key={product.id} />
           ))}
         </div>
@@ -53,11 +70,8 @@ const ProductList = () => {
 
 export default ProductList;
 
-const imgs = new Array(30);
-
 const SORT_MENU = [
-  { id: 0, content: '높은 인기순' },
-  { id: 1, content: '낮은 인기순' },
-  { id: 2, content: '높은 가격순' },
-  { id: 3, content: '낮은 가격순' },
+  { id: 0, content: '인기순', sort: 'best' },
+  { id: 1, content: '높은 가격순', sort: 'priceDesc' },
+  { id: 2, content: '낮은 가격순', sort: 'priceAsc' },
 ];

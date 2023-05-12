@@ -5,7 +5,15 @@
       "food": "사모사",
       "eng_food": "samosa",
       "price": "3000.00",
-      "likes_count": "7"
+      "likes_count": "7",
+      "continent": "name",
+      "country": [
+        { "id": "1", "name": "한국" },
+        { "id": "1", "name": "한국" },
+        { "id": "1", "name": "한국" },
+        { "id": "1", "name": "한국" }
+      ],
+      "img": "url"
     },
     {
       "id": "2",
