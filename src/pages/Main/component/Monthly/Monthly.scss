@@ -34,7 +34,10 @@
           margin-top: 60px;
 
           .food-img {
+            object-fit: cover;
             width: 100%;
+            width: 250px;
+            height: 250px;
           }
 
           .food-info {
@@ -55,10 +58,9 @@
       .btn {
         position: absolute;
         z-index: 1;
-        top: 50%;
+        top: 40%;
         width: 40px;
         height: 50px;
-        transform: translateY(50%);
         border: 0;
         opacity: 0.5;
         background-color: transparent;

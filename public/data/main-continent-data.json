@@ -1,176 +1,162 @@
 [
-  {
-    "id": 1,
-    "continent": 1,
-    "name": "에티오피아",
-    "engName": "Ethiopia"
-  },
-  {
-    "id": 2,
-    "continent": 1,
-    "name": "탄자니",
-    "engName": "Tanzania"
-  },
-  {
-    "id": 3,
-    "continent": 1,
-    "name": "나이지리아",
-    "engName": "Nigeria"
-  },
-  {
-    "id": 4,
-    "continent": 1,
-    "name": "가나",
-    "engName": "Ghana"
-  },
-  {
-    "id": 5,
-    "continent": 1,
-    "name": "세네갈",
-    "engName": "Senegal"
-  },
-  {
-    "id": 6,
-    "continent": 2,
-    "name": "미국",
-    "engName": "Ethiopia"
-  },
-  {
-    "id": 7,
-    "continent": 2,
-    "name": "멕시코",
-    "engName": "Tanzania"
-  },
-  {
-    "id": 8,
-    "continent": 2,
-    "name": "콜롬비아",
-    "engName": "Nigeria"
-  },
-  {
-    "id": 9,
-    "continent": 2,
-    "name": "브라질",
-    "engName": "Ghana"
-  },
-  {
-    "id": 10,
-    "continent": 2,
-    "name": "칠레",
-    "engName": "Senegal"
-  },
-  {
-    "id": 11,
-    "continent": 3,
-    "name": "베트남",
-    "engName": "Vietnam"
-  },
-  {
-    "id": 12,
-    "continent": 3,
-    "name": "태국",
-    "engName": "Thailand"
-  },
-  {
-    "id": 13,
-    "continent": 3,
-    "name": "중국",
-    "engName": "China"
-  },
-  {
-    "id": 14,
-    "continent": 3,
-    "name": "일본",
-    "engName": "Japan"
-  },
-  {
-    "id": 15,
-    "continent": 3,
-    "name": "인도",
-    "engName": "India"
-  },
-  {
-    "id": 16,
-    "continent": 4,
-    "name": "독일",
-    "engName": "Germany"
-  },
-  {
-    "id": 17,
-    "continent": 4,
-    "name": "그리스",
-    "engName": "Greece"
-  },
-  {
-    "id": 18,
-    "continent": 4,
-    "name": "스페인",
-    "engName": "Spain"
-  },
-  {
-    "id": 19,
-    "continent": 4,
-    "name": "프랑스",
-    "engName": "France"
-  },
-  {
-    "id": 20,
-    "continent": 4,
-    "name": "이탈리아",
-    "engName": "Italy"
-  },
-  {
-    "id": 21,
-    "continent": 5,
-    "name": "사모아",
-    "engName": "Samoa"
-  },
-  {
-    "id": 22,
-    "continent": 5,
-    "name": "호주",
-    "engName": "Australia"
-  },
-  {
-    "id": 23,
-    "continent": 5,
-    "name": "마샬제도",
-    "engName": "'Marshall Islands"
-  },
-  {
-    "id": 24,
-    "continent": 5,
-    "name": "뉴질랜드",
-    "engName": "'New Zealand"
-  },
-  {
-    "id": 25,
-    "continent": 5,
-    "name": "괌",
-    "engName": "Guam"
-  },
-  {
-    "id": 1000,
-    "continent": 9999,
-    "name": "세일",
-    "engName": "Sale"
-  },
-  {
-    "id": 1001,
-    "continent": 9999,
-    "name": "특가",
-    "engName": "Deal"
-  },
-  {
-    "id": 1002,
-    "continent": 9999,
-    "name": "쿠폰",
-    "engName": "COUPON"
-  },
-  {
-    "id": 1003,
-    "continent": 9999,
-    "name": "기획전",
-    "engName": "Promotion"
-  }
+  [
+    {
+      "id": 1,
+      "continent": 1,
+      "name": "에티오피아",
+      "engName": "Ethiopia"
+    },
+    {
+      "id": 2,
+      "continent": 1,
+      "name": "탄자니",
+      "engName": "Tanzania"
+    },
+    {
+      "id": 3,
+      "continent": 1,
+      "name": "나이지리아",
+      "engName": "Nigeria"
+    },
+    {
+      "id": 4,
+      "continent": 1,
+      "name": "가나",
+      "engName": "Ghana"
+    },
+    {
+      "id": 5,
+      "continent": 1,
+      "name": "세네갈",
+      "engName": "Senegal"
+    }
+  ],
+  [
+    {
+      "id": 6,
+      "continent": 2,
+      "name": "미국",
+      "engName": "Ethiopia"
+    },
+    {
+      "id": 7,
+      "continent": 2,
+      "name": "멕시코",
+      "engName": "Tanzania"
+    },
+    {
+      "id": 8,
+      "continent": 2,
+      "name": "콜롬비아",
+      "engName": "Nigeria"
+    },
+    {
+      "id": 9,
+      "continent": 2,
+      "name": "브라질",
+      "engName": "Ghana"
+    },
+    {
+      "id": 10,
+      "continent": 2,
+      "name": "칠레",
+      "engName": "Senegal"
+    }
+  ],
+  [
+    {
+      "id": 11,
+      "continent": 3,
+      "name": "베트남",
+      "engName": "Vietnam"
+    },
+    {
+      "id": 12,
+      "continent": 3,
+      "name": "태국",
+      "engName": "Thailand"
+    },
+    {
+      "id": 13,
+      "continent": 3,
+      "name": "중국",
+      "engName": "China"
+    },
+    {
+      "id": 14,
+      "continent": 3,
+      "name": "일본",
+      "engName": "Japan"
+    },
+    {
+      "id": 15,
+      "continent": 3,
+      "name": "인도",
+      "engName": "India"
+    }
+  ],
+  [
+    {
+      "id": 16,
+      "continent": 4,
+      "name": "독일",
+      "engName": "Germany"
+    },
+    {
+      "id": 17,
+      "continent": 4,
+      "name": "그리스",
+      "engName": "Greece"
+    },
+    {
+      "id": 18,
+      "continent": 4,
+      "name": "스페인",
+      "engName": "Spain"
+    },
+    {
+      "id": 19,
+      "continent": 4,
+      "name": "프랑스",
+      "engName": "France"
+    },
+    {
+      "id": 20,
+      "continent": 4,
+      "name": "이탈리아",
+      "engName": "Italy"
+    }
+  ],
+  [
+    {
+      "id": 21,
+      "continent": 5,
+      "name": "사모아",
+      "engName": "Samoa"
+    },
+    {
+      "id": 22,
+      "continent": 5,
+      "name": "호주",
+      "engName": "Australia"
+    },
+    {
+      "id": 23,
+      "continent": 5,
+      "name": "마샬제도",
+      "engName": "'Marshall Islands"
+    },
+    {
+      "id": 24,
+      "continent": 5,
+      "name": "뉴질랜드",
+      "engName": "'New Zealand"
+    },
+    {
+      "id": 25,
+      "continent": 5,
+      "name": "괌",
+      "engName": "Guam"
+    }
+  ]
 ]

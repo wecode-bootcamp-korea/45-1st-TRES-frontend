@@ -4,13 +4,13 @@
   height: 500px;
   font-size: 16px;
   line-height: 20px;
+  &:hover {
+    cursor: pointer;
+  }
   .food-img {
     width: 375px;
     height: 375px;
     object-fit: cover;
-    &:hover {
-      cursor: pointer;
-    }
   }
   .english-name {
     margin-bottom: 12px;

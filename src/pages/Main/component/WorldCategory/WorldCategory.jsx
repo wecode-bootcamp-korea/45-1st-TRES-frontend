@@ -35,7 +35,7 @@ const WorldCategory = () => {
             {WORLD_DATA.map(({ id, alt, src }) => {
               return (
                 <li className="continent-item" key={id}>
-                  <Link to="/#" className="continent-link">
+                  <Link to={`/product-list/${id}`} className="continent-link">
                     <img src={src} alt={alt} className="country" />
                   </Link>
                 </li>

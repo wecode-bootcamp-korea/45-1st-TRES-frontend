@@ -4,12 +4,11 @@ import './Monthly.scss';
 
 const VIEW_COUNT = 4;
 
-const Monthly = () => {
-  const [monthly, setMonthly] = useState([]);
+const Monthly = ({ mainPage }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const imgRef = useRef(null);
 
-  const totalSilde = monthly.length;
+  const totalSilde = mainPage?.length;
 
   const prevBtn = () => {
     if (activeIndex > 0) {
@@ -24,14 +23,6 @@ const Monthly = () => {
   };
 
   useEffect(() => {
-    fetch('/data/main-best-list.json', {})
-      .then(res => res.json())
-      .then(data => {
-        setMonthly(data);
-      });
-  }, []);
-
-  useEffect(() => {
     imgRef.current.style.transform = `translateX(-${290 * activeIndex}px)`;
     imgRef.current.style.transition = 'all 0.3s ease-in';
   }, [activeIndex]);
@@ -42,20 +33,23 @@ const Monthly = () => {
         <h2 className="monthly-title">월간 베스트</h2>
         <div className="monthly-section">
           <ul className="monthly-list" ref={imgRef}>
-            {monthly.map(({ id, country, food, price, food_images }) => {
-              return (
-                <li key={id} className="monthly-item">
-                  <Link className="monthly-link" to="/#">
-                    <img src={food_images} alt={food} className="food-img" />
-                    <div className="food-info">
-                      <p className="food-name">{food}</p>
-                      <p className="food-country">{country}</p>
-                      <p className="price">{price}원</p>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+            {mainPage &&
+              mainPage.map(({ id, country, food, price, food_images }) => {
+                return (
+                  <li key={id} className="monthly-item">
+                    <Link className="monthly-link" to={`/products/${id}`}>
+                      <img src={food_images} alt={food} className="food-img" />
+                      <div className="food-info">
+                        <p className="food-name">{food}</p>
+                        <p className="food-country">{country}</p>
+                        <p className="price">
+                          {Math.floor(price).toLocaleString()}원
+                        </p>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
           <button
             type="button"

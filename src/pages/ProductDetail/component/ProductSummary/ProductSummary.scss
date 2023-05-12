@@ -1,0 +1,24 @@
+@import '/src/styles/variables';
+@import '/src/styles/color';
+
+.product-summary {
+  border-top: 1px solid $main-grey;
+  text-align: left;
+  .table-body {
+    .table-row {
+      .table-cell {
+        padding: 15px 0;
+        border-bottom: 1px solid $main-grey;
+      }
+      .table-header-cell {
+        width: 100px;
+      }
+      .table-data-cell {
+        width: 300px;
+      }
+    }
+    .product-allergy {
+      color: $main-dark;
+    }
+  }
+}
