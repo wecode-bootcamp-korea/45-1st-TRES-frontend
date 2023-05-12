@@ -7,6 +7,7 @@ import './Login.scss';
 const Login = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('TOKEN');
+
   if (token) {
     alert(`이미 로그인 되어 있습니다`);
     navigate(`/`);
@@ -153,8 +154,7 @@ const Login = () => {
         agreementCheckbox.includes(2)
       : ``;
 
-  const emailVerification = e => {
-    e.preventDefault();
+  const emailVerification = () => {
     setIsSending(true);
     fetch(API.EMAIL_VERIFICATION_API, {
       method: 'post',
@@ -191,15 +191,14 @@ const Login = () => {
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
-      .catch(err => alert(`로그인 실패 ${err}`))
+      .catch(err => alert(`비밀번호를 확인해주세요`))
       .then(res => {
         localStorage.setItem('TOKEN', res.accessToken);
         navigate('/');
       });
   };
 
-  const join = e => {
-    e.preventDefault();
+  const join = () => {
     setIsSending(true);
     fetch(API.JOIN_API, {
       method: 'POST',
@@ -239,17 +238,7 @@ const Login = () => {
             : `${JOIN_TEXT.title}`}
         </div>
 
-        <form
-          className="form"
-          action="#"
-          onSubmit={
-            currentPage.url === EMAIL_VERIFICATION_TEXT.url
-              ? emailVerification
-              : currentPage.url === LOGIN_TEXT.url
-              ? login
-              : join
-          }
-        >
+        <form className="form" action="#" onSubmit={e => e.preventDefault()}>
           <div className="input-box">
             <input
               type="text"
@@ -466,6 +455,13 @@ const Login = () => {
             className={`${
               isOpenButton ? `open-button-color` : `close-button-color`
             } submit-button`}
+            onClick={
+              currentPage.url === EMAIL_VERIFICATION_TEXT.url
+                ? emailVerification
+                : currentPage.url === LOGIN_TEXT.url
+                ? login
+                : join
+            }
             disabled={!isOpenButton || isSending}
           >
             {isSending ? `${currentPage.sendingText} 중..` : currentPage.button}
