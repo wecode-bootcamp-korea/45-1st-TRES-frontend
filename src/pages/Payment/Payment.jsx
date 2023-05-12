@@ -88,10 +88,10 @@ const Payment = () => {
       }),
     })
       .then(res => res.json())
-      .then(res => console.log(`받아오기`, res[0]))
       .then(data => {
-        setPaymentProduct(data[0]);
+        setPaymentProduct(data);
         deliveryDataIni.current = data;
+        // console.log('dsada', data);
       });
   }, [token]);
 
