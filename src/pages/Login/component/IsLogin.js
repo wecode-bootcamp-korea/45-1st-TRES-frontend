@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Login from '../Login';
-import Main from '../../Main/Main';
 import { useNavigate } from 'react-router-dom';
 
 const IsLogin = () => {
