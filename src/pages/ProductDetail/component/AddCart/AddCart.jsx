@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddCart.scss';
+import { API } from '../../../../config';
 
 const AddCart = ({ id, cost, count, languageType }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const AddCart = ({ id, cost, count, languageType }) => {
 
   const toCart = () => {
     token
-      ? fetch(`http://10.58.52.53:3000/orders`, {
+      ? fetch(API.ADD_CART, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
