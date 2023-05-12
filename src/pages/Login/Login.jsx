@@ -75,7 +75,7 @@ const Login = () => {
       let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
       setEmailRegex(
         emailCheckText.test(value) ||
-          `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
+          `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자 이상)`
       );
     } else if (name === `password`) {
       let passwordCheckText =
