@@ -28,27 +28,25 @@
   }
 
   .sub-category {
+    display: flex;
     position: absolute;
     top: 65px;
+    justify-content: center;
     width: 100vw;
     background-color: $main-white;
 
     .sub-category-box {
       display: flex;
-      flex-direction: column;
       flex-wrap: wrap;
-      align-content: center;
-      align-items: center;
-      justify-content: space-between;
-      height: 220px;
+      justify-content: center;
+      width: 940px;
       padding: 40px 0;
+      gap: 20px;
 
       .sub-category-link {
-        display: flex;
-        justify-content: center;
         width: 100px;
         color: $main-dark;
-        line-height: 40px;
+        text-align: center;
         @include body-2;
 
         &:hover {

@@ -19,7 +19,7 @@ const Nav = () => {
               </Link>
               {localStorage.getItem('TOKEN') ? (
                 <div className="loggedin">
-                  <span className="welcom-ment">님 반갑습니다.</span>
+                  <span className="welcom-ment">트레스김 님반갑습니다.</span>
                   <button className="user-btn">
                     <img
                       className="user-icon"
@@ -38,7 +38,7 @@ const Nav = () => {
         </div>
         <div className="nav-category-section">
           <div className="category-section-main">
-            <Link to="/main" className="logo-link">
+            <Link to="/" className="logo-link">
               <button className="logo-btn">
                 <img
                   src="/images/icon/seke120-80.png"

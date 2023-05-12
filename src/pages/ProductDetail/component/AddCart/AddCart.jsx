@@ -49,7 +49,6 @@ const AddCart = ({ id, cost, count, languageType }) => {
         />
         <button className="cart-add-button" onClick={toCart}>
           {token ? `${buttonToCart}` : `${buttonToLogin}`}
-          {/* {`${token ? { buttonToCart } : { buttonToLogin }}`} */}
         </button>
       </div>
     </div>
