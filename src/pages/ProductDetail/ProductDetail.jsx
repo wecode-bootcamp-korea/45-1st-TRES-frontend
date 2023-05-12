@@ -33,7 +33,7 @@ const ProductDetail = () => {
   } = productInfo;
 
   useEffect(() => {
-    fetch(`http://10.58.52.78:3000/products/${foodid}`)
+    fetch(`http://10.58.52.249:3000/products/${foodid}`)
       .then(res => res.json())
       .then(data => {
         setProductInfo(data);

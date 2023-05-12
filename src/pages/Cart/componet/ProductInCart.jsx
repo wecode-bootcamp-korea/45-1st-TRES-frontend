@@ -4,12 +4,22 @@ import './ProductInCart.scss';
 
 let selectList = [];
 const ProductInCart = props => {
-  const { id, checkItems, cartList, checkSingle, setProductPrice, quantity } =
-    props;
-  const [{ food, engFood, country, continent, orderPrice, food_image }] =
-    cartList;
+  const {
+    food,
+    id,
+    checkItems,
+    checkSingle,
+    setProductPrice,
+    engFood,
+    country,
+    continent,
+    orderPrice,
+    food_image,
+    orderCount,
+    setIsDelete,
+  } = props;
   const [isDisabled, setIsDisabled] = useState(true);
-  const [quantityChange, setQuantityChange] = useState(quantity);
+  const [quantityChange, setQuantityChange] = useState(orderCount);
   const totalPrice = orderPrice * quantityChange;
   const token = localStorage.getItem('TOKEN');
   const test = useRef();
@@ -17,7 +27,6 @@ const ProductInCart = props => {
     test.current.value = e.target.value;
     setIsDisabled(false);
   };
-
   const handleCount = id => {
     fetch(CART_API, {
       method: 'PATCH',
@@ -35,8 +44,9 @@ const ProductInCart = props => {
   };
 
   const selectDelete = id => {
+    setIsDelete(true);
     if (checkItems.includes(id)) {
-      fetch(`${CART_API}?${id}`, {
+      fetch(`${CART_API}?foodId=${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -44,6 +54,7 @@ const ProductInCart = props => {
         },
       });
     }
+    console.log(checkItems.includes(id));
   };
 
   useEffect(() => {
@@ -65,11 +76,11 @@ const ProductInCart = props => {
       0
     );
     setProductPrice(priceSum);
-  }, [quantityChange, checkItems]);
+  }, [checkItems, quantityChange]);
 
   return (
     <li className="product-in-cart">
-      <div className="product-information">
+      <div className="product-info">
         <input
           className="check-box"
           type="checkbox"
@@ -90,7 +101,7 @@ const ProductInCart = props => {
             <select
               className="count-change-button"
               onChange={e => handleChange(e)}
-              defaultValue={quantity}
+              defaultValue={orderCount}
               ref={test}
             >
               {QUANTITY_SELECT.map(item => (
