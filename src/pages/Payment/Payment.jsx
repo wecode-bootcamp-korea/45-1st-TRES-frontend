@@ -4,6 +4,7 @@ import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
 import { PAYMENT_API } from '../../config';
 import './Payment.scss';
+import { useSearchParams } from 'react-router-dom';
 
 const DELIVERY_FEE = 3000;
 
@@ -71,8 +72,11 @@ const Payment = () => {
     });
   };
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const token = localStorage.getItem('TOKEN');
   useEffect(() => {
+    console.log(searchParams.getAll(`foodId`).map(item => parseInt(item)));
+
     fetch(`${PAYMENT_API}/checkout`, {
       method: 'POST',
       headers: {
@@ -80,12 +84,13 @@ const Payment = () => {
         authorization: token,
       },
       body: JSON.stringify({
-        foodId: [24, 25],
+        foodId: searchParams.getAll(`foodId`).map(item => parseInt(item)),
       }),
     })
       .then(res => res.json())
+      .then(res => console.log(`받아오기`, res[0]))
       .then(data => {
-        setPaymentProduct(data);
+        setPaymentProduct(data[0]);
         deliveryDataIni.current = data;
       });
   }, [token]);

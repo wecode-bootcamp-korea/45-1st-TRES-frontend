@@ -38,19 +38,20 @@ const Cart = () => {
       },
     });
   };
-
   const goToPaymentPage = () => {
-    fetch(`${PAYMENT_API}/checkout`, {
-      method: 'POST',
+    console.log(`${PAYMENT_API}/checkout?foodId=${checkItems.join(',')}`);
+    fetch(`${PAYMENT_API}/checkout?foodId=${checkItems.join(',')}`, {
+      // fetch(`${PAYMENT_API}/checkout`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: JSON.stringify({
-        foodId: checkItems,
-      }),
+      // body: JSON.stringify({
+      //   foodId: checkItems,
+      // }),
     });
-    navigate('/payment');
+    navigate(`/payments/checkout?foodId=${checkItems.join(',')}`);
   };
 
   const token = localStorage.getItem('TOKEN');
