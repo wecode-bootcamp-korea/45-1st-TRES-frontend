@@ -77,9 +77,7 @@ const Login = () => {
         emailCheckText.test(value) ||
           `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
       );
-    }
-
-    if (name === `password`) {
+    } else if (name === `password`) {
       let passwordCheckText =
         /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
       setPasswordRegex(
@@ -93,39 +91,27 @@ const Login = () => {
           : `비밀번호가 일치하지 않습니다`
       );
       setPasswordRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `passwordEqual`) {
+    } else if (name === `passwordEqual`) {
       setIsPasswordEqualtext(
         e.target.value === inputValues.password
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
       setPasswordEqualRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `firstName`) {
+    } else if (name === `firstName`) {
       setFirstNameRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `lastName`) {
+    } else if (name === `lastName`) {
       setLastNameRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `gender`) {
+    } else if (name === `gender`) {
       setGenderRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `phoneNumber`) {
+    } else if (name === `phoneNumber`) {
       let phoneNumberCheckText = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
       setPhoneNumberRegex(
         phoneNumberCheckText.test(value) ||
           `핸드폰 번호 형식을 확인해주세요('-'제외)`
       );
       setPhoneNumberRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `address`) {
+    } else if (name === `address`) {
       setAddressRequired(!value.length ? `필수` : ``);
     }
   };

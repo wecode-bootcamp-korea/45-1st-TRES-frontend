@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Login from '../Login';
 import Main from '../../Main/Main';
+import { useNavigate } from 'react-router-dom';
 
 const IsLogin = () => {
   const token = localStorage.getItem('TOKEN');
-  if (token) alert(`이미 로그인 되어 있습니다`);
+  const navigate = useNavigate();
 
-  return <div className="is-login">{token ? <Main /> : <Login />}</div>;
+  useEffect(() => {
+    if (token) {
+      alert(`이미 로그인 되어 있습니다`);
+      navigate(`/`);
+    }
+  });
+
+  return !token && <Login />;
 };
 
 export default IsLogin;
