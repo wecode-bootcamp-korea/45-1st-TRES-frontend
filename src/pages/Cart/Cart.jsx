@@ -50,7 +50,6 @@ const Cart = () => {
         foodId: checkItems,
       }),
     });
-    console.log(checkItems);
     navigate('/payment');
   };
 
