@@ -22,29 +22,19 @@ const ProductInCart = props => {
   const [quantityChange, setQuantityChange] = useState(orderCount);
   const totalPrice = orderPrice * quantityChange;
   const token = localStorage.getItem('TOKEN');
-  const test = useRef();
+  // const test = useRef();
+  const [test1, setTest1] = useState(orderCount);
   const handleChange = e => {
     test.current.value = e.target.value;
     setIsDisabled(false);
   };
   const handleCount = id => {
-    fetch(CART_API, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-      body: JSON.stringify({
-        foodId: id,
-        quantity: quantityChange,
-      }),
-    });
     setQuantityChange(test.current.value);
     setIsDisabled(true);
   };
 
   const selectDelete = id => {
-    setIsDelete(true);
+    // setIsDelete(true);
     if (checkItems.includes(id)) {
       fetch(`${CART_API}?foodId=${id}`, {
         method: 'DELETE',
@@ -54,8 +44,19 @@ const ProductInCart = props => {
         },
       });
     }
-    console.log(checkItems.includes(id));
   };
+
+  // useEffect(() => {
+  //   if (checkItems.includes(id)) {
+  //     fetch(`${CART_API}?foodId=${id}`, {
+  //       method: 'DELETE',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //         authorization: token,
+  //       },
+  //     });
+  //   }
+  // }, [isDisabled]);
 
   useEffect(() => {
     if (checkItems.includes(id)) {
@@ -76,6 +77,20 @@ const ProductInCart = props => {
       0
     );
     setProductPrice(priceSum);
+  }, [checkItems, quantityChange]);
+
+  useEffect(() => {
+    fetch(CART_API, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        foodId: id,
+        quantity: quantityChange,
+      }),
+    });
   }, [checkItems, quantityChange]);
 
   return (
@@ -101,8 +116,8 @@ const ProductInCart = props => {
             <select
               className="count-change-button"
               onChange={e => handleChange(e)}
-              defaultValue={orderCount}
-              ref={test}
+              Value={test1}
+              // ref={test}
             >
               {QUANTITY_SELECT.map(item => (
                 <option key={item.id} value={item.value}>

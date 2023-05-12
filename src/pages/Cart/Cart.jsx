@@ -68,7 +68,6 @@ const Cart = () => {
         setCartList(data);
       });
     setIsDelete(false);
-    console.log(checkItems);
   }, [token, isDelete, checkItems]);
 
   useEffect(() => {
@@ -101,7 +100,7 @@ const Cart = () => {
                 className="check-box"
                 type="checkbox"
                 onChange={e => checkAll(e.target.checked)}
-                checked={checkItems.length === cartList.length}
+                checked={checkItems.length === cartList?.length}
               />
               <label htmlFor="check-all" className="select-all">
                 전체 선택
