@@ -25,11 +25,14 @@ const AddCart = ({ id, cost, count, languageType }) => {
           }),
         })
           .then(res => {
-            if (res.ok) return res.json();
+            if (res.ok) {
+              alert(`장바구니에 담겼습니다`);
+              return res.json();
+            }
             throw new Error('통신실패!');
           })
-          .catch(err => alert(`로그인 실패 ${err}`))
-      : navigate('/login');
+          .catch(err => alert(err))
+      : navigate('/email-verification');
   };
 
   let totalPrice = cost * count;
