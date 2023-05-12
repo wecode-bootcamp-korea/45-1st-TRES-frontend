@@ -88,6 +88,7 @@ const Payment = () => {
         setPaymentProduct(data);
         deliveryDataIni.current = data;
       });
+    console.log(paymentProduct);
   }, [token]);
 
   return (

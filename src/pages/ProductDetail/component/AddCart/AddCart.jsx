@@ -12,11 +12,11 @@ const AddCart = ({ id, cost, count, languageType }) => {
 
   const toCart = () => {
     token
-      ? fetch(`http://10.58.52.249:3000/orders`, {
+      ? fetch(`http://10.58.52.53:3000/orders`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            authorization: token,
           },
           body: JSON.stringify({
             price: totalPrice,

@@ -45,7 +45,7 @@ const ProductDetail = () => {
   let Meat = languageType ? productInfo.meat : productInfo.eng_meat;
 
   useEffect(() => {
-    fetch(`http://10.58.52.78:3000/products/${foodid}`)
+    fetch(`http://10.58.52.53:3000/products/${foodid}`)
       .then(res => res.json())
       .then(data => {
         setProductInfo(data);
