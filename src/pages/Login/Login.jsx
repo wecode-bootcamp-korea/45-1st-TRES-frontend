@@ -6,11 +6,6 @@ import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('TOKEN');
-  if (token) {
-    alert(`이미 로그인 되어 있습니다`);
-    navigate(`/`);
-  }
 
   const location = useLocation();
   const currentPage =
@@ -80,11 +75,9 @@ const Login = () => {
       let emailCheckText = /^[a-z]{2,}@[a-z]{2,}.[a-z]{2,}$/;
       setEmailRegex(
         emailCheckText.test(value) ||
-          `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자)`
+          `이메일 형식을 확인해주세요 (영어 소문자, 2글자@2글자.2글자 이상)`
       );
-    }
-
-    if (name === `password`) {
+    } else if (name === `password`) {
       let passwordCheckText =
         /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
       setPasswordRegex(
@@ -98,39 +91,27 @@ const Login = () => {
           : `비밀번호가 일치하지 않습니다`
       );
       setPasswordRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `passwordEqual`) {
+    } else if (name === `passwordEqual`) {
       setIsPasswordEqualtext(
         e.target.value === inputValues.password
           ? ``
           : `비밀번호가 일치하지 않습니다`
       );
       setPasswordEqualRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `firstName`) {
+    } else if (name === `firstName`) {
       setFirstNameRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `lastName`) {
+    } else if (name === `lastName`) {
       setLastNameRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `gender`) {
+    } else if (name === `gender`) {
       setGenderRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `phoneNumber`) {
+    } else if (name === `phoneNumber`) {
       let phoneNumberCheckText = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
       setPhoneNumberRegex(
         phoneNumberCheckText.test(value) ||
           `핸드폰 번호 형식을 확인해주세요('-'제외)`
       );
       setPhoneNumberRequired(!value.length ? `필수` : ``);
-    }
-
-    if (name === `address`) {
+    } else if (name === `address`) {
       setAddressRequired(!value.length ? `필수` : ``);
     }
   };
@@ -153,8 +134,7 @@ const Login = () => {
         agreementCheckbox.includes(2)
       : ``;
 
-  const emailVerification = e => {
-    e.preventDefault();
+  const emailVerification = () => {
     setIsSending(true);
     fetch(API.EMAIL_VERIFICATION_API, {
       method: 'post',
@@ -191,15 +171,14 @@ const Login = () => {
         if (res.ok) return res.json();
         throw new Error('통신실패!');
       })
-      .catch(err => alert(`로그인 실패 ${err}`))
+      .catch(err => alert(`비밀번호를 확인해주세요`))
       .then(res => {
         localStorage.setItem('TOKEN', res.accessToken);
         navigate('/');
       });
   };
 
-  const join = e => {
-    e.preventDefault();
+  const join = () => {
     setIsSending(true);
     fetch(API.JOIN_API, {
       method: 'POST',
@@ -239,17 +218,7 @@ const Login = () => {
             : `${JOIN_TEXT.title}`}
         </div>
 
-        <form
-          className="form"
-          action="#"
-          onSubmit={
-            currentPage.url === EMAIL_VERIFICATION_TEXT.url
-              ? emailVerification
-              : currentPage.url === LOGIN_TEXT.url
-              ? login
-              : join
-          }
-        >
+        <form className="form" action="#" onSubmit={e => e.preventDefault()}>
           <div className="input-box">
             <input
               type="text"
@@ -466,6 +435,13 @@ const Login = () => {
             className={`${
               isOpenButton ? `open-button-color` : `close-button-color`
             } submit-button`}
+            onClick={
+              currentPage.url === EMAIL_VERIFICATION_TEXT.url
+                ? emailVerification
+                : currentPage.url === LOGIN_TEXT.url
+                ? login
+                : join
+            }
             disabled={!isOpenButton || isSending}
           >
             {isSending ? `${currentPage.sendingText} 중..` : currentPage.button}

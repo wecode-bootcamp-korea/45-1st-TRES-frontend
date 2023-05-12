@@ -6,7 +6,7 @@ import ProductList from './pages/ProductList/ProductList';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
-import Login from './pages/Login/Login';
+import IsLogin from './pages/Login/component/IsLogin';
 import Empty from './pages/Empty/Empty';
 
 const Router = () => {
@@ -20,9 +20,9 @@ const Router = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
         </Route>
-        <Route path="/email-verification" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Login />} />
+        <Route path="/email-verification" element={<IsLogin />} />
+        <Route path="/login" element={<IsLogin />} />
+        <Route path="/join" element={<IsLogin />} />
         <Route path="*" element={<Empty />} />
       </Routes>
     </BrowserRouter>
