@@ -66,13 +66,6 @@
 프로젝트 플로우 : 메인페이지 -> 로그인/회원가입 -> 네비게이션바 -> 상품리스트 -> 상품상세 -> 장바구니 -> 결제
 <br>
 <h2>로그인/회원가입</h2>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a"></img>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c"></img>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img>
-이메일 입력을 통한 회원가입 또는 로그인으로 이어집니다. 회원가입 도중 선호하는 음식의 국가를 선택하여 미래에 웹사이트를 이용할때, 그에 맞는 추천 음식의 대한 정보를 전달 받습니다.<br>
-<br>
 [FE]<br>
 이메일/비밀번호에 대한 실시간 유효성 검사로 유저들이 번거로움 완화 <br>
 <br>
@@ -80,6 +73,14 @@
 로그인시 유저의 고유 id가 담긴 숫자를 JWT를 통해 보내, 유저가 API와 통신 요청시 항상 id를 체크하여 동작<br>
 Bcrypt를 사용한 password hashing으로 유저 정보 보안 강화<br>
 저장되어 있는 여러가지 정보를 바탕으로 추천 상품, 주문 시 배송지 불러오기, 메인페이지 상단 회원 닉네임 띄우기 등 다양한 기능으로 이어질 수 있다.
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img>
+이메일 입력을 통한 회원가입 또는 로그인으로 이어집니다. 회원가입 도중 선호하는 음식의 국가를 선택하여 미래에 웹사이트를 이용할때, 그에 맞는 추천 음식의 대한 정보를 전달 받습니다.<br>
+<br>
+
 <br>
 <br>
 <h2>메인페이지/네비게이션 바</h2>
