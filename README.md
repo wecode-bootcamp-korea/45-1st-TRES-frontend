@@ -66,7 +66,7 @@
 <br>
 <h2>로그인/회원가입</h2>
 <br>
-- 이메일/비밀번호에 대한 실시간 유효성 검사로 유저들이 번거로움 완화
+- 이메일/비밀번호에 대한 실시간 유효성 검사로 유저들이 번거로움 완화<br>
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img>
 <br>
