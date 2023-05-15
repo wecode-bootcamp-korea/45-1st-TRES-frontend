@@ -72,7 +72,7 @@
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img><br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a"></img><br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img><br>
 <br>
 <br>
 <h2>네비게이션 바</h2>
@@ -84,7 +84,7 @@
 <br>
 <img width="1200" alt="로그인전" src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/e7b0b915-51a8-4e63-ad09-3164b8c1a2bc"><br>
 <img width="1200" alt="로그인후" src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/b8d18c08-0d0e-499f-abe7-f22bc0726daa"><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/5969d419-c08e-4eba-aae3-ddd1ff7dc3f0"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/5969d419-c08e-4eba-aae3-ddd1ff7dc3f0"></img><br>
 <br>
 <br>
 <h2> 메인 </h2>
