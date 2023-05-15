@@ -87,7 +87,7 @@
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/5969d419-c08e-4eba-aae3-ddd1ff7dc3f0"></img>
 <br>
 <br>
-<h2 메인 </h2>
+<h2> 메인 </h2>
 <br>
 배너를 통해 정보를 전달하고 여러 캐러셀을 통해 상품카테고리 및 상품상세 페이지로 이동할 수 있습니다.<br>
 <br>
