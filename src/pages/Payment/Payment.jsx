@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
-import { PAYMENT_API } from '../../config';
+import { API } from '../../config';
 import './Payment.scss';
 
 const DELIVERY_FEE = 3000;
@@ -50,7 +50,7 @@ const Payment = () => {
   };
 
   const showOrderComplete = () => {
-    fetch(PAYMENT_API, {
+    fetch(API.PAYMENT_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const Payment = () => {
 
   const token = localStorage.getItem('TOKEN');
   useEffect(() => {
-    fetch(`${PAYMENT_API}/checkout`, {
+    fetch(`${API.PAYMENT_API}/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

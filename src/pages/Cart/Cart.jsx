@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductInCart from './componet/ProductInCart';
 import ProductRecommendation from './componet/ProductRecommendation';
-import { CART_API } from '../../config';
-import { PAYMENT_API } from '../../config';
+import { API } from '../../config';
 import './Cart.scss';
 
 const DELIVERY_FEE = 3000;
@@ -29,7 +28,7 @@ const Cart = () => {
   };
 
   const deleteSelectItem = () => {
-    fetch(`${CART_API}?${checkItems.join()}`, {
+    fetch(`${API.CART_API}?${checkItems.join()}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -39,7 +38,7 @@ const Cart = () => {
   };
 
   const goToPaymentPage = () => {
-    fetch(`${PAYMENT_API}/checkout`, {
+    fetch(`${API.PAYMENT_API}/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -55,7 +54,7 @@ const Cart = () => {
   const token = localStorage.getItem('TOKEN');
 
   useEffect(() => {
-    fetch(`${CART_API}/cart`, {
+    fetch(`${API.CART_API}/cart`, {
       method: 'GET',
       headers: {
         authorization: token,

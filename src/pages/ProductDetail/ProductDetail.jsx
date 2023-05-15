@@ -4,6 +4,7 @@ import ProductCalculation from './component/ProductCalculation/ProductCalculatio
 import ProductImformation from './component/ProductInformation/ProductImformation';
 import ProductSummary from './component/ProductSummary/ProductSummary';
 import './ProductDetail.scss';
+import { BASE_URL } from '../../config';
 
 const ProductDetail = () => {
   const [productInfo, setProductInfo] = useState([]);
@@ -45,7 +46,7 @@ const ProductDetail = () => {
   let Meat = languageType ? productInfo.meat : productInfo.eng_meat;
 
   useEffect(() => {
-    fetch(`http://10.58.52.78:3000/products/${foodid}`)
+    fetch(`${BASE_URL}/products/${foodid}`)
       .then(res => res.json())
       .then(data => {
         setProductInfo(data);
