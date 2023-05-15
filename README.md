@@ -63,13 +63,14 @@
   </h4>
 </div>
 <br>
+프로젝트 플로우 : 메인페이지 -> 로그인/회원가입 -> 네비게이션바 -> 상품리스트 -> 상품상세 -> 장바구니 -> 결제
 <br>
 <h2>로그인/회원가입</h2>
-![비회원 회원가입](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171)
-![회원 로그인](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4)
-![비밀번호 유효성검사](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a)
-![선호국가](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c)
-![동의약관](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9)
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img>
 이메일 입력을 통한 회원가입 또는 로그인으로 이어집니다. 회원가입 도중 선호하는 음식의 국가를 선택하여 미래에 웹사이트를 이용할때, 그에 맞는 추천 음식의 대한 정보를 전달 받습니다.<br>
 <br>
 [FE]<br>
