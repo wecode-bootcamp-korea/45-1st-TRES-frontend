@@ -66,36 +66,42 @@
 <br>
 <h2>로그인/회원가입</h2>
 <br>
-- 이메일/비밀번호에 대한 실시간 유효성 검사로 유저들이 번거로움 완화 <br>
+- 이메일/비밀번호에 대한 실시간 유효성 검사로 유저들이 번거로움 완화
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img>
 <br>
 <br>
 <h2>네비게이션 바</h2>
 <br>
-큰 카테고리를 통해 상품리스트 페이지로 이동할 수 있습니다. 로그인 상태를 알려 줍니다.<br>
+큰 카테고리를 통해 상품리스트 페이지로 이동할 수 있습니다. 로그인 상태를 알려 줍니다.
 <br>
 - TOTEN의 유무로 회원/비회원 확인하여 각 상태에 해당하는 맞춤 텍스트를 보여줍니다.
 - 서버로부터 받은 데이터를 활용하여 각 카테고리의 해당하는 세부카테고리를 map메서드를 사용해 보여주도록 구현하였습니다.
 <br>
 <img width="1200" alt="로그인전" src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/e7b0b915-51a8-4e63-ad09-3164b8c1a2bc">
 <img width="1200" alt="로그인후" src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/b8d18c08-0d0e-499f-abe7-f22bc0726daa">
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/5969d419-c08e-4eba-aae3-ddd1ff7dc3f0"></img>
 <br>
 <br>
 <h2 메인 </h2>
 <br>
-배너를 통해 정보를 전달하고 여러 캐러셀을 통해 상품카테고리 및 상품상세 페이지로 이동할 수 있습니다. <br>
+배너를 통해 정보를 전달하고 여러 캐러셀을 통해 상품카테고리 및 상품상세 페이지로 이동할 수 있습니다.
 <br>
 - 사용자가 사이트에 처음 접속하면 혜택/이벤트등을 바로 확인할 수 있도록 정보를 제공하는 배너창을 구현하였습니다.
 - 상단 NAV에 있는 카테고리를 캐러셀 UI를 이용해서 한번더 배치하여 사용자가 익숙하지 않은 대륙/나라의 상품리스트로 손쉽게 이동할 수 있도록 하였습니다.
 - 월간베스트 항목을 캐러셀 UI로 배치하고 처음과 끝 항목에 도달하면 앞/뒤로 이동하는 버튼이 비활성회 되도록 구현하였습니다.
 - 각 상품과 카테고리를 클릭하면 해당 페이지로 이동할 수 있도록 동적라우팅 기능을 사용하였습니다.
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/e36a08f7-cead-4569-ba05-6b1fdbd246df"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0ce21133-b8bd-4fc0-9e28-f0b9ff934cb3"></img>
 <br>
 <br>
@@ -105,16 +111,18 @@
 또한, 보기 편하도록 한국어와 영어로 음식의 이름이 표기되어잇고, 한 줄에 3개의 상품을 나열하였습니다. <br>
 사용자들은 현재 인기 상품에 흥미가 생기는 경향이 잇고, 가격순으로 결정하는 경우가 있기 때문에 인기순, 가격순으로 정렬할 수 있는 기능을 구현했습니다.
 <br>
-- 맵기, 대륙별, 나라별, 알러지별, 육류별과 같은 다양한 필터를 넣어 사용자들이 더욱 더 자신에게 맞는 음식을 수월하게 찾을 수 있도록 구현 <br>
+- 맵기, 대륙별, 나라별, 알러지별, 육류별과 같은 다양한 필터를 넣어 사용자들이 더욱 더 자신에게 맞는 음식을 수월하게 찾을 수 있도록 구현
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fa6fd96f-2146-4a99-9a43-d5084f3e5c8c"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/1e7f5601-193d-45eb-b3ec-34c48bd13b11"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9d7dbe2a-aef4-4002-a13e-1cd196e3d133"></img>
 <br>
 <br>
 <h2>상품 상세</h2>
 <br>
-이름,가격,알러지 여부, 채식여부, 상품의 대한 설명 등과 같은 정보들을 상세 페이지에서 표시함으로, 사용자들은 정확한 정보를 통해 상품에 대한 구매 의사 결정. <br>
+이름,가격,알러지 여부, 채식여부, 상품의 대한 설명 등과 같은 정보들을 상세 페이지에서 표시함으로, 사용자들은 정확한 정보를 통해 상품에 대한 구매 의사 결정.
 <br>
 - 서버로부터 Fetch API를 통해서 받은 데이터를 각 해당하는 위치에 할당하여 랜더링 해주었습니다.
 - 조건부 랜더링을 사용하여 언어변환 버튼을 누르면 한국어/영어가 각각 보여지도록 구현하였습니다.
@@ -124,25 +132,29 @@
 - 제품의 수량을 선택한 후 장바구니에 담기 버튼을 누르면 서버로 해당 데이터가 전송되도록 Fetch POST를 사용하였습니다.
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/7becb7ae-310c-4b25-ab39-1e9e60cfd677"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fabbca74-0b8e-4051-a817-dbac7416b784"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/8050882e-7b07-4f41-8a9b-fb66620f80ba"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/260aa1ae-de85-4571-8505-3533af3ff3e7"></img>
 <br>
 <br>
 <h2>장바구니</h2>
-장바구니에 추가한 음식을 나열해서 목록으로 보여주고 제품목록에서 구매하려는 제품을 선택 시 제품들의 총 금액을 보여줍니다. 그리고 추천 제품 목록에서 추천하는 음식을 보여줍니다.<br>
+장바구니에 추가한 음식을 나열해서 목록으로 보여주고 제품목록에서 구매하려는 제품을 선택 시 제품들의 총 금액을 보여줍니다. 그리고 추천 제품 목록에서 추천하는 음식을 보여줍니다.
 <br>
-- 수량변경 기능과 개별/선택 삭제 기능을 추가해, 혹여 자신이 이미 담아놓은 제품의 내역에 대해 변경을 넣어주고 싶다면, 쉽게 해당 페이지에서 가능.<br> 또한, 미리 총 결제 금액을 보여주면서 잘못 선택한 제품이 있는지, 예상했던 계획과 일치하는지 확인할 수 있게함.<br>
+- 수량변경 기능과 개별/선택 삭제 기능을 추가해, 혹여 자신이 이미 담아놓은 제품의 내역에 대해 변경을 넣어주고 싶다면, 쉽게 해당 페이지에서 가능.<br> 또한, 미리 총 결제 금액을 보여주면서 잘못 선택한 제품이 있는지, 예상했던 계획과 일치하는지 확인할 수 있게함.
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/ba4c0535-3aba-49e1-8308-b9e58414976f"></img>
 <br>
 <br>
 <h2>결제</h2>
-회원가입시 입력했던 배송지가 기본 배송지로 설정되어 있고 보유하고 있는 포인트와 총결제 비용을 통해 결제가 가능한지 확인합니다.<br>
+회원가입시 입력했던 배송지가 기본 배송지로 설정되어 있고 보유하고 있는 포인트와 총결제 비용을 통해 결제가 가능한지 확인합니다.
 <br>
-- 사용자가 편하게 이미 입력해놓은 배송 정보를 사용 할 수 있는 선택이 존재하고, 다른 배송지를 사용하고 싶다면 새로 입력 가능.<br> 프론트 딴에서 먼저 백에서 넘겨 받은 사용자 보유 포인트 정보로 결제 이전에 계산하여, 결제 버튼 활성화/비활성화. <br>
+- 사용자가 편하게 이미 입력해놓은 배송 정보를 사용 할 수 있는 선택이 존재하고, 다른 배송지를 사용하고 싶다면 새로 입력 가능.<br> 프론트 딴에서 먼저 백에서 넘겨 받은 사용자 보유 포인트 정보로 결제 이전에 계산하여, 결제 버튼 활성화/비활성화.
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9cb52b7a-6a98-4186-a0f1-f8dfdde77bc4"></img>
+<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2852945-0b88-40f0-8f80-2f62692aaaee"></img>
 <br>
 
