@@ -91,12 +91,12 @@
 <br>
 배너를 통해 정보를 전달하고 여러 캐러셀을 통해 상품카테고리 및 상품상세 페이지로 이동할 수 있습니다.<br>
 <br>
-- 사용자가 사이트에 처음 접속하면 혜택/이벤트등을 바로 확인할 수 있도록 정보를 제공하는 배너창을 구현하였습니다.
-- 상단 NAV에 있는 카테고리를 캐러셀 UI를 이용해서 한번더 배치하여 사용자가 익숙하지 않은 대륙/나라의 상품리스트로 손쉽게 이동할 수 있도록 하였습니다.
-- 월간베스트 항목을 캐러셀 UI로 배치하고 처음과 끝 항목에 도달하면 앞/뒤로 이동하는 버튼이 비활성회 되도록 구현하였습니다.
+- 사용자가 사이트에 처음 접속하면 혜택/이벤트등을 바로 확인할 수 있도록 정보를 제공하는 배너창을 구현하였습니다.<br>
+- 상단 NAV에 있는 카테고리를 캐러셀 UI를 이용해서 한번더 배치하여 사용자가 익숙하지 않은 대륙/나라의 상품리스트로 손쉽게 이동할 수 있도록 하였습니다.<br>
+- 월간베스트 항목을 캐러셀 UI로 배치하고 처음과 끝 항목에 도달하면 앞/뒤로 이동하는 버튼이 비활성회 되도록 구현하였습니다.<br>
 - 각 상품과 카테고리를 클릭하면 해당 페이지로 이동할 수 있도록 동적라우팅 기능을 사용하였습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/e36a08f7-cead-4569-ba05-6b1fdbd246df"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0ce21133-b8bd-4fc0-9e28-f0b9ff934cb3"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0ce21133-b8bd-4fc0-9e28-f0b9ff934cb3"></img><br>
 <br>
 <br>
 <h2>상품 리스트</h2>
@@ -109,24 +109,24 @@
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fa6fd96f-2146-4a99-9a43-d5084f3e5c8c"></img><br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/1e7f5601-193d-45eb-b3ec-34c48bd13b11"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9d7dbe2a-aef4-4002-a13e-1cd196e3d133"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9d7dbe2a-aef4-4002-a13e-1cd196e3d133"></img><br>
 <br>
 <br>
 <h2>상품 상세</h2>
 <br>
 이름,가격,알러지 여부, 채식여부, 상품의 대한 설명 등과 같은 정보들을 상세 페이지에서 표시함으로, 사용자들은 정확한 정보를 통해 상품에 대한 구매 의사 결정.<br>
 <br>
-- 서버로부터 Fetch API를 통해서 받은 데이터를 각 해당하는 위치에 할당하여 랜더링 해주었습니다.
-- 조건부 랜더링을 사용하여 언어변환 버튼을 누르면 한국어/영어가 각각 보여지도록 구현하였습니다.
-- 로그인/로그아웃 상태에 따라서 버튼이 장바구니에담기/로그인 버튼으로 사용 되도록 구현하였습니다.
-- 상세설명/상품정보/리뷰 버튼이 스크롤이 내려가도 상단에 위치하도록 하였습니다.
-- useRef Hook을 사용하여 상세설명/상품정보/리뷰 버튼을 누르면 제공하는 위치로 스크롤이 자동으로 위치할 수 있도록 구현하였습니다.
+- 서버로부터 Fetch API를 통해서 받은 데이터를 각 해당하는 위치에 할당하여 랜더링 해주었습니다.<br>
+- 조건부 랜더링을 사용하여 언어변환 버튼을 누르면 한국어/영어가 각각 보여지도록 구현하였습니다.<br>
+- 로그인/로그아웃 상태에 따라서 버튼이 장바구니에담기/로그인 버튼으로 사용 되도록 구현하였습니다.<br>
+- 상세설명/상품정보/리뷰 버튼이 스크롤이 내려가도 상단에 위치하도록 하였습니다.<br>
+- useRef Hook을 사용하여 상세설명/상품정보/리뷰 버튼을 누르면 제공하는 위치로 스크롤이 자동으로 위치할 수 있도록 구현하였습니다.<br>
 - 제품의 수량을 선택한 후 장바구니에 담기 버튼을 누르면 서버로 해당 데이터가 전송되도록 Fetch POST를 사용하였습니다.<br>
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/7becb7ae-310c-4b25-ab39-1e9e60cfd677"></img><br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fabbca74-0b8e-4051-a817-dbac7416b784"></img><br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/8050882e-7b07-4f41-8a9b-fb66620f80ba"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/260aa1ae-de85-4571-8505-3533af3ff3e7"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/260aa1ae-de85-4571-8505-3533af3ff3e7"></img><br>
 <br>
 <br>
 <h2>장바구니</h2>
@@ -134,7 +134,7 @@
 <br>
 - 수량변경 기능과 개별/선택 삭제 기능을 추가해, 혹여 자신이 이미 담아놓은 제품의 내역에 대해 변경을 넣어주고 싶다면, 쉽게 해당 페이지에서 가능.<br> 또한, 미리 총 결제 금액을 보여주면서 잘못 선택한 제품이 있는지, 예상했던 계획과 일치하는지 확인할 수 있게함.<br>
 <br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/ba4c0535-3aba-49e1-8308-b9e58414976f"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/ba4c0535-3aba-49e1-8308-b9e58414976f"></img><br>
 <br>
 <br>
 <h2>결제</h2>
@@ -143,7 +143,7 @@
 - 사용자가 편하게 이미 입력해놓은 배송 정보를 사용 할 수 있는 선택이 존재하고, 다른 배송지를 사용하고 싶다면 새로 입력 가능.<br> 프론트 딴에서 먼저 백에서 넘겨 받은 사용자 보유 포인트 정보로 결제 이전에 계산하여, 결제 버튼 활성화/비활성화.<br>
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9cb52b7a-6a98-4186-a0f1-f8dfdde77bc4"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2852945-0b88-40f0-8f80-2f62692aaaee"></img>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2852945-0b88-40f0-8f80-2f62692aaaee"></img><br>
 <br>
 
 
