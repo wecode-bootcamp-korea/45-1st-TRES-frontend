@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddCart.scss';
+import { API } from '../../../../config';
 
 const AddCart = ({ id, cost, count, languageType }) => {
   const navigate = useNavigate();
@@ -12,11 +13,11 @@ const AddCart = ({ id, cost, count, languageType }) => {
 
   const toCart = () => {
     token
-      ? fetch(`http://10.58.52.249:3000/orders`, {
+      ? fetch(API.ADD_CART, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            authorization: token,
           },
           body: JSON.stringify({
             price: totalPrice,
@@ -25,11 +26,14 @@ const AddCart = ({ id, cost, count, languageType }) => {
           }),
         })
           .then(res => {
-            if (res.ok) return res.json();
+            if (res.ok) {
+              alert(`장바구니에 담겼습니다`);
+              return res.json();
+            }
             throw new Error('통신실패!');
           })
-          .catch(err => alert(`로그인 실패 ${err}`))
-      : navigate('/login');
+          .catch(err => alert(err))
+      : navigate('/email-verification');
   };
 
   let totalPrice = cost * count;

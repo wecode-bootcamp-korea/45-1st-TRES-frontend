@@ -11,7 +11,7 @@ const ProductRecommendation = ({ title, titleEng, price, foodImg }) => {
       />
       <div className="recommendation-info">{title}</div>
       <div className="recommendation-info">{titleEng}</div>
-      <div className="recommendation-info">{price}원</div>
+      <div className="recommendation-info">{price.toLocaleString()}원</div>
     </li>
   );
 };

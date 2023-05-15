@@ -18,7 +18,7 @@ const Cart = () => {
 
   const checkAll = checked => {
     checked
-      ? setCheckItems(cartList?.map(item => item.orderItemsId))
+      ? setCheckItems(cartList?.map(item => item.foodId))
       : setCheckItems([]);
   };
 
@@ -27,9 +27,10 @@ const Cart = () => {
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
   };
-
+  const [isDelete, setIsDelete] = useState(false);
   const deleteSelectItem = () => {
-    fetch(`${CART_API}?${checkItems.join()}`, {
+    setIsDelete(true);
+    fetch(`${CART_API}?foodId=${checkItems.join(',')}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -37,19 +38,20 @@ const Cart = () => {
       },
     });
   };
-
   const goToPaymentPage = () => {
-    fetch(`${PAYMENT_API}/checkout`, {
-      method: 'POST',
+    console.log(`${PAYMENT_API}/checkout?foodId=${checkItems.join(',')}`);
+    fetch(`${PAYMENT_API}/checkout?foodId=${checkItems.join(',')}`, {
+      // fetch(`${PAYMENT_API}/checkout`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: JSON.stringify({
-        foodId: checkItems,
-      }),
+      // body: JSON.stringify({
+      //   foodId: checkItems,
+      // }),
     });
-    navigate('/payment');
+    navigate(`/payments/checkout?foodId=${checkItems.join(',')}`);
   };
 
   const token = localStorage.getItem('TOKEN');
@@ -65,7 +67,8 @@ const Cart = () => {
       .then(data => {
         setCartList(data);
       });
-  }, [token]);
+    setIsDelete(false);
+  }, [token, isDelete, checkItems]);
 
   useEffect(() => {
     fetch('/data/recommandData.json', {
@@ -97,7 +100,7 @@ const Cart = () => {
                 className="check-box"
                 type="checkbox"
                 onChange={e => checkAll(e.target.checked)}
-                checked={checkItems.length === cartList.length}
+                checked={checkItems.length === cartList?.length}
               />
               <label htmlFor="check-all" className="select-all">
                 전체 선택
@@ -110,14 +113,20 @@ const Cart = () => {
           <ul>
             {cartList?.map(item => (
               <ProductInCart
-                key={item.orderItemsId}
-                id={item.orderItemsId}
+                key={item.foodId}
+                id={item.foodId}
+                food={item.food}
                 checkItems={checkItems}
                 checkSingle={checkSingle}
-                cartList={cartList}
                 setProductPrice={setProductPrice}
                 productPrice={productPrice}
                 quantity={item.orderCount}
+                continent={item.continent}
+                country={item.country}
+                food_image={item.food_image}
+                orderPrice={item.orderPrice}
+                orderCount={item.orderCount}
+                setIsDelete={setIsDelete}
               />
             ))}
           </ul>
