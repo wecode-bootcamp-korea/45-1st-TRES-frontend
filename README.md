@@ -65,7 +65,11 @@
 <br>
 <br>
 <h2>로그인/회원가입</h2>
-<img src=web-images/login.jpg>
+![비회원 회원가입](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171)
+![회원 로그인](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4)
+![비밀번호 유효성검사](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a)
+![선호국가](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c)
+![동의약관](https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9)
 이메일 입력을 통한 회원가입 또는 로그인으로 이어집니다. 회원가입 도중 선호하는 음식의 국가를 선택하여 미래에 웹사이트를 이용할때, 그에 맞는 추천 음식의 대한 정보를 전달 받습니다.<br>
 <br>
 [FE]<br>
@@ -102,7 +106,6 @@ Filter Builder를 제작해 다양한 합집합/교집합의 요청이 와도 �
 <br>
 <br>
 <h2>상품 상세</h2>
-![언어변경](https://github.com/wecode-bootcamp-korea/45-1st-TRES-backend/assets/109189690/35baeca4-ebe0-45e7-af8f-aa372141af95)
 <img src=web-images/product_detail.jpg>
 이름,가격,알러지 여부, 채식여부, 상품의 대한 설명 등과 같은 정보들을 상세 페이지에서 표시함으로, 사용자들은 정확한 정보를 통해 상품에 대한 구매 의사 결정. <br>
 <br>
