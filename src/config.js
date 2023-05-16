@@ -1,5 +1,5 @@
-const BASE_URL = 'http://13.125.231.183:3000/';
-const PRODUCTLIST_URL = 'http://13.125.231.183:3000/';
+const BASE_URL = 'http://13.125.231.183:3000';
+const PRODUCTLIST_URL = 'http://13.125.231.183:3000';
 
 export const API = {
   EMAIL_VERIFICATION_API: `${BASE_URL}/users/email-check`,
