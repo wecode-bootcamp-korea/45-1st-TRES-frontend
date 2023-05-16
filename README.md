@@ -21,12 +21,10 @@
   </br>
 <div align="center">FRONTEND</div>
   <div align="center">
-  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-    <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
     <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-      <img src="https://img.shields.io/badge/sass-CC6699?style=for-the-badge&logo=sass&logoColor=red">
-
+    <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+    <img src="https://img.shields.io/badge/sass-CC6699?style=for-the-badge&logo=sass&logoColor=red">
   </div>
 </br>
 <div align="center">BACKEND</div>
@@ -66,7 +64,38 @@
 <br>
 <h2>로그인/회원가입</h2>
 <br>
-- 이메일/비밀번호에 대한 실시간 유효성 검사로 유저들이 번거로움 완화<br>
+
+- 이메일 확인
+
+  - 로그인/회원가입 페이지 통합으로 사용자는 첫 페이지에 이메일만 입력하고 DB에서 유무를 판별하여 로그인 혹은 회원가입 페이지에 바로 이동하게 구현하였습니다.
+  - 이메일 입력 후에는 재입력을 방지로 input이 disable 됩니다.
+  - 이메일 확인에서 서버가 끊어져 있을 경우 상태 알림을 표시합니다.
+
+- 로그인
+
+  - 비밀번호를 잘못 입력할 경우 알림창으로 알려줍니다.
+
+- 회원가입
+
+  - 비밀번호 확인 입력시 아래 문구를 표시하여 사용자가 비밀번호를 일치하게 입력했는지 확인할 수 있습니다. 위아래 입력 순서 엉킴 없이 정확하게 바로 확인이 가능합니다.
+  - 필수 입력 항목에서 input 입력 후 다시 입력한 텍스트를 삭제할 경우 필수 문구 표시가 표시되게 하였습니다.
+  - 선호 국가 선택 기능을 넣어 사용자의 취향을 알 수 있도록 하였습니다.
+    - 국가 목록이 모달창으로 표시되며 주변 밝기를 약간 어둡게 하여 선택에 집중할 수 있게 하였습니다.
+    - 국가 목록은 최대 3개만 지정할 수 있습니다.
+    - 선호 국가 선택하고 창을 닫으면 버튼 옆에 선택한 국가들이 나타납니다.
+  - 동의 체크박스에서 필수만 체크 시 회원가입 버튼이 활성화됩니다.
+  - 회원가입 후 자동 로그인이 되며 메인페이지로 바로 이동합니다.
+
+- 공통
+
+  - 실시간 유효성 검사를 사용하여 사용자가 올바르게 입력하고 있는지 바로 확인할 수 있습니다.
+    - 이메일
+    - 비밀번호
+    - 전화번호
+  - 모든 조건을 맞게 입력하면 전송 버튼이 활성화됩니다.
+  - 전송 버튼을 클릭하면 '\* 중..' 문구로 변경되며 다중 클릭이 되지 않습니다.
+  - 로그인 후 사용자가 로그인/회원가입 url로 접속하면 페이지에 접근하지 못하게 하였습니다.
+
 <br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img><br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img><br>
@@ -141,9 +170,7 @@
 회원가입시 입력했던 배송지가 기본 배송지로 설정되어 있고 보유하고 있는 포인트와 총결제 비용을 통해 결제가 가능한지 확인합니다.<br>
 <br>
 - 사용자가 편하게 이미 입력해놓은 배송 정보를 사용 할 수 있는 선택이 존재하고, 다른 배송지를 사용하고 싶다면 새로 입력 가능.<br> 프론트 딴에서 먼저 백에서 넘겨 받은 사용자 보유 포인트 정보로 결제 이전에 계산하여, 결제 버튼 활성화/비활성화.<br>
-<br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9cb52b7a-6a98-4186-a0f1-f8dfdde77bc4"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2852945-0b88-40f0-8f80-2f62692aaaee"></img><br>
-<br>
-
-
+  <br>
+  <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9cb52b7a-6a98-4186-a0f1-f8dfdde77bc4"></img><br>
+  <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2852945-0b88-40f0-8f80-2f62692aaaee"></img><br>
+  <br>
