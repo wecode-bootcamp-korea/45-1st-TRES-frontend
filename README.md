@@ -97,6 +97,9 @@
 <img width="1200" alt="로그인후" src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/b8d18c08-0d0e-499f-abe7-f22bc0726daa"><br>
 <br>
 - 서버로부터 받은 데이터를 활용하여 각 카테고리의 해당하는 세부카테고리를 map메서드를 사용해 보여주도록 구현하였습니다.<br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/44a6d47f-18cd-46cf-af9f-f328d0a1696e"></img><br>
+<br>
+- 카테고리를 누르면 해당하는 세부 카테고리로 이동하도록 동적 라우팅을 사용하였습니다.
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/5969d419-c08e-4eba-aae3-ddd1ff7dc3f0"></img><br>
 <br>
 <br>
