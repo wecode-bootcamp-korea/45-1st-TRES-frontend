@@ -75,11 +75,14 @@
 - 비밀번호를 잘못 입력할 경우 알림창으로 알려줍니다.<br>
 - 비밀번호 확인 입력시 실시간으로 비밀번호 조건과 비교하여 사용자가 조건에 맞는 비밀번호를 입력했는지 확인할 수 있습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fe515815-5516-4a3f-b41e-d3ef4c941e2d"></img><br>
+<br>
 - 필수 입력 항목에서 input 입력 후 다시 입력한 텍스트를 삭제할 경우 필수 문구 표시가 표시되게 하였습니다.<br>
 - 선호 국가 선택 기능을(최대 3개) 넣어 사용자의 취향을 알 수 있도록 하였습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f40078e9-15c8-42d9-a545-83f0c534978f"></img><br>
+<br>
 - 동의 체크박스에서 필수만 체크 시 회원가입 버튼이 활성화됩니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/dac50e35-c078-4183-b4b4-db12e6667177"></img><br>
+<br>
 - 회원가입 후 자동 로그인이 되며 메인페이지로 바로 이동합니다.<br>
 - 실시간 유효성 검사를 사용하여 사용자가 올바르게 입력하고 있는지 바로 확인할 수 있습니다.(이메일 / 비밀번호 / 전화번호)<br>
 - 필수 입력 조건이 입력되면 전송 버튼이 활성화됩니다.<br>
@@ -117,8 +120,10 @@
 - 사용자들이 보기 편하도록 한국어, 영어로 음식의 이름을 표시하고 1줄에 3개의 상품을 나열했습니다.<br>
 - 사용자들은 현재 인기 상품에 흥미가 생기는 경향이 있고 가격순으로 결정을 하는 경우가 있기 때문에 인기순, 가격순으로 정렬할 수 있는 기능 구현했습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fc9c44b9-9e79-487d-957a-880f4aa5edc9"></img><br>
+<br>
 - 사용자들이 각자에 맞는 취향(채식, 고기 종류, 맵기), 섭취 가능 여부(알러지 여부) 등으로 상품을 고르기 쉽게 필터링 기능을 추가했습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/342c69d2-b241-49f8-bb19-918524f9791e"></img><br>
+<br>
 - 비슷한 음식을 좋아할 확률이 높기 때문에 세부 카테고리에서 같은 대륙의 음식으로 쉽게 이동 할 수 있도록 했습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9efa8fba-2f60-4467-9246-2b075bf9099c"></img><br>
 <br>
@@ -130,11 +135,14 @@
 - 서버로부터 Fetch API를 통해서 받은 데이터를 각 해당하는 위치에 할당하여 랜더링 해주었습니다.<br>
 - 조건부 랜더링을 사용하여 언어변환 버튼을 누르면 한국어/영어가 각각 보여지도록 구현하였습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/10fbe896-01c1-4aa8-b723-75ee0eede639"></img><br>
+<br>
 - 로그인/로그아웃 상태에 따라서 버튼이 장바구니에담기/로그인 버튼으로 사용 되도록 구현하였습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/abd09255-e949-49ad-bd5c-7c458013db80"></img><br>
+<br>
 - 상세설명/상품정보/리뷰 버튼이 스크롤이 내려가도 상단에 위치하도록 하였습니다.<br>
 - useRef Hook을 사용하여 상세설명/상품정보/리뷰 버튼을 누르면 제공하는 위치로 스크롤이 자동으로 위치할 수 있도록 구현하였습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2fddc86f-de8e-4b7b-8b59-50a30c23ccc3"></img><br>
+<br>
 - 제품의 수량을 선택한 후 장바구니에 담기 버튼을 누르면 서버로 해당 데이터가 전송되도록 Fetch POST를 사용하였습니다.<br>
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2f8a7b2-6eaf-47d2-b1f8-43fef73b3f80"></img><br>
 <br>
@@ -154,6 +162,7 @@
 <br>
 - 구매를 할 때 마다 배송지를 입력하는 수고를 덜기 위해서 기존 가지고 있던 배송지를 기본배송지로 설정해서 사용자의 불편함을 줄였습니다.
 <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/09b9efe9-72f3-47ef-a56e-98658b87e1f6"></img><br>
+<br>
 - 기본배송지 이외에도 다른 배송지를 입력할 수 있어서 원하는 곳으로 제품을 받을 수 있도록 했습니다.
 - 사용자가 올바른 결제를 할 수 있게 최종결제 전 구매목록과 보유포인트 및 총 결제비용을 추가하였습니다.
 - 배송지단계에서 배송지 정보가 없거나 보유포인트가 부족할 떄 사용자가 추가로 작업할 수 있도록 구매약관을 비활성화했습니다.
