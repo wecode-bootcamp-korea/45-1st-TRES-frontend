@@ -9,7 +9,7 @@ const Main = () => {
   const [mainList, setMainList] = useState([]);
 
   useEffect(() => {
-    fetch('http://10.58.52.78:3000/products/random?from=20&count=40')
+    fetch('http://13.125.231.183:3000/products/random?from=20&count=40')
       .then(res => res.json())
       .then(data => {
         setMainList(data);
