@@ -90,11 +90,11 @@
   - 전송 버튼을 클릭하면 '\* 중..' 문구로 변경되며 다중 클릭이 되지 않습니다.
   - 로그인 후 사용자가 로그인/회원가입 url로 접속하면 페이지에 접근하지 못하게 하였습니다.
 <br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/bc94544a-5166-4913-a9d0-7552d5112171"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4e13ddb4-9ce6-422b-aa7a-73a35516cdb4"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0928bb94-dc16-4e7a-82ed-e5fab387019a"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/14365785-e9c0-4010-9017-7dbc12907d5c"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2f5f5cfe-2ac3-4a48-9293-673c973926e9"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/411b9ac1-9fb9-4656-a521-3999d616e4e0"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/a4bcb3bd-5329-469b-9e0a-aaab065b2f15"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fe515815-5516-4a3f-b41e-d3ef4c941e2d"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f40078e9-15c8-42d9-a545-83f0c534978f"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/dac50e35-c078-4183-b4b4-db12e6667177"></img><br>
 <br>
 <br>
 <h2>네비게이션 바</h2>
@@ -117,8 +117,8 @@
 - 상단 NAV에 있는 카테고리를 캐러셀 UI를 이용해서 한번더 배치하여 사용자가 익숙하지 않은 대륙/나라의 상품리스트로 손쉽게 이동할 수 있도록 하였습니다.<br>
 - 월간베스트 항목을 캐러셀 UI로 배치하고 처음과 끝 항목에 도달하면 앞/뒤로 이동하는 버튼이 비활성회 되도록 구현하였습니다.<br>
 - 각 상품과 카테고리를 클릭하면 해당 페이지로 이동할 수 있도록 동적라우팅 기능을 사용하였습니다.<br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/e36a08f7-cead-4569-ba05-6b1fdbd246df"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/0ce21133-b8bd-4fc0-9e28-f0b9ff934cb3"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-backend/assets/109189690/2eef47b8-db44-4ba8-964a-0838c5117929"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/08fe7b2d-f3ec-41c3-b9ca-aca5304ae768"></img><br>
 <br>
 <br>
 <h2>상품 리스트</h2>
@@ -129,9 +129,9 @@
 <br>
 - 맵기, 대륙별, 나라별, 알러지별, 육류별과 같은 다양한 필터를 넣어 사용자들이 더욱 더 자신에게 맞는 음식을 수월하게 찾을 수 있도록 구현<br>
 <br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fa6fd96f-2146-4a99-9a43-d5084f3e5c8c"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/1e7f5601-193d-45eb-b3ec-34c48bd13b11"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9d7dbe2a-aef4-4002-a13e-1cd196e3d133"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9efa8fba-2f60-4467-9246-2b075bf9099c"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fc9c44b9-9e79-487d-957a-880f4aa5edc9"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/342c69d2-b241-49f8-bb19-918524f9791e"></img><br>
 <br>
 <br>
 <h2>상품 상세</h2>
@@ -145,10 +145,10 @@
 - useRef Hook을 사용하여 상세설명/상품정보/리뷰 버튼을 누르면 제공하는 위치로 스크롤이 자동으로 위치할 수 있도록 구현하였습니다.<br>
 - 제품의 수량을 선택한 후 장바구니에 담기 버튼을 누르면 서버로 해당 데이터가 전송되도록 Fetch POST를 사용하였습니다.<br>
 <br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/7becb7ae-310c-4b25-ab39-1e9e60cfd677"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/fabbca74-0b8e-4051-a817-dbac7416b784"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/8050882e-7b07-4f41-8a9b-fb66620f80ba"></img><br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/260aa1ae-de85-4571-8505-3533af3ff3e7"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/abd09255-e949-49ad-bd5c-7c458013db80"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2f8a7b2-6eaf-47d2-b1f8-43fef73b3f80"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/10fbe896-01c1-4aa8-b723-75ee0eede639"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/2fddc86f-de8e-4b7b-8b59-50a30c23ccc3"></img><br>
 <br>
 <br>
 <h2>장바구니</h2>
@@ -156,7 +156,7 @@
 <br>
 - 수량변경 기능과 개별/선택 삭제 기능을 추가해, 혹여 자신이 이미 담아놓은 제품의 내역에 대해 변경을 넣어주고 싶다면, 쉽게 해당 페이지에서 가능.<br> 또한, 미리 총 결제 금액을 보여주면서 잘못 선택한 제품이 있는지, 예상했던 계획과 일치하는지 확인할 수 있게함.<br>
 <br>
-<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/ba4c0535-3aba-49e1-8308-b9e58414976f"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/4ab5f303-5649-4c6c-b899-48a1663896f9"></img><br>
 <br>
 <br>
 <h2>결제</h2>
@@ -164,6 +164,6 @@
 <br>
 - 사용자가 편하게 이미 입력해놓은 배송 정보를 사용 할 수 있는 선택이 존재하고, 다른 배송지를 사용하고 싶다면 새로 입력 가능.<br> 프론트 딴에서 먼저 백에서 넘겨 받은 사용자 보유 포인트 정보로 결제 이전에 계산하여, 결제 버튼 활성화/비활성화.<br>
   <br>
-  <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/9cb52b7a-6a98-4186-a0f1-f8dfdde77bc4"></img><br>
-  <img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/f2852945-0b88-40f0-8f80-2f62692aaaee"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/09b9efe9-72f3-47ef-a56e-98658b87e1f6"></img><br>
+<img src="https://github.com/wecode-bootcamp-korea/45-1st-TRES-frontend/assets/109189690/8c2296bc-88a5-42c0-a068-6bff900ab679"></img><br>
   <br>
