@@ -11,7 +11,8 @@ const PaymentProduct = ({ item }) => {
     quantity,
     foodImage,
   } = item;
-  const priceSum = orderPrice * quantity;
+  const unitPrice = orderPrice / quantity;
+  const priceSum = unitPrice * quantity;
 
   return (
     <li className="payment-product">
@@ -21,7 +22,7 @@ const PaymentProduct = ({ item }) => {
         <div className="payment-product name-eng">{foodEngName}</div>
         <div className="payment-product region">{`${country} / ${continent}`}</div>
         <div className="payment-product quantity-price">
-          {`${quantity} / ${Math.floor(orderPrice).toLocaleString()}원`}
+          {`${quantity} / ${Math.floor(unitPrice).toLocaleString()}원`}
         </div>
         <div className="payment-product total-price">
           {priceSum.toLocaleString()}원

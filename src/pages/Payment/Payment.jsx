@@ -23,12 +23,27 @@ const Payment = () => {
   };
   const deliveryValue = Object.values(deliveryValueObj);
   const deliveryValueCheck = !deliveryValue.includes('');
-  const possessionPoint = paymentProduct[0]?.points;
-  const foodPriceSum = paymentProduct[0]?.food.reduce(
-    (accumulator, currentValue) =>
-      accumulator + currentValue.orderPrice * currentValue.quantity,
-    0
-  );
+
+  const updatedpaymentProduct = {};
+  paymentProduct[0]?.food.forEach(item => {
+    const id = item.id;
+    updatedpaymentProduct[id] = item;
+  });
+  const renderpaymentProduct = Object.values(updatedpaymentProduct);
+
+  // const possessionPoint = paymentProduct[0]?.points;
+  const possessionPoint = 1000000;
+  const foodPriceSum =
+    parseInt(
+      Math.floor(
+        renderpaymentProduct.reduce(
+          (accumulator, currentValue) =>
+            accumulator + parseFloat(currentValue.orderPrice),
+          0
+        )
+      ).toLocaleString()
+    ) * 1000;
+
   const paymentPrice =
     possessionPoint >= foodPriceSum + DELIVERY_FEE
       ? 0
@@ -51,32 +66,31 @@ const Payment = () => {
   };
 
   const showOrderComplete = () => {
-    fetch(PAYMENT_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: token,
-      },
-      body: JSON.stringify({
-        point: foodPriceSum + DELIVERY_FEE,
-        firstName: paymentProduct[0].firstName,
-        lastName: paymentProduct[0].lastName,
-        address: paymentProduct[0].address,
-        phoneNumber: paymentProduct[0].phoneNumber,
-        email: paymentProduct[0].email,
-      }),
-    }).then(response => {
-      if (response.status === 200) {
-        setModalOpen(true);
-      }
-    });
+    // fetch(PAYMENT_API, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     authorization: token,
+    //   },
+    //   body: JSON.stringify({
+    //     point: foodPriceSum + DELIVERY_FEE,
+    //     firstName: paymentProduct[0].firstName,
+    //     lastName: paymentProduct[0].lastName,
+    //     address: paymentProduct[0].address,
+    //     phoneNumber: paymentProduct[0].phoneNumber,
+    //     email: paymentProduct[0].email,
+    //   }),
+    // }).then(response => {
+    //   if (response.status === 200) {
+    //     setModalOpen(true);
+    //   }
+    // });
+    setModalOpen(true);
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
   const token = localStorage.getItem('TOKEN');
   useEffect(() => {
-    console.log(searchParams.getAll(`foodId`).map(item => parseInt(item)));
-
     fetch(`${PAYMENT_API}/checkout`, {
       method: 'POST',
       headers: {
@@ -91,7 +105,6 @@ const Payment = () => {
       .then(data => {
         setPaymentProduct(data);
         deliveryDataIni.current = data;
-        // console.log('dsada', data);
       });
   }, [token]);
 
@@ -151,9 +164,9 @@ const Payment = () => {
                 {modalOpen && (
                   <PaymentModal
                     setModalOpen={setModalOpen}
-                    foodList={paymentProduct[0].food}
+                    foodList={renderpaymentProduct}
                     orderNumber={paymentProduct[0].orderNumber}
-                    firstFood={paymentProduct[0].food[0].foodKrName}
+                    firstFood={renderpaymentProduct[0].foodKrName}
                   />
                 )}
               </div>
@@ -163,7 +176,7 @@ const Payment = () => {
         <section className="payment-list">
           <div className="payment-list-title">구매 목록</div>
           <ul>
-            {paymentProduct[0]?.food.map(item => (
+            {renderpaymentProduct.map(item => (
               <PaymentProduct key={item.id} item={item} />
             ))}
           </ul>

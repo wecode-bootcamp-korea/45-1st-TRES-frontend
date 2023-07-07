@@ -8,6 +8,7 @@
     justify-content: center;
     padding-bottom: 40px;
     .shopping-basket {
+      min-width: 712px;
       padding: 0 8px;
       .shopping-basket-title {
         padding-bottom: 10px;
@@ -43,6 +44,7 @@
       }
     }
     .order-history {
+      min-width: 346px;
       padding: 0 8px;
       .order-history-title {
         padding-bottom: 60px;

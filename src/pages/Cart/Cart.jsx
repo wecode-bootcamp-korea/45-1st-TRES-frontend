@@ -13,9 +13,14 @@ const Cart = () => {
   const [recommandList, setRecommandList] = useState([]);
   const [productPrice, setProductPrice] = useState(0);
   const [checkItems, setCheckItems] = useState([]);
-  const [linkToPayment, setLinkToPayment] = useState(true);
+  const [isDelete, setIsDelete] = useState(false);
   const navigate = useNavigate();
-
+  const updatedCartList = {};
+  cartList.forEach(item => {
+    const foodId = item.foodId;
+    updatedCartList[foodId] = item;
+  });
+  const renderCartList = Object.values(updatedCartList);
   const checkAll = checked => {
     checked
       ? setCheckItems(cartList?.map(item => item.foodId))
@@ -27,31 +32,24 @@ const Cart = () => {
       ? setCheckItems(prev => [...prev, id])
       : setCheckItems(checkItems.filter(item => item !== id));
   };
-  const [isDelete, setIsDelete] = useState(false);
+
   const deleteSelectItem = () => {
-    setIsDelete(true);
     fetch(`${CART_API}?foodId=${checkItems.join(',')}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
     });
+    setIsDelete(true);
   };
+
   const goToPaymentPage = () => {
-    console.log(`${PAYMENT_API}/checkout?foodId=${checkItems.join(',')}`);
-    fetch(`${PAYMENT_API}/checkout?foodId=${checkItems.join(',')}`, {
-      // fetch(`${PAYMENT_API}/checkout`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-      // body: JSON.stringify({
-      //   foodId: checkItems,
-      // }),
-    });
-    navigate(`/payments/checkout?foodId=${checkItems.join(',')}`);
+    const uniqueItems = [...new Set(checkItems)];
+    navigate(
+      `/payments/checkout?${uniqueItems
+        .map(item => `foodId=${item}`)
+        .join('&')}`
+    );
   };
 
   const token = localStorage.getItem('TOKEN');
@@ -68,7 +66,7 @@ const Cart = () => {
         setCartList(data);
       });
     setIsDelete(false);
-  }, [token, isDelete, checkItems]);
+  }, [token, isDelete]);
 
   useEffect(() => {
     fetch('/data/recommandData.json', {
@@ -79,14 +77,6 @@ const Cart = () => {
         setRecommandList(data);
       });
   }, []);
-
-  useEffect(() => {
-    if (productPrice > 0) {
-      setLinkToPayment(false);
-    } else {
-      setLinkToPayment(true);
-    }
-  }, [productPrice]);
 
   return (
     <div className="cart">
@@ -111,24 +101,26 @@ const Cart = () => {
             </button>
           </div>
           <ul>
-            {cartList?.map(item => (
-              <ProductInCart
-                key={item.foodId}
-                id={item.foodId}
-                food={item.food}
-                checkItems={checkItems}
-                checkSingle={checkSingle}
-                setProductPrice={setProductPrice}
-                productPrice={productPrice}
-                quantity={item.orderCount}
-                continent={item.continent}
-                country={item.country}
-                food_image={item.food_image}
-                orderPrice={item.orderPrice}
-                orderCount={item.orderCount}
-                setIsDelete={setIsDelete}
-              />
-            ))}
+            {renderCartList?.map(item => {
+              return (
+                <ProductInCart
+                  key={item.foodId}
+                  id={item.foodId}
+                  food={item.food}
+                  checkItems={checkItems}
+                  checkSingle={checkSingle}
+                  setProductPrice={setProductPrice}
+                  productPrice={productPrice}
+                  quantity={item.orderCount}
+                  continent={item.continent}
+                  country={item.country}
+                  food_image={item.food_image}
+                  orderPrice={item.orderPrice}
+                  orderCount={item.orderCount}
+                  setIsDelete={setIsDelete}
+                />
+              );
+            })}
           </ul>
         </section>
         <section className="order-history">
@@ -148,7 +140,7 @@ const Cart = () => {
           <button
             className="order-button"
             onClick={goToPaymentPage}
-            disabled={linkToPayment}
+            disabled={checkItems.length === 0}
           >
             주문결제
           </button>
