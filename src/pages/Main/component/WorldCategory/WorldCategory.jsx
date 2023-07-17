@@ -72,7 +72,7 @@ const WORLD_DATA = [
     number: 1,
     id: 1,
     alt: '아프리카',
-    src: './images/MainData/world/africa.png',
+    src: './images/MainData/world/Africa.png',
   },
   { number: 2, id: 3, alt: '아시아', src: './images/MainData/world/asia.png' },
   {
